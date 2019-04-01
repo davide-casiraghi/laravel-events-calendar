@@ -7,13 +7,13 @@ class LaravelEventsCalendar
     /***************************************************************************/
 
     /**
-     * Format the start date to be used in the search query.
+     * Format a date from datepicker (d/m/Y) to a format ready to be stored on DB (Y-m-d).
      * If the start date is null return today's date.
      *
      * @param  int  event id
      * @return \App\Event the active events collection
      */
-    public static function prepareStartDate($DatePickerStartDate)
+    public static function formatDatePickerDateForMysql($DatePickerStartDate)
     {
         if ($DatePickerStartDate) {
             list($tid, $tim, $tiy) = explode('/', $DatePickerStartDate);
@@ -27,25 +27,7 @@ class LaravelEventsCalendar
         return $ret;
     }
     
-    /***************************************************************************/
-
-    /**
-     * Format the edn date to be used in the search query.
-     *
-     * @param  int  event id
-     * @return \App\Event the active events collection
-     */
-    public static function prepareEndDate($DatePickerEndDate)
-    {
-        if ($DatePickerEndDate) {
-            list($tid, $tim, $tiy) = explode('/', $DatePickerEndDate);
-            $ret = "$tiy-$tim-$tid";
-        } else {
-            $ret = null;
-        }
-
-        return $ret;
-    }
+    
 
 
 }
