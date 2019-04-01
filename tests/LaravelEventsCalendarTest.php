@@ -10,7 +10,7 @@ class LaravelEventsCalendarTest extends TestCase
 {
     /** @test */
     public function it_format_datepicker_date_for_mysql()
-    {    
+    {
         $todaysMysqlDateFormat = Carbon::now()->format('Y-m-d');
 
         $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql(null);
