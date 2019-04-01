@@ -26,8 +26,4 @@ class LaravelEventsCalendar
 
         return $ret;
     }
-    
-    
-
-
 }
