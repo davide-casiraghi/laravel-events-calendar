@@ -8,16 +8,26 @@ class CreateGalleryImagesTable extends Migration
 {
     public function up()
     {
-        Schema::create('continents', function (Blueprint $table) {
+        Schema::create('organizers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('code')->unique();
+            $table->integer('created_by')->nullable();
+
+            $table->string('email');
+            $table->text('description')->nullable();
+            $table->integer('country_id')->nullable();
+
+            $table->string('website')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('phone')->nullable();
+
+            $table->string('slug');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('continents');
+        Schema::dropIfExists('organizers');
     }
 }
