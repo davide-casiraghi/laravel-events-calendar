@@ -17,7 +17,8 @@
     ],
     "require": {
         "php": "^7.1",
-        "illuminate/support": "5.8.*"
+        "illuminate/support": "5.8.*",
+        "nesbot/carbon": "^2.16"
     },
     "require-dev": {
         "orchestra/testbench": "3.8.*",
