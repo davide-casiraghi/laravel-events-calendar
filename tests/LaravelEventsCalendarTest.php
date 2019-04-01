@@ -4,16 +4,20 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendar;
 use PHPUnit\Framework\TestCase;
+use Carbon\Carbon;
 
 class LaravelEventsCalendarTest extends TestCase
 {
     /** @test */
     public function it_prepare_start_date()
-    {
-        $startDate = '2019-4-1';
+    {    
+        $todaysMysqlDateFormat = Carbon::now()->format('Y-m-d');
         
-        //$startDatePrepared = "1-4-2019";
-        $startDatePrepared = LaravelEventsCalendar::prepareStartDate(null);
-        $this->assertEquals($startDatePrepared, '2019-04-01');
+        $startDateMysqlDateFormat = LaravelEventsCalendar::prepareStartDate(null);
+        $this->assertEquals($startDateMysqlDateFormat, $todaysMysqlDateFormat);
+        
+        $startDateFromDatePicker = Carbon::now()->format('d/m/Y');
+        $startDateMysqlDateFormat = LaravelEventsCalendar::prepareStartDate($startDateFromDatePicker);
+        $this->assertEquals($startDateMysqlDateFormat, $todaysMysqlDateFormat);
     }
 }
