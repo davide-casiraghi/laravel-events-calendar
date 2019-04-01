@@ -10,8 +10,8 @@ class LaravelEventsCalendar
      * Format a date from datepicker (d/m/Y) to a format ready to be stored on DB (Y-m-d).
      * If the start date is null return today's date.
      *
-     * @param  int  event id
-     * @return \App\Event the active events collection
+     * @param  string  date in the d/m/Y format
+     * @return string  date in the Y-m-d format
      */
     public static function formatDatePickerDateForMysql($DatePickerStartDate)
     {
