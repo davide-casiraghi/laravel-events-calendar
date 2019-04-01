@@ -4,8 +4,8 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
-use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendar;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendar;
 
 class LaravelEventsCalendarTest extends TestCase
 {
@@ -24,7 +24,7 @@ class LaravelEventsCalendarTest extends TestCase
 
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
-        
+
         Capsule::schema()->create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id');
@@ -58,7 +58,7 @@ class LaravelEventsCalendarTest extends TestCase
 
             $table->timestamps();
         });
-        
+
         Event::create([
             'title' => 'aaa',
             'category_id' => 1,
@@ -67,9 +67,9 @@ class LaravelEventsCalendarTest extends TestCase
             'repeat_type' => 1,
             'slug' => 'aaa',
         ]);
-        
+
     }*/
-    
+
     /** @test */
     public function it_format_datepicker_date_for_mysql()
     {
