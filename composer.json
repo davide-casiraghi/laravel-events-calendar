@@ -1,0 +1,54 @@
+{
+    "name": "davide-casiraghi/laravel-events-calendar",
+    "description": "Create and manage events in your Laravel application.",
+    "keywords": [
+        "davide-casiraghi",
+        "laravel-events-calendar"
+    ],
+    "homepage": "https://github.com/davide-casiraghi/laravel-events-calendar",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Davide Casiraghi",
+            "email": "davide.casiraghi@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "5.8.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DavideCasiraghi\\LaravelEventsCalendar\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DavideCasiraghi\\LaravelEventsCalendar\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DavideCasiraghi\\LaravelEventsCalendar\\LaravelEventsCalendarServiceProvider"
+            ],
+            "aliases": {
+                "LaravelEventsCalendar": "DavideCasiraghi\\LaravelEventsCalendar\\LaravelEventsCalendarFacade"
+            }
+        }
+    }
+}
