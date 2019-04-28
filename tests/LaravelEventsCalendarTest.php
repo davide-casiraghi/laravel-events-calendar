@@ -6,8 +6,9 @@ use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
 use Carbon\Carbon;
-use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendar;
+
 
 class LaravelEventsCalendarTest extends TestCase
 {
