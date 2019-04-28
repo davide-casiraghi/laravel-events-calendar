@@ -48,7 +48,6 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                create a migration instance for each .php.stub file eg. 
                create_continents_table.php.stub --->  2019_04_28_190434761474_create_continents_table.php
             */
-
                 $migrations = [
                      'CreateQuotesTable' => 'create_continents_table',
                      'CreateCountriesTable' => 'create_countries_table',

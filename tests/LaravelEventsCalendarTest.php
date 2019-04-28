@@ -2,73 +2,58 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use Orchestra\Testbench\TestCase;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
-use Illuminate\Database\Capsule\Manager as Capsule;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendar;
 
 class LaravelEventsCalendarTest extends TestCase
 {
     /**
-     * Create the tables this model needs for testing.
+     * Define environment setup.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return void
      */
-    /*public static function setUpBeforeClass() : void
+    protected function getEnvironmentSetUp($app)
     {
-        $capsule = new Capsule;
-
-        $capsule->addConnection([
-            'driver' => 'sqlite',
+        // Setup default database to use sqlite :memory:
+        $app['config']->set('database.default', 'testbench');
+        $app['config']->set('database.connections.testbench', [
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
+    }
 
-        $capsule->setAsGlobal();
-        $capsule->bootEloquent();
+    /**
+     * Setup the test environment.
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
 
-        Capsule::schema()->create('events', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('category_id');
-            $table->integer('created_by')->nullable();
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadLaravelMigrations(['--database' => 'testbench']);
+    }
 
-            $table->string('title');
-            $table->text('description');
-            $table->string('image')->nullable();
-            $table->integer('venue_id');
-            $table->integer('organized_by')->nullable();
-            $table->string('contact_email')->nullable();
-            $table->string('website_event_link')->nullable();
-            $table->string('facebook_event_link')->nullable();
-            $table->string('status')->default('2')->nullable();
+    protected function getPackageProviders($app)
+    {
+        return [
+            LaravelEventsCalendarServiceProvider::class,
+        ];
+    }
 
-            $table->integer('repeat_type');
-            $table->dateTime('repeat_until')->nullable();
-            $table->string('repeat_weekly_on')->nullable();
-            $table->string('repeat_monthly_on')->nullable();
-            $table->string('on_monthly_kind')->nullable();
+    protected function getPackageAliases($app)
+    {
+        return [
+            'PhpResponsiveJumbotronImage' => PhpResponsiveJumbotronImage::class, // facade called PhpResponsiveQuote and the name of the facade class
+        ];
+    }
 
-            $table->integer('sc_country_id')->nullable();
-            $table->string('sc_country_name')->nullable();
-            $table->string('sc_city_name')->nullable();
-            $table->string('sc_venue_name')->nullable();
-            $table->string('sc_teachers_id')->nullable();
-            $table->string('sc_teachers_names')->nullable();
-            $table->integer('sc_continent_id')->nullable();
-
-            $table->string('slug');
-
-            $table->timestamps();
-        });
-
-        Event::create([
-            'title' => 'aaa',
-            'category_id' => 1,
-            'description' => 'aaa',
-            'venue_id' => 1,
-            'repeat_type' => 1,
-            'slug' => 'aaa',
-        ]);
-
-    }*/
+    /***************************************************************/
 
     /** @test */
     public function it_format_datepicker_date_for_mysql()

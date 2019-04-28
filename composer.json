@@ -48,7 +48,7 @@
                 "DavideCasiraghi\\LaravelEventsCalendar\\LaravelEventsCalendarServiceProvider"
             ],
             "aliases": {
-                "LaravelEventsCalendar": "DavideCasiraghi\\LaravelEventsCalendar\\LaravelEventsCalendarFacade"
+                "LaravelEventsCalendar": "DavideCasiraghi\\LaravelEventsCalendar\\LaravelEventsCalendar"
             }
         }
     }
