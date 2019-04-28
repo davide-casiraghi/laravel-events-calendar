@@ -201,7 +201,7 @@ class EventVenueController extends Controller
     /**
      * Save the record on DB.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \App\EventVenue  $eventVenue
      * @return \Illuminate\Http\Response
      */
     public function saveOnDb($request, $eventVenue)
@@ -229,7 +229,7 @@ class EventVenueController extends Controller
     /**
      * Open a modal in the event view when create teachers is clicked.
      *
-     * @return view
+     * @return \Illuminate\Http\Response
      */
     public function modal()
     {
