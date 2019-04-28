@@ -61,13 +61,17 @@ class Controller extends BaseController
 
     /**
      * Upload image on server.
+     * $imageFile - the file to upload
+     * $imageSubdir is the subdir in /storage/app/public/images/..
      *
-     * @param  $imageFile - the file to upload
-     * @param  $imageName - the file name
-     * @param  $imageSubdir - the subdir in /storage/app/public/images/..
+     * @param  array $imageFile
+     * @param  string $imageName
+     * @param  string $imageSubdir
+     * @param  string $imageWidth
+     * @param  string $thumbWidth
      * @return void
      */
-    public function uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth)
+    public static function uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth)
     {
 
         // Create dir if not exist (in /storage/app/public/images/..)
