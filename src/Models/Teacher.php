@@ -33,7 +33,7 @@ class Teacher extends Model
     /**
      * Get the events where this teacher is going to teach to.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public static function eventsByTeacher($teacher, $lastestEventsRepetitionsQuery, $searchStartDate)
