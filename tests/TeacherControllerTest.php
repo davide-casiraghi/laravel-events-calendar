@@ -47,7 +47,7 @@ class TeacherControllerTest extends TestCase
     protected function getPackageAliases($app)
     {
         return [
-            'PhpResponsiveJumbotronImage' => PhpResponsiveJumbotronImage::class, // facade called PhpResponsiveQuote and the name of the facade class
+            'LaravelEventsCalendar' => LaravelEventsCalendar::class, // facade called PhpResponsiveQuote and the name of the facade class
         ];
     }
 
