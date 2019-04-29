@@ -96,6 +96,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
+        dd("aa");
         $countries = Country::getCountries();
         $users = User::pluck('name', 'id');
         $authorUserId = $this->getLoggedUser();

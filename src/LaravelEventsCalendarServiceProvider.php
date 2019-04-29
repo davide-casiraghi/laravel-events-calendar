@@ -20,8 +20,13 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     
         // Register middleware
-        $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('admin', DavideCasiraghi\LaravelEventsCalendar\Http\Middleware\Admin::class);
+            // https://stackoverflow.com/questions/29599584/laravel-5-register-middleware-from-in-package-service-provider
+            // https://stackoverflow.com/questions/45398875/getting-route-in-laravel-packages-middleware
+            
+        //$router = $this->app['router'];
+        //$router->pushMiddlewareToGroup('admin', DavideCasiraghi\LaravelEventsCalendar\Http\Middleware\Admin::class);
+        $this->app['router']->middleware('admin', DavideCasiraghi\LaravelEventsCalendar\Http\Middleware\Admin::class);
+
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
