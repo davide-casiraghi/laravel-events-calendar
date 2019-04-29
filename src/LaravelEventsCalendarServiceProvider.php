@@ -18,6 +18,10 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-events-calendar');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-events-calendar');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+    
+        // Register middleware
+        $router = $this->app['router'];
+        $router->pushMiddlewareToGroup('admin', DavideCasiraghi\LaravelEventsCalendar\Http\Middleware\Admin::class);
 
         if ($this->app->runningInConsole()) {
             $this->publishes([

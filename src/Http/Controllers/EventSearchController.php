@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 use App\Event;
 use App\Country;
