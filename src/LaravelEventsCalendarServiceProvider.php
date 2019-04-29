@@ -54,9 +54,10 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                      'CreateEventHasTeachersTable' => 'create_event_has_teachers_table',
                      'CreateEventsTable' => 'create_events_table',
                      'CreateOrganizersTable' => 'create_organizers_table',
-                     'CreateEventCategoriesTable' => 'event_categories_table',
-                     'CreateEventRepetitionsTable' => 'event_repetitions_table',
-                     'CreateEventVenuesTable' => 'event_venues',
+                     'CreateEventCategoriesTable' => 'create_event_categories_table',
+                     'CreateEventCategoryTranslationsTable' => 'create_event_category_translations_table',
+                     'CreateEventRepetitionsTable' => 'create_event_repetitions_table',
+                     'CreateEventVenuesTable' => 'create_event_venues_table',
                  ];
 
             foreach ($migrations as $migrationFunctionName => $migrationFileName) {
