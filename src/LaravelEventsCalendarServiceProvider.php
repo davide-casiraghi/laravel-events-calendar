@@ -76,6 +76,21 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                         ], 'migrations');
                 }
             }
+            
+            
+            /* Seeders */
+            $this->publishes([
+                __DIR__.'/../database/seeds/ContinentsTableSeeder.php' => database_path('seeds/ContinentsTableSeeder.php')
+            ], 'seed-continents');
+            $this->publishes([
+                __DIR__.'/../database/seeds/CountriesTableSeeder.php' => database_path('seeds/CountriesTableSeeder.php')
+            ], 'seed-countries');
+            $this->publishes([
+                __DIR__.'/../database/seeds/EventCategoriesTableSeeder.php' => database_path('seeds/EventCategoriesTableSeeder.php')
+            ], 'seed-event-categories');
+            
+            
+            
         }
     }
 
