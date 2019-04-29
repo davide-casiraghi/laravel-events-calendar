@@ -2,14 +2,14 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use App\User;
-use App\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\User;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use Validator;
-use App\Country;
-use App\Teacher;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Carbon\Carbon;
-use App\EventCategory;
-use App\EventRepetition;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

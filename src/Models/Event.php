@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;

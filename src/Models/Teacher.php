@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
