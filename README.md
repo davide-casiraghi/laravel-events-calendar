@@ -18,6 +18,9 @@ composer require davide-casiraghi/laravel-events-calendar
 ### Publish all the vendor files
 ```php artisan vendor:publish --force```
 
+### Run the databaase migrations
+```php artisan migrate```
+
 ### Run the database seeders
 ```bash
 php artisan db:seed --class=ContinentsTableSeeder
