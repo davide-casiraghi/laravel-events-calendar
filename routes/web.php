@@ -32,11 +32,11 @@
         Route::post('/create-venue/modal/', 'EventVenueController@storeFromModal')->name('eventVenues.storeFromModal');
 
         /* Teachers */
-        /*Route::resource('teachers', 'TeacherController');
+        Route::resource('teachers', 'TeacherController');
         Route::get('/create-teacher/modal/', 'TeacherController@modal')->name('teachers.modal');
         Route::post('/create-teacher/modal/', 'TeacherController@storeFromModal')->name('teachers.storeFromModal');
         Route::get('/teachersDirectory/', 'TeacherController@index')->name('teachers.directory');
-        Route::get('/teacher/{slug}', 'TeacherController@teacherBySlug')->where('teacherBySlug', '[a-z]+');*/
+        Route::get('/teacher/{slug}', 'TeacherController@teacherBySlug')->where('teacherBySlug', '[a-z]+');
 
         /* Organizers */
         Route::resource('organizers', 'OrganizerController');
@@ -45,11 +45,11 @@
         Route::get('/organizer/{slug}', 'OrganizerController@organizerBySlug')->where('organizerBySlug', '[a-z]+');
     });
     
-    Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'auth'], function () {
-        /* Teachers */
+    /*Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'auth'], function () {
+        // Teachers 
         Route::resource('teachers', 'TeacherController');
         Route::get('/create-teacher/modal/', 'TeacherController@modal')->name('teachers.modal');
         Route::post('/create-teacher/modal/', 'TeacherController@storeFromModal')->name('teachers.storeFromModal');
         Route::get('/teachersDirectory/', 'TeacherController@index')->name('teachers.directory');
         Route::get('/teacher/{slug}', 'TeacherController@teacherBySlug')->where('teacherBySlug', '[a-z]+');
-    });
+    });*/

@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 class TeacherController extends Controller
 {
     /* Restrict the access to this resource just to logged in users except show and index view */
-    /*public function __construct()
+    public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'teacherBySlug']]);
-    }*/
+    }
 
     /***************************************************************************/
 
@@ -96,7 +96,6 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        dd("aa");
         $countries = Country::getCountries();
         $users = User::pluck('name', 'id');
         $authorUserId = $this->getLoggedUser();
