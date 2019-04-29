@@ -3,7 +3,7 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Carbon\Carbon;
-use Orchestra\Testbench\TestCase;
+//use Orchestra\Testbench\TestCase;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
 
@@ -56,6 +56,9 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function the_route_teacher_index_can_be_accessed()
     {
+        // Authenticate the admin
+        $this->authenticateAsAdmin();
+        
         $this->get('teachers')->dump();
             //->assertViewIs('laravel-events-calendar::teachers.index')
             //->assertStatus(200);
