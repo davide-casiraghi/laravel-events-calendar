@@ -115,45 +115,23 @@ class TeacherControllerTest extends TestCase
     }
     
     /** @test */
-    public function the_route_teacher_show_can_be_accessed()
+    function it_displays_the_teacher_show_page()
     {
-        $id = Teacher::insertGetId([
-            'name' => $this->faker->name,
-            'slug' => "test-slug",
-            'bio' => $this->faker->paragraph,
-            'year_starting_practice' => '2000',
-            'year_starting_teach' => '2006',
-            'significant_teachers' => $this->faker->paragraph,
-            'website' => $this->faker->url,
-            'facebook' => 'https://www.facebook.com/'.$this->faker->word,
-            'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
-        ]);
-
-        $this->get('teachers/1')
-            ->assertViewIs('laravel-events-calendar::teachers.show')
-            ->assertViewHas('teacher')
-            ->assertStatus(200);
+        $teacher = factory(Teacher::class)->create();
+        $response = $this->get("/teachers/{$teacher->id}");
+        
+        $response->assertViewIs('laravel-events-calendar::teachers.show')
+                 ->assertStatus(200);
     }
     
     /** @test */
-    public function the_route_teacher_edit_can_be_accessed()
+    function it_displays_the_teacher_edit_page()
     {
-        $id = Teacher::insertGetId([
-            'name' => $this->faker->name,
-            'slug' => "test-slug",
-            'bio' => $this->faker->paragraph,
-            'year_starting_practice' => '2000',
-            'year_starting_teach' => '2006',
-            'significant_teachers' => $this->faker->paragraph,
-            'website' => $this->faker->url,
-            'facebook' => 'https://www.facebook.com/'.$this->faker->word,
-            'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
-        ]);
-        
-        $this->get('teachers/1/edit')
-            ->assertViewIs('laravel-events-calendar::teachers.edit')
-            ->assertViewHas('teacher')
-            ->assertStatus(200);
+        $teacher = factory(Teacher::class)->create();
+        $response = $this->get("/teachers/{$teacher->id}/edit");
+
+        $response->assertViewIs('laravel-events-calendar::teachers.edit')
+                 ->assertStatus(200);
     }
     
     /** @test */
