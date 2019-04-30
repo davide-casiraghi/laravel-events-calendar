@@ -79,6 +79,45 @@ class TeacherControllerTest extends TestCase
             ->assertStatus(200);
     }
     
+    /** @test */
+    public function the_route_teacher_store_can_be_accessed()
+    {
+        /*$data = [
+            'title' => 'test title',
+            'body' => 'test body',
+            'button_text' => 'test button text',
+            'button_url' => 'test button url',
+            'image_file_name' => 'test.jpg',
+        ];*/
+        
+        $bio = $this->faker->paragraph;
+        $data = [
+                'name' => $this->faker->name,
+                'bio' => $bio,
+                'year_starting_practice' => '2000',
+                'year_starting_teach' => '2006',
+                'significant_teachers' => $this->faker->paragraph,
+                'website' => $this->faker->url,
+                'facebook' => 'https://www.facebook.com/'.$this->faker->word,
+                'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
+            ];
+        $response = $this
+                            ->followingRedirects()
+                            ->post('/teachers', $data);
+
+        // Assert in database
+        $data['bio'] = clean($bio);
+        //$this->assertDatabaseHas('teachers', $data);
+        
+        
+
+        $this
+            ->followingRedirects()
+            ->post('/teachers', $data)->dump();
+
+        //$this->assertDatabaseHas('teachers', $data);
+    }
+    
     
     /** @test */
     /*public function the_route_teacher_destroy_can_be_accessed()
@@ -104,7 +143,7 @@ class TeacherControllerTest extends TestCase
     /**
      * Test that logged user can create a teacher.
      */
-    public function test_a_logged_user_can_create_teacher()
+    /*public function test_a_logged_user_can_create_teacher()
     {
         // Authenticate the user
         //$this->authenticate();
@@ -133,6 +172,6 @@ class TeacherControllerTest extends TestCase
         $response
                     ->assertStatus(200)
                     ->assertSee(__('messages.teacher_added_successfully'));
-    }
+    }*/
 
 }
