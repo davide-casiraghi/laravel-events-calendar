@@ -80,7 +80,8 @@ class TeacherController extends Controller
         }
 
         //return view('teachers.index', compact('teachers'))
-        return view('laravel-events-calendar::teachers.index')
+        return view('laravel-events-calendar::teachers.index', compact('teachers'))
+        //return view('laravel-events-calendar::teachers.index')
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('countries', $countries)
             ->with('searchKeywords', $searchKeywords)

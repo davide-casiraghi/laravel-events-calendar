@@ -61,9 +61,9 @@ class TeacherControllerTest extends TestCase
         // Authenticate the admin
         //$this->authenticateAsAdmin();
         
-        $this->get('teachers')->dump();
-            //->assertViewIs('laravel-events-calendar::teachers.index')
-            //->assertStatus(200);
+        $this->get('teachers')
+            ->assertViewIs('laravel-events-calendar::teachers.index')
+            ->assertStatus(200);
     }
 
     /** @test */
