@@ -2,15 +2,15 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 use Validator;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use DavideCasiraghi\LaravelEventsCalendar\Models\User;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 
 class EventVenueController extends Controller
 {

@@ -2,6 +2,8 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
@@ -9,8 +11,6 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\BackgroundImage;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Http\Resources\Continent as ContinentResource;
 
 class EventSearchController extends Controller

@@ -2,8 +2,8 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use Illuminate\Http\Request;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 
 class EventRepetitionController extends Controller
 {
