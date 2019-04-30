@@ -2,17 +2,17 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use Illuminate\Foundation\Testing\WithFaker;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
-
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use Illuminate\Foundation\Testing\WithFaker;
 //use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\JumbotronImageController;
 
 class TeacherControllerTest extends TestCase
 {
     use WithFaker;
-
+    
     /**
      * Define environment setup.
      *
@@ -40,10 +40,10 @@ class TeacherControllerTest extends TestCase
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
         $this->withFactories(__DIR__.'/database/factories');
-
+        
         //$this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder']);
-
+    
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'LaravelEventsCalendar\\LaravelEventsCalendar\\ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder', '--path'=>'/database/seeds/']);
         //$this->seed('ContinentsTableSeeder');
@@ -68,70 +68,58 @@ class TeacherControllerTest extends TestCase
     /***************************************************************/
 
     /** @test */
-    public function the_route_teacher_index_can_be_accessed()
+    public function it_displays_the_teachers_index_page()
     {
         // Authenticate the admin
         //$this->authenticateAsAdmin();
-
+        
         $this->get('teachers')
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
     }
 
     /** @test */
-    public function the_route_teacher_create_can_be_accessed()
+    public function it_displays_the_teacher_create_page()
     {
         $this->get('teachers/create')
             ->assertViewIs('laravel-events-calendar::teachers.create')
             ->assertStatus(200);
     }
-
+    
     /** @test */
-    public function the_route_teacher_store_can_be_accessed()
-    {
-        $bio = $this->faker->paragraph;
-        $data = [
-                'name' => $this->faker->name,
-                'bio' => $bio,
-                'year_starting_practice' => '2000',
-                'year_starting_teach' => '2006',
-                'significant_teachers' => $this->faker->paragraph,
-                'website' => $this->faker->url,
-                'facebook' => 'https://www.facebook.com/'.$this->faker->word,
-                'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
-            ];
-        $response = $this->followingRedirects()
-                         ->post('/teachers', $data);
-
-        $data['bio'] = clean($bio);
-        $this->assertDatabaseHas('teachers', $data);
+    function it_stores_a_valid_teacher()
+    { 
+        $attributes = factory(Teacher::class)->raw();
+        $response = $this->post('/teachers', $attributes);
+        $teacher = Teacher::first();
+        
+        //$this->assertDatabaseHas('teachers', $attributes);
+        $response->assertRedirect("/teachers/");
     }
-
+    
     /** @test */
-    public function the_route_teacher_destroy_can_be_accessed()
+    function it_does_not_store_invalid_teacher()
     {
-        $id = Teacher::insertGetId([
-            'name' => $this->faker->name,
-            'slug' => 'test-slug',
-            'bio' => $this->faker->paragraph,
-            'year_starting_practice' => '2000',
-            'year_starting_teach' => '2006',
-            'significant_teachers' => $this->faker->paragraph,
-            'website' => $this->faker->url,
-            'facebook' => 'https://www.facebook.com/'.$this->faker->word,
-            'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
-        ]);
-
-        $this->delete('teachers/1')
-            ->assertStatus(302);
+        $response = $this->post('/teachers', []);
+        $response->assertSessionHasErrors();
+        $this->assertNull(Teacher::first());
     }
-
+    
+    /** @test */
+    public function it_deletes_teachers()
+    {
+        $teacher = factory(Teacher::class)->create();
+        $response = $this->delete("/teachers/{$teacher->id}");
+        $response->assertRedirect('/teachers');
+        $this->assertNull($teacher->fresh());
+    }
+    
     /** @test */
     public function the_route_teacher_show_can_be_accessed()
     {
         $id = Teacher::insertGetId([
             'name' => $this->faker->name,
-            'slug' => 'test-slug',
+            'slug' => "test-slug",
             'bio' => $this->faker->paragraph,
             'year_starting_practice' => '2000',
             'year_starting_teach' => '2006',
@@ -146,13 +134,13 @@ class TeacherControllerTest extends TestCase
             ->assertViewHas('teacher')
             ->assertStatus(200);
     }
-
+    
     /** @test */
     public function the_route_teacher_edit_can_be_accessed()
     {
         $id = Teacher::insertGetId([
             'name' => $this->faker->name,
-            'slug' => 'test-slug',
+            'slug' => "test-slug",
             'bio' => $this->faker->paragraph,
             'year_starting_practice' => '2000',
             'year_starting_teach' => '2006',
@@ -161,13 +149,13 @@ class TeacherControllerTest extends TestCase
             'facebook' => 'https://www.facebook.com/'.$this->faker->word,
             'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
         ]);
-
+        
         $this->get('teachers/1/edit')
             ->assertViewIs('laravel-events-calendar::teachers.edit')
             ->assertViewHas('teacher')
             ->assertStatus(200);
     }
-
+    
     /** @test */
     public function the_route_teacher_update_can_be_accessed()
     {
@@ -175,7 +163,9 @@ class TeacherControllerTest extends TestCase
         $teacher = factory(Teacher::class)->create();
         $attributes = factory(Teacher::class)->raw(['name' => 'Updated']);
         $response = $this->put("/teachers/{$teacher->id}", $attributes);
-        $response->assertRedirect('/teachers/');
+        $response->assertRedirect("/teachers/");
         $this->assertEquals('Updated', $teacher->fresh()->name);
     }
+    
+
 }
