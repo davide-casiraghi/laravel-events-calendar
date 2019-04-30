@@ -46,6 +46,7 @@ class TeacherControllerTest extends TestCase
     {
         return [
             LaravelEventsCalendarServiceProvider::class,
+            \Mews\Purifier\PurifierServiceProvider::class,
         ];
     }
 
@@ -53,7 +54,7 @@ class TeacherControllerTest extends TestCase
     {
         return [
             'LaravelEventsCalendar' => LaravelEventsCalendar::class, // facade called PhpResponsiveQuote and the name of the facade class
-        
+            'Purifier' => \Mews\Purifier\Facades\Purifier::class,
         ];
     }
 

@@ -19,6 +19,7 @@
         "php": "^7.1",
         "fzaninotto/faker": "^1.8",
         "illuminate/support": "5.8.*",
+        "mews/purifier": "^2.1",
         "nesbot/carbon": "^2.16"
     },
     "require-dev": {
