@@ -149,7 +149,7 @@ class TeacherControllerTest extends TestCase
     }
     
     /** @test */
-    public function the_route_edit_can_be_accessed()
+    public function the_route_teacher_edit_can_be_accessed()
     {
         $id = Teacher::insertGetId([
             'name' => $this->faker->name,
@@ -170,7 +170,7 @@ class TeacherControllerTest extends TestCase
     }
     
     /** @test */
-    public function the_route_update_can_be_accessed()
+    public function the_route_teacher_update_can_be_accessed()
     {
         $id = Teacher::insertGetId([
             'name' => $this->faker->name,
