@@ -2,26 +2,26 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 use DateTime;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use Validator;
 use DatePeriod;
+use DateInterval;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use DavideCasiraghi\LaravelEventsCalendar\Models\User;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-use DateInterval;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Mail\ReportMisuse;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Mail\ContactOrganizer;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
 class EventController extends Controller
 {
