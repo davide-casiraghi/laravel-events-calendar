@@ -80,7 +80,7 @@ class TeacherController extends Controller
         }
 
         //return view('teachers.index', compact('teachers'))
-        return view('laravel-events-calendar::teachers.create')
+        return view('laravel-events-calendar::teachers.index')
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('countries', $countries)
             ->with('searchKeywords', $searchKeywords)
@@ -98,12 +98,12 @@ class TeacherController extends Controller
     public function create()
     {
         $countries = Country::getCountries();
-        $users = User::pluck('name', 'id');
+        //$users = User::pluck('name', 'id');
         $authorUserId = $this->getLoggedUser();
 
         return view('teachers.create')
             ->with('countries', $countries)
-            ->with('users', $users)
+            //->with('users', $users)
             ->with('authorUserId', $authorUserId);
     }
 

@@ -1,4 +1,4 @@
-@extends('teachers.layout')
+@extends('laravel-events-calendar::teachers.layout')
 
 @section('title'){{ $teacher->name }}@endsection
 @section('description')Teacher profile @ Global CI calendar @endsection

@@ -1,4 +1,4 @@
-@extends('teachers.layout')
+@extends('laravel-events-calendar::teachers.layout')
 
 
 @section('content')
@@ -29,7 +29,7 @@
                 </div>
 
                 {{-- Show the created by field just to the admin and super admin --}}
-                @if(empty($authorUserId))
+                {{--@if(empty($authorUserId))
                     <div class="col-12">
                         @include('laravel-events-calendar::partials.select', [
                               'title' => __('views.created_by'),
@@ -41,7 +41,7 @@
                               'seleted' => old('created_by'),
                         ])
                     </div>
-                @endif
+                @endif--}}
 
                 <div class="col-12">
                     @include('laravel-events-calendar::partials.select', [
