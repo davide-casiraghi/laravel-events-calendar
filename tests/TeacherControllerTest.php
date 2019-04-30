@@ -176,27 +176,20 @@ class TeacherControllerTest extends TestCase
         $data['bio'] = clean($bio);
         $this->assertDatabaseHas('teachers', $data);
     }
-    
-    /** @test */
+
+    /* @test */
     /*public function it_gets_a_teacher_by_slug()
     {
         $teacher = factory(Teacher::class)->create();
-        
+
         $teacherController = new TeacherController();
         $teacherBySlug = $teacherController->teacherBySlug($teacher->slug);
-        
+
         dump($teacher->slug);
         dump($teacherBySlug->slug);
-        
-        
+
+
         $this->assertViewIs('laravel-events-calendar::teachers.show')
         ->assertStatus(200);
     }*/
-    
-    
-    
-    
-    
-    
-    
 }
