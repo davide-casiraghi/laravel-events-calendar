@@ -2,7 +2,7 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use App\User;
+//use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -13,6 +13,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    // https://stackoverflow.com/questions/51611015/authuser-return-null-5-6
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = Auth::user();
+
+            return $next($request);
+        });
+    }
+
 
     // **********************************************************************
 
@@ -27,11 +38,11 @@ class Controller extends BaseController
         $user = Auth::user();
 
         // This is needed to not get error in the queries with: ->when($loggedUser->id, function ($query, $loggedUserId) {
-        if (! $user) {
+        /*if (! $user) {
             $user = new User();
             $user->name = null;
             $user->group = null;
-        }
+        }*/
 
         $ret = $user;
 

@@ -20,10 +20,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 class TeacherController extends Controller
 {
     /* Restrict the access to this resource just to logged in users except show and index view */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'teacherBySlug']]);
-    }
+    }*/
 
     /***************************************************************************/
 
@@ -102,7 +102,7 @@ class TeacherController extends Controller
         //$users = User::pluck('name', 'id');
         $authorUserId = $this->getLoggedUser();
 
-        return view('teachers.create')
+        return view('laravel-events-calendar::teachers.create')
             ->with('countries', $countries)
             //->with('users', $users)
             ->with('authorUserId', $authorUserId);
@@ -169,7 +169,7 @@ class TeacherController extends Controller
         //dd(DB::getQueryLog());
         //dd($eventsTeacherWillTeach);
 
-        return view('teachers.show', compact('teacher'))
+        return view('laravel-events-calendar::teachers.show', compact('teacher'))
             ->with('country', $country)
             ->with('eventCategories', $eventCategories)
             ->with('eventsTeacherWillTeach', $eventsTeacherWillTeach);
@@ -187,7 +187,7 @@ class TeacherController extends Controller
         $users = User::pluck('name', 'id');
         $countries = Country::getCountries();
 
-        return view('teachers.edit', compact('teacher'))
+        return view('laravel-events-calendar::teachers.edit', compact('teacher'))
             ->with('countries', $countries)
             ->with('users', $users)
             ->with('authorUserId', $authorUserId);
@@ -286,7 +286,7 @@ class TeacherController extends Controller
     {
         $countries = Country::getCountries();
 
-        return view('teachers.modal')->with('countries', $countries);
+        return view('laravel-events-calendar::teachers.modal')->with('countries', $countries);
     }
 
     /***************************************************************************/

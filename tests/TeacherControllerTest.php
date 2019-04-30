@@ -67,10 +67,10 @@ class TeacherControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function the_route_teacher_create_can_be_accessed()
+    public function the_route_teacher_create_can_be_accessed()
     {
-        $this->get('jumbotron-images/create')
+        $this->get('teachers/create')
             ->assertViewIs('laravel-events-calendar::teachers.create')
             ->assertStatus(200);
-    }*/
+    }
 }
