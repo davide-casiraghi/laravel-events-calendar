@@ -46,7 +46,7 @@ class LaravelEventsCalendarTest extends TestCase
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'LaravelEventsCalendar\\LaravelEventsCalendar\\ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder', '--path'=>'/database/seeds/']);
         
-        $this->seed('ContinentsTableSeeder');
+        //$this->seed('ContinentsTableSeeder');
     }
 
     protected function getPackageProviders($app)
