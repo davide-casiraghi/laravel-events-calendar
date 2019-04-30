@@ -40,6 +40,13 @@ class TeacherControllerTest extends TestCase
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
         //$this->withFactories(__DIR__.'/database/factories');
+        
+        //$this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
+        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder']);
+    
+        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'LaravelEventsCalendar\\LaravelEventsCalendar\\ContinentsTableSeeder']);
+        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder', '--path'=>'/database/seeds/']);
+        $this->seed('ContinentsTableSeeder');
     }
 
     protected function getPackageProviders($app)
