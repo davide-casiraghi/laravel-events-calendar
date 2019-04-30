@@ -3,9 +3,9 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Carbon\Carbon;
-//use Orchestra\Testbench\TestCase;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
+//use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\JumbotronImageController;
 
 class TeacherControllerTest extends TestCase
 {
@@ -35,6 +35,7 @@ class TeacherControllerTest extends TestCase
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
+        $this->withFactories(__DIR__.'/database/factories');
     }
 
     protected function getPackageProviders($app)
@@ -48,6 +49,7 @@ class TeacherControllerTest extends TestCase
     {
         return [
             'LaravelEventsCalendar' => LaravelEventsCalendar::class, // facade called PhpResponsiveQuote and the name of the facade class
+        
         ];
     }
 
@@ -57,7 +59,7 @@ class TeacherControllerTest extends TestCase
     public function the_route_teacher_index_can_be_accessed()
     {
         // Authenticate the admin
-        $this->authenticateAsAdmin();
+        //$this->authenticateAsAdmin();
         
         $this->get('teachers')->dump();
             //->assertViewIs('laravel-events-calendar::teachers.index')

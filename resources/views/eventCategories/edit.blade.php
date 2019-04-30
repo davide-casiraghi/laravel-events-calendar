@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        @include('partials.forms.error-management', [
+        @include('laravel-events-calendar::partials.error-management', [
           'style' => 'alert-danger',
         ])
 
@@ -23,7 +23,7 @@
 
              <div class="row">
                 <div class="col-12">
-                    @include('partials.forms.input', [
+                    @include('laravel-events-calendar::partials.input', [
                           'title' => __('general.name'),
                           'name' => 'name',
                           'placeholder' => 'Event category name',
@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            @include('partials.forms.buttons-back-submit', [
+            @include('laravel-events-calendar::partials.buttons-back-submit', [
                 'route' => 'eventCategories.index'  
             ])
 

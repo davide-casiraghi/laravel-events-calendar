@@ -3,7 +3,7 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Carbon\Carbon;
-use Orchestra\Testbench\TestCase;
+//use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\DB;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;

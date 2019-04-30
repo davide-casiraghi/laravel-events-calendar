@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    @include('partials.forms.error-management', [
+    @include('laravel-events-calendar::partials.error-management', [
           'style' => 'alert-danger',
     ])
 
@@ -28,7 +28,7 @@
 
         <div class="row">
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                     'title' => __('general.name'),
                     'name' => 'name',
                     'placeholder' => 'Name',
@@ -37,7 +37,7 @@
             </div>
             
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                     'title' => __('views.street'),
                     'name' => 'address',
                     'placeholder' => '',
@@ -45,7 +45,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                     'title' => __('views.city'),
                     'name' => 'city',
                     'placeholder' => '',
@@ -53,7 +53,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                     'title' => __('views.state_province'),
                     'name' => 'state_province',
                     'placeholder' => '',
@@ -61,7 +61,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.select', [
+                @include('laravel-events-calendar::partials.select', [
                       'title' => __('views.country'),
                       'name' => 'country_id',
                       'placeholder' => 'Select country',
@@ -72,7 +72,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                     'title' => __('views.zip_code'),
                     'name' => 'zip_code',
                     'placeholder' => '',
@@ -81,7 +81,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                     'title' => __('views.website'),
                     'name' => 'website',
                     'placeholder' => 'https://...',
@@ -90,7 +90,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.textarea', [
+                @include('laravel-events-calendar::partials.textarea', [
                     'title' => __('general.description'),
                     'name' => 'description',
                     'placeholder' => 'Event description',

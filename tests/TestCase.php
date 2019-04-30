@@ -2,12 +2,15 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use App\User;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+//use App\User;
+//use Illuminate\Foundation\Auth\User;
+use DavideCasiraghi\LaravelEventsCalendar\Models\User;
+use Orchestra\Testbench\TestCase as BaseTestCase;
+//use Illuminate\Foundation\Testing\TestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    //use CreatesApplication;
 
     // Authenticate the user
     public function authenticate()

@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    @include('partials.forms.error-management', [
+    @include('laravel-events-calendar::partials.error-management', [
           'style' => 'alert-danger',
     ])
 
@@ -30,7 +30,7 @@
 
          <div class="row">
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                       'title' => __('general.name'),
                       'name' => 'name',
                       'placeholder' => 'Teacher name',
@@ -39,7 +39,7 @@
             </div>
 
             <div class="col-12">
-                @include('partials.forms.select', [
+                @include('laravel-events-calendar::partials.select', [
                       'title' => __('general.country'),
                       'name' => 'country_id',
                       'placeholder' => 'Select country',
@@ -51,14 +51,14 @@
             </div>
 
             <div class="col-12">
-                @include('partials.forms.textarea-plain', [
+                @include('laravel-events-calendar::partials.textarea-plain', [
                       'title' =>  __('views.bio'),
                       'name' => 'bio',
                       'required' => true,
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                       'title' => __('views.year_of_starting_to_practice'),
                       'name' => 'year_starting_practice',
                       'placeholder' => 'AAAA',
@@ -67,7 +67,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                       'title' => __('views.year_of_starting_to_teach'),
                       'name' => 'year_starting_teach',
                       'placeholder' => 'AAAA',
@@ -76,14 +76,14 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.textarea-plain', [
+                @include('laravel-events-calendar::partials.textarea-plain', [
                       'title' =>  __('views.significant_teachers'),
                       'name' => 'significant_teachers',
                       'required' => true,
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                       'title' => __('views.facebook_profile'),
                       'name' => 'facebook',
                       'placeholder' => 'https://...',
@@ -92,7 +92,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                       'title' => __('views.website'),
                       'name' => 'website',
                       'placeholder' => 'https://...',
@@ -101,7 +101,7 @@
                 ])
             </div>
             
-            @include('partials.forms.upload-image', [
+            @include('laravel-events-calendar::partials.upload-image', [
                   'title' => __('views.upload_profile_picture'), 
                   'name' => 'profile_picture',
                   'value' => ''

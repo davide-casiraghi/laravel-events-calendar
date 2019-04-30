@@ -35,7 +35,7 @@
 
         <div class="col-12 mt-4">
             <h3 class="mb-3">Map</h3>
-            @include('partials.gmap', [
+            @include('laravel-events-calendar::partials.gmap', [
                   'venue_name' => $eventVenue->name,
                   'venue_address' => $eventVenue->address,
                   'venue_city' => $eventVenue->city,

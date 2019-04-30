@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    @include('partials.forms.error-management', [
+    @include('laravel-events-calendar::partials.error-management', [
           'style' => 'alert-danger',
     ])
 
@@ -28,7 +28,7 @@
 
         <div class="row">
            <div class="col-12">
-               @include('partials.forms.input', [
+               @include('laravel-events-calendar::partials.input', [
                    'title' => __('general.name'),
                    'name' => 'name',
                    'placeholder' => 'Name',
@@ -37,14 +37,14 @@
            </div>
            
            <div class="col-12">
-               @include('partials.forms.input', [
+               @include('laravel-events-calendar::partials.input', [
                    'title' => __('general.email_address'),
                    'name' => 'email',
                    'required' => true,
                ])
            </div>
            <div class="col-12">
-               @include('partials.forms.input', [
+               @include('laravel-events-calendar::partials.input', [
                    'title' => __('general.phone'),
                    'name' => 'phone',
                    'placeholder' => '',
@@ -52,7 +52,7 @@
                ])
            </div>
            <div class="col-12">
-               @include('partials.forms.input', [
+               @include('laravel-events-calendar::partials.input', [
                    'title' => __('views.website'),
                    'name' => 'website',
                    'placeholder' => 'https://...',
@@ -60,7 +60,7 @@
                ])
            </div>
            <div class="col-12">
-               @include('partials.forms.textarea', [
+               @include('laravel-events-calendar::partials.textarea', [
                      'title' => __('general.description'),
                      'name' => 'description',
                      'placeholder' => 'Organizer description',

@@ -11,25 +11,25 @@
         </div>
     </div>
 
-    @include('partials.forms.error-management', [
+    @include('laravel-events-calendar::partials.error-management', [
           'style' => 'alert-danger',
     ])
 
     <form action="{{ route('eventCategoryTranslations.store') }}" method="POST">
         @csrf
 
-            @include('partials.forms.input-hidden', [
+            @include('laravel-events-calendar::partials.input-hidden', [
                   'name' => 'event_category_id',
                   'value' => $eventCategoryId,
             ])
-            @include('partials.forms.input-hidden', [
+            @include('laravel-events-calendar::partials.input-hidden', [
                   'name' => 'language_code',
                   'value' => $languageCode
             ])
 
          <div class="row">
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                     'title' => 'Name',
                     'name' => 'name',
                     'placeholder' => 'Event Category name',
@@ -40,7 +40,7 @@
             
         </div>
 
-        @include('partials.forms.buttons-back-submit', [
+        @include('laravel-events-calendar::partials.buttons-back-submit', [
             'route' => 'eventCategories.index'  
         ])
 

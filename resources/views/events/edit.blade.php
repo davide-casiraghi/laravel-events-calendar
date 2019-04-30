@@ -15,7 +15,7 @@
             </div>
         </div>
         
-        @include('partials.forms.error-management', [
+        @include('laravel-events-calendar::partials.error-management', [
               'style' => 'alert-danger',
         ])
         
@@ -34,7 +34,7 @@
                     <div class="col-12 col-md main">
                         <div class="row">
                            <div class="col-12">
-                               @include('partials.forms.input', [
+                               @include('laravel-events-calendar::partials.input', [
                                      'title' => 'Title',
                                      'name' => 'title',
                                      'placeholder' => 'Event title',
@@ -46,7 +46,7 @@
                            {{-- Show the created by field just to the admin and super admin --}}
                            @if(empty($authorUserId))
                                <div class="col-12">
-                                   @include('partials.forms.select', [
+                                   @include('laravel-events-calendar::partials.select', [
                                          'title' => 'Created by',
                                          'name' => 'created_by',
                                          'placeholder' => 'Select owner',
@@ -60,7 +60,7 @@
                            @endif
 
                            <div class="col-12">
-                               @include('partials.forms.select', [
+                               @include('laravel-events-calendar::partials.select', [
                                      'title' => 'Category',
                                      'name' => 'category_id',
                                      'placeholder' => 'Select category',
@@ -73,7 +73,7 @@
                            </div>
 
                            <div class="col-12">
-                               @include('partials.forms.event.select-event-status')
+                               @include('laravel-events-calendar::partials.event.select-event-status')
                            </div>
                        </div>
                     </div>
@@ -90,8 +90,8 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
-                                @include('partials.forms.event.select-event-teacher')
-                                @include('partials.forms.event.select-event-organizer')
+                                @include('laravel-events-calendar::partials.event.select-event-teacher')
+                                @include('laravel-events-calendar::partials.event.select-event-organizer')
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
-                                @include('partials.forms.event.select-event-venue')
+                                @include('laravel-events-calendar::partials.event.select-event-venue')
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
-                                @include('partials.forms.textarea', [
+                                @include('laravel-events-calendar::partials.textarea', [
                                       'title' => 'Description',
                                       'name' => 'description',
                                       'placeholder' => 'Event description',
@@ -149,7 +149,7 @@
                         {{-- Start date --}}
                         <div class="row">
                             <div class="col-6">
-                                @include('partials.forms.input-date', [
+                                @include('laravel-events-calendar::partials.input-date', [
                                       'title' => __('views.date_start'),
                                       'name' => 'startDate',
                                       'placeholder' => __('views.select_date'),
@@ -159,7 +159,7 @@
                             </div>
 
                             <div class="col-6">
-                                @include('partials.forms.input-time', [
+                                @include('laravel-events-calendar::partials.input-time', [
                                       'title' =>  __('views.time_start'),
                                       'name' => 'time_start',
                                       'placeholder' => __('views.select_time'),
@@ -172,7 +172,7 @@
                         {{-- End date --}}
                         <div class="row">
                             <div class="col-6">
-                                @include('partials.forms.input-date', [
+                                @include('laravel-events-calendar::partials.input-date', [
                                       'title' =>  __('views.date_end'),
                                       'name' => 'endDate',
                                       'placeholder' => __('views.select_date'),
@@ -181,7 +181,7 @@
                                 ])
                             </div>
                             <div class="col-6">
-                                @include('partials.forms.input-time', [
+                                @include('laravel-events-calendar::partials.input-time', [
                                       'title' =>  __('views.time_end'),
                                       'name' => 'time_end',
                                       'placeholder' => __('views.select_time'),
@@ -192,7 +192,7 @@
                         </div>
                         
                         {{-- Repetitions --}}
-                            @include('partials.forms.event.repeat-event', [
+                            @include('laravel-events-calendar::partials.event.repeat-event', [
                                   'event' => $event
                             ])
                         
@@ -209,7 +209,7 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
-                                @include('partials.forms.input', [
+                                @include('laravel-events-calendar::partials.input', [
                                       'title' =>  __('views.email_for_more_info'),
                                       'name' => 'contact_email',
                                       'placeholder' => '', //__('views.email_for_more_info_placeholder')
@@ -218,7 +218,7 @@
                                 ])
                             </div>
                             <div class="col-12">
-                                @include('partials.forms.input', [
+                                @include('laravel-events-calendar::partials.input', [
                                       'title' =>  __('views.facebook_event'),
                                       'name' => 'facebook_event_link',
                                       'placeholder' => 'https://www.facebook.com/events/...',
@@ -227,7 +227,7 @@
                                 ])
                             </div>
                             <div class="col-12">
-                                @include('partials.forms.input', [
+                                @include('laravel-events-calendar::partials.input', [
                                       'title' => __('views.event_url'),
                                       'name' => 'website_event_link',
                                       'placeholder' => 'https://www...',
@@ -249,7 +249,7 @@
                     </div>
                     <div class="col main">
                         <div class="row">
-                            @include('partials.forms.upload-image', [
+                            @include('laravel-events-calendar::partials.upload-image', [
                                   'title' => __('views.upload_event_teaser_image'), 
                                   'name' => 'image',
                                   'folder' => 'events_teaser',
@@ -262,14 +262,14 @@
             <hr class="mt-3 mb-5">
                     
             {{-- used to not update the slug --}}
-            @include('partials.forms.input-hidden', [
+            @include('laravel-events-calendar::partials.input-hidden', [
                   'name' => 'slug',
                   'value' => $event->slug,
             ])
             
             <div class="row mt-2">  
                 <div class="col-12 action">
-                    @include('partials.forms.buttons-back-submit', [
+                    @include('laravel-events-calendar::partials.buttons-back-submit', [
                         'route' => 'events.index'  
                     ])
                 </div>

@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class AddFieldsToUsersTable extends Migration
+{
+    public function up()
+    {
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('group')->nullable();
+            $table->integer('country_id')->nullable();
+            $table->text('description')->nullable();
+            $table->string('activation_code')->nullable();
+            $table->boolean('status')->default(0);
+            $table->boolean('accept_terms')->default('0');
+        });
+    }
+
+    public function down()
+    {
+        $table->dropColumn('group');
+        $table->dropColumn('country_id');
+        $table->dropColumn('description');
+        $table->dropColumn('activation_code');
+        $table->dropColumn('status');
+        $table->dropColumn('accept_terms');
+    }
+}

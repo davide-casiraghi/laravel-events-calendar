@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    @include('partials.forms.error-management', [
+    @include('laravel-events-calendar::partials.error-management', [
           'style' => 'alert-danger',
     ])
 
@@ -19,23 +19,23 @@
         @csrf
         @method('PUT')
 
-            @include('partials.forms.input-hidden', [
+            @include('laravel-events-calendar::partials.input-hidden', [
                   'name' => 'event_category_translation_id',
                   'value' => $eventCategoryTranslation->id
             ])
 
-            @include('partials.forms.input-hidden', [
+            @include('laravel-events-calendar::partials.input-hidden', [
                   'name' => 'event_category_id',
                   'value' => $eventCategoryId,
             ])
-            @include('partials.forms.input-hidden', [
+            @include('laravel-events-calendar::partials.input-hidden', [
                   'name' => 'language_code',
                   'value' => $languageCode
             ])
 
          <div class="row">
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                     'title' => 'Name',
                     'name' => 'name',
                     'placeholder' => 'Event Category name',
@@ -48,7 +48,7 @@
         
         <div class="row mt-2">  
             <div class="col-12 action">
-                @include('partials.forms.buttons-back-submit', [
+                @include('laravel-events-calendar::partials.buttons-back-submit', [
                     'route' => 'eventCategories.index'  
                 ])
     </form>

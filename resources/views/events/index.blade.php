@@ -33,7 +33,7 @@
             @csrf
             <div class="row">
                 <div class="col-12 col-sm-6 order-1">
-                    @include('partials.forms.input', [
+                    @include('laravel-events-calendar::partials.input', [
                         'name' => 'keywords',
                         'placeholder' => __('views.search_by_event_name'),
                         'value' => $searchKeywords
@@ -45,7 +45,7 @@
                 </div>
             
                 <div class="col-12 col-sm-6 order-2 order-sm-3">
-                    @include('partials.forms.select', [
+                    @include('laravel-events-calendar::partials.select', [
                         'name' => 'category_id',
                         'placeholder' => __('views.filter_by_category'),
                         'records' => $eventCategories,
@@ -55,7 +55,7 @@
                     ])
                 </div>
                 <div class="col-12 col-sm-6 order-3 order-sm-4">
-                    @include('partials.forms.select', [
+                    @include('laravel-events-calendar::partials.select', [
                         'name' => 'country_id',
                         'placeholder' => __('views.filter_by_country'),
                         'records' => $countries,

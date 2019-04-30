@@ -91,7 +91,7 @@
                         <div class="container mt-4">
                             <div class="row">
                                 <div class="col-12">
-                                    @include('partials.event-list', [
+                                    @include('laravel-events-calendar::partials.event-list', [
                                           'events' => $eventsTeacherWillTeach,
                                           'iframeLinkBlank' => false,
                                     ])
