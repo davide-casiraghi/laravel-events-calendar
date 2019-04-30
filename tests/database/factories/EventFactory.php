@@ -12,7 +12,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Event::class, function (Faker $faker) {
+$factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Event::class, function (Faker $faker) {
     $venue = factory(\App\EventVenue::class)->create();
     $user = factory(\App\User::class)->create();
 

@@ -12,7 +12,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\EventVenue::class, function (Faker $faker) {
+$factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue::class, function (Faker $faker) {
     $name = $faker->name;
     $slug = Str::slug($name, '-').rand(10000, 100000);
 

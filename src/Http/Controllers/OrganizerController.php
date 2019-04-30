@@ -49,7 +49,7 @@ class OrganizerController extends Controller
             ->paginate(20);
         }
 
-        return view('organizers.index', compact('organizers'))
+        return view('laravel-events-calendar::organizers.index', compact('organizers'))
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('searchKeywords', $searchKeywords);
     }
@@ -66,7 +66,7 @@ class OrganizerController extends Controller
         $users = User::pluck('name', 'id');
         $authorUserId = $this->getLoggedUser();
 
-        return view('organizers.create')
+        return view('laravel-events-calendar::organizers.create')
             ->with('users', $users)
             ->with('authorUserId', $authorUserId);
     }
@@ -104,7 +104,7 @@ class OrganizerController extends Controller
      */
     public function show(Organizer $organizer)
     {
-        return view('organizers.show', compact('organizer'));
+        return view('laravel-events-calendar::organizers.show', compact('organizer'));
     }
 
     /***************************************************************************/
@@ -201,7 +201,7 @@ class OrganizerController extends Controller
      */
     public function modal()
     {
-        return view('organizers.modal');
+        return view('laravel-events-calendar::organizers.modal');
     }
 
     /***************************************************************************/
