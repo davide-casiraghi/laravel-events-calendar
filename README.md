@@ -15,6 +15,18 @@ You can install the package via composer:
 composer require davide-casiraghi/laravel-events-calendar
 ```
 
+### Publish all the vendor files
+```php artisan vendor:publish --force```
+
+### Run the database migrations
+```php artisan migrate```
+
+### Run the database seeders
+```bash
+php artisan db:seed --class=ContinentsTableSeeder
+php artisan db:seed --class=CountriesTableSeeder
+php artisan db:seed --class=EventCategoriesTableSeeder
+```
 ## Usage
 
 ``` php
