@@ -106,20 +106,10 @@ class TeacherControllerTest extends TestCase
     }
     
     /** @test */
-    public function it_deletes_teachers()
-    {
-        $teacher = factory(Teacher::class)->create();
-        $response = $this->delete("/teachers/{$teacher->id}");
-        $response->assertRedirect('/teachers');
-        $this->assertNull($teacher->fresh());
-    }
-    
-    /** @test */
     function it_displays_the_teacher_show_page()
     {
         $teacher = factory(Teacher::class)->create();
         $response = $this->get("/teachers/{$teacher->id}");
-        
         $response->assertViewIs('laravel-events-calendar::teachers.show')
                  ->assertStatus(200);
     }
@@ -129,13 +119,12 @@ class TeacherControllerTest extends TestCase
     {
         $teacher = factory(Teacher::class)->create();
         $response = $this->get("/teachers/{$teacher->id}/edit");
-
         $response->assertViewIs('laravel-events-calendar::teachers.edit')
                  ->assertStatus(200);
     }
     
     /** @test */
-    public function the_route_teacher_update_can_be_accessed()
+    function it_updates_valid_teacher()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $teacher = factory(Teacher::class)->create();
@@ -145,5 +134,22 @@ class TeacherControllerTest extends TestCase
         $this->assertEquals('Updated', $teacher->fresh()->name);
     }
     
+    /** @test */
+    function it_does_not_update_invalid_teacher()
+    {
+        $teacher = factory(Teacher::class)->create(['name' => 'Example']);
+        $response = $this->put("/teachers/{$teacher->id}", []);
+        $response->assertSessionHasErrors();
+        $this->assertEquals('Example', $teacher->fresh()->name);
+    }
+    
+    /** @test */
+    public function it_deletes_teachers()
+    {
+        $teacher = factory(Teacher::class)->create();
+        $response = $this->delete("/teachers/{$teacher->id}");    
+        $response->assertRedirect('/teachers');
+        $this->assertNull($teacher->fresh());
+    }
 
 }
