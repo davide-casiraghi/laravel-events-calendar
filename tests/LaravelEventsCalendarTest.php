@@ -37,15 +37,14 @@ class LaravelEventsCalendarTest extends TestCase
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
-        
+
         //$this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder']);
         // "php artisan db:seed --class='Hsd\\Catalog\\CatalogSeeder' --database='codeception'"
-        
-        
+
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'LaravelEventsCalendar\\LaravelEventsCalendar\\ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder', '--path'=>'/database/seeds/']);
-        
+
         //$this->seed('ContinentsTableSeeder');
     }
 
@@ -83,7 +82,6 @@ class LaravelEventsCalendarTest extends TestCase
 
         $this->assertEquals('John Smith', $teacher->name);
     }
-
 
     /** @test */
     public function it_format_datepicker_date_for_mysql()

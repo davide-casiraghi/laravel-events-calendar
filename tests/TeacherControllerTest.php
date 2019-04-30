@@ -2,17 +2,17 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use Carbon\Carbon;
+use Illuminate\Foundation\Testing\WithFaker;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-use Illuminate\Foundation\Testing\WithFaker;
+
 //use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\JumbotronImageController;
 
 class TeacherControllerTest extends TestCase
 {
     use WithFaker;
-    
+
     /**
      * Define environment setup.
      *
@@ -40,10 +40,10 @@ class TeacherControllerTest extends TestCase
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
         //$this->withFactories(__DIR__.'/database/factories');
-        
+
         //$this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder']);
-    
+
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'LaravelEventsCalendar\\LaravelEventsCalendar\\ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder', '--path'=>'/database/seeds/']);
         //$this->seed('ContinentsTableSeeder');
@@ -72,7 +72,7 @@ class TeacherControllerTest extends TestCase
     {
         // Authenticate the admin
         //$this->authenticateAsAdmin();
-        
+
         $this->get('teachers')
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
@@ -85,7 +85,7 @@ class TeacherControllerTest extends TestCase
             ->assertViewIs('laravel-events-calendar::teachers.create')
             ->assertStatus(200);
     }
-    
+
     /** @test */
     public function the_route_teacher_store_can_be_accessed()
     {
@@ -106,9 +106,8 @@ class TeacherControllerTest extends TestCase
         $data['bio'] = clean($bio);
         $this->assertDatabaseHas('teachers', $data);
     }
-    
-    
-    /** @test */
+
+    /* @test */
     /*public function the_route_teacher_destroy_can_be_accessed()
     {
         $id = Teacher::insertGetId([
@@ -127,9 +126,8 @@ class TeacherControllerTest extends TestCase
         $this->delete('jumbotron-images/1')
             ->assertStatus(302);
     }*/
-    
-    
-    /**
+
+    /*
      * Test that logged user can create a teacher.
      */
     /*public function test_a_logged_user_can_create_teacher()
@@ -162,5 +160,4 @@ class TeacherControllerTest extends TestCase
                     ->assertStatus(200)
                     ->assertSee(__('messages.teacher_added_successfully'));
     }*/
-
 }

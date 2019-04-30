@@ -35,7 +35,7 @@ class TeacherController extends Controller
     public function index(Request $request)
     {
         $countries = Country::orderBy('countries.name')->pluck('name', 'id');
-        
+
         // Get the countries with active teachers - BUG! IF I CACHE JUST A PART OF THE COUNTRIES WHEN I INSERT A NEW TEACHER WITH A COUNTRY THAT IS NOT IN THE CACHE I GET AN ERROR WHEN I'M BACK TO THE INDEX (eg.no index error)
         /*    $cacheExpireTime = 900; // Set the duration time of the cache (15 min - 900sec)
             $countries = Cache::remember('teachers_countries', cacheExpireTime, function () {
