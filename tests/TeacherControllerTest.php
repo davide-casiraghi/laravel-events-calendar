@@ -39,7 +39,7 @@ class TeacherControllerTest extends TestCase
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
-        $this->withFactories(__DIR__.'/database/factories');
+        //$this->withFactories(__DIR__.'/database/factories');
     }
 
     protected function getPackageProviders($app)

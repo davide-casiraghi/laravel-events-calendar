@@ -37,6 +37,8 @@ class LaravelEventsCalendarTest extends TestCase
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
+        
+        $this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
     }
 
     protected function getPackageProviders($app)
@@ -75,7 +77,7 @@ class LaravelEventsCalendarTest extends TestCase
     }
 
     /** @test */
-    public function it_runs_the_factories()
+    public function it_runs_the_seeders()
     {
 
         // Shows all the tables in the sqlite DB
