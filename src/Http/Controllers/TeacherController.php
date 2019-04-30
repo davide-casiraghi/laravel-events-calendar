@@ -298,7 +298,7 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeFromModal(Request $request)
+    public static function storeFromModal(Request $request)
     {
         $teacher = new Teacher();
 
