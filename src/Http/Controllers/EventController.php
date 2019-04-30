@@ -2,22 +2,22 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use App\User;
+use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 use DateTime;
-use App\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use Validator;
 use DatePeriod;
-use App\Country;
-use App\Teacher;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DateInterval;
-use App\Organizer;
-use App\EventVenue;
-use App\EventCategory;
-use App\EventRepetition;
-use App\Mail\ReportMisuse;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Mail\ReportMisuse;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Mail\ContactOrganizer;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Mail\ContactOrganizer;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -148,7 +148,7 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @param  $firstRpDates
      * @return \Illuminate\Http\Response
      */
@@ -219,7 +219,7 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
@@ -283,7 +283,7 @@ class EventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Event $event)
@@ -305,7 +305,7 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function destroy(Event $event)
@@ -327,7 +327,7 @@ class EventController extends Controller
      * To save event repetitions for create and update methods.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return void
      */
     public function saveEventRepetitions($request, $event)
@@ -383,7 +383,7 @@ class EventController extends Controller
      * $dayOfTheWeek: 1|2|3|4|5|6|7 (MONDAY-SUNDAY)
      * https://stackoverflow.com/questions/2045736/getting-all-dates-for-mondays-and-tuesdays-for-the-next-year.
      *
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @param  string $date
      * @param  int $dayOfTheWeek
      * @return void
@@ -405,7 +405,7 @@ class EventController extends Controller
      * $dateStart and $dateEnd are in the format Y-m-d
      * $timeStart and $timeEnd are in the format H:i:s.
      * $weekDays - $request->get('repeat_weekly_on_day').
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @param  string  $weekDays
      * @param  string  $startDate
      * @param  string  $repeatUntilDate
@@ -435,7 +435,7 @@ class EventController extends Controller
      * Save all the weekly repetitions inthe event_repetitions table
      * useful: http://thisinterestsme.com/php-get-first-monday-of-month/.
      *
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @param  array   $monthRepeatDatas - explode of $request->get('on_monthly_kind')
      *                      0|28 the 28th day of the month
      *                      1|2|2 the 2nd Tuesday of the month
@@ -612,7 +612,7 @@ class EventController extends Controller
     /**
      * Display the thank you view after the mail to the organizer is sent (called by /mailToOrganizer/sent route).
      *
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function mailToOrganizerSent()
@@ -637,8 +637,8 @@ class EventController extends Controller
      * Set the Event attributes about repeating before store or update (repeat until field and multiple days).
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
-     * @return \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      */
     public function setEventRepeatFields($request, $event)
     {
@@ -958,7 +958,7 @@ class EventController extends Controller
      * Save/Update the record on DB.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Event $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event $event
      * @return string $ret - the ordinal indicator (st, nd, rd, th)
      */
     public function saveOnDb($request, $event)

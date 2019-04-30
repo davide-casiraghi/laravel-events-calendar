@@ -2,9 +2,9 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use App\User;
+use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 use Validator;
-use App\Organizer;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

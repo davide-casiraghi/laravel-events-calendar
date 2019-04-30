@@ -3,7 +3,7 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 use Validator;
-use App\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -72,7 +72,7 @@ class EventCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
      * @return \Illuminate\Http\Response
      */
     public function show(EventCategory $eventCategory)
@@ -83,7 +83,7 @@ class EventCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
      * @return \Illuminate\Http\Response
      */
     public function edit(EventCategory $eventCategory)
@@ -95,7 +95,7 @@ class EventCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, EventCategory $eventCategory)
@@ -113,7 +113,7 @@ class EventCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
      * @return \Illuminate\Http\Response
      */
     public function destroy(EventCategory $eventCategory)
@@ -130,7 +130,7 @@ class EventCategoryController extends Controller
      * Return the single event category datas by cat id.
      *
      * @param  int $cat_id
-     * @return \App\EventCategory
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory
      */
     public function eventcategorydata($cat_id)
     {
@@ -146,7 +146,7 @@ class EventCategoryController extends Controller
      * Save/Update the record on DB.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param \App\EventCategory $eventCategory
+     * @param \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory $eventCategory
      * @return void
      */
     public function saveOnDb($request, $eventCategory)

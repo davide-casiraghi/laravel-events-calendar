@@ -22,7 +22,7 @@ class EventRepetition extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Event', 'event_id', 'id');
+        return $this->belongsTo('DavideCasiraghi\LaravelEventsCalendar\Models\Event', 'event_id', 'id');
     }
 
     /***************************************************************************/

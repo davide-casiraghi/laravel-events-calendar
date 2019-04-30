@@ -5,7 +5,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 use Validator;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\EventCategoryTranslation;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
 
 class EventCategoryTranslationController extends Controller
 {
@@ -73,7 +73,7 @@ class EventCategoryTranslationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\EventCategoryTranslation  $eventCategoryTranslation
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation  $eventCategoryTranslation
      * @return \Illuminate\Http\Response
      */
     /*public function show(EventCategoryTranslation $eventCategoryTranslation)
@@ -127,7 +127,7 @@ class EventCategoryTranslationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EventCategoryTranslation  $eventCategoryTranslation
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation  $eventCategoryTranslation
      * @return \Illuminate\Http\Response
      */
     public function destroy($eventCategoryTranslationId)

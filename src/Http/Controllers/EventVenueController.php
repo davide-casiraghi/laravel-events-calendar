@@ -2,10 +2,10 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use App\User;
+use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 use Validator;
-use App\Country;
-use App\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -119,7 +119,7 @@ class EventVenueController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\EventVenue  $eventVenue
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
      * @return \Illuminate\Http\Response
      */
     public function show(EventVenue $eventVenue)
@@ -137,7 +137,7 @@ class EventVenueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\EventVenue  $eventVenue
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
      * @return \Illuminate\Http\Response
      */
     public function edit(EventVenue $eventVenue)
@@ -162,7 +162,7 @@ class EventVenueController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EventVenue  $eventVenue
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, EventVenue $eventVenue)
@@ -185,7 +185,7 @@ class EventVenueController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EventVenue  $eventVenue
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
      * @return \Illuminate\Http\Response
      */
     public function destroy(EventVenue $eventVenue)
@@ -201,7 +201,7 @@ class EventVenueController extends Controller
     /**
      * Save the record on DB.
      *
-     * @param  \App\EventVenue  $eventVenue
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
      * @return \Illuminate\Http\Response
      */
     public function saveOnDb($request, $eventVenue)

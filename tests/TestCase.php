@@ -2,7 +2,7 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-//use App\User;
+//use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 //use Illuminate\Foundation\Auth\User;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use DavideCasiraghi\LaravelEventsCalendar\Models\User;

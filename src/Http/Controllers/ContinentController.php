@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use Illuminate\Http\Request;
 
 class ContinentController extends Controller

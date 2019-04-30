@@ -2,7 +2,7 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-//use App\User;
+//use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

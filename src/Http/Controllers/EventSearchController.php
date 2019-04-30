@@ -2,16 +2,16 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use App\Event;
-use App\Country;
-use App\Teacher;
-use App\Continent;
-use App\EventVenue;
-use App\EventCategory;
-use App\BackgroundImage;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\BackgroundImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use App\Http\Resources\Continent as ContinentResource;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Http\Resources\Continent as ContinentResource;
 
 class EventSearchController extends Controller
 {
@@ -86,7 +86,7 @@ class EventSearchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

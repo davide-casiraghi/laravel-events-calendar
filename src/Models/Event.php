@@ -49,7 +49,7 @@ class Event extends Model
      */
     public function eventRepetitions()
     {
-        return $this->hasMany('App\EventRepetition', 'event_id');
+        return $this->hasMany('DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition', 'event_id');
     }
 
     /***************************************************************************/

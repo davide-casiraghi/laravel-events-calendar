@@ -2,7 +2,7 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use App\EventRepetition;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use Illuminate\Http\Request;
 
 class EventRepetitionController extends Controller
@@ -47,7 +47,7 @@ class EventRepetitionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\EventRepetition  $eventRepetition
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition  $eventRepetition
      * @return \Illuminate\Http\Response
      */
     public function show(EventRepetition $eventRepetition)
@@ -58,7 +58,7 @@ class EventRepetitionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\EventRepetition  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition  $eventCategory
      * @return \Illuminate\Http\Response
      */
     public function edit(EventRepetition $eventRepetition)
@@ -70,7 +70,7 @@ class EventRepetitionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\EventRepetition  $eventRepetition
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition  $eventRepetition
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, EventRepetition $eventRepetition)
@@ -88,7 +88,7 @@ class EventRepetitionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
      * @return \Illuminate\Http\Response
      */
     public function destroy(EventCategory $eventRepetition)

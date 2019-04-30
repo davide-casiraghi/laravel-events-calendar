@@ -25,7 +25,7 @@ class Teacher extends Model
      */
     public function events()
     {
-        return $this->belongsToMany('App\Event', 'event_has_teachers', 'teacher_id', 'event_id');
+        return $this->belongsToMany('DavideCasiraghi\LaravelEventsCalendar\Models\Event', 'event_has_teachers', 'teacher_id', 'event_id');
     }
 
     /***************************************************************************/
