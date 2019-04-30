@@ -39,7 +39,7 @@ class TeacherControllerTest extends TestCase
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
-        //$this->withFactories(__DIR__.'/database/factories');
+        $this->withFactories(__DIR__.'/database/factories');
         
         //$this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder']);
@@ -172,7 +172,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function the_route_teacher_update_can_be_accessed()
     {
-        $id = Teacher::insertGetId([
+        /*$id = Teacher::insertGetId([
             'name' => $this->faker->name,
             'slug' => "test-slug",
             'bio' => $this->faker->paragraph,
@@ -182,9 +182,23 @@ class TeacherControllerTest extends TestCase
             'website' => $this->faker->url,
             'facebook' => 'https://www.facebook.com/'.$this->faker->word,
             'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
-        ]);
-
-        $request = new \Illuminate\Http\Request();
+        ]);*/
+        
+        $teacher = factory(Teacher::class)->create();
+        
+        $attributes = factory(Teacher::class)->raw(['name' => 'Updated']);
+        $response = $this->put("/teachers/{$teacher->id}", $attributes);
+        $response->assertRedirect("/teachers/");
+        //$this->assertEquals('Updated', $teacher->fresh()->name);
+        
+        
+        
+        //$teacher = Teacher::find($id);
+        
+        //$teacher->name = "updated";
+        //dd($teacher);
+        
+        /*$request = new \Illuminate\Http\Request();
         $request->replace([
             'name' => $this->faker->name,
             'slug' => "test-slug",
@@ -195,10 +209,15 @@ class TeacherControllerTest extends TestCase
             'website' => $this->faker->url,
             'facebook' => 'https://www.facebook.com/'.$this->faker->word,
             'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
-          ]);
+        ]);*/
+        
+        
 
-        $this->followingRedirects()
-                       ->put('teachers/1', [$request, 1])->dump();
+        /*$this->followingRedirects()
+                       //->request('PUT', '/teachers/1', ['name' => 'aaa'])->dump();
+                       ->put('teachers/1', ['name' => 'aaa'])->dump();*/
+                       
+        //$response = $this->followingRedirects()->call('POST', '/teachers/1', ['name' => 'Taylor'])->dump();
 
         //$this->put('teachers/1', [$request, 1])->dump();
             // ->assertStatus(302);
