@@ -6,10 +6,13 @@ use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use Illuminate\Foundation\Testing\WithFaker;
 //use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\JumbotronImageController;
 
 class TeacherControllerTest extends TestCase
 {
+    use WithFaker;
+    
     /**
      * Define environment setup.
      *

@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
+        "fzaninotto/faker": "^1.8",
         "illuminate/support": "5.8.*",
         "nesbot/carbon": "^2.16"
     },
