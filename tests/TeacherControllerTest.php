@@ -2,9 +2,9 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
+
 //use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\JumbotronImageController;
 
 class TeacherControllerTest extends TestCase
@@ -49,7 +49,7 @@ class TeacherControllerTest extends TestCase
     {
         return [
             'LaravelEventsCalendar' => LaravelEventsCalendar::class, // facade called PhpResponsiveQuote and the name of the facade class
-        
+
         ];
     }
 
@@ -60,13 +60,13 @@ class TeacherControllerTest extends TestCase
     {
         // Authenticate the admin
         //$this->authenticateAsAdmin();
-        
+
         $this->get('teachers')
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
     }
 
-    /** @test */
+    /* @test */
     /*public function the_route_teacher_create_can_be_accessed()
     {
         $this->get('jumbotron-images/create')
