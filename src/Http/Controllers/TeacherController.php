@@ -206,6 +206,7 @@ class TeacherController extends Controller
     {
         // Validate form datas
         $validator = $this->teachersValidator($request);
+        //dd($validator->errors());
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
