@@ -298,19 +298,18 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public static function storeFromModal(Request $request)
+    public function storeFromModal(Request $request)
     {
         $teacher = new Teacher();
-
-        request()->validate([
-            'name' => 'required',
-        ]);
+        
+        // Validate form datas
+        $validator = $this->teachersValidator($request);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
         $this->saveOnDb($request, $teacher);
-
         return redirect()->back()->with('message', __('messages.teacher_added_successfully'));
-        //return redirect()->back()->with('message', __('auth.successfully_registered'));
-        //return true;
     }
 
     /***************************************************************************/

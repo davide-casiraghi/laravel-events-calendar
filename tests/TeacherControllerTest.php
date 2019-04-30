@@ -156,15 +156,26 @@ class TeacherControllerTest extends TestCase
     function it_store_from_teacher_modal()
     {
         $request = new \Illuminate\Http\Request();
-        $request->replace([
-              'title' => 'test title updated',
-              'body' => 'test body updated',
-          ]);
+        
+        $bio = $this->faker->paragraph;
+        $data = [
+            'name' => $this->faker->name,
+            'bio' => $bio,
+            'year_starting_practice' => '2000',
+            'year_starting_teach' => '2006',
+            'significant_teachers' => $this->faker->paragraph,
+            'website' => $this->faker->url,
+            'facebook' => 'https://www.facebook.com/'.$this->faker->word,
+            'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
+          ];
           
-          TeacherController::storeFromModal($request);
-          
-          $this->assertDatabaseHas('teachers', $attributes);
-          
+        $request->replace($data);
+        
+        $teacherController = new TeacherController();        
+        $teacherController->storeFromModal($request);
+        
+        $data['bio'] = clean($bio);
+        $this->assertDatabaseHas('teachers', $data);
     }
     
 
