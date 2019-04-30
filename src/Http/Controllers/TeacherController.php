@@ -301,7 +301,7 @@ class TeacherController extends Controller
     public function storeFromModal(Request $request)
     {
         $teacher = new Teacher();
-        
+
         // Validate form datas
         $validator = $this->teachersValidator($request);
         if ($validator->fails()) {
@@ -309,6 +309,7 @@ class TeacherController extends Controller
         }
 
         $this->saveOnDb($request, $teacher);
+
         return redirect()->back()->with('message', __('messages.teacher_added_successfully'));
     }
 
