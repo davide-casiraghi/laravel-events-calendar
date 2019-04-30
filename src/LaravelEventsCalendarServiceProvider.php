@@ -18,15 +18,14 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-events-calendar');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-events-calendar');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-    
+
         // Register middleware
-            // https://stackoverflow.com/questions/29599584/laravel-5-register-middleware-from-in-package-service-provider
-            // https://stackoverflow.com/questions/45398875/getting-route-in-laravel-packages-middleware
-            
+        // https://stackoverflow.com/questions/29599584/laravel-5-register-middleware-from-in-package-service-provider
+        // https://stackoverflow.com/questions/45398875/getting-route-in-laravel-packages-middleware
+
         //$router = $this->app['router'];
         //$router->pushMiddlewareToGroup('admin', DavideCasiraghi\LaravelEventsCalendar\Http\Middleware\Admin::class);
         $this->app['router']->middleware('admin', DavideCasiraghi\LaravelEventsCalendar\Http\Middleware\Admin::class);
-
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -76,21 +75,17 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                         ], 'migrations');
                 }
             }
-            
-            
+
             /* Seeders */
             $this->publishes([
-                __DIR__.'/../database/seeds/ContinentsTableSeeder.php' => database_path('seeds/ContinentsTableSeeder.php')
+                __DIR__.'/../database/seeds/ContinentsTableSeeder.php' => database_path('seeds/ContinentsTableSeeder.php'),
             ], 'seed-continents');
             $this->publishes([
-                __DIR__.'/../database/seeds/CountriesTableSeeder.php' => database_path('seeds/CountriesTableSeeder.php')
+                __DIR__.'/../database/seeds/CountriesTableSeeder.php' => database_path('seeds/CountriesTableSeeder.php'),
             ], 'seed-countries');
             $this->publishes([
-                __DIR__.'/../database/seeds/EventCategoriesTableSeeder.php' => database_path('seeds/EventCategoriesTableSeeder.php')
+                __DIR__.'/../database/seeds/EventCategoriesTableSeeder.php' => database_path('seeds/EventCategoriesTableSeeder.php'),
             ], 'seed-event-categories');
-            
-            
-            
         }
     }
 

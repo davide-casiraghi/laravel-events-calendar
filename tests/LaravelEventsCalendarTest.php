@@ -5,19 +5,9 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use Carbon\Carbon;
 //use Orchestra\Testbench\TestCase;
 use Illuminate\Support\Facades\DB;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
-
-use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-
 
 class LaravelEventsCalendarTest extends TestCase
 {
