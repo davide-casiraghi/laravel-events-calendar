@@ -82,7 +82,7 @@
                             </div>
                             <div class="col-12 mb-4">
                                 <i data-toggle="tooltip" data-placement="top" title="" class="far fa-globe-americas mr-1 dark-gray" data-original-title="@lang('general.country')"></i>
-                                @if($teacher->country_id){{ $countries[$teacher->country_id] }}@endif
+                                @if((count($countries) > 0)&&$teacher->country_id){{ $countries[$teacher->country_id] }}@endif
                             </div>
                             {{-- Teachers index - Manager --}}
                             @if(Route::current()->getName() == 'teachers.index') 

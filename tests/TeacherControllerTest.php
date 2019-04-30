@@ -89,14 +89,6 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function the_route_teacher_store_can_be_accessed()
     {
-        /*$data = [
-            'title' => 'test title',
-            'body' => 'test body',
-            'button_text' => 'test button text',
-            'button_url' => 'test button url',
-            'image_file_name' => 'test.jpg',
-        ];*/
-        
         $bio = $this->faker->paragraph;
         $data = [
                 'name' => $this->faker->name,
@@ -108,21 +100,11 @@ class TeacherControllerTest extends TestCase
                 'facebook' => 'https://www.facebook.com/'.$this->faker->word,
                 'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
             ];
-        $response = $this
-                            ->followingRedirects()
-                            ->post('/teachers', $data);
+        $response = $this->followingRedirects()
+                         ->post('/teachers', $data);
 
-        // Assert in database
         $data['bio'] = clean($bio);
-        //$this->assertDatabaseHas('teachers', $data);
-        
-        
-
-        $this
-            ->followingRedirects()
-            ->post('/teachers', $data)->dump();
-
-        //$this->assertDatabaseHas('teachers', $data);
+        $this->assertDatabaseHas('teachers', $data);
     }
     
     
