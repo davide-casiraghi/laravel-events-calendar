@@ -75,6 +75,30 @@ class LaravelEventsCalendarTest extends TestCase
     }
 
     /** @test */
+    public function it_runs_the_factories()
+    {
+
+        // Shows all the tables in the sqlite DB
+        $continents = DB::select("SELECT * FROM continents;");
+        dd($continents);
+
+        /*Teacher::insert([
+            'name' => 'John Smith',
+            'slug' => 'john_smith',
+        ]);
+
+        $teacher = Teacher::where('name', '=', 'John Smith')->first();
+
+        $this->assertEquals('John Smith', $teacher->name);*/
+    }
+
+
+
+
+
+
+
+    /** @test */
     public function it_format_datepicker_date_for_mysql()
     {
         $todaysMysqlDateFormat = Carbon::now()->format('Y-m-d');
