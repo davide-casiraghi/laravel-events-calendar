@@ -15,10 +15,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 class EventVenueController extends Controller
 {
     /* Restrict the access to this resource just to logged in users except show view */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth', ['except' => ['show']]);
-    }
+    }*/
 
     /***************************************************************************/
 
@@ -63,7 +63,7 @@ class EventVenueController extends Controller
         }
         //dd(DB::getQueryLog());
 
-        return view('eventVenues.index', compact('eventVenues'))
+        return view('laravel-events-calendar::eventVenues.index', compact('eventVenues'))
                 ->with('i', (request()->input('page', 1) - 1) * 20)
                 ->with('countries', $countries)
                 ->with('searchKeywords', $searchKeywords)
@@ -83,7 +83,7 @@ class EventVenueController extends Controller
         $users = User::pluck('name', 'id');
         $countries = Country::getCountries();
 
-        return view('eventVenues.create')
+        return view('laravel-events-calendar::eventVenues.create')
                 ->with('countries', $countries)
                 ->with('users', $users)
                 ->with('authorUserId', $authorUserId);
@@ -129,7 +129,7 @@ class EventVenueController extends Controller
                 ->where('id', $eventVenue->country_id)
                 ->first();
 
-        return view('eventVenues.show', compact('eventVenue'))->with('country', $country);
+        return view('laravel-events-calendar::eventVenues.show', compact('eventVenue'))->with('country', $country);
     }
 
     /***************************************************************************/
@@ -147,7 +147,7 @@ class EventVenueController extends Controller
             $users = User::pluck('name', 'id');
             $countries = Country::getCountries();
 
-            return view('eventVenues.edit', compact('eventVenue'))
+            return view('laravel-events-calendar::eventVenues.edit', compact('eventVenue'))
                 ->with('countries', $countries)
                 ->with('users', $users)
                 ->with('authorUserId', $authorUserId);
@@ -235,7 +235,7 @@ class EventVenueController extends Controller
     {
         $countries = Country::getCountries();
 
-        return view('eventVenues.modal')->with('countries', $countries);
+        return view('laravel-events-calendar::eventVenues.modal')->with('countries', $countries);
     }
 
     /***************************************************************************/
