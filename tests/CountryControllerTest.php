@@ -13,95 +13,95 @@ class CountryControllerTest extends TestCase
     /***************************************************************/
 
     /** @test */
-    public function it_displays_the_continents_index_page()
+    public function it_displays_the_countries_index_page()
     {
         // Authenticate the admin
         //$this->authenticateAsAdmin();
 
-        $this->get('continents')
-            ->assertViewIs('laravel-events-calendar::continents.index')
+        $this->get('countries')
+            ->assertViewIs('laravel-events-calendar::countries.index')
             ->assertStatus(200);
     }
 
     /** @test */
-    public function it_displays_the_continent_create_page()
+    public function it_displays_the_country_create_page()
     {
-        $this->get('continents/create')
-            ->assertViewIs('laravel-events-calendar::continents.create')
+        $this->get('countries/create')
+            ->assertViewIs('laravel-events-calendar::countries.create')
             ->assertStatus(200);
     }
 
     /** @test */
-    public function it_stores_a_valid_continent()
+    public function it_stores_a_valid_country()
     {
-        $attributes = factory(Continent::class)->raw();
+        $attributes = factory(Country::class)->raw();
 
         $user = User::first();
         auth()->login($user);
 
-        $response = $this->post('/continents', $attributes);
-        $continent = Continent::first();
+        $response = $this->post('/countries', $attributes);
+        $country = Country::first();
 
-        //$this->assertDatabaseHas('continents', $attributes);
-        $response->assertRedirect('/continents/');
+        //$this->assertDatabaseHas('countries', $attributes);
+        $response->assertRedirect('/countries/');
     }
 
     /** @test */
-    public function it_does_not_store_invalid_continent()
+    public function it_does_not_store_invalid_country()
     {
-        $response = $this->post('/continents', []);
+        $response = $this->post('/countries', []);
         $response->assertSessionHasErrors();
-        $this->assertNull(Continent::first());
+        $this->assertNull(Country::first());
     }
 
     /** @test */
-    public function it_displays_the_continent_show_page()
+    public function it_displays_the_country_show_page()
     {
-        $continent = factory(Continent::class)->create();
-        $response = $this->get("/continents/{$continent->id}");
-        $response->assertViewIs('laravel-events-calendar::continents.show')
+        $country = factory(Country::class)->create();
+        $response = $this->get("/countries/{$country->id}");
+        $response->assertViewIs('laravel-events-calendar::countries.show')
                  ->assertStatus(200);
     }
 
     /** @test */
-    public function it_displays_the_continent_edit_page()
+    public function it_displays_the_country_edit_page()
     {
-        $continent = factory(Continent::class)->create();
-        $response = $this->get("/continents/{$continent->id}/edit");
-        $response->assertViewIs('laravel-events-calendar::continents.edit')
+        $country = factory(Country::class)->create();
+        $response = $this->get("/countries/{$country->id}/edit");
+        $response->assertViewIs('laravel-events-calendar::countries.edit')
                  ->assertStatus(200);
     }
 
     /** @test */
-    public function it_updates_valid_continent()
+    public function it_updates_valid_country()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
-        $continent = factory(Continent::class)->create();
-        $attributes = factory(Continent::class)->raw(['name' => 'Updated']);
+        $country = factory(Country::class)->create();
+        $attributes = factory(Country::class)->raw(['name' => 'Updated']);
 
         $user = User::first();
         auth()->login($user);
 
-        $response = $this->put("/continents/{$continent->id}", $attributes);
-        $response->assertRedirect('/continents/');
-        $this->assertEquals('Updated', $continent->fresh()->name);
+        $response = $this->put("/countries/{$country->id}", $attributes);
+        $response->assertRedirect('/countries/');
+        $this->assertEquals('Updated', $country->fresh()->name);
     }
 
     /** @test */
-    public function it_does_not_update_invalid_continent()
+    public function it_does_not_update_invalid_country()
     {
-        $continent = factory(Continent::class)->create(['name' => 'Example']);
-        $response = $this->put("/continents/{$continent->id}", []);
+        $country = factory(Country::class)->create(['name' => 'Example']);
+        $response = $this->put("/countries/{$country->id}", []);
         $response->assertSessionHasErrors();
-        $this->assertEquals('Example', $continent->fresh()->name);
+        $this->assertEquals('Example', $country->fresh()->name);
     }
 
     /** @test */
-    public function it_deletes_continents()
+    public function it_deletes_countrys()
     {
-        $continent = factory(Continent::class)->create();
-        $response = $this->delete("/continents/{$continent->id}");
-        $response->assertRedirect('/continents');
-        $this->assertNull($continent->fresh());
+        $country = factory(Country::class)->create();
+        $response = $this->delete("/countries/{$country->id}");
+        $response->assertRedirect('/countries');
+        $this->assertNull($country->fresh());
     }
 }
