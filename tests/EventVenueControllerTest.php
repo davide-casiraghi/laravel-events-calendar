@@ -49,6 +49,9 @@ class EventVenueControllerTest extends TestCase
             'continent_id' => 1,
         ]);
 
+        $user = User::first();
+        auth()->login($user);
+
         $response = $this->post('/eventVenues', $attributes);
         $eventVenue = EventVenue::first();
 

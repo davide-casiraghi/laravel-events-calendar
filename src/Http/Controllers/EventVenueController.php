@@ -219,7 +219,7 @@ class EventVenueController extends Controller
         if (! $eventVenue->slug) {
             $eventVenue->slug = Str::slug($eventVenue->name, '-').rand(10000, 100000);
         }
-        //$eventVenue->created_by = \Auth::user()->id;
+        $eventVenue->created_by = \Auth::user()->id;
         $eventVenue->save();
     }
 
