@@ -114,7 +114,7 @@ class EventVenueControllerTest extends TestCase
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $user = User::first();
         auth()->login($user);
-        
+
         $eventVenue = factory(EventVenue::class)->create();
         $attributes = factory(EventVenue::class)->raw(['name' => 'Updated']);
         $response = $this->put("/eventVenues/{$eventVenue->id}", $attributes);
@@ -145,7 +145,7 @@ class EventVenueControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
-        
+
         $request = new \Illuminate\Http\Request();
 
         $description = $this->faker->paragraph;
