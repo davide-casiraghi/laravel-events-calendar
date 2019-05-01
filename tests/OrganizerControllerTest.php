@@ -90,21 +90,21 @@ class OrganizerControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_does_not_store_invalid_organizer()
+    public function it_does_not_store_invalid_organizer()
     {
         $response = $this->post('/organizers', []);
         $response->assertSessionHasErrors();
         $this->assertNull(Organizer::first());
-    }*/
+    }
 
     /** @test */
-    /*public function it_displays_the_organizer_show_page()
+    public function it_displays_the_organizer_show_page()
     {
         $organizer = factory(Organizer::class)->create();
         $response = $this->get("/organizers/{$organizer->id}");
         $response->assertViewIs('laravel-events-calendar::organizers.show')
                  ->assertStatus(200);
-    }*/
+    }
 
     /** @test */
     /*public function it_displays_the_organizer_edit_page()
