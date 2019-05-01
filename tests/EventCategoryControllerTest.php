@@ -62,22 +62,19 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_category_show_page()
     {
-        $event_category_name = $faker->name;
-        $slug = Str::slug($event_category_name, '-').rand(10000, 100000);
-        $data = [   
-            'en'  => ['name' => $event_category_name,'slug' => $slug],
+        $user = User::first();
+        auth()->login($user);
+        
+        $data = [
+            'name' => 'test title',
+            'slug' => 'test body',
         ];
-        $eventCategory = EventCategory::create($data);
-        
-        
-        //$eventCategory = factory(EventCategory::class)->create();
-        //$eventCategoryTranslation = factory(EventCategoryTranslation::class)->create();
-        dd('rr');
-        $eventCategoryTranslation = factory(EventCategoryTranslation::class)->create([
-            'event_category_id' => $eventCategory->id,
-        ]);
-        dd("aaa");
-        $response = $this->get("/eventCategories/{$eventCategory->id}");
+
+        $response = $this
+            ->followingRedirects()
+            ->post('/eventCategories', $data);
+            
+        $response = $this->get("/eventCategories/1");
         $response->assertViewIs('laravel-events-calendar::eventCategories.show')
                  ->assertStatus(200);
     }
