@@ -109,33 +109,36 @@ class EventVenueControllerTest extends TestCase
     }
 
     /* @test */
-    /*public function it_updates_valid_event_venue()
+    public function it_updates_valid_event_venue()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
+        $user = User::first();
+        auth()->login($user);
+        
         $eventVenue = factory(EventVenue::class)->create();
         $attributes = factory(EventVenue::class)->raw(['name' => 'Updated']);
         $response = $this->put("/eventVenues/{$eventVenue->id}", $attributes);
         $response->assertRedirect('/eventVenues/');
         $this->assertEquals('Updated', $eventVenue->fresh()->name);
-    }*/
+    }
 
     /* @test */
-    /*public function it_does_not_update_invalid_event_venue()
+    public function it_does_not_update_invalid_event_venue()
     {
         $eventVenue = factory(EventVenue::class)->create(['name' => 'Example']);
         $response = $this->put("/eventVenues/{$eventVenue->id}", []);
         $response->assertSessionHasErrors();
         $this->assertEquals('Example', $eventVenue->fresh()->name);
-    }*/
+    }
 
     /* @test */
-    /*public function it_deletes_event_venues()
+    public function it_deletes_event_venues()
     {
         $eventVenue = factory(EventVenue::class)->create();
         $response = $this->delete("/eventVenues/{$eventVenue->id}");
         $response->assertRedirect('/eventVenues');
         $this->assertNull($eventVenue->fresh());
-    }*/
+    }
 
     /* @test */
     /*public function it_store_from_event_venue_modal()
