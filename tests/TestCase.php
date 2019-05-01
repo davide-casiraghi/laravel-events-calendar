@@ -2,18 +2,17 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use Illuminate\Foundation\Auth\User;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
-use Illuminate\Foundation\Auth\User;
 
-use Orchestra\Testbench\TestCase as BaseTestCase;
 //use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 
 //use Illuminate\Foundation\Testing\TestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-
     /**
      * Define environment setup.
      *
@@ -42,8 +41,7 @@ abstract class TestCase extends BaseTestCase
         $this->loadLaravelMigrations(['--database' => 'testbench']);
         $this->withFactories(__DIR__.'/database/factories');
         $this->createUser();
-        
-        
+
         //$this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
         //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder']);
 
@@ -67,12 +65,6 @@ abstract class TestCase extends BaseTestCase
             'Purifier' => \Mews\Purifier\Facades\Purifier::class,
         ];
     }
-    
-
-    
-    
-    
-    
 
     // Authenticate the user
     public function authenticate()
@@ -100,14 +92,13 @@ abstract class TestCase extends BaseTestCase
 
         $this->actingAs($user);
     }
-    
-    
+
     protected function createUser()
     {
         User::forceCreate([
             'name' => 'User',
             'email' => 'user@email.com',
-            'password' => 'test'
+            'password' => 'test',
         ]);
     }
 }

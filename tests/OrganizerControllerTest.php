@@ -2,11 +2,9 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\OrganizerController;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
-use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
-use Illuminate\Foundation\Testing\WithFaker;
 
 class OrganizerControllerTest extends TestCase
 {
