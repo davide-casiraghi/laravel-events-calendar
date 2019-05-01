@@ -91,7 +91,7 @@ class EventCategoryControllerTest extends TestCase
             'slug' => 'test slug',
             'locale' => 'en',
         ]);
-        
+
         $response = $this->get("/eventCategories/{$eventCategoryId}/edit");
         $response->assertViewIs('laravel-events-calendar::eventCategories.edit')
                  ->assertStatus(200);
@@ -102,7 +102,7 @@ class EventCategoryControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
-        
+
         $eventCategoryId = EventCategory::insertGetId([
         ]);
         EventCategoryTranslation::insert([
@@ -137,7 +137,7 @@ class EventCategoryControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
-        
+
         $eventCategoryId = EventCategory::insertGetId([
         ]);
         EventCategoryTranslation::insert([
@@ -146,9 +146,8 @@ class EventCategoryControllerTest extends TestCase
             'slug' => 'test slug',
             'locale' => 'en',
         ]);
-        
+
         $response = $this->delete("/eventCategories/{$eventCategoryId}");
         $response->assertRedirect('/eventCategories');
-        
     }
 }
