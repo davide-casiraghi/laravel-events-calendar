@@ -136,7 +136,7 @@ class TeacherController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function show(Teacher $teacher)
@@ -178,7 +178,7 @@ class TeacherController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function edit(Teacher $teacher)
@@ -199,7 +199,7 @@ class TeacherController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Teacher  $teacher
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Teacher $teacher)
@@ -222,7 +222,7 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function destroy(Teacher $teacher)
@@ -238,7 +238,7 @@ class TeacherController extends Controller
     /**
      * Save the record on DB.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function saveOnDb($request, $teacher)
@@ -318,7 +318,7 @@ class TeacherController extends Controller
     /**
      * Return the teacher by SLUG. (eg. http://websitename.com/teacher/xxxx).
      *
-     * @param  \App\Teacher  $post
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $post
      * @return \Illuminate\Http\Response
      */
     public function teacherBySlug($slug)

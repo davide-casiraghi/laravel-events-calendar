@@ -107,13 +107,13 @@ class OrganizerControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_displays_the_organizer_edit_page()
+    public function it_displays_the_organizer_edit_page()
     {
         $organizer = factory(Organizer::class)->create();
         $response = $this->get("/organizers/{$organizer->id}/edit");
         $response->assertViewIs('laravel-events-calendar::organizers.edit')
                  ->assertStatus(200);
-    }*/
+    }
 
     /** @test */
     /*public function it_updates_valid_organizer()

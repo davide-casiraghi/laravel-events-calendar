@@ -99,7 +99,7 @@ class OrganizerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Organizer  $organizer
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
      * @return \Illuminate\Http\Response
      */
     public function show(Organizer $organizer)
@@ -111,22 +111,18 @@ class OrganizerController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Organizer  $organizer
+     * 
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
      * @return \Illuminate\Http\Response
      */
     public function edit(Organizer $organizer)
     {
-        if (Auth::user()->id == $organizer->created_by || Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
-            $authorUserId = $this->getLoggedAuthorId();
-            $users = User::pluck('name', 'id');
+        $authorUserId = $this->getLoggedAuthorId();
+        $users = User::pluck('name', 'id');
 
-            return view('organizers.edit', compact('organizer'))
-                ->with('users', $users)
-                ->with('authorUserId', $authorUserId);
-        } else {
-            return redirect()->route('home')->with('message', __('auth.not_allowed_to_access'));
-        }
+        return view('laravel-events-calendar::organizers.edit', compact('organizer'))
+            ->with('users', $users)
+            ->with('authorUserId', $authorUserId);
     }
 
     /***************************************************************************/
@@ -157,7 +153,7 @@ class OrganizerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Organizer  $organizer
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Organizer $organizer)
@@ -173,7 +169,7 @@ class OrganizerController extends Controller
     /**
      * Save the record on DB.
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Organizer  $organizer
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
      * @return void
      */
     public function saveOnDb($request, $organizer)
