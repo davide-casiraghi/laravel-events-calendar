@@ -34,12 +34,21 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_category()
     {
-        $attributes = factory(EventCategory::class)->raw();
+        /*$attributes = factory(EventCategory::class)->raw();*/
+        
+        $event_category_name = $this->faker->name;
+        $slug = Str::slug($event_category_name, '-').rand(10000, 100000);
+        $data = [   
+            'en'  => ['name' => $event_category_name,'slug' => $slug],
+        ];
+        $eventCategory = EventCategory::create($data);
+        
+        
 
         $user = User::first();
         auth()->login($user);
 
-        $response = $this->post('/eventCategories', $attributes);
+        $response = $this->post('/eventCategories', $eventCategory);
         
         $response->assertRedirect('/eventCategories/');
     }
@@ -55,9 +64,21 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_category_show_page()
     {
-        $eventCategory = factory(EventCategory::class)->create();
-        $eventCategoryTranslation = factory(EventCategoryTranslation::class)->create();
+        $event_category_name = $faker->name;
+        $slug = Str::slug($event_category_name, '-').rand(10000, 100000);
+        $data = [   
+            'en'  => ['name' => $event_category_name,'slug' => $slug],
+        ];
+        $eventCategory = EventCategory::create($data);
         
+        
+        //$eventCategory = factory(EventCategory::class)->create();
+        //$eventCategoryTranslation = factory(EventCategoryTranslation::class)->create();
+        dd('rr');
+        $eventCategoryTranslation = factory(EventCategoryTranslation::class)->create([
+            'event_category_id' => $eventCategory->id,
+        ]);
+        dd("aaa");
         $response = $this->get("/eventCategories/{$eventCategory->id}");
         $response->assertViewIs('laravel-events-calendar::eventCategories.show')
                  ->assertStatus(200);

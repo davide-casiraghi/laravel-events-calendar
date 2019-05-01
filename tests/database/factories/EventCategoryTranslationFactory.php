@@ -19,5 +19,6 @@ $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTrans
         'name' => $event_category_name,
         'slug' => $slug,
         'event_category_id' => 1,
+        'locale' => 'en'
     ];
 });
