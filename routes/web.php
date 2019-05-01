@@ -43,13 +43,11 @@
         Route::get('/create-organizer/modal/', 'OrganizerController@modal')->name('organizers.modal');
         Route::post('/create-organizer/modal/', 'OrganizerController@storeFromModal')->name('organizers.storeFromModal');
         Route::get('/organizer/{slug}', 'OrganizerController@organizerBySlug')->where('organizerBySlug', '[a-z]+');
-    
+
         /* Continents and Countries */
         Route::resource('continents', 'ContinentController');
         Route::resource('countries', 'CountryController');
     });
-    
-    
 
     /*Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'auth'], function () {
         // Teachers

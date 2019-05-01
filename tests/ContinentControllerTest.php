@@ -5,7 +5,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
-use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\ContinentController;
 
 class ContinentControllerTest extends TestCase
 {
@@ -24,7 +23,7 @@ class ContinentControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-    /** @test */
+    /* @test */
     /*public function it_displays_the_continent_create_page()
     {
         $this->get('continents/create')
@@ -32,7 +31,7 @@ class ContinentControllerTest extends TestCase
             ->assertStatus(200);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_stores_a_valid_continent()
     {
         $attributes = factory(Continent::class)->raw();
@@ -47,7 +46,7 @@ class ContinentControllerTest extends TestCase
         $response->assertRedirect('/continents/');
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_does_not_store_invalid_continent()
     {
         $response = $this->post('/continents', []);
@@ -55,7 +54,7 @@ class ContinentControllerTest extends TestCase
         $this->assertNull(Continent::first());
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_displays_the_continent_show_page()
     {
         $continent = factory(Continent::class)->create();
@@ -64,7 +63,7 @@ class ContinentControllerTest extends TestCase
                  ->assertStatus(200);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_displays_the_continent_edit_page()
     {
         $continent = factory(Continent::class)->create();
@@ -73,7 +72,7 @@ class ContinentControllerTest extends TestCase
                  ->assertStatus(200);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_updates_valid_continent()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
@@ -88,7 +87,7 @@ class ContinentControllerTest extends TestCase
         $this->assertEquals('Updated', $continent->fresh()->name);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_does_not_update_invalid_continent()
     {
         $continent = factory(Continent::class)->create(['name' => 'Example']);
@@ -97,7 +96,7 @@ class ContinentControllerTest extends TestCase
         $this->assertEquals('Example', $continent->fresh()->name);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_deletes_continents()
     {
         $continent = factory(Continent::class)->create();
@@ -105,6 +104,4 @@ class ContinentControllerTest extends TestCase
         $response->assertRedirect('/continents');
         $this->assertNull($continent->fresh());
     }*/
-
-    
 }
