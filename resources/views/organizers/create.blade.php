@@ -1,4 +1,4 @@
-@extends('organizers.layout')
+@extends('laravel-events-calendar::organizers.layout')
 
 
 @section('content')
@@ -69,7 +69,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.textarea', [
+                    @include('laravel-events-calendar::partials.textarea-plain', [
                           'title' => __('general.description'),
                           'name' => 'description',
                           'placeholder' => '',

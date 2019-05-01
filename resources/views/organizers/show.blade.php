@@ -1,4 +1,4 @@
-@extends('organizers.layout')
+@extends('laravel-events-calendar::organizers.layout')
 
 @section('title'){{ $organizer->name }}@endsection
 @section('description')Organizer profile @ Global CI calendar @endsection

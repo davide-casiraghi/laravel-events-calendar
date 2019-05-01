@@ -71,12 +71,12 @@ class OrganizerControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_displays_the_organizer_create_page()
+    public function it_displays_the_organizer_create_page()
     {
         $this->get('organizers/create')
             ->assertViewIs('laravel-events-calendar::organizers.create')
             ->assertStatus(200);
-    }*/
+    }
 
     /** @test */
     /*public function it_stores_a_valid_organizer()
