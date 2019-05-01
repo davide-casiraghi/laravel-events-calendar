@@ -22,7 +22,7 @@
 
          <div class="row">
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                       'title' => __('general.name'),
                       'name' => 'name',
                       'placeholder' => '',
@@ -31,7 +31,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.input', [
                       'title' => __('views.country_code'),
                       'name' => 'code',
                       'value' => $country->code,

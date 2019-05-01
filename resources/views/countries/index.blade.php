@@ -31,7 +31,7 @@
             @csrf
             <div class="row">
                 <div class="col-12 col-sm-7 pr-sm-2">
-                    @include('partials.forms.input', [
+                    @include('laravel-events-calendar::partials.input', [
                         'name' => 'keywords',
                         'placeholder' => __('views.search_by_country_name'),
                         'value' => $searchKeywords
