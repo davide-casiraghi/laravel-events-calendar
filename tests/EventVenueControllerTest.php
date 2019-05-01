@@ -4,6 +4,8 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventVenueController;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
@@ -83,20 +85,30 @@ class EventVenueControllerTest extends TestCase
     {
         $attributes = factory(EventVenue::class)->raw();
         
-        $response = $this->post('/eventVenues', $attributes)->dump();
-        //$eventVenue = EventVenue::first();
+        Continent::insert([
+            'name' => "Europe",
+            'code' => "EU",
+        ]);
+        Country::insert([
+            'name' => "Italy",
+            'code' => "IT",
+            'continent_id' => 1,
+        ]);
+        
+        $response = $this->post('/eventVenues', $attributes);
+        $eventVenue = EventVenue::first();
 
         //$this->assertDatabaseHas('organizers', $attributes);
-        //$response->assertRedirect('/eventVenues/');
+        $response->assertRedirect('/eventVenues/');
     }
 
     /** @test */
-    /*public function it_does_not_store_invalid_event_venue()
+    public function it_does_not_store_invalid_event_venue()
     {
         $response = $this->post('/eventVenues', []);
         $response->assertSessionHasErrors();
         $this->assertNull(EventVenue::first());
-    }*/
+    }
 
     /** @test */
     /*public function it_displays_the_event_venue_show_page()
