@@ -141,17 +141,26 @@ class EventVenueControllerTest extends TestCase
     }
 
     /* @test */
-    /*public function it_store_from_event_venue_modal()
+    public function it_store_from_event_venue_modal()
     {
+        $user = User::first();
+        auth()->login($user);
+        
         $request = new \Illuminate\Http\Request();
 
         $description = $this->faker->paragraph;
         $data = [
-            'name' => $this->faker->name,
-            'website' => $this->faker->url,
-            'description' => $description,
-            'email' => $this->faker->email,
-            'phone' => $this->faker->e164PhoneNumber,
+            'created_by' => 1,
+            'name' => $name,
+            'slug' => $slug,
+            'description' => $faker->paragraph,
+            'website' => $faker->url,
+            'continent_id' => 1,
+            'country_id' => 1,
+            'city' => $faker->city,
+            'address' => $faker->streetAddress,
+            'zip_code' => $faker->postcode,
+            'state_province' => $faker->state,
         ];
 
         $request->replace($data);
@@ -161,5 +170,5 @@ class EventVenueControllerTest extends TestCase
 
         $data['description'] = clean($description);
         $this->assertDatabaseHas('event_venues', $data);
-    }*/
+    }
 }
