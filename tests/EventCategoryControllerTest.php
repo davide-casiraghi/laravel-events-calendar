@@ -5,7 +5,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
 
 class EventCategoryControllerTest extends TestCase
 {
@@ -37,7 +36,7 @@ class EventCategoryControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
-        
+
         $data = [
             'name' => 'test title',
             'slug' => 'test body',
@@ -46,7 +45,7 @@ class EventCategoryControllerTest extends TestCase
         $response = $this
             ->followingRedirects()
             ->post('/eventCategories', $data);
-            
+
         $this->assertDatabaseHas('event_category_translations', ['locale' => 'en']);
         $response->assertViewIs('laravel-events-calendar::eventCategories.index');
     }
@@ -64,7 +63,7 @@ class EventCategoryControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
-        
+
         $data = [
             'name' => 'test title',
             'slug' => 'test body',
@@ -73,13 +72,13 @@ class EventCategoryControllerTest extends TestCase
         $response = $this
             ->followingRedirects()
             ->post('/eventCategories', $data);
-            
-        $response = $this->get("/eventCategories/1");
+
+        $response = $this->get('/eventCategories/1');
         $response->assertViewIs('laravel-events-calendar::eventCategories.show')
                  ->assertStatus(200);
     }
 
-    /** @test */
+    /* @test */
     /*public function it_displays_the_event_category_edit_page()
     {
         $eventCategory = factory(EventCategory::class)->create();
@@ -88,7 +87,7 @@ class EventCategoryControllerTest extends TestCase
                  ->assertStatus(200);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_updates_valid_event_category()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
@@ -103,7 +102,7 @@ class EventCategoryControllerTest extends TestCase
         $this->assertEquals('Updated', $eventCategory->fresh()->name);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_does_not_update_invalid_event_category()
     {
         $eventCategory = factory(EventCategory::class)->create(['name' => 'Example']);
@@ -112,7 +111,7 @@ class EventCategoryControllerTest extends TestCase
         $this->assertEquals('Example', $eventCategory->fresh()->name);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_deletes_event_categorys()
     {
         $eventCategory = factory(EventCategory::class)->create();
