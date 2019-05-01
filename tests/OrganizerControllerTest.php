@@ -166,6 +166,4 @@ class OrganizerControllerTest extends TestCase
         $data['description'] = clean($description);
         $this->assertDatabaseHas('organizers', $data);
     }
-
-    
 }

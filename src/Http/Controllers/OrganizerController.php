@@ -111,7 +111,7 @@ class OrganizerController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * 
+     *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
      * @return \Illuminate\Http\Response
      */
@@ -211,7 +211,7 @@ class OrganizerController extends Controller
     public function storeFromModal(Request $request)
     {
         $organizer = new Organizer();
-        
+
         // Validate form datas
         $validator = $this->organizersValidator($request);
         if ($validator->fails()) {
