@@ -131,7 +131,7 @@ class OrganizerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Organizer  $organizer
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Organizer $organizer)
