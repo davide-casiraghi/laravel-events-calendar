@@ -1,4 +1,4 @@
-@extends('events.layout')
+@extends('laravel-events-calendar::events.layout')
 
 @section('content')
     <div class="container max-w-lg px-0">

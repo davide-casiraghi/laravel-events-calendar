@@ -1,6 +1,6 @@
 @extends('laravel-events-calendar::layout')
 
-@section('title',  "Event Category translation" )
+@section('title',  "Continents" )
 
 @section('content')
 

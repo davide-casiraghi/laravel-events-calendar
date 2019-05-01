@@ -1,4 +1,4 @@
-@extends('events.layout')
+@extends('laravel-events-calendar::events.layout')
 
 @section('title'){{ $event->title }}@endsection
 @section('description'){{ $category->name }} @ {{ $venue->name }} - {{ $venue->city }}, {{ $country->name }}@endsection
