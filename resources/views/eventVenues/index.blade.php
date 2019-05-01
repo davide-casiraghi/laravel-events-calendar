@@ -1,4 +1,4 @@
-@extends('eventVenues.layout')
+@extends('laravel-events-calendar::eventVenues.layout')
 
 @section('javascript-document-ready')
     @parent

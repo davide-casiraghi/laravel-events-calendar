@@ -4,7 +4,7 @@
     button "Add new venue" is clicked in the event create view
 --}}
 
-@extends('layouts.modal')
+@extends('laravel-events-calendar::layouts.modal')
 
 @section('content')
     <div class="row">
