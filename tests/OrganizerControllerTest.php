@@ -39,13 +39,6 @@ class OrganizerControllerTest extends TestCase
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadLaravelMigrations(['--database' => 'testbench']);
         $this->withFactories(__DIR__.'/database/factories');
-
-        //$this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
-        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder']);
-
-        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'LaravelEventsCalendar\\LaravelEventsCalendar\\ContinentsTableSeeder']);
-        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder', '--path'=>'/database/seeds/']);
-        //$this->seed('ContinentsTableSeeder');
     }
 
     protected function getPackageProviders($app)
@@ -78,15 +71,15 @@ class OrganizerControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_displays_the_organizer_create_page()
+    /*public function it_displays_the_organizer_create_page()
     {
         $this->get('organizers/create')
             ->assertViewIs('laravel-events-calendar::organizers.create')
             ->assertStatus(200);
-    }
+    }*/
 
     /** @test */
-    public function it_stores_a_valid_organizer()
+    /*public function it_stores_a_valid_organizer()
     {
         $attributes = factory(Organizer::class)->raw();
         $response = $this->post('/organizers', $attributes);
@@ -94,36 +87,36 @@ class OrganizerControllerTest extends TestCase
 
         //$this->assertDatabaseHas('organizers', $attributes);
         $response->assertRedirect('/organizers/');
-    }
+    }*/
 
     /** @test */
-    public function it_does_not_store_invalid_organizer()
+    /*public function it_does_not_store_invalid_organizer()
     {
         $response = $this->post('/organizers', []);
         $response->assertSessionHasErrors();
         $this->assertNull(Organizer::first());
-    }
+    }*/
 
     /** @test */
-    public function it_displays_the_organizer_show_page()
+    /*public function it_displays_the_organizer_show_page()
     {
         $organizer = factory(Organizer::class)->create();
         $response = $this->get("/organizers/{$organizer->id}");
         $response->assertViewIs('laravel-events-calendar::organizers.show')
                  ->assertStatus(200);
-    }
+    }*/
 
     /** @test */
-    public function it_displays_the_organizer_edit_page()
+    /*public function it_displays_the_organizer_edit_page()
     {
         $organizer = factory(Organizer::class)->create();
         $response = $this->get("/organizers/{$organizer->id}/edit");
         $response->assertViewIs('laravel-events-calendar::organizers.edit')
                  ->assertStatus(200);
-    }
+    }*/
 
     /** @test */
-    public function it_updates_valid_organizer()
+    /*public function it_updates_valid_organizer()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $organizer = factory(Organizer::class)->create();
@@ -131,28 +124,28 @@ class OrganizerControllerTest extends TestCase
         $response = $this->put("/organizers/{$organizer->id}", $attributes);
         $response->assertRedirect('/organizers/');
         $this->assertEquals('Updated', $organizer->fresh()->name);
-    }
+    }*/
 
     /** @test */
-    public function it_does_not_update_invalid_organizer()
+    /*public function it_does_not_update_invalid_organizer()
     {
         $organizer = factory(Organizer::class)->create(['name' => 'Example']);
         $response = $this->put("/organizers/{$organizer->id}", []);
         $response->assertSessionHasErrors();
         $this->assertEquals('Example', $organizer->fresh()->name);
-    }
+    }*/
 
     /** @test */
-    public function it_deletes_organizers()
+    /*public function it_deletes_organizers()
     {
         $organizer = factory(Organizer::class)->create();
         $response = $this->delete("/organizers/{$organizer->id}");
         $response->assertRedirect('/organizers');
         $this->assertNull($organizer->fresh());
-    }
+    }*/
 
     /** @test */
-    public function it_store_from_organizer_modal()
+    /*public function it_store_from_organizer_modal()
     {
         $request = new \Illuminate\Http\Request();
 
@@ -175,7 +168,7 @@ class OrganizerControllerTest extends TestCase
 
         $data['bio'] = clean($bio);
         $this->assertDatabaseHas('organizers', $data);
-    }
+    }*/
 
     
 }

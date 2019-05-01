@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <title>@hasSection('title')@yield('title') -@endif Jumbotron images</title>
+    <title>@hasSection('title')@yield('title') -@endif Events Calendar</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

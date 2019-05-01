@@ -13,10 +13,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 class OrganizerController extends Controller
 {
     /* Restrict the access to this resource just to logged in users except show view */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth', ['except' => ['show', 'organizerBySlug']]);
-    }
+    }*/
 
     /***************************************************************************/
 
