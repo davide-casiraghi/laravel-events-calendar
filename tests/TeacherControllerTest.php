@@ -110,11 +110,11 @@ class TeacherControllerTest extends TestCase
     public function it_store_from_teacher_modal()
     {
         $request = new \Illuminate\Http\Request();
-
-        $bio = $this->faker->paragraph;
+        
+        $name = $this->faker->name;
         $data = [
-            'name' => $this->faker->name,
-            'bio' => $bio,
+            'name' => $name,
+            'bio' => $this->faker->paragraph,
             'year_starting_practice' => '2000',
             'year_starting_teach' => '2006',
             'significant_teachers' => $this->faker->paragraph,
@@ -131,8 +131,9 @@ class TeacherControllerTest extends TestCase
         $teacherController = new TeacherController();
         $teacherController->storeFromModal($request);
 
-        $data['bio'] = clean($bio);
-        $this->assertDatabaseHas('teachers', $data);
+        $this->assertDatabaseHas('teachers', [
+           'name' => $name
+        ]);
     }
 
     /** @test */
