@@ -5,6 +5,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
 
 class EventCategoryControllerTest extends TestCase
 {
@@ -34,23 +35,20 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_category()
     {
-        /*$attributes = factory(EventCategory::class)->raw();*/
-        
-        $event_category_name = $this->faker->name;
-        $slug = Str::slug($event_category_name, '-').rand(10000, 100000);
-        $data = [   
-            'en'  => ['name' => $event_category_name,'slug' => $slug],
-        ];
-        $eventCategory = EventCategory::create($data);
-        
-        
-
         $user = User::first();
         auth()->login($user);
-
-        $response = $this->post('/eventCategories', $eventCategory);
         
-        $response->assertRedirect('/eventCategories/');
+        $data = [
+            'name' => 'test title',
+            'slug' => 'test body',
+        ];
+
+        $response = $this
+            ->followingRedirects()
+            ->post('/eventCategories', $data);
+            
+        $this->assertDatabaseHas('event_category_translations', ['locale' => 'en']);
+        $response->assertViewIs('laravel-events-calendar::eventCategories.index');
     }
 
     /** @test */
