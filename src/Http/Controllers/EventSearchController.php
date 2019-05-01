@@ -63,7 +63,7 @@ class EventSearchController extends Controller
 
         $events = Event::getEvents($filters, 20);
 
-        return view('eventSearch.index', compact('events'))
+        return view('laravel-events-calendar::eventSearch.index', compact('events'))
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('eventCategories', $eventCategories)
             ->with('continents', $continents)
@@ -94,7 +94,7 @@ class EventSearchController extends Controller
     {
         $event = Event::where('id', $id)->first();
 
-        return view('eventSearch.show', compact('event'));
+        return view('laravel-events-calendar::eventSearch.show', compact('event'));
     }
 
     /***************************************************************************/
@@ -120,7 +120,7 @@ class EventSearchController extends Controller
             return EventCategory::orderBy('name')->pluck('name', 'id');
         });
 
-        return view('eventSearch.index-iframe', compact('events'))
+        return view('laravel-events-calendar::eventSearch.index-iframe', compact('events'))
                 ->with('country', $country)
                 ->with('eventCategories', $eventCategories);
     }

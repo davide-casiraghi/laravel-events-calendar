@@ -12,10 +12,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 class EventCategoryController extends Controller
 {
     /* Restrict the access to this resource just to logged in users except show view */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('admin', ['except' => ['show']]);
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -29,7 +29,7 @@ class EventCategoryController extends Controller
         // Countries available for translations
         $countriesAvailableForTranslations = LaravelLocalization::getSupportedLocales();
 
-        return view('eventCategories.index', compact('eventCategories'))
+        return view('laravel-events-calendar::eventCategories.index', compact('eventCategories'))
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('countriesAvailableForTranslations', $countriesAvailableForTranslations);
     }
@@ -41,7 +41,7 @@ class EventCategoryController extends Controller
      */
     public function create()
     {
-        return view('eventCategories.create');
+        return view('laravel-events-calendar::eventCategories.create');
     }
 
     /**
@@ -77,7 +77,7 @@ class EventCategoryController extends Controller
      */
     public function show(EventCategory $eventCategory)
     {
-        return view('eventCategories.show', compact('eventCategory'));
+        return view('laravel-events-calendar::eventCategories.show', compact('eventCategory'));
     }
 
     /**
@@ -88,7 +88,7 @@ class EventCategoryController extends Controller
      */
     public function edit(EventCategory $eventCategory)
     {
-        return view('eventCategories.edit', compact('eventCategory'));
+        return view('laravel-events-calendar::eventCategories.edit', compact('eventCategory'));
     }
 
     /**

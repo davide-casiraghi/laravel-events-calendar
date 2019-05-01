@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
@@ -10,10 +10,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 class CountryController extends Controller
 {
     /* Restrict the access to this resource just to logged in users */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('admin');
-    }
+    }*/
 
     /***************************************************************************/
 
@@ -36,7 +36,7 @@ class CountryController extends Controller
                                 ->paginate(20);
         }
 
-        return view('countries.index', compact('countries'))
+        return view('laravel-events-calendar::countries.index', compact('countries'))
             ->with('i', (request()->input('page', 1) - 1) * 20)->with('continents', $continents)->with('searchKeywords', $searchKeywords);
     }
 
@@ -51,7 +51,7 @@ class CountryController extends Controller
     {
         $continents = Continent::getContinents();
 
-        return view('countries.create')->with('continents', $continents);
+        return view('laravel-events-calendar::countries.create')->with('continents', $continents);
     }
 
     /***************************************************************************/
@@ -96,7 +96,7 @@ class CountryController extends Controller
      */
     public function show(Country $country)
     {
-        return view('countries.show', compact('country'));
+        return view('laravel-events-calendar::countries.show', compact('country'));
     }
 
     /***************************************************************************/
@@ -111,7 +111,7 @@ class CountryController extends Controller
     {
         $continents = Continent::getContinents();
 
-        return view('countries.edit', compact('country'))->with('continents', $continents);
+        return view('laravel-events-calendar::countries.edit', compact('country'))->with('continents', $continents);
     }
 
     /***************************************************************************/

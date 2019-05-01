@@ -19,7 +19,7 @@
 
          <div class="row">
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.forms.input', [
                       'title' => __('general.name'),
                       'name' => 'name',
                       'placeholder' => 'Continent Name',
@@ -28,7 +28,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('partials.forms.input', [
+                @include('laravel-events-calendar::partials.forms.input', [
                       'title' => __('views.continent_code'),
                       'name' => 'code',
                       'value' => old('code'),
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        @include('partials.forms.buttons-back-submit', [
+        @include('laravel-events-calendar::partials.buttons-back-submit', [
             'route' => 'continents.index'  
         ])
 

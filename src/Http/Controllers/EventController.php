@@ -27,10 +27,10 @@ class EventController extends Controller
 {
     /***************************************************************************/
     /* Restrict the access to this resource just to logged in users except show view */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('auth', ['except' => ['show', 'reportMisuse', 'reportMisuseThankyou', 'mailToOrganizer', 'mailToOrganizerSent', 'eventBySlug', 'eventBySlugAndRepetition', 'EventsListByCountry']]);
-    }
+    }*/
 
     /***************************************************************************/
 
@@ -78,7 +78,7 @@ class EventController extends Controller
                 })->paginate(20);
         }
 
-        return view('events.index', compact('events'))
+        return view('laravel-events-calendar::events.index', compact('events'))
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('eventCategories', $eventCategories)
             ->with('countries', $countries)
@@ -110,7 +110,7 @@ class EventController extends Controller
         $dateTime = [];
         $dateTime['repeatUntil'] = null;
 
-        return view('events.create')
+        return view('laravel-events-calendar::events.create')
             ->with('eventCategories', $eventCategories)
             ->with('users', $users)
             ->with('teachers', $teachers)
@@ -202,7 +202,7 @@ class EventController extends Controller
         // True if the repetition start and end on the same day
         $sameDateStartEnd = ((date('Y-m-d', strtotime($firstRpDates->start_repeat))) == (date('Y-m-d', strtotime($firstRpDates->end_repeat)))) ? 1 : 0;
 
-        return view('events.show', compact('event'))
+        return view('laravel-events-calendar::events.show', compact('event'))
                 ->with('category', $category)
                 ->with('teachers', $teachers)
                 ->with('organizers', $organizers)
@@ -262,7 +262,7 @@ class EventController extends Controller
             }
             $multiple_organizers = implode(',', $organizersSelected);
 
-            return view('events.edit', compact('event'))
+            return view('laravel-events-calendar::events.edit', compact('event'))
                         ->with('eventCategories', $eventCategories)
                         ->with('users', $users)
                         ->with('teachers', $teachers)
@@ -617,7 +617,7 @@ class EventController extends Controller
      */
     public function mailToOrganizerSent()
     {
-        return view('emails.contact.organizer-sent');
+        return view('laravel-events-calendar::emails.contact.organizer-sent');
     }
 
     /***************************************************************************/
@@ -628,7 +628,7 @@ class EventController extends Controller
      */
     public function reportMisuseThankyou()
     {
-        return view('emails.report-thankyou');
+        return view('laravel-events-calendar::emails.report-thankyou');
     }
 
     /***************************************************************************/

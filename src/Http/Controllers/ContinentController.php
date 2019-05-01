@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
@@ -9,10 +9,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 class ContinentController extends Controller
 {
     /* Restrict the access to this resource just to logged in users */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('admin');
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -23,7 +23,7 @@ class ContinentController extends Controller
     {
         $continents = Continent::orderBy('name')->paginate(10);
 
-        return view('continents.index', compact('continents'))
+        return view('laravel-events-calendar::continents.index', compact('continents'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -34,7 +34,7 @@ class ContinentController extends Controller
      */
     public function create()
     {
-        return view('continents.create');
+        return view('laravel-events-calendar::continents.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class ContinentController extends Controller
      */
     public function show(Continent $continent)
     {
-        return view('continents.show', compact('continent'));
+        return view('laravel-events-calendar::continents.show', compact('continent'));
     }
 
     /**
@@ -84,7 +84,7 @@ class ContinentController extends Controller
      */
     public function edit(Continent $continent)
     {
-        return view('continents.edit', compact('continent'));
+        return view('laravel-events-calendar::continents.edit', compact('continent'));
     }
 
     /**

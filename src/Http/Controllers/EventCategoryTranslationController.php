@@ -10,10 +10,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
 class EventCategoryTranslationController extends Controller
 {
     /* Restrict the access to this resource just to logged in users */
-    public function __construct()
+    /*public function __construct()
     {
         $this->middleware('admin');
-    }
+    }*/
 
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class EventCategoryTranslationController extends Controller
     {
         $selectedLocaleName = $this->getSelectedLocaleName($languageCode);
 
-        return view('eventCategoryTranslations.create')
+        return view('laravel-events-calendar::eventCategoryTranslations.create')
                 ->with('eventCategoryId', $eventCategoryId)
                 ->with('languageCode', $languageCode)
                 ->with('selectedLocaleName', $selectedLocaleName);
@@ -95,7 +95,7 @@ class EventCategoryTranslationController extends Controller
 
         $selectedLocaleName = $this->getSelectedLocaleName($languageCode);
 
-        return view('eventCategoryTranslations.edit', compact('eventCategoryTranslation'))
+        return view('laravel-events-calendar::eventCategoryTranslations.edit', compact('eventCategoryTranslation'))
                     ->with('eventCategoryId', $eventCategoryId)
                     ->with('languageCode', $languageCode)
                     ->with('selectedLocaleName', $selectedLocaleName);

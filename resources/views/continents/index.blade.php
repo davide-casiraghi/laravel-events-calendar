@@ -1,4 +1,4 @@
-@extends('continents.layout')
+@extends('laravel-events-calendar::continents.layout')
 
 
 @section('content')
