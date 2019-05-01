@@ -18,9 +18,9 @@ class EventCategoryControllerTest extends TestCase
         // Authenticate the admin
         //$this->authenticateAsAdmin();
 
-        $this->get('eventCategories')->dump();
-            //->assertViewIs('laravel-events-calendar::eventCategories.index')
-            //->assertStatus(200);
+        $this->get('eventCategories')
+            ->assertViewIs('laravel-events-calendar::eventCategories.index')
+            ->assertStatus(200);
     }
 
     /** @test */

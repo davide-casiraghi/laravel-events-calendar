@@ -55,6 +55,7 @@ abstract class TestCase extends BaseTestCase
         return [
             LaravelEventsCalendarServiceProvider::class,
             \Mews\Purifier\PurifierServiceProvider::class,
+            \Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         ];
     }
 
@@ -63,6 +64,7 @@ abstract class TestCase extends BaseTestCase
         return [
             'LaravelEventsCalendar' => LaravelEventsCalendar::class, // facade called PhpResponsiveQuote and the name of the facade class
             'Purifier' => \Mews\Purifier\Facades\Purifier::class,
+            'LaravelLocalization' => \Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         ];
     }
 
