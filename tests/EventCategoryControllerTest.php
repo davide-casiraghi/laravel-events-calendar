@@ -92,26 +92,43 @@ class EventCategoryControllerTest extends TestCase
             'locale' => 'en',
         ]);
         
-        //$eventCategory = factory(EventCategory::class)->create();
         $response = $this->get("/eventCategories/{$eventCategoryId}/edit");
         $response->assertViewIs('laravel-events-calendar::eventCategories.edit')
                  ->assertStatus(200);
     }
 
     /** @test */
-    /*public function it_updates_valid_event_category()
+    public function it_updates_valid_event_category()
     {
-        // https://www.neontsunami.com/posts/scaffolding-laravel-tests
-        $eventCategory = factory(EventCategory::class)->create();
-        $attributes = factory(EventCategory::class)->raw(['name' => 'Updated']);
-
         $user = User::first();
         auth()->login($user);
+        
+        $eventCategoryId = EventCategory::insertGetId([
+        ]);
+        EventCategoryTranslation::insert([
+            'event_category_id' => $eventCategoryId,
+            'name' => 'test name',
+            'slug' => 'test slug',
+            'locale' => 'en',
+        ]);
 
-        $response = $this->put("/eventCategories/{$eventCategory->id}", $attributes);
+        $attributes = ([
+            'name' => 'test name updated',
+            'slug' => 'test slug updated',
+          ]);
+
+        
+        $response = $this->put("/eventCategories/{$eventCategoryId}", $attributes)->dump();
         $response->assertRedirect('/eventCategories/');
-        $this->assertEquals('Updated', $eventCategory->fresh()->name);
-    }*/
+            
+             //->assertStatus(302);
+         //$response->assertViewIs('laravel-events-calendar::eventCategories.edit')
+            //      ->assertStatus(200);
+        
+        //$response = $this->put("/eventCategories/{$eventCategory->id}", $attributes);
+        //$response->assertRedirect('/eventCategories/');
+        //$this->assertEquals('Updated', $eventCategory->fresh()->name);
+    }
 
     /** @test */
     /*public function it_does_not_update_invalid_event_category()

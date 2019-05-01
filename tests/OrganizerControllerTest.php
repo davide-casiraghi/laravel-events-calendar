@@ -79,7 +79,7 @@ class OrganizerControllerTest extends TestCase
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $organizer = factory(Organizer::class)->create();
         $attributes = factory(Organizer::class)->raw(['name' => 'Updated']);
-
+        
         $user = User::first();
         auth()->login($user);
 
