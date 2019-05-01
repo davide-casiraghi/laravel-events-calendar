@@ -1,4 +1,4 @@
-@extends('laravel-events-calendar::events.layout')
+@extends('laravel-events-calendar::eventVenues.layout')
 
 @section('title'){{ $eventVenue->name }}@endsection
 @section('description')Venue profile @ Global CI calendar @endsection

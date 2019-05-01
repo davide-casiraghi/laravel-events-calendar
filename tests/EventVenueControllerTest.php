@@ -111,22 +111,42 @@ class EventVenueControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_displays_the_event_venue_show_page()
+    public function it_displays_the_event_venue_show_page()
     {
+        Continent::insert([
+            'name' => "Europe",
+            'code' => "EU",
+        ]);
+        Country::insert([
+            'name' => "Italy",
+            'code' => "IT",
+            'continent_id' => 1,
+        ]);
+        
         $eventVenue = factory(EventVenue::class)->create();
         $response = $this->get("/eventVenues/{$eventVenue->id}");
         $response->assertViewIs('laravel-events-calendar::eventVenues.show')
                  ->assertStatus(200);
-    }*/
+    }
 
     /** @test */
-    /*public function it_displays_the_event_venue_edit_page()
+    public function it_displays_the_event_venue_edit_page()
     {
+        Continent::insert([
+            'name' => "Europe",
+            'code' => "EU",
+        ]);
+        Country::insert([
+            'name' => "Italy",
+            'code' => "IT",
+            'continent_id' => 1,
+        ]);
+        
         $eventVenue = factory(EventVenue::class)->create();
         $response = $this->get("/eventVenues/{$eventVenue->id}/edit");
         $response->assertViewIs('laravel-events-calendar::eventVenues.edit')
                  ->assertStatus(200);
-    }*/
+    }
 
     /** @test */
     /*public function it_updates_valid_event_venue()
