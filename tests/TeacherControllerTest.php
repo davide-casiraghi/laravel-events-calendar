@@ -2,68 +2,16 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\TeacherController;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class TeacherControllerTest extends TestCase
 {
     use WithFaker;
-
-    /**
-     * Define environment setup.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return void
-     */
-    protected function getEnvironmentSetUp($app)
-    {
-        // Setup default database to use sqlite :memory:
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
-    }
-
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadLaravelMigrations(['--database' => 'testbench']);
-        $this->withFactories(__DIR__.'/database/factories');
-
-        //$this->artisan('db:seed', ['--class' => 'ContinentsTableSeeder']);
-        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder']);
-
-        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'LaravelEventsCalendar\\LaravelEventsCalendar\\ContinentsTableSeeder']);
-        //$this->artisan('db:seed', ['--database'=>'testbench','--class'=>'ContinentsTableSeeder', '--path'=>'/database/seeds/']);
-        //$this->seed('ContinentsTableSeeder');
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [
-            LaravelEventsCalendarServiceProvider::class,
-            \Mews\Purifier\PurifierServiceProvider::class,
-        ];
-    }
-
-    protected function getPackageAliases($app)
-    {
-        return [
-            'LaravelEventsCalendar' => LaravelEventsCalendar::class, // facade called PhpResponsiveQuote and the name of the facade class
-            'Purifier' => \Mews\Purifier\Facades\Purifier::class,
-        ];
-    }
-
+    
     /***************************************************************/
 
     /** @test */

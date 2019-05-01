@@ -2,63 +2,20 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use Illuminate\Foundation\Auth\User;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventVenueController;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class EventVenueControllerTest extends TestCase
 {
     use WithFaker;
 
-    /**
-     * Define environment setup.
-     *
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return void
-     */
-    protected function getEnvironmentSetUp($app)
-    {
-        // Setup default database to use sqlite :memory:
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
-    }
-
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadLaravelMigrations(['--database' => 'testbench']);
-        $this->withFactories(__DIR__.'/database/factories');
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [
-            LaravelEventsCalendarServiceProvider::class,
-            \Mews\Purifier\PurifierServiceProvider::class,
-        ];
-    }
-
-    protected function getPackageAliases($app)
-    {
-        return [
-            'LaravelEventsCalendar' => LaravelEventsCalendar::class, // facade called PhpResponsiveQuote and the name of the facade class
-            'Purifier' => \Mews\Purifier\Facades\Purifier::class,
-        ];
-    }
-
+    
     /***************************************************************/
 
     /** @test */
@@ -142,10 +99,16 @@ class EventVenueControllerTest extends TestCase
             'continent_id' => 1,
         ]);
         
+        $user = User::first();
+        auth()->login($user);
+        
+        
+        
+        
         $eventVenue = factory(EventVenue::class)->create();
-        $response = $this->get("/eventVenues/{$eventVenue->id}/edit")->dump();
-        //$response->assertViewIs('laravel-events-calendar::eventVenues.edit')
-        //         ->assertStatus(200);
+        $response = $this->get("/eventVenues/{$eventVenue->id}/edit");
+        $response->assertViewIs('laravel-events-calendar::eventVenues.edit')
+                 ->assertStatus(200);
     }
 
     /** @test */
