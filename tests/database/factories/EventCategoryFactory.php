@@ -13,7 +13,6 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory::class, function (Faker $faker) {
-
     return [
         'name:en' => $faker->name,
     ];
