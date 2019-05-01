@@ -79,7 +79,7 @@ class OrganizerControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_stores_a_valid_organizer()
+    public function it_stores_a_valid_organizer()
     {
         $attributes = factory(Organizer::class)->raw();
         $response = $this->post('/organizers', $attributes);
@@ -87,7 +87,7 @@ class OrganizerControllerTest extends TestCase
 
         //$this->assertDatabaseHas('organizers', $attributes);
         $response->assertRedirect('/organizers/');
-    }*/
+    }
 
     /** @test */
     /*public function it_does_not_store_invalid_organizer()

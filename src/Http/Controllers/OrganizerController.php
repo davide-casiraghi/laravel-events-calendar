@@ -184,7 +184,7 @@ class OrganizerController extends Controller
         $organizer->email = $request->get('email');
         $organizer->phone = $request->get('phone');
 
-        $organizer->created_by = \Auth::user()->id;
+        //$organizer->created_by = \Auth::user()->id;
         if (! $organizer->slug) {
             $organizer->slug = Str::slug($organizer->name, '-').'-'.rand(10000, 100000);
         }
