@@ -110,7 +110,7 @@ class TeacherControllerTest extends TestCase
     public function it_store_from_teacher_modal()
     {
         $request = new \Illuminate\Http\Request();
-        
+
         $name = $this->faker->name;
         $data = [
             'name' => $name,
@@ -132,11 +132,11 @@ class TeacherControllerTest extends TestCase
         $teacherController->storeFromModal($request);
 
         $this->assertDatabaseHas('teachers', [
-           'name' => $name
+           'name' => $name,
         ]);
     }
 
-    /** @test */
+    /* @test */
     /*public function it_gets_a_teacher_by_slug()
     {
         $teacher = factory(Teacher::class)->create();

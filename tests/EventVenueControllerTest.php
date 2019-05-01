@@ -91,7 +91,7 @@ class EventVenueControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
-        
+
         Continent::insert([
             'name' => 'Europe',
             'code' => 'EU',
@@ -114,7 +114,7 @@ class EventVenueControllerTest extends TestCase
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $user = User::first();
         auth()->login($user);
-        
+
         Continent::insert([
             'name' => 'Europe',
             'code' => 'EU',
@@ -155,7 +155,7 @@ class EventVenueControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
-        
+
         Continent::insert([
             'name' => 'Europe',
             'code' => 'EU',
@@ -186,9 +186,9 @@ class EventVenueControllerTest extends TestCase
 
         $eventVenueController = new EventVenueController();
         $eventVenueController->storeFromModal($request);
-        
+
         $this->assertDatabaseHas('event_venues', [
-           'name' => $name
+           'name' => $name,
         ]);
     }
 }
