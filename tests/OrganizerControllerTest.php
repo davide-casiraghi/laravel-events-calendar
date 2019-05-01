@@ -116,7 +116,7 @@ class OrganizerControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_updates_valid_organizer()
+    public function it_updates_valid_organizer()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $organizer = factory(Organizer::class)->create();
@@ -124,7 +124,7 @@ class OrganizerControllerTest extends TestCase
         $response = $this->put("/organizers/{$organizer->id}", $attributes);
         $response->assertRedirect('/organizers/');
         $this->assertEquals('Updated', $organizer->fresh()->name);
-    }*/
+    }
 
     /** @test */
     /*public function it_does_not_update_invalid_organizer()
