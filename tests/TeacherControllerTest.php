@@ -2,16 +2,14 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\TeacherController;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
-use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
-use Illuminate\Foundation\Testing\WithFaker;
 
 class TeacherControllerTest extends TestCase
 {
     use WithFaker;
-    
+
     /***************************************************************/
 
     /** @test */
