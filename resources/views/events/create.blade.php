@@ -127,7 +127,7 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
-                                @include('laravel-events-calendar::partials.textarea', [
+                                @include('laravel-events-calendar::partials.textarea-plain', [
                                       'title' =>  __('general.description'),
                                       'name' => 'description',
                                       'placeholder' => 'Event description',
