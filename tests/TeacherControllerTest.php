@@ -2,6 +2,7 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\TeacherController;
@@ -35,6 +36,10 @@ class TeacherControllerTest extends TestCase
     public function it_stores_a_valid_teacher()
     {
         $attributes = factory(Teacher::class)->raw();
+        
+        $user = User::first();
+        auth()->login($user);
+        
         $response = $this->post('/teachers', $attributes);
         $teacher = Teacher::first();
 
@@ -74,6 +79,10 @@ class TeacherControllerTest extends TestCase
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $teacher = factory(Teacher::class)->create();
         $attributes = factory(Teacher::class)->raw(['name' => 'Updated']);
+        
+        $user = User::first();
+        auth()->login($user);
+        
         $response = $this->put("/teachers/{$teacher->id}", $attributes);
         $response->assertRedirect('/teachers/');
         $this->assertEquals('Updated', $teacher->fresh()->name);
@@ -115,6 +124,9 @@ class TeacherControllerTest extends TestCase
           ];
 
         $request->replace($data);
+
+        $user = User::first();
+        auth()->login($user);
 
         $teacherController = new TeacherController();
         $teacherController->storeFromModal($request);

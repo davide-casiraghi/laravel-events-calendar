@@ -268,7 +268,7 @@ class TeacherController extends Controller
         $teacher->website = $request->get('website');
         $teacher->facebook = $request->get('facebook');
 
-        //$teacher->created_by = \Auth::user()->id;
+        $teacher->created_by = \Auth::user()->id;
         if (! $teacher->slug) {
             $teacher->slug = Str::slug($teacher->name, '-').'-'.rand(10000, 100000);
         }
