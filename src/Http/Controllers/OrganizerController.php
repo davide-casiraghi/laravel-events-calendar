@@ -211,15 +211,16 @@ class OrganizerController extends Controller
     public function storeFromModal(Request $request)
     {
         $organizer = new Organizer();
-        request()->validate([
-            'name' => 'required',
-        ]);
+        
+        // Validate form datas
+        $validator = $this->organizersValidator($request);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
         $this->saveOnDb($request, $organizer);
 
         return redirect()->back()->with('message', 'Organizer created');
-        //return redirect()->back()->with('message', __('auth.successfully_registered'));
-        //return true;
     }
 
     /***************************************************************************/
