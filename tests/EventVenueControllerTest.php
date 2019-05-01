@@ -155,13 +155,23 @@ class EventVenueControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
+        
+        Continent::insert([
+            'name' => 'Europe',
+            'code' => 'EU',
+        ]);
+        Country::insert([
+            'name' => 'Italy',
+            'code' => 'IT',
+            'continent_id' => 1,
+        ]);
 
         $request = new \Illuminate\Http\Request();
 
-        $description = $this->faker->paragraph;
+        $name = $this->faker->name;
         $data = [
             'created_by' => 1,
-            'name' => $this->faker->name,
+            'name' => $name,
             'description' => $this->faker->paragraph,
             'website' => $this->faker->url,
             'continent_id' => 1,
@@ -176,8 +186,9 @@ class EventVenueControllerTest extends TestCase
 
         $eventVenueController = new EventVenueController();
         $eventVenueController->storeFromModal($request);
-
-        $data['description'] = clean($description);
-        $this->assertDatabaseHas('event_venues', $data);
+        
+        $this->assertDatabaseHas('event_venues', [
+           'name' => $name
+       ]);
     }
 }

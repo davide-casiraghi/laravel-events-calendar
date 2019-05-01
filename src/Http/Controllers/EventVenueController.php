@@ -249,9 +249,11 @@ class EventVenueController extends Controller
     {
         $eventVenue = new EventVenue();
 
-        request()->validate([
-            'name' => 'required',
-        ]);
+        // Validate form datas
+        $validator = $this->eventsVenueValidator($request);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
         $this->saveOnDb($request, $eventVenue);
 
