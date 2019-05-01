@@ -71,12 +71,12 @@ class EventVenueControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_displays_the_event_venue_create_page()
+    public function it_displays_the_event_venue_create_page()
     {
         $this->get('eventVenues/create')
             ->assertViewIs('laravel-events-calendar::eventVenues.create')
             ->assertStatus(200);
-    }*/
+    }
 
     /** @test */
     /*public function it_stores_a_valid_event_venue()
