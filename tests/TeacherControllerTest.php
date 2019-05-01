@@ -36,10 +36,10 @@ class TeacherControllerTest extends TestCase
     public function it_stores_a_valid_teacher()
     {
         $attributes = factory(Teacher::class)->raw();
-        
+
         $user = User::first();
         auth()->login($user);
-        
+
         $response = $this->post('/teachers', $attributes);
         $teacher = Teacher::first();
 
@@ -79,10 +79,10 @@ class TeacherControllerTest extends TestCase
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $teacher = factory(Teacher::class)->create();
         $attributes = factory(Teacher::class)->raw(['name' => 'Updated']);
-        
+
         $user = User::first();
         auth()->login($user);
-        
+
         $response = $this->put("/teachers/{$teacher->id}", $attributes);
         $response->assertRedirect('/teachers/');
         $this->assertEquals('Updated', $teacher->fresh()->name);
