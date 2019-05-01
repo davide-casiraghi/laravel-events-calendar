@@ -13,7 +13,7 @@ class ContinentControllerTest extends TestCase
     /***************************************************************/
 
     /** @test */
-    public function it_displays_the_continents_index_page()
+    /*public function it_displays_the_continents_index_page()
     {
         // Authenticate the admin
         //$this->authenticateAsAdmin();
@@ -21,15 +21,15 @@ class ContinentControllerTest extends TestCase
         $this->get('continents')
             ->assertViewIs('laravel-events-calendar::continents.index')
             ->assertStatus(200);
-    }
+    }*/
 
     /* @test */
-    /*public function it_displays_the_continent_create_page()
+    public function it_displays_the_continent_create_page()
     {
-        $this->get('continents/create')
-            ->assertViewIs('laravel-events-calendar::continents.create')
-            ->assertStatus(200);
-    }*/
+        $this->get('continents/create')->dump();
+            //->assertViewIs('laravel-events-calendar::continents.create')
+            //->assertStatus(200);
+    }
 
     /* @test */
     /*public function it_stores_a_valid_continent()
