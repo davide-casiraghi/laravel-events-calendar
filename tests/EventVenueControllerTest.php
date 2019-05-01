@@ -108,7 +108,7 @@ class EventVenueControllerTest extends TestCase
                  ->assertStatus(200);
     }
 
-    /* @test */
+    /** @test */
     public function it_updates_valid_event_venue()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
@@ -122,7 +122,7 @@ class EventVenueControllerTest extends TestCase
         $this->assertEquals('Updated', $eventVenue->fresh()->name);
     }
 
-    /* @test */
+    /** @test */
     public function it_does_not_update_invalid_event_venue()
     {
         $eventVenue = factory(EventVenue::class)->create(['name' => 'Example']);
@@ -131,7 +131,7 @@ class EventVenueControllerTest extends TestCase
         $this->assertEquals('Example', $eventVenue->fresh()->name);
     }
 
-    /* @test */
+    /** @test */
     public function it_deletes_event_venues()
     {
         $eventVenue = factory(EventVenue::class)->create();
@@ -140,7 +140,7 @@ class EventVenueControllerTest extends TestCase
         $this->assertNull($eventVenue->fresh());
     }
 
-    /* @test */
+    /** @test */
     public function it_store_from_event_venue_modal()
     {
         $user = User::first();
@@ -151,16 +151,15 @@ class EventVenueControllerTest extends TestCase
         $description = $this->faker->paragraph;
         $data = [
             'created_by' => 1,
-            'name' => $name,
-            'slug' => $slug,
-            'description' => $faker->paragraph,
-            'website' => $faker->url,
+            'name' => $this->faker->name,
+            'description' => $this->faker->paragraph,
+            'website' => $this->faker->url,
             'continent_id' => 1,
             'country_id' => 1,
-            'city' => $faker->city,
-            'address' => $faker->streetAddress,
-            'zip_code' => $faker->postcode,
-            'state_province' => $faker->state,
+            'city' => $this->faker->city,
+            'address' => $this->faker->streetAddress,
+            'zip_code' => $this->faker->postcode,
+            'state_province' => $this->faker->state,
         ];
 
         $request->replace($data);

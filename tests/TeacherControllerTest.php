@@ -135,7 +135,7 @@ class TeacherControllerTest extends TestCase
         $this->assertDatabaseHas('teachers', $data);
     }
 
-    /* @test */
+    /** @test */
     /*public function it_gets_a_teacher_by_slug()
     {
         $teacher = factory(Teacher::class)->create();
