@@ -4,8 +4,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventController;
 
 class EventControllerTest extends TestCase
 {
@@ -32,7 +30,7 @@ class EventControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-    /** @test */
+    /* @test */
     /*public function it_stores_a_valid_organizer()
     {
         $attributes = factory(Organizer::class)->raw();
@@ -47,7 +45,7 @@ class EventControllerTest extends TestCase
         $response->assertRedirect('/organizers/');
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_does_not_store_invalid_organizer()
     {
         $response = $this->post('/organizers', []);
@@ -55,7 +53,7 @@ class EventControllerTest extends TestCase
         $this->assertNull(Organizer::first());
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_displays_the_organizer_show_page()
     {
         $organizer = factory(Organizer::class)->create();
@@ -64,7 +62,7 @@ class EventControllerTest extends TestCase
                  ->assertStatus(200);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_displays_the_organizer_edit_page()
     {
         $organizer = factory(Organizer::class)->create();
@@ -73,7 +71,7 @@ class EventControllerTest extends TestCase
                  ->assertStatus(200);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_updates_valid_organizer()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
@@ -88,7 +86,7 @@ class EventControllerTest extends TestCase
         $this->assertEquals('Updated', $organizer->fresh()->name);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_does_not_update_invalid_organizer()
     {
         $organizer = factory(Organizer::class)->create(['name' => 'Example']);
@@ -97,7 +95,7 @@ class EventControllerTest extends TestCase
         $this->assertEquals('Example', $organizer->fresh()->name);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_deletes_organizers()
     {
         $organizer = factory(Organizer::class)->create();
@@ -105,6 +103,4 @@ class EventControllerTest extends TestCase
         $response->assertRedirect('/organizers');
         $this->assertNull($organizer->fresh());
     }*/
-
-    
 }
