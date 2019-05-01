@@ -133,7 +133,7 @@ class EventCategoryControllerTest extends TestCase
     }*/
 
     /** @test */
-    public function it_deletes_event_categorys()
+    public function it_deletes_event_categories()
     {
         $user = User::first();
         auth()->login($user);
