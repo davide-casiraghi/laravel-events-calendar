@@ -2,6 +2,7 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\OrganizerController;
@@ -35,6 +36,10 @@ class OrganizerControllerTest extends TestCase
     public function it_stores_a_valid_organizer()
     {
         $attributes = factory(Organizer::class)->raw();
+        
+        $user = User::first();
+        auth()->login($user);
+        
         $response = $this->post('/organizers', $attributes);
         $organizer = Organizer::first();
 
@@ -74,6 +79,10 @@ class OrganizerControllerTest extends TestCase
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $organizer = factory(Organizer::class)->create();
         $attributes = factory(Organizer::class)->raw(['name' => 'Updated']);
+        
+        $user = User::first();
+        auth()->login($user);
+        
         $response = $this->put("/organizers/{$organizer->id}", $attributes);
         $response->assertRedirect('/organizers/');
         $this->assertEquals('Updated', $organizer->fresh()->name);
@@ -112,6 +121,9 @@ class OrganizerControllerTest extends TestCase
         ];
 
         $request->replace($data);
+        
+        $user = User::first();
+        auth()->login($user);
 
         $organizerController = new OrganizerController();
         $organizerController->storeFromModal($request);
