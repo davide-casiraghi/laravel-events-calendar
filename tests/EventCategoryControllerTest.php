@@ -13,95 +13,95 @@ class EventCategoryControllerTest extends TestCase
     /***************************************************************/
 
     /** @test */
-    public function it_displays_the_continents_index_page()
+    public function it_displays_the_event_categories_index_page()
     {
         // Authenticate the admin
         //$this->authenticateAsAdmin();
 
-        $this->get('continents')
-            ->assertViewIs('laravel-events-calendar::continents.index')
+        $this->get('eventCategories')
+            ->assertViewIs('laravel-events-calendar::eventCategories.index')
             ->assertStatus(200);
     }
 
     /** @test */
-    public function it_displays_the_continent_create_page()
+    public function it_displays_the_event_category_create_page()
     {
-        $this->get('continents/create')
-            ->assertViewIs('laravel-events-calendar::continents.create')
+        $this->get('eventCategories/create')
+            ->assertViewIs('laravel-events-calendar::eventCategories.create')
             ->assertStatus(200);
     }
 
     /** @test */
-    public function it_stores_a_valid_continent()
+    public function it_stores_a_valid_event_category()
     {
-        $attributes = factory(Continent::class)->raw();
+        $attributes = factory(EventCategory::class)->raw();
 
         $user = User::first();
         auth()->login($user);
 
-        $response = $this->post('/continents', $attributes);
-        $continent = Continent::first();
+        $response = $this->post('/eventCategories', $attributes);
+        $eventCategory = EventCategory::first();
 
-        //$this->assertDatabaseHas('continents', $attributes);
-        $response->assertRedirect('/continents/');
+        //$this->assertDatabaseHas('eventCategories', $attributes);
+        $response->assertRedirect('/eventCategories/');
     }
 
     /** @test */
-    public function it_does_not_store_invalid_continent()
+    public function it_does_not_store_invalid_event_category()
     {
-        $response = $this->post('/continents', []);
+        $response = $this->post('/eventCategories', []);
         $response->assertSessionHasErrors();
-        $this->assertNull(Continent::first());
+        $this->assertNull(EventCategory::first());
     }
 
     /** @test */
-    public function it_displays_the_continent_show_page()
+    public function it_displays_the_event_category_show_page()
     {
-        $continent = factory(Continent::class)->create();
-        $response = $this->get("/continents/{$continent->id}");
-        $response->assertViewIs('laravel-events-calendar::continents.show')
+        $eventCategory = factory(EventCategory::class)->create();
+        $response = $this->get("/eventCategories/{$eventCategory->id}");
+        $response->assertViewIs('laravel-events-calendar::eventCategories.show')
                  ->assertStatus(200);
     }
 
     /** @test */
-    public function it_displays_the_continent_edit_page()
+    public function it_displays_the_event_category_edit_page()
     {
-        $continent = factory(Continent::class)->create();
-        $response = $this->get("/continents/{$continent->id}/edit");
-        $response->assertViewIs('laravel-events-calendar::continents.edit')
+        $eventCategory = factory(EventCategory::class)->create();
+        $response = $this->get("/eventCategories/{$eventCategory->id}/edit");
+        $response->assertViewIs('laravel-events-calendar::eventCategories.edit')
                  ->assertStatus(200);
     }
 
     /** @test */
-    public function it_updates_valid_continent()
+    public function it_updates_valid_event_category()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
-        $continent = factory(Continent::class)->create();
-        $attributes = factory(Continent::class)->raw(['name' => 'Updated']);
+        $eventCategory = factory(EventCategory::class)->create();
+        $attributes = factory(EventCategory::class)->raw(['name' => 'Updated']);
 
         $user = User::first();
         auth()->login($user);
 
-        $response = $this->put("/continents/{$continent->id}", $attributes);
-        $response->assertRedirect('/continents/');
-        $this->assertEquals('Updated', $continent->fresh()->name);
+        $response = $this->put("/eventCategories/{$eventCategory->id}", $attributes);
+        $response->assertRedirect('/eventCategories/');
+        $this->assertEquals('Updated', $eventCategory->fresh()->name);
     }
 
     /** @test */
-    public function it_does_not_update_invalid_continent()
+    public function it_does_not_update_invalid_event_category()
     {
-        $continent = factory(Continent::class)->create(['name' => 'Example']);
-        $response = $this->put("/continents/{$continent->id}", []);
+        $eventCategory = factory(EventCategory::class)->create(['name' => 'Example']);
+        $response = $this->put("/eventCategories/{$eventCategory->id}", []);
         $response->assertSessionHasErrors();
-        $this->assertEquals('Example', $continent->fresh()->name);
+        $this->assertEquals('Example', $eventCategory->fresh()->name);
     }
 
     /** @test */
-    public function it_deletes_continents()
+    public function it_deletes_event_categorys()
     {
-        $continent = factory(Continent::class)->create();
-        $response = $this->delete("/continents/{$continent->id}");
-        $response->assertRedirect('/continents');
-        $this->assertNull($continent->fresh());
+        $eventCategory = factory(EventCategory::class)->create();
+        $response = $this->delete("/eventCategories/{$eventCategory->id}");
+        $response->assertRedirect('/eventCategories');
+        $this->assertNull($eventCategory->fresh());
     }
 }
