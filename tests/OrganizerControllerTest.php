@@ -127,48 +127,45 @@ class OrganizerControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_does_not_update_invalid_organizer()
+    public function it_does_not_update_invalid_organizer()
     {
         $organizer = factory(Organizer::class)->create(['name' => 'Example']);
         $response = $this->put("/organizers/{$organizer->id}", []);
         $response->assertSessionHasErrors();
         $this->assertEquals('Example', $organizer->fresh()->name);
-    }*/
+    }
 
     /** @test */
-    /*public function it_deletes_organizers()
+    public function it_deletes_organizers()
     {
         $organizer = factory(Organizer::class)->create();
         $response = $this->delete("/organizers/{$organizer->id}");
         $response->assertRedirect('/organizers');
         $this->assertNull($organizer->fresh());
-    }*/
+    }
 
     /** @test */
-    /*public function it_store_from_organizer_modal()
+    public function it_store_from_organizer_modal()
     {
         $request = new \Illuminate\Http\Request();
 
-        $bio = $this->faker->paragraph;
+        $description = $this->faker->paragraph;
         $data = [
             'name' => $this->faker->name,
-            'bio' => $bio,
-            'year_starting_practice' => '2000',
-            'year_starting_teach' => '2006',
-            'significant_organizers' => $this->faker->paragraph,
             'website' => $this->faker->url,
-            'facebook' => 'https://www.facebook.com/'.$this->faker->word,
-            'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
-          ];
+            'description' => $description,
+            'email' => $this->faker->email,
+            'phone' => $this->faker->e164PhoneNumber,
+        ];
 
         $request->replace($data);
 
         $organizerController = new OrganizerController();
         $organizerController->storeFromModal($request);
 
-        $data['bio'] = clean($bio);
+        $data['description'] = clean($description);
         $this->assertDatabaseHas('organizers', $data);
-    }*/
+    }
 
     
 }
