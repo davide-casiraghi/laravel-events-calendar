@@ -189,6 +189,6 @@ class EventVenueControllerTest extends TestCase
         
         $this->assertDatabaseHas('event_venues', [
            'name' => $name
-       ]);
+        ]);
     }
 }
