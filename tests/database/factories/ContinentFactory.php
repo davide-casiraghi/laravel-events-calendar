@@ -14,7 +14,6 @@ use Faker\Generator as Faker;
 
 $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Continent::class, function (Faker $faker) {
     $continent_name = $faker->name;
-    $slug = Str::slug($continent_name, '-').rand(10000, 100000);
 
     return [
         'name' => $continent_name,

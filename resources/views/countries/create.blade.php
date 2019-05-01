@@ -37,7 +37,7 @@
             </div>
 
             <div class="col-12">
-                @include('partials.forms.select', [
+                @include('laravel-events-calendar::partials.select', [
                       'title' => __('general.continent'),
                       'name' => 'continent_id',
                       'placeholder' => __('general.select_continent'),
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        @include('partials.forms.buttons-back-submit', [
+        @include('laravel-events-calendar::partials.buttons-back-submit', [
             'route' => 'countries.index'  
         ])
 
