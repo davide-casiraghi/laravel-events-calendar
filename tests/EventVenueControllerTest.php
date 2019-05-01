@@ -89,6 +89,9 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_venue_edit_page()
     {
+        $user = User::first();
+        auth()->login($user);
+        
         Continent::insert([
             'name' => 'Europe',
             'code' => 'EU',
@@ -98,9 +101,6 @@ class EventVenueControllerTest extends TestCase
             'code' => 'IT',
             'continent_id' => 1,
         ]);
-
-        $user = User::first();
-        auth()->login($user);
 
         $eventVenue = factory(EventVenue::class)->create();
         $response = $this->get("/eventVenues/{$eventVenue->id}/edit");
@@ -114,6 +114,16 @@ class EventVenueControllerTest extends TestCase
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $user = User::first();
         auth()->login($user);
+        
+        Continent::insert([
+            'name' => 'Europe',
+            'code' => 'EU',
+        ]);
+        Country::insert([
+            'name' => 'Italy',
+            'code' => 'IT',
+            'continent_id' => 1,
+        ]);
 
         $eventVenue = factory(EventVenue::class)->create();
         $attributes = factory(EventVenue::class)->raw(['name' => 'Updated']);
