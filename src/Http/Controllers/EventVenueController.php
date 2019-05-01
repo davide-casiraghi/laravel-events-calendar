@@ -99,7 +99,6 @@ class EventVenueController extends Controller
      */
     public function store(Request $request)
     {
-
         // Validate form datas
         $validator = $this->eventsVenueValidator($request);
         if ($validator->fails()) {
@@ -107,7 +106,6 @@ class EventVenueController extends Controller
         }
 
         $eventVenue = new EventVenue();
-
         $this->saveOnDb($request, $eventVenue);
 
         return redirect()->route('eventVenues.index')
@@ -220,7 +218,7 @@ class EventVenueController extends Controller
         if (! $eventVenue->slug) {
             $eventVenue->slug = Str::slug($eventVenue->name, '-').rand(10000, 100000);
         }
-        $eventVenue->created_by = \Auth::user()->id;
+        //$eventVenue->created_by = \Auth::user()->id;
         $eventVenue->save();
     }
 

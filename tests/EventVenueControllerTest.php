@@ -79,15 +79,16 @@ class EventVenueControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_stores_a_valid_event_venue()
+    public function it_stores_a_valid_event_venue()
     {
         $attributes = factory(EventVenue::class)->raw();
-        $response = $this->post('/eventVenues', $attributes);
-        $eventVenue = EventVenue::first();
+        
+        $response = $this->post('/eventVenues', $attributes)->dump();
+        //$eventVenue = EventVenue::first();
 
         //$this->assertDatabaseHas('organizers', $attributes);
-        $response->assertRedirect('/eventVenues/');
-    }*/
+        //$response->assertRedirect('/eventVenues/');
+    }
 
     /** @test */
     /*public function it_does_not_store_invalid_event_venue()
