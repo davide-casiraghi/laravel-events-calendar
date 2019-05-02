@@ -141,7 +141,7 @@ class TeacherControllerTest extends TestCase
     public function it_gets_a_teacher_by_slug()
     {
         $teacher = factory(Teacher::class)->create();
-        $response = $this->get("/teacher/".$teacher->slug);
+        $response = $this->get('/teacher/'.$teacher->slug);
         $response->assertViewIs('laravel-events-calendar::teachers.show')
                  ->assertStatus(200);
     }
