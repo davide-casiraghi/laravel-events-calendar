@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\TeacherController;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherControllerTest extends TestCase
 {
@@ -153,7 +154,7 @@ class TeacherControllerTest extends TestCase
     }*/
     
     /** @test */
-    public function it_uploads_an_image()
+    public function it_uploads_a_teacher_profile_image()
     {
         // Symulate the upload
         $local_test_file = __DIR__.'/test-files/large-avatar.png';

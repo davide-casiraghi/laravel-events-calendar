@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class Controller extends BaseController
@@ -91,8 +92,8 @@ class Controller extends BaseController
     {
 
         // Create dir if not exist (in /storage/app/public/images/..)
-        if (! \Storage::disk('public')->has('images/'.$imageSubdir.'/')) {
-            \Storage::disk('public')->makeDirectory('images/'.$imageSubdir.'/');
+        if (!Storage::disk('public')->has('images/'.$imageSubdir.'/')) {
+            Storage::disk('public')->makeDirectory('images/'.$imageSubdir.'/');
         }
 
         $destinationPath = 'app/public/images/'.$imageSubdir.'/';
@@ -100,7 +101,7 @@ class Controller extends BaseController
         // Resize the image with Intervention - http://image.intervention.io/api/resize
         // -  resize and store the image to a width of 300 and constrain aspect ratio (auto height)
         // - save file as jpg with medium quality
-        $image = \Image::make($imageFile->getRealPath())
+        $image = Image::make($imageFile->getRealPath())
                                 ->resize($imageWidth, null,
                                     function ($constraint) {
                                         $constraint->aspectRatio();
