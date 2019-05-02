@@ -164,8 +164,6 @@ class EventControllerTest extends TestCase
         $onMonthlyKindString = "3|3|4";
         $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
         $this->assertEquals($onMonthlyKindDecoded, "the 4th to last Thursday of the month");
-    
-    
     }
     
     
