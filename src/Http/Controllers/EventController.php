@@ -136,10 +136,10 @@ class EventController extends Controller
             //dd($validator->failed());
             return back()->withErrors($validator)->withInput();
         }
-    
+
         $event = new Event();
         $this->saveOnDb($request, $event);
-        
+
         return redirect()->route('events.index')
                         ->with('success', __('messages.event_added_successfully'));
     }
@@ -158,7 +158,7 @@ class EventController extends Controller
         $category = EventCategory::find($event->category_id);
         $teachers = $event->teachers()->get();
         $organizers = $event->organizers()->get();
-        
+
         $venue = DB::table('event_venues')
                 ->select('id', 'name', 'city', 'address', 'zip_code', 'country_id')
                 ->where('id', $event->venue_id)
@@ -227,10 +227,10 @@ class EventController extends Controller
     {
         if (Auth::user()->id == $event->created_by || Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
             $authorUserId = $this->getLoggedAuthorId();
-            
+
             //$eventCategories = EventCategory::pluck('name', 'id');  // removed because was braking the tests
             $eventCategories = EventCategory::listsTranslations('name')->where('online', 1)->pluck('name', 'id');
-            
+
             $users = User::pluck('name', 'id');
             $teachers = Teacher::pluck('name', 'id');
             $organizers = Organizer::pluck('name', 'id');

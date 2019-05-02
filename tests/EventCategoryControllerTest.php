@@ -5,7 +5,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
 
 class EventCategoryControllerTest extends TestCase
 {
@@ -18,7 +17,7 @@ class EventCategoryControllerTest extends TestCase
     {
         $eventCategory = factory(EventCategory::class)->create([
                             'name' => 'Regular Jams',
-                            'slug' => 'regular-jams'
+                            'slug' => 'regular-jams',
                         ]);
         $this->assertDatabaseHas('event_category_translations', [
                                 'locale' => 'en',
@@ -26,7 +25,7 @@ class EventCategoryControllerTest extends TestCase
                                 'slug' => 'regular-jams',
                 ]);
     }
-    
+
     /** @test */
     public function it_displays_the_event_categories_index_page()
     {
@@ -110,7 +109,7 @@ class EventCategoryControllerTest extends TestCase
           ]);
 
         $response = $this->followingRedirects()
-                         ->put("/eventCategories/".$eventCategory->id, $attributes);
+                         ->put('/eventCategories/'.$eventCategory->id, $attributes);
         $response->assertViewIs('laravel-events-calendar::eventCategories.index')
                  ->assertStatus(200);
     }
@@ -122,7 +121,7 @@ class EventCategoryControllerTest extends TestCase
         auth()->login($user);
 
         $eventCategory = factory(EventCategory::class)->create();
-        $response = $this->put("/eventCategories/".$eventCategory->id, []);
+        $response = $this->put('/eventCategories/'.$eventCategory->id, []);
         $response->assertSessionHasErrors();
     }
 
@@ -134,8 +133,7 @@ class EventCategoryControllerTest extends TestCase
 
         $eventCategory = factory(EventCategory::class)->create();
 
-        $response = $this->delete("/eventCategories/".$eventCategory->id);
+        $response = $this->delete('/eventCategories/'.$eventCategory->id);
         $response->assertRedirect('/eventCategories');
     }
-    
 }

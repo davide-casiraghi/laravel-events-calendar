@@ -7,9 +7,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventController;
 
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
-
 class EventControllerTest extends TestCase
 {
     use WithFaker;
@@ -37,9 +34,9 @@ class EventControllerTest extends TestCase
 
     /** @test */
     public function it_stores_a_valid_event()
-    {   
+    {
         $attributes = factory(Event::class)->raw();
-        
+
         $user = User::first();
         auth()->login($user);
         $response = $this->post('/events', $attributes);
@@ -63,11 +60,11 @@ class EventControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
         $response = $this->post('/events', $attributes);
-        
+
         $eventController = new EventController();
         $event = $eventController->eventBySlug($attributes['slug']);
-        
-        
+
+
         //$response = $this->get("/events/".$event->id);
         //$response->assertViewIs('laravel-events-calendar::events.show')
         //         ->assertStatus(200);
@@ -80,15 +77,15 @@ class EventControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
         $this->post('/events', $attributes);
-        
+
         //dd(app()->getLocale());
-                
-        $response = $this->get("/events/1/edit");
+
+        $response = $this->get('/events/1/edit');
         $response->assertViewIs('laravel-events-calendar::events.edit')
                  ->assertStatus(200);
     }
 
-    /** @test */
+    /* @test */
     /*public function it_updates_valid_event()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
@@ -103,7 +100,7 @@ class EventControllerTest extends TestCase
         $this->assertEquals('Updated', $event->fresh()->name);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_does_not_update_invalid_event()
     {
         $event = factory(Event::class)->create(['name' => 'Example']);
@@ -112,7 +109,7 @@ class EventControllerTest extends TestCase
         $this->assertEquals('Example', $event->fresh()->name);
     }*/
 
-    /** @test */
+    /* @test */
     /*public function it_deletes_events()
     {
         $event = factory(Event::class)->create();
