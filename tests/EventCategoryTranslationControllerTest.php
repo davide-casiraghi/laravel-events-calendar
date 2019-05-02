@@ -53,12 +53,18 @@ class EventCategoryTranslationControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_does_not_store_invalid_event_category()
+    public function it_does_not_store_invalid_event_category()
     {
-        $response = $this->post('/eventCategories', []);
+        $user = User::first();
+        auth()->login($user);
+
+        $response = $this
+            ->followingRedirects()
+            ->post('/eventCategoryTranslations/store', []);                
+            
         $response->assertSessionHasErrors();
-        $this->assertNull(EventCategory::first());
-    }*/
+        
+    }
 
     /** @test */
     /*public function it_displays_the_event_category_show_page()
