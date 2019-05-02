@@ -57,12 +57,20 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_displays_the_event_show_page()
+    public function it_displays_the_event_show_page_by_event_slug()
     {
-        $event = factory(Event::class)->create();
-        $response = $this->get("/events/".$event->id);
-        $response->assertViewIs('laravel-events-calendar::events.show')
-                 ->assertStatus(200);
+        $attributes = factory(Event::class)->raw();
+        $user = User::first();
+        auth()->login($user);
+        $response = $this->post('/events', $attributes);
+        
+        $eventController = new EventController();
+        $event = $eventController->eventBySlug($attributes['slug']);
+        
+        
+        //$response = $this->get("/events/".$event->id);
+        //$response->assertViewIs('laravel-events-calendar::events.show')
+        //         ->assertStatus(200);
     }
 
     /** @test */

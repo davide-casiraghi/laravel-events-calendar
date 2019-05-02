@@ -158,7 +158,7 @@ class EventController extends Controller
         $category = EventCategory::find($event->category_id);
         $teachers = $event->teachers()->get();
         $organizers = $event->organizers()->get();
-
+        
         $venue = DB::table('event_venues')
                 ->select('id', 'name', 'city', 'address', 'zip_code', 'country_id')
                 ->where('id', $event->venue_id)
