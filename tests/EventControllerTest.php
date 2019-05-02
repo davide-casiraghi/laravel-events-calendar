@@ -82,12 +82,7 @@ class EventControllerTest extends TestCase
         $this->post('/events', $attributes);
         
         //dd(app()->getLocale());
-        
-        //dd(app()->getDefaultLocale());
-        //app()->setDefaultLocale('en');
-        //$this->defaultLocale = 'en';
-
-        
+                
         $response = $this->get("/events/1/edit");
         $response->assertViewIs('laravel-events-calendar::events.edit')
                  ->assertStatus(200);
