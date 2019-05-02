@@ -3,10 +3,10 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\TeacherController;
-use Illuminate\Support\Facades\Storage;
 
 class TeacherControllerTest extends TestCase
 {
@@ -152,7 +152,7 @@ class TeacherControllerTest extends TestCase
         $this->assertViewIs('laravel-events-calendar::teachers.show')
         ->assertStatus(200);
     }*/
-    
+
     /** @test */
     public function it_uploads_a_teacher_profile_image()
     {
