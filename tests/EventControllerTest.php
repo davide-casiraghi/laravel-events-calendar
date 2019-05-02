@@ -144,6 +144,19 @@ class EventControllerTest extends TestCase
                  ->assertStatus(200);
     }
     
+    /** @test */
+    public function it_decode_on_monthly_kind_string()
+    {
+        $eventController = new EventController();
+        
+        $onMonthlyKindString = "0|7";
+        $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
+        
+        
+    }
+    
+    
+    
     
     
 }
