@@ -57,7 +57,7 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_displays_the_event_show_page_by_event_slug()
+    /*public function it_displays_the_event_show_page_by_event_slug()
     {
         $attributes = factory(Event::class)->raw();
         $user = User::first();
@@ -71,16 +71,27 @@ class EventControllerTest extends TestCase
         //$response = $this->get("/events/".$event->id);
         //$response->assertViewIs('laravel-events-calendar::events.show')
         //         ->assertStatus(200);
-    }
+    }*/
 
     /** @test */
-    /*public function it_displays_the_event_edit_page()
+    public function it_displays_the_event_edit_page()
     {
-        $event = factory(Event::class)->create();
-        $response = $this->get("/events/{$event->id}/edit");
-        $response->assertViewIs('laravel-events-calendar::events.edit')
-                 ->assertStatus(200);
-    }*/
+        $attributes = factory(Event::class)->raw();
+        $user = User::first();
+        auth()->login($user);
+        $this->post('/events', $attributes);
+        
+        //dd(app()->getLocale());
+        
+        //dd(app()->getDefaultLocale());
+        //app()->setDefaultLocale('en');
+        //$this->defaultLocale = 'en';
+
+        
+        $response = $this->get("/events/1/edit")->dump();
+        //$response->assertViewIs('laravel-events-calendar::events.edit')
+        //         ->assertStatus(200);
+    }
 
     /** @test */
     /*public function it_updates_valid_event()
