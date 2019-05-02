@@ -110,7 +110,7 @@ class EventControllerTest extends TestCase
     }
     
     /** @test */
-    public function it_gets_an_event_by_slug()
+    public function it_gets_an_event_by_slug_and_test_event_show_single_repetition()
     {
         $user = User::first();
         auth()->login($user);
@@ -143,5 +143,7 @@ class EventControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
     }
+    
+    
     
 }

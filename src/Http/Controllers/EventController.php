@@ -150,7 +150,7 @@ class EventController extends Controller
      * Display the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @param  $firstRpDates
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition $firstRpDates
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event, $firstRpDates)
