@@ -29,7 +29,7 @@ class Event extends Model
      */
     public function teachers()
     {
-        return $this->belongsToMany('App\Teacher', 'event_has_teachers', 'event_id', 'teacher_id');
+        return $this->belongsToMany('DavideCasiraghi\LaravelEventsCalendar\Models\Teacher', 'event_has_teachers', 'event_id', 'teacher_id');
     }
 
     /***************************************************************************/
@@ -39,7 +39,7 @@ class Event extends Model
      */
     public function organizers()
     {
-        return $this->belongsToMany('App\Organizer', 'event_has_organizers', 'event_id', 'organizer_id');
+        return $this->belongsToMany('DavideCasiraghi\LaravelEventsCalendar\Models\Organizer', 'event_has_organizers', 'event_id', 'organizer_id');
     }
 
     /***************************************************************************/

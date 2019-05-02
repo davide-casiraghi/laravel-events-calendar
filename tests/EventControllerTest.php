@@ -4,6 +4,11 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventController;
+
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
 
 class EventControllerTest extends TestCase
 {
@@ -30,77 +35,86 @@ class EventControllerTest extends TestCase
             ->assertStatus(200);
     }
 
-    /* @test */
-    /*public function it_stores_a_valid_organizer()
-    {
-        $attributes = factory(Organizer::class)->raw();
+    /** @test */
+    public function it_stores_a_valid_event()
+    {   
+        $eventCategoryId = EventCategory::insertGetId([
+        ]);
 
+        EventCategoryTranslation::insert([
+            'event_category_id' => $eventCategoryId,
+            'name' => 'test name',
+            'slug' => 'test slug',
+            'locale' => 'en',
+        ]);
+        
+        $attributes = factory(Event::class)->raw();
+        //dd($attributes);
         $user = User::first();
         auth()->login($user);
 
-        $response = $this->post('/organizers', $attributes);
-        $organizer = Organizer::first();
-
-        //$this->assertDatabaseHas('organizers', $attributes);
-        $response->assertRedirect('/organizers/');
-    }*/
+        $response = $this->post('/events', $attributes);
+        $response->assertRedirect('/events/');
+        //$this->assertDatabaseHas('events', $attributes);
+        
+    }
 
     /* @test */
-    /*public function it_does_not_store_invalid_organizer()
+    /*public function it_does_not_store_invalid_event()
     {
-        $response = $this->post('/organizers', []);
+        $response = $this->post('/events', []);
         $response->assertSessionHasErrors();
-        $this->assertNull(Organizer::first());
+        $this->assertNull(Event::first());
     }*/
 
     /* @test */
-    /*public function it_displays_the_organizer_show_page()
+    /*public function it_displays_the_event_show_page()
     {
-        $organizer = factory(Organizer::class)->create();
-        $response = $this->get("/organizers/{$organizer->id}");
-        $response->assertViewIs('laravel-events-calendar::organizers.show')
+        $event = factory(Event::class)->create();
+        $response = $this->get("/events/{$event->id}");
+        $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
     }*/
 
     /* @test */
-    /*public function it_displays_the_organizer_edit_page()
+    /*public function it_displays_the_event_edit_page()
     {
-        $organizer = factory(Organizer::class)->create();
-        $response = $this->get("/organizers/{$organizer->id}/edit");
-        $response->assertViewIs('laravel-events-calendar::organizers.edit')
+        $event = factory(Event::class)->create();
+        $response = $this->get("/events/{$event->id}/edit");
+        $response->assertViewIs('laravel-events-calendar::events.edit')
                  ->assertStatus(200);
     }*/
 
     /* @test */
-    /*public function it_updates_valid_organizer()
+    /*public function it_updates_valid_event()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
-        $organizer = factory(Organizer::class)->create();
-        $attributes = factory(Organizer::class)->raw(['name' => 'Updated']);
+        $event = factory(Event::class)->create();
+        $attributes = factory(Event::class)->raw(['name' => 'Updated']);
 
         $user = User::first();
         auth()->login($user);
 
-        $response = $this->put("/organizers/{$organizer->id}", $attributes);
-        $response->assertRedirect('/organizers/');
-        $this->assertEquals('Updated', $organizer->fresh()->name);
+        $response = $this->put("/events/{$event->id}", $attributes);
+        $response->assertRedirect('/events/');
+        $this->assertEquals('Updated', $event->fresh()->name);
     }*/
 
     /* @test */
-    /*public function it_does_not_update_invalid_organizer()
+    /*public function it_does_not_update_invalid_event()
     {
-        $organizer = factory(Organizer::class)->create(['name' => 'Example']);
-        $response = $this->put("/organizers/{$organizer->id}", []);
+        $event = factory(Event::class)->create(['name' => 'Example']);
+        $response = $this->put("/events/{$event->id}", []);
         $response->assertSessionHasErrors();
-        $this->assertEquals('Example', $organizer->fresh()->name);
+        $this->assertEquals('Example', $event->fresh()->name);
     }*/
 
     /* @test */
-    /*public function it_deletes_organizers()
+    /*public function it_deletes_events()
     {
-        $organizer = factory(Organizer::class)->create();
-        $response = $this->delete("/organizers/{$organizer->id}");
-        $response->assertRedirect('/organizers');
-        $this->assertNull($organizer->fresh());
+        $event = factory(Event::class)->create();
+        $response = $this->delete("/events/{$event->id}");
+        $response->assertRedirect('/events');
+        $this->assertNull($event->fresh());
     }*/
 }

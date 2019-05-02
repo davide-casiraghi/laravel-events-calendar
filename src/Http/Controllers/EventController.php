@@ -133,12 +133,13 @@ class EventController extends Controller
         // Validate form datas
         $validator = $this->eventsValidator($request);
         if ($validator->fails()) {
+            //dd($validator->failed());
             return back()->withErrors($validator)->withInput();
         }
-
+    
         $event = new Event();
         $this->saveOnDb($request, $event);
-
+        
         return redirect()->route('events.index')
                         ->with('success', __('messages.event_added_successfully'));
     }
