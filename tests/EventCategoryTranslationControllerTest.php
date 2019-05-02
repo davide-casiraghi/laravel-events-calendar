@@ -53,7 +53,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_does_not_store_invalid_event_category()
+    public function it_does_not_store_invalid_event_category_translation()
     {
         $user = User::first();
         auth()->login($user);
@@ -63,31 +63,31 @@ class EventCategoryTranslationControllerTest extends TestCase
             ->post('/eventCategoryTranslations/store', []);                
             
         $response->assertSessionHasErrors();
-        
     }
 
     /** @test */
-    /*public function it_displays_the_event_category_show_page()
+    public function it_displays_the_event_category_translation_edit_page()
     {
         $user = User::first();
         auth()->login($user);
 
-        $eventCategory = factory(EventCategory::class)->create();
+        $eventCategory = factory(EventCategory::class)->create([
+                            'name' => 'Regular Jams',
+                            'slug' => 'regular-jams',
+                        ]);
+                        
+        $data = [
+            'event_category_id' => $eventCategory->id,
+            'language_code' => 'es',
+            'name' => 'Spanish category name',
+        ];
 
-        $response = $this->get('/eventCategories/'.$eventCategory->id);
-        $response->assertViewIs('laravel-events-calendar::eventCategories.show')
+        $this->post('/eventCategoryTranslations/store', $data);
+
+        $response = $this->get('/eventCategoryTranslations/'.$eventCategory->id.'/'.'es'.'/edit');
+        $response->assertViewIs('laravel-events-calendar::eventCategoryTranslations.edit')
                  ->assertStatus(200);
-    }*/
-
-    /** @test */
-    /*public function it_displays_the_event_category_edit_page()
-    {
-        $eventCategory = factory(EventCategory::class)->create();
-
-        $response = $this->get("/eventCategories/{$eventCategory->id}/edit");
-        $response->assertViewIs('laravel-events-calendar::eventCategories.edit')
-                 ->assertStatus(200);
-    }*/
+    }
 
     /** @test */
     /*public function it_updates_valid_event_category()
