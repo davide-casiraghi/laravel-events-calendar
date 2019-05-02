@@ -5,7 +5,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation;
 
 class EventCategoryTranslationControllerTest extends TestCase
 {
@@ -18,10 +17,10 @@ class EventCategoryTranslationControllerTest extends TestCase
     {
         $user = User::first();
         auth()->login($user);
-        
+
         $eventCategoryId = 1;
-        $languageCode = "es";
-        
+        $languageCode = 'es';
+
         $this->get('/eventCategoryTranslations/'.$eventCategoryId.'/'.$languageCode.'/create')
             ->assertViewIs('laravel-events-calendar::eventCategoryTranslations.create')
             ->assertStatus(200);
@@ -37,7 +36,7 @@ class EventCategoryTranslationControllerTest extends TestCase
                             'name' => 'Regular Jams',
                             'slug' => 'regular-jams',
                         ]);
-                        
+
         $data = [
             'event_category_id' => $eventCategory->id,
             'language_code' => 'es',
@@ -60,8 +59,8 @@ class EventCategoryTranslationControllerTest extends TestCase
 
         $response = $this
             ->followingRedirects()
-            ->post('/eventCategoryTranslations/store', []);                
-            
+            ->post('/eventCategoryTranslations/store', []);
+
         $response->assertSessionHasErrors();
     }
 
@@ -75,7 +74,7 @@ class EventCategoryTranslationControllerTest extends TestCase
                             'name' => 'Regular Jams',
                             'slug' => 'regular-jams',
                         ]);
-                        
+
         $data = [
             'event_category_id' => $eventCategory->id,
             'language_code' => 'es',
@@ -99,7 +98,7 @@ class EventCategoryTranslationControllerTest extends TestCase
                             'name' => 'Regular Jams',
                             'slug' => 'regular-jams',
                         ]);
-                        
+
         $data = [
             'event_category_id' => $eventCategory->id,
             'language_code' => 'es',
@@ -107,7 +106,7 @@ class EventCategoryTranslationControllerTest extends TestCase
         ];
 
         $this->post('/eventCategoryTranslations/store', $data);
-        
+
         $attributes = ([
             'event_category_translation_id' => 2,
             'language_code' => 'es',
@@ -139,7 +138,7 @@ class EventCategoryTranslationControllerTest extends TestCase
         auth()->login($user);
 
         $eventCategory = factory(EventCategory::class)->create();
-        
+
         $data = [
             'event_category_id' => $eventCategory->id,
             'language_code' => 'es',
@@ -147,7 +146,7 @@ class EventCategoryTranslationControllerTest extends TestCase
         ];
 
         $this->post('/eventCategoryTranslations/store', $data);
-        
+
         $response = $this->delete('/eventCategoryTranslations/destroy/2');
         $response->assertRedirect('/eventCategories');
     }
