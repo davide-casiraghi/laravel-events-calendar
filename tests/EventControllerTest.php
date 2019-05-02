@@ -38,37 +38,34 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event()
     {   
-        $eventCategory = factory(EventCategory::class)->create();
-        
         $attributes = factory(Event::class)->raw();
-        //dd($attributes);
+        
         $user = User::first();
         auth()->login($user);
-
         $response = $this->post('/events', $attributes);
         $response->assertRedirect('/events/');
-        //$this->assertDatabaseHas('events', $attributes);
-        
     }
 
-    /* @test */
-    /*public function it_does_not_store_invalid_event()
+    /** @test */
+    public function it_does_not_store_invalid_event()
     {
+        $user = User::first();
+        auth()->login($user);
         $response = $this->post('/events', []);
         $response->assertSessionHasErrors();
         $this->assertNull(Event::first());
-    }*/
+    }
 
-    /* @test */
-    /*public function it_displays_the_event_show_page()
+    /** @test */
+    public function it_displays_the_event_show_page()
     {
         $event = factory(Event::class)->create();
-        $response = $this->get("/events/{$event->id}");
+        $response = $this->get("/events/".$event->id);
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
-    }*/
+    }
 
-    /* @test */
+    /** @test */
     /*public function it_displays_the_event_edit_page()
     {
         $event = factory(Event::class)->create();
@@ -77,7 +74,7 @@ class EventControllerTest extends TestCase
                  ->assertStatus(200);
     }*/
 
-    /* @test */
+    /** @test */
     /*public function it_updates_valid_event()
     {
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
@@ -92,7 +89,7 @@ class EventControllerTest extends TestCase
         $this->assertEquals('Updated', $event->fresh()->name);
     }*/
 
-    /* @test */
+    /** @test */
     /*public function it_does_not_update_invalid_event()
     {
         $event = factory(Event::class)->create(['name' => 'Example']);
@@ -101,7 +98,7 @@ class EventControllerTest extends TestCase
         $this->assertEquals('Example', $event->fresh()->name);
     }*/
 
-    /* @test */
+    /** @test */
     /*public function it_deletes_events()
     {
         $event = factory(Event::class)->create();

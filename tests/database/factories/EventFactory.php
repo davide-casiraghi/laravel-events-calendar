@@ -16,6 +16,8 @@ use Illuminate\Foundation\Auth\User;
 $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Event::class, function (Faker $faker) {
     $continent = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Continent::class)->create();
     $country = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Country::class)->create();
+    $eventCategory = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory::class)->create();
+    
     
     $venue = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue::class)->create();
     
