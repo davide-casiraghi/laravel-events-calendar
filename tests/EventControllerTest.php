@@ -206,4 +206,16 @@ class EventControllerTest extends TestCase
         $weekdayNumberOfMonth = $eventController->weekdayNumberOfMonth($timestramp, $dayOfWeekValue);
         $this->assertEquals($weekdayNumberOfMonth, 1);
     }
+    
+    /** @test */
+    public function it_check_is_weekday()
+    {
+        $eventController = new EventController();
+
+        $date = '2019-05-03'; 
+        $dayOfWeekValue = '5';
+        $weekdayNumberOfMonth = $eventController->isWeekDay($date, $dayOfWeekValue);
+        $this->assertEquals($weekdayNumberOfMonth, true);
+    }
+    
 }
