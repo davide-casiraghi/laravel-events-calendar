@@ -100,21 +100,28 @@ class EventControllerTest extends TestCase
         //$this->assertEquals('Updated', $event->fresh()->name);
     }
 
-    /* @test */
-    /*public function it_does_not_update_invalid_event()
+    /** @test */
+    public function it_does_not_update_invalid_event()
     {
-        $event = factory(Event::class)->create(['name' => 'Example']);
-        $response = $this->put("/events/{$event->id}", []);
+        $attributes = factory(Event::class)->raw();
+        $user = User::first();
+        auth()->login($user);
+        $this->post('/events', $attributes);
+        
+        $response = $this->put("/events/1", []);
         $response->assertSessionHasErrors();
-        $this->assertEquals('Example', $event->fresh()->name);
-    }*/
+        
+    }
 
-    /* @test */
-    /*public function it_deletes_events()
+    /** @test */
+    public function it_deletes_events()
     {
-        $event = factory(Event::class)->create();
-        $response = $this->delete("/events/{$event->id}");
+        $attributes = factory(Event::class)->raw();
+        $user = User::first();
+        auth()->login($user);
+        $this->post('/events', $attributes);
+        
+        $response = $this->delete("/events/1");
         $response->assertRedirect('/events');
-        $this->assertNull($event->fresh());
-    }*/
+    }
 }
