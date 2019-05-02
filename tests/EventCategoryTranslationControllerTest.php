@@ -90,7 +90,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_updates_valid_event_category()
+    public function it_updates_valid_event_category_translation()
     {
         $user = User::first();
         auth()->login($user);
@@ -133,14 +133,22 @@ class EventCategoryTranslationControllerTest extends TestCase
     }*/
 
     /** @test */
-    /*public function it_deletes_event_categories()
+    public function it_deletes_event_category_translation()
     {
         $user = User::first();
         auth()->login($user);
 
         $eventCategory = factory(EventCategory::class)->create();
+        
+        $data = [
+            'event_category_id' => $eventCategory->id,
+            'language_code' => 'es',
+            'name' => 'Spanish category name',
+        ];
 
-        $response = $this->delete('/eventCategories/'.$eventCategory->id);
+        $this->post('/eventCategoryTranslations/store', $data);
+        
+        $response = $this->delete('/eventCategoryTranslations/destroy/2');
         $response->assertRedirect('/eventCategories');
-    }*/
+    }
 }
