@@ -116,12 +116,12 @@ class EventCategoryTranslationController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-        
+
         $eventCategoryTranslation = EventCategoryTranslation::where('id', $request->get('event_category_translation_id'));
 
         $event_category_t['name'] = $request->get('name');
         $event_category_t['slug'] = Str::slug($request->get('name'), '-');
-        
+
         $eventCategoryTranslation->update($event_category_t);
 
         return redirect()->route('eventCategories.index')
