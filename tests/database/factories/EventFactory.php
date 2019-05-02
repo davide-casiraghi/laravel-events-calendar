@@ -17,13 +17,12 @@ $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Event::class, func
     $continent = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Continent::class)->create();
     $country = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Country::class)->create();
     $eventCategory = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory::class)->create();
-    
-    
+
     $venue = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue::class)->create();
-    
+
     //$user = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\User::class)->create();
     $user = User::first();
-    
+
     // Generate two teachers and get the IDs eg (3, 4, 5)
     $teachers = factory(DavideCasiraghi\LaravelEventsCalendar\Models\Teacher::class, 2)->create();
     $teachers_id = '';

@@ -21,7 +21,7 @@ class EventCategory extends Model
     public $translatedAttributes = ['name', 'slug'];
     protected $fillable = [];
     public $useTranslationFallback = true;
-    
+
     /***************************************************************************/
 
     /**
