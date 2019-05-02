@@ -109,7 +109,7 @@ class EventCategoryTranslationControllerTest extends TestCase
         $this->post('/eventCategoryTranslations/store', $data);
         
         $attributes = ([
-            'event_category_id' => $eventCategory->id,
+            'event_category_translation_id' => 2,
             'language_code' => 'es',
             'name' => 'Spanish category name updated',
           ]);
