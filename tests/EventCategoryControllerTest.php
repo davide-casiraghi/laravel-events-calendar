@@ -14,6 +14,20 @@ class EventCategoryControllerTest extends TestCase
     /***************************************************************/
 
     /** @test */
+    public function it_runs_the_test_factory()
+    {
+        $eventCategory = factory(EventCategory::class)->create([
+                            'name' => 'Regular Jams',
+                            'slug' => 'regular-jams'
+                        ]);
+        $this->assertDatabaseHas('event_category_translations', [
+                                'locale' => 'en',
+                                'name' => 'Regular Jams',
+                                'slug' => 'regular-jams',
+                ]);
+    }
+    
+    /** @test */
     public function it_displays_the_event_categories_index_page()
     {
         // Authenticate the admin
@@ -150,4 +164,5 @@ class EventCategoryControllerTest extends TestCase
         $response = $this->delete("/eventCategories/{$eventCategoryId}");
         $response->assertRedirect('/eventCategories');
     }
+    
 }
