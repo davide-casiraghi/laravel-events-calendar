@@ -166,8 +166,46 @@ class EventControllerTest extends TestCase
         $this->assertEquals($onMonthlyKindDecoded, "the 4th to last Thursday of the month");
     }
     
+    /** @test */
+    public function it_decode_decode_repeat_weekly_on()
+    {
+        $eventController = new EventController();
+        
+        $repeatWeeklyOn = "1";
+        $repeatWeeklyDecoded = $eventController->decodeRepeatWeeklyOn($repeatWeeklyOn);
+        $this->assertEquals($repeatWeeklyDecoded, "Monday");
+    }
     
+    /** @test */
+    public function it_gets_ordinal_indicator()
+    {
+        $eventController = new EventController();
+        
+        $dayOfTheMonthNumber = "15";
+        $ordinalIndicator = $eventController->getOrdinalIndicator($dayOfTheMonthNumber);
+        $this->assertEquals($ordinalIndicator, "th");
+    }
     
+    /** @test */
+    public function it_gets_week_of_month_from_the_end()
+    {
+        $eventController = new EventController();
+        
+        $timestramp = "1286582400"; // timestamp of10/09/2010
+        $weekOfTheMonthFromTheEnd = $eventController->weekOfMonthFromTheEnd($timestramp);
+        $this->assertEquals($weekOfTheMonthFromTheEnd, "4");
+    }
+    
+    /** @test */
+    public function it_gets_number_of_the_specified_weekday_in_this_month()
+    {
+        $eventController = new EventController();
+        
+        $timestramp = "1286582400"; // timestamp of10/09/2010
+        $dayOfWeekValue = "3";
+        $weekdayNumberOfMonth = $eventController->weekdayNumberOfMonth($timestramp, $dayOfWeekValue);
+        $this->assertEquals($weekdayNumberOfMonth, 1);
+    }
     
     
 }
