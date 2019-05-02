@@ -102,14 +102,7 @@ class EventCategoryControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
 
-        $eventCategoryId = EventCategory::insertGetId([
-        ]);
-        EventCategoryTranslation::insert([
-            'event_category_id' => $eventCategoryId,
-            'name' => 'test name',
-            'slug' => 'test slug',
-            'locale' => 'en',
-        ]);
+        $eventCategory = factory(EventCategory::class)->create();
 
         $attributes = ([
             'name' => 'test name updated',
@@ -117,7 +110,7 @@ class EventCategoryControllerTest extends TestCase
           ]);
 
         $response = $this->followingRedirects()
-                         ->put("/eventCategories/{$eventCategoryId}", $attributes);
+                         ->put("/eventCategories/{$eventCategory->id}", $attributes);
         $response->assertViewIs('laravel-events-calendar::eventCategories.index')
                  ->assertStatus(200);
     }
