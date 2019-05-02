@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventController;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 
 class EventControllerTest extends TestCase
 {
@@ -53,40 +54,6 @@ class EventControllerTest extends TestCase
         $response->assertSessionHasErrors();
         $this->assertNull(Event::first());
     }
-
-    /** @test */
-    public function it_gets_an_event_by_slug()
-    {
-        $user = User::first();
-        auth()->login($user);
-        $attributes = factory(Event::class)->raw(['slug'=>'test-slug']);
-        $this->post('/events', $attributes);
-        
-        $eventSaved = Event::first();
-        
-        $this->assertDatabaseHas('events', ['slug' => $eventSaved->slug]);
-        
-        $response = $this->get("/event/".$eventSaved->slug);
-        $response->assertViewIs('laravel-events-calendar::events.show')
-                 ->assertStatus(200);
-    }
-
-    /** @test */
-    /*public function it_displays_the_event_show_page_by_event_slug()
-    {
-        $attributes = factory(Event::class)->raw();
-        $user = User::first();
-        auth()->login($user);
-        $response = $this->post('/events', $attributes);
-
-        $eventController = new EventController();
-        $event = $eventController->eventBySlug($attributes['slug']);
-
-
-        //$response = $this->get("/events/".$event->id);
-        //$response->assertViewIs('laravel-events-calendar::events.show')
-        //         ->assertStatus(200);
-    }*/
 
     /** @test */
     public function it_displays_the_event_edit_page()
@@ -141,4 +108,40 @@ class EventControllerTest extends TestCase
         $response = $this->delete('/events/1');
         $response->assertRedirect('/events');
     }
+    
+    /** @test */
+    public function it_gets_an_event_by_slug()
+    {
+        $user = User::first();
+        auth()->login($user);
+        $attributes = factory(Event::class)->raw(['slug'=>'test-slug']);
+        $this->post('/events', $attributes);
+        
+        $eventSaved = Event::first();
+        
+        //$this->assertDatabaseHas('events', ['slug' => $eventSaved->slug]);
+        
+        $response = $this->get("/event/".$eventSaved->slug);
+        $response->assertViewIs('laravel-events-calendar::events.show')
+                 ->assertStatus(200);
+    }
+    
+    /** @test */
+    public function it_gets_an_event_by_slug_and_repetition()
+    {
+        $user = User::first();
+        auth()->login($user);
+        $attributes = factory(Event::class)->raw(['slug'=>'test-slug']);
+        $this->post('/events', $attributes);
+        
+        $eventSaved = Event::first();
+        $eventRepetitionSaved = EventRepetition::first();
+        
+        //$this->assertDatabaseHas('events', ['slug' => $eventSaved->slug]);
+        
+        $response = $this->get("/event/".$eventSaved->slug."/".$eventRepetitionSaved->id);
+        $response->assertViewIs('laravel-events-calendar::events.show')
+                 ->assertStatus(200);
+    }
+    
 }
