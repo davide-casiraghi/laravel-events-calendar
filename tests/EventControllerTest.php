@@ -62,11 +62,13 @@ class EventControllerTest extends TestCase
         $attributes = factory(Event::class)->raw(['slug'=>'test-slug']);
         $this->post('/events', $attributes);
         
-        $this->assertDatabaseHas('events', ['slug' => 'test-slug']);
+        $eventSaved = Event::first();
         
-        //$response = $this->get("/event/".$attributes['slug'])->dump();
-        //$response->assertViewIs('laravel-events-calendar::events.show')
-        //         ->assertStatus(200);
+        $this->assertDatabaseHas('events', ['slug' => $eventSaved->slug]);
+        
+        $response = $this->get("/event/".$eventSaved->slug);
+        $response->assertViewIs('laravel-events-calendar::events.show')
+                 ->assertStatus(200);
     }
 
     /** @test */
