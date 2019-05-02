@@ -55,17 +55,19 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
-    /*public function it_gets_an_event_by_slug()
+    public function it_gets_an_event_by_slug()
     {
         $user = User::first();
         auth()->login($user);
-        $attributes = factory(Event::class)->raw();
+        $attributes = factory(Event::class)->raw(['slug'=>'test-slug']);
         $this->post('/events', $attributes);
         
-        $response = $this->get("/event/".$attributes['slug'])->dump();
+        $this->assertDatabaseHas('events', ['slug' => 'test-slug']);
+        
+        //$response = $this->get("/event/".$attributes['slug'])->dump();
         //$response->assertViewIs('laravel-events-calendar::events.show')
         //         ->assertStatus(200);
-    }*/
+    }
 
     /** @test */
     /*public function it_displays_the_event_show_page_by_event_slug()
@@ -107,7 +109,7 @@ class EventControllerTest extends TestCase
         auth()->login($user);
         $this->post('/events', $attributes);
 
-        $attributes = factory(Event::class)->raw(['name' => 'Updated']);
+        $attributes['name'] = 'Updated';
 
         $response = $this->put('/events/1', $attributes);
         $response->assertRedirect('/events/');
