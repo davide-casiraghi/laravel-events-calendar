@@ -137,21 +137,14 @@ class TeacherControllerTest extends TestCase
         ]);
     }
 
-    /* @test */
-    /*public function it_gets_a_teacher_by_slug()
+    /** @test */
+    public function it_gets_a_teacher_by_slug()
     {
         $teacher = factory(Teacher::class)->create();
-
-        $teacherController = new TeacherController();
-        $teacherBySlug = $teacherController->teacherBySlug($teacher->slug);
-
-        dump($teacher->slug);
-        dump($teacherBySlug->slug);
-
-
-        $this->assertViewIs('laravel-events-calendar::teachers.show')
-        ->assertStatus(200);
-    }*/
+        $response = $this->get("/teacher/".$teacher->slug);
+        $response->assertViewIs('laravel-events-calendar::teachers.show')
+                 ->assertStatus(200);
+    }
 
     /** @test */
     public function it_uploads_a_teacher_profile_image()
