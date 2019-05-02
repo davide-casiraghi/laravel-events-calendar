@@ -122,10 +122,8 @@ class EventCategoryControllerTest extends TestCase
         auth()->login($user);
 
         $eventCategory = factory(EventCategory::class)->create();
-        
         $response = $this->put("/eventCategories/".$eventCategory->id, []);
         $response->assertSessionHasErrors();
-        
     }
 
     /** @test */

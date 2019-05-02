@@ -38,15 +38,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event()
     {   
-        $eventCategoryId = EventCategory::insertGetId([
-        ]);
-
-        EventCategoryTranslation::insert([
-            'event_category_id' => $eventCategoryId,
-            'name' => 'test name',
-            'slug' => 'test slug',
-            'locale' => 'en',
-        ]);
+        $eventCategory = factory(EventCategory::class)->create();
         
         $attributes = factory(Event::class)->raw();
         //dd($attributes);
