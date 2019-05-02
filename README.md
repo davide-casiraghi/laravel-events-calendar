@@ -7,7 +7,8 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/davide-casiraghi/laravel-events-calendar.svg)](https://github.com/davide-casiraghi/laravel-events-calendar) 
 
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Create and manage events in your Laravel application.
+For each event can be selected: a venue, one or more teachers, one or more organizers.
 
 ## Installation
 
