@@ -4,13 +4,13 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 //use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class Controller extends BaseController
 {
@@ -92,7 +92,7 @@ class Controller extends BaseController
     {
 
         // Create dir if not exist (in /storage/app/public/images/..)
-        if (!Storage::disk('public')->has('images/'.$imageSubdir.'/')) {
+        if (! Storage::disk('public')->has('images/'.$imageSubdir.'/')) {
             Storage::disk('public')->makeDirectory('images/'.$imageSubdir.'/');
         }
 
