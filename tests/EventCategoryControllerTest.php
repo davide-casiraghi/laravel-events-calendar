@@ -79,14 +79,7 @@ class EventCategoryControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
 
-        $data = [
-            'name' => 'test title',
-            'slug' => 'test body',
-        ];
-
-        $response = $this
-            ->followingRedirects()
-            ->post('/eventCategories', $data);
+        $eventCategory = factory(EventCategory::class)->create();
 
         $response = $this->get('/eventCategories/1');
         $response->assertViewIs('laravel-events-calendar::eventCategories.show')
@@ -96,17 +89,9 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_category_edit_page()
     {
-        $eventCategoryId = EventCategory::insertGetId([
-        ]);
+        $eventCategory = factory(EventCategory::class)->create();
 
-        EventCategoryTranslation::insert([
-            'event_category_id' => $eventCategoryId,
-            'name' => 'test name',
-            'slug' => 'test slug',
-            'locale' => 'en',
-        ]);
-
-        $response = $this->get("/eventCategories/{$eventCategoryId}/edit");
+        $response = $this->get("/eventCategories/{$eventCategory->id}/edit");
         $response->assertViewIs('laravel-events-calendar::eventCategories.edit')
                  ->assertStatus(200);
     }
