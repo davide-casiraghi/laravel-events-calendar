@@ -110,19 +110,23 @@ class EventCategoryControllerTest extends TestCase
           ]);
 
         $response = $this->followingRedirects()
-                         ->put("/eventCategories/{$eventCategory->id}", $attributes);
+                         ->put("/eventCategories/".$eventCategory->id, $attributes);
         $response->assertViewIs('laravel-events-calendar::eventCategories.index')
                  ->assertStatus(200);
     }
 
     /** @test */
-    /*public function it_does_not_update_invalid_event_category()
+    public function it_does_not_update_invalid_event_category()
     {
-        $eventCategory = factory(EventCategory::class)->create(['name' => 'Example']);
-        $response = $this->put("/eventCategories/{$eventCategory->id}", []);
+        $user = User::first();
+        auth()->login($user);
+
+        $eventCategory = factory(EventCategory::class)->create();
+        
+        $response = $this->put("/eventCategories/".$eventCategory->id, []);
         $response->assertSessionHasErrors();
-        $this->assertEquals('Example', $eventCategory->fresh()->name);
-    }*/
+        
+    }
 
     /** @test */
     public function it_deletes_event_categories()
@@ -130,16 +134,9 @@ class EventCategoryControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
 
-        $eventCategoryId = EventCategory::insertGetId([
-        ]);
-        EventCategoryTranslation::insert([
-            'event_category_id' => $eventCategoryId,
-            'name' => 'test name',
-            'slug' => 'test slug',
-            'locale' => 'en',
-        ]);
+        $eventCategory = factory(EventCategory::class)->create();
 
-        $response = $this->delete("/eventCategories/{$eventCategoryId}");
+        $response = $this->delete("/eventCategories/".$eventCategory->id);
         $response->assertRedirect('/eventCategories');
     }
     
