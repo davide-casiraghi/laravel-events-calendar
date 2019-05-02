@@ -92,10 +92,10 @@ class EventControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
         $this->post('/events', $attributes);
-        
+
         $attributes = factory(Event::class)->raw(['name' => 'Updated']);
 
-        $response = $this->put("/events/1", $attributes);
+        $response = $this->put('/events/1', $attributes);
         $response->assertRedirect('/events/');
         //$this->assertEquals('Updated', $event->fresh()->name);
     }
@@ -107,10 +107,9 @@ class EventControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
         $this->post('/events', $attributes);
-        
-        $response = $this->put("/events/1", []);
+
+        $response = $this->put('/events/1', []);
         $response->assertSessionHasErrors();
-        
     }
 
     /** @test */
@@ -120,8 +119,8 @@ class EventControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
         $this->post('/events', $attributes);
-        
-        $response = $this->delete("/events/1");
+
+        $response = $this->delete('/events/1');
         $response->assertRedirect('/events');
     }
 }
