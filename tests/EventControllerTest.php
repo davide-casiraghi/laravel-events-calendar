@@ -143,69 +143,67 @@ class EventControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_decode_on_monthly_kind_string()
     {
         $eventController = new EventController();
-        
-        $onMonthlyKindString = "0|7";
+
+        $onMonthlyKindString = '0|7';
         $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, "the 7th day of the month");
-    
-        $onMonthlyKindString = "1|2|4";
+        $this->assertEquals($onMonthlyKindDecoded, 'the 7th day of the month');
+
+        $onMonthlyKindString = '1|2|4';
         $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, "the 2nd Thursday of the month");
-        
-        $onMonthlyKindString = "2|20";
+        $this->assertEquals($onMonthlyKindDecoded, 'the 2nd Thursday of the month');
+
+        $onMonthlyKindString = '2|20';
         $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, "the 21th to last day of the month");
-        
-        $onMonthlyKindString = "3|3|4";
+        $this->assertEquals($onMonthlyKindDecoded, 'the 21th to last day of the month');
+
+        $onMonthlyKindString = '3|3|4';
         $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, "the 4th to last Thursday of the month");
+        $this->assertEquals($onMonthlyKindDecoded, 'the 4th to last Thursday of the month');
     }
-    
+
     /** @test */
     public function it_decode_decode_repeat_weekly_on()
     {
         $eventController = new EventController();
-        
-        $repeatWeeklyOn = "1";
+
+        $repeatWeeklyOn = '1';
         $repeatWeeklyDecoded = $eventController->decodeRepeatWeeklyOn($repeatWeeklyOn);
-        $this->assertEquals($repeatWeeklyDecoded, "Monday");
+        $this->assertEquals($repeatWeeklyDecoded, 'Monday');
     }
-    
+
     /** @test */
     public function it_gets_ordinal_indicator()
     {
         $eventController = new EventController();
-        
-        $dayOfTheMonthNumber = "15";
+
+        $dayOfTheMonthNumber = '15';
         $ordinalIndicator = $eventController->getOrdinalIndicator($dayOfTheMonthNumber);
-        $this->assertEquals($ordinalIndicator, "th");
+        $this->assertEquals($ordinalIndicator, 'th');
     }
-    
+
     /** @test */
     public function it_gets_week_of_month_from_the_end()
     {
         $eventController = new EventController();
-        
-        $timestramp = "1286582400"; // timestamp of10/09/2010
+
+        $timestramp = '1286582400'; // timestamp of10/09/2010
         $weekOfTheMonthFromTheEnd = $eventController->weekOfMonthFromTheEnd($timestramp);
-        $this->assertEquals($weekOfTheMonthFromTheEnd, "4");
+        $this->assertEquals($weekOfTheMonthFromTheEnd, '4');
     }
-    
+
     /** @test */
     public function it_gets_number_of_the_specified_weekday_in_this_month()
     {
         $eventController = new EventController();
-        
-        $timestramp = "1286582400"; // timestamp of10/09/2010
-        $dayOfWeekValue = "3";
+
+        $timestramp = '1286582400'; // timestamp of10/09/2010
+        $dayOfWeekValue = '3';
         $weekdayNumberOfMonth = $eventController->weekdayNumberOfMonth($timestramp, $dayOfWeekValue);
         $this->assertEquals($weekdayNumberOfMonth, 1);
     }
-    
-    
 }
