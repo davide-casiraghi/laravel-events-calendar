@@ -7,7 +7,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/davide-casiraghi/laravel-events-calendar.svg)](https://github.com/davide-casiraghi/laravel-events-calendar) 
 
 
-Create and manage events in your Laravel application.
+Create and manage events in your Laravel application.  
 For each event can be selected: a venue, one or more teachers, one or more organizers.
 
 ## Installation
