@@ -151,4 +151,37 @@ class TeacherControllerTest extends TestCase
         $this->assertViewIs('laravel-events-calendar::teachers.show')
         ->assertStatus(200);
     }*/
+    
+    /** @test */
+    public function it_uploads_an_image()
+    {
+        // Symulate the upload
+        $local_test_file = __DIR__.'/test-files/large-avatar.png';
+        $uploadedFile = new \Illuminate\Http\UploadedFile(
+                $local_test_file,
+                'large-avatar.png',
+                'image/png',
+                null,
+                null,
+                true
+            );
+
+        // Call the function uploadImageOnServer()
+        $imageFile = $uploadedFile;
+        $imageName = $imageFile->hashName();
+        $imageSubdir = 'teachers_profile';
+        $imageWidth = '968';
+        $thumbWidth = '300';
+
+        TeacherController::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
+
+        // Leave this lines here - they can be very useful for new tests
+        //$directory = "/";
+        //dump(Storage::allDirectories($directory));
+        //dd(Storage::allFiles($directory));
+
+        $filePath = 'public/images/'.$imageSubdir.'/'.$imageName;
+
+        Storage::assertExists($filePath);
+    }
 }
