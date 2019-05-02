@@ -81,7 +81,7 @@ class EventCategoryControllerTest extends TestCase
 
         $eventCategory = factory(EventCategory::class)->create();
 
-        $response = $this->get('/eventCategories/1');
+        $response = $this->get('/eventCategories/'.$eventCategory->id);
         $response->assertViewIs('laravel-events-calendar::eventCategories.show')
                  ->assertStatus(200);
     }
