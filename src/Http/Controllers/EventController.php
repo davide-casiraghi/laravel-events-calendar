@@ -605,6 +605,7 @@ class EventController extends Controller
         foreach ($eventOrganizers as $eventOrganizer) {
             Mail::to($eventOrganizer->email)->send(new ContactOrganizer($message));
         }*/
+        
         Mail::to($request->contact_email)->send(new ContactOrganizer($message));
 
         return redirect()->route('events.organizer-sent');

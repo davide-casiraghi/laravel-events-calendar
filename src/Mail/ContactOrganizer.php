@@ -34,7 +34,7 @@ class ContactOrganizer extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.contact.organizer')
+        return $this->markdown('laravel-events-calendar::emails.contact.organizer')
             ->from($this->message['senderEmail'], $this->message['senderName'])
             ->replyTo($this->message['senderEmail'], $this->message['senderName'])
             ->subject($this->message['subject'])
