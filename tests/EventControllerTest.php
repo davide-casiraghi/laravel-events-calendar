@@ -235,4 +235,22 @@ class EventControllerTest extends TestCase
             ->assertStatus(200)
             ->assertSee("<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='Select repeat monthly kind'><option value='0|10'>the 10th day of the month</option><option value='1|2|5'>the 2nd Friday of the month</option><option value='2|19'>the 20th to last day of the month</option><option value='3|2|5'>the 3rd to last Friday of the month</option></select>");
     }
+    
+    /** @test */
+    public function it_displays_the_report_misuse_thankyou_page()
+    {
+        $this->get('/misuse/thankyou')
+            ->assertViewIs('laravel-events-calendar::emails.report-thankyou')
+            ->assertStatus(200);
+    }
+    
+    /** @test */
+    public function it_displays_the_mail_to_organizer_sent()
+    {
+        $this->get('/mailToOrganizer/sent')
+            ->assertViewIs('laravel-events-calendar::emails.contact.organizer-sent')
+            ->assertStatus(200);
+    }
+    
+    
 }
