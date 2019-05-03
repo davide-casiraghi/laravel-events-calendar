@@ -20,8 +20,8 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Mail\ReportMisuse;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Mail\ContactOrganizer;
+use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
+use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
 
 class EventController extends Controller
 {
