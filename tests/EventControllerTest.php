@@ -256,8 +256,8 @@ class EventControllerTest extends TestCase
     public function it_sends_mail_to_organizer()
     {
         $requestAttributes = [
-            'senderEmail' => 'test@testemail.com',
-            'senderName' => 'Test user name',
+            'user_email' => 'test@testemail.com',
+            'user_name' => 'Test user name',
             'subject' => 'Request from the Global CI Calendar',
             'message' => 'test message',
             'event_title' => 'Event test title',
