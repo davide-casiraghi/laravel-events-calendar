@@ -17,11 +17,11 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
+use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
-use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 
 class EventController extends Controller
 {
@@ -605,7 +605,7 @@ class EventController extends Controller
         foreach ($eventOrganizers as $eventOrganizer) {
             Mail::to($eventOrganizer->email)->send(new ContactOrganizer($message));
         }*/
-        
+
         Mail::to($request->contact_email)->send(new ContactOrganizer($message));
 
         return redirect()->route('events.organizer-sent');
