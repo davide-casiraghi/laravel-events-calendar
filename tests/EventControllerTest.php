@@ -142,6 +142,11 @@ class EventControllerTest extends TestCase
         $response = $this->get('/event/'.$eventSaved->slug.'/'.$eventRepetitionSaved->id);
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
+                 
+        // passing an eventRepetitionID that doesnt exist to trigger - If not found get the first repetion of the event in the future.
+        $response = $this->get('/event/'.$eventSaved->slug.'/'.'222');
+        $response->assertViewIs('laravel-events-calendar::events.show')
+                ->assertStatus(200);
     }
 
     /** @test */
