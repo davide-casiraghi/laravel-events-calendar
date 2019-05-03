@@ -206,18 +206,18 @@ class EventControllerTest extends TestCase
         $weekdayNumberOfMonth = $eventController->weekdayNumberOfMonth($timestramp, $dayOfWeekValue);
         $this->assertEquals($weekdayNumberOfMonth, 1);
     }
-    
+
     /** @test */
     public function it_check_is_weekday()
     {
         $eventController = new EventController();
 
-        $date = '2019-05-03'; 
+        $date = '2019-05-03';
         $dayOfWeekValue = '5';
         $weekdayNumberOfMonth = $eventController->isWeekDay($date, $dayOfWeekValue);
         $this->assertEquals($weekdayNumberOfMonth, true);
     }
-    
+
     /** @test */
     public function it_gets_the_day_of_the_month_from_the_end()
     {
@@ -227,15 +227,12 @@ class EventControllerTest extends TestCase
         $dayOfMonthFromTheEnd = $eventController->dayOfMonthFromTheEnd($timestramp);
         $this->assertEquals($dayOfMonthFromTheEnd, 22);
     }
-    
+
     /** @test */
     public function it_generate_monthly_select_options_html()
     {
-        $request = $this->call('GET', '/event/monthSelectOptions', ["day" => "10/09/2010"])
+        $request = $this->call('GET', '/event/monthSelectOptions', ['day' => '10/09/2010'])
             ->assertStatus(200)
             ->assertSee("<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='Select repeat monthly kind'><option value='0|10'>the 10th day of the month</option><option value='1|2|5'>the 2nd Friday of the month</option><option value='2|19'>the 20th to last day of the month</option><option value='3|2|5'>the 3rd to last Friday of the month</option></select>");
     }
-    
-    
-    
 }
