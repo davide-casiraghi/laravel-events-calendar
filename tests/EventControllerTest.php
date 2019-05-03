@@ -189,6 +189,10 @@ class EventControllerTest extends TestCase
         $dayOfTheMonthNumber = '15';
         $ordinalIndicator = $eventController->getOrdinalIndicator($dayOfTheMonthNumber);
         $this->assertEquals($ordinalIndicator, 'th');
+        
+        $dayOfTheMonthNumber = '1';
+        $ordinalIndicator = $eventController->getOrdinalIndicator($dayOfTheMonthNumber);
+        $this->assertEquals($ordinalIndicator, 'st');
     }
 
     /** @test */
@@ -221,6 +225,11 @@ class EventControllerTest extends TestCase
         $dayOfWeekValue = '5';
         $weekdayNumberOfMonth = $eventController->isWeekDay($date, $dayOfWeekValue);
         $this->assertEquals($weekdayNumberOfMonth, true);
+        
+        $date = '2019-05-03';
+        $dayOfWeekValue = '7';
+        $weekdayNumberOfMonth = $eventController->isWeekDay($date, $dayOfWeekValue);
+        $this->assertEquals($weekdayNumberOfMonth, false);
     }
 
     /** @test */
