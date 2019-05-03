@@ -228,6 +228,14 @@ class EventControllerTest extends TestCase
         $this->assertEquals($dayOfMonthFromTheEnd, 22);
     }
     
+    /** @test */
+    public function it_generate_monthly_select_options_html()
+    {
+        $this->get('/event/monthSelectOptions')
+            //->assertViewIs('laravel-events-calendar::events.index')
+            ->assertStatus(200);
+    }
+    
     
     
 }
