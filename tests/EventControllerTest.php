@@ -218,4 +218,16 @@ class EventControllerTest extends TestCase
         $this->assertEquals($weekdayNumberOfMonth, true);
     }
     
+    /** @test */
+    public function it_gets_the_day_of_the_month_from_the_end()
+    {
+        $eventController = new EventController();
+
+        $timestramp = '1286582400'; // timestamp of 10/09/2010
+        $dayOfMonthFromTheEnd = $eventController->dayOfMonthFromTheEnd($timestramp);
+        $this->assertEquals($dayOfMonthFromTheEnd, 22);
+    }
+    
+    
+    
 }
