@@ -3,9 +3,12 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/davide-casiraghi/laravel-events-calendar.svg?style=flat-square)](https://packagist.org/packages/davide-casiraghi/laravel-events-calendar)
 [![Build Status](https://img.shields.io/travis/davide-casiraghi/laravel-events-calendar/master.svg?style=flat-square)](https://travis-ci.org/davide-casiraghi/laravel-events-calendar)
 [![Quality Score](https://img.shields.io/scrutinizer/g/davide-casiraghi/laravel-events-calendar.svg?style=flat-square)](https://scrutinizer-ci.com/g/davide-casiraghi/laravel-events-calendar)
+<a href="https://codeclimate.com/github/davide-casiraghi/laravel-events-calendar/maintainability"><img src="https://api.codeclimate.com/v1/badges/f97a74037f25f1c29088/maintainability" /></a>
+[![GitHub last commit](https://img.shields.io/github/last-commit/davide-casiraghi/laravel-events-calendar.svg)](https://github.com/davide-casiraghi/laravel-events-calendar) 
 
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Create and manage calendar events in your Laravel application.  
+For each event can be selected: a venue, one or more teachers, one or more organizers.
 
 ## Installation
 
