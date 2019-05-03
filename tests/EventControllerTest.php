@@ -142,7 +142,7 @@ class EventControllerTest extends TestCase
         $response = $this->get('/event/'.$eventSaved->slug.'/'.$eventRepetitionSaved->id);
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
-                 
+
         // passing an eventRepetitionID that doesnt exist to trigger - If not found get the first repetion of the event in the future.
         $response = $this->get('/event/'.$eventSaved->slug.'/'.'222');
         $response->assertViewIs('laravel-events-calendar::events.show')
@@ -189,7 +189,7 @@ class EventControllerTest extends TestCase
         $dayOfTheMonthNumber = '15';
         $ordinalIndicator = $eventController->getOrdinalIndicator($dayOfTheMonthNumber);
         $this->assertEquals($ordinalIndicator, 'th');
-        
+
         $dayOfTheMonthNumber = '1';
         $ordinalIndicator = $eventController->getOrdinalIndicator($dayOfTheMonthNumber);
         $this->assertEquals($ordinalIndicator, 'st');
@@ -225,7 +225,7 @@ class EventControllerTest extends TestCase
         $dayOfWeekValue = '5';
         $weekdayNumberOfMonth = $eventController->isWeekDay($date, $dayOfWeekValue);
         $this->assertEquals($weekdayNumberOfMonth, true);
-        
+
         $date = '2019-05-03';
         $dayOfWeekValue = '7';
         $weekdayNumberOfMonth = $eventController->isWeekDay($date, $dayOfWeekValue);
