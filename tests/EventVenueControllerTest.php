@@ -27,6 +27,16 @@ class EventVenueControllerTest extends TestCase
     }
 
     /** @test */
+    public function it_displays_the_event_venues_index_page_with_search_keywords()
+    {
+        // Authenticate the admin
+        //$this->authenticateAsAdmin();
+
+        $request = $this->call('GET', 'eventVenues', ['keywords' => 'test keywords'])
+            ->assertStatus(200);
+    }
+
+    /** @test */
     public function it_displays_the_event_venue_create_page()
     {
         $this->get('eventVenues/create')

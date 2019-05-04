@@ -23,6 +23,16 @@ class OrganizerControllerTest extends TestCase
             ->assertViewIs('laravel-events-calendar::organizers.index')
             ->assertStatus(200);
     }
+    
+    /** @test */
+    public function it_displays_the_organizers_index_page_with_search_keywords()
+    {
+        // Authenticate the admin
+        //$this->authenticateAsAdmin();
+
+        $request = $this->call('GET', 'organizers', ['keywords' => 'test keywords'])
+            ->assertStatus(200);
+    }
 
     /** @test */
     public function it_displays_the_organizer_create_page()
