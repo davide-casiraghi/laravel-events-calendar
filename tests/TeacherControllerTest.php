@@ -24,7 +24,7 @@ class TeacherControllerTest extends TestCase
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_displays_the_teachers_index_page_with_search_keywords()
     {
@@ -34,7 +34,7 @@ class TeacherControllerTest extends TestCase
         $request = $this->call('GET', 'teachers', ['keywords' => 'test keywords'])
             ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_opens_a_teacher_modal()
     {
@@ -45,11 +45,7 @@ class TeacherControllerTest extends TestCase
             ->assertViewIs('laravel-events-calendar::teachers.modal')
             ->assertStatus(200);
     }
-    
-    
-    
-    
-    
+
     /** @test */
     public function it_displays_the_teachers_directory_index_page()
     {
