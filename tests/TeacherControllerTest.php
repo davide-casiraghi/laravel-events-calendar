@@ -24,6 +24,14 @@ class TeacherControllerTest extends TestCase
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
     }
+    
+    /** @test */
+    public function it_displays_the_teachers_directory_index_page()
+    {
+        $this->get('teachersDirectory')
+            ->assertViewIs('laravel-events-calendar::teachers.index')
+            ->assertStatus(200);
+    }
 
     /** @test */
     public function it_displays_the_teacher_create_page()
