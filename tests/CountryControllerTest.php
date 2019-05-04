@@ -22,7 +22,7 @@ class CountryControllerTest extends TestCase
             ->assertViewIs('laravel-events-calendar::countries.index')
             ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_displays_the_countries_index_page_with_search_keywords()
     {
@@ -32,7 +32,6 @@ class CountryControllerTest extends TestCase
         $request = $this->call('GET', 'countries', ['keywords' => 'test keywords'])
             ->assertStatus(200);
     }
-    
 
     /** @test */
     public function it_displays_the_country_create_page()
