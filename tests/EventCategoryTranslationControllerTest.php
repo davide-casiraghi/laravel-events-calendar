@@ -118,8 +118,8 @@ class EventCategoryTranslationControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::eventCategories.index')
                  ->assertStatus(200);
         $this->assertDatabaseHas('event_category_translations', ['locale' => 'es', 'name' => 'Spanish category name updated']);
-    
-        // Update with no attributes - to not pass validation 
+
+        // Update with no attributes - to not pass validation
         //$response = $this->followingRedirects()
                         // ->put('/eventCategoryTranslations/update', [])->dump();
                         // ->assertSessionHasErrors();
