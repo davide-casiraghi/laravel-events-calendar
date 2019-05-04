@@ -149,6 +149,11 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_uploads_a_teacher_profile_image()
     {
+        // Delete directory
+        //dd(Storage::directories('public/images')); // List directories
+        $directory = 'public/images/teachers_profile/';
+        Storage::deleteDirectory($directory);
+        
         // Symulate the upload
         $local_test_file = __DIR__.'/test-files/large-avatar.png';
         $uploadedFile = new \Illuminate\Http\UploadedFile(

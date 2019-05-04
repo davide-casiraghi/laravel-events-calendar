@@ -132,13 +132,13 @@ class EventCategoryController extends Controller
      * @param  int $cat_id
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory
      */
-    public function eventcategorydata($cat_id)
+    /*public function eventcategorydata($cat_id)
     {
         $ret = DB::table('event_categories')->where('id', $cat_id)->first();
         //dump($ret);
 
         return $ret;
-    }
+    }*/
 
     // **********************************************************************
 
