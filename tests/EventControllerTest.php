@@ -265,6 +265,56 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
+    public function it_gets_a_weekly_event_by_slug_and_repetition()
+    { 
+        $user = User::first();
+        auth()->login($user);
+        $attributes = factory(Event::class)->raw([
+                        'title' => 'test title',
+                        'repeat_type' => '2',
+                        'startDate' => '10/01/2020',
+                        'endDate' => '10/01/2020',
+                        'time_start' => '10:00',
+                        'time_end' => '12:00',
+                        'repeat_until' => '10/10/2020',
+                        'repeat_weekly_on_day' => ['3', '6'],
+                    ]);
+        $this->post('/events', $attributes);
+
+        $eventSaved = Event::first();
+        $eventRepetitionSaved = EventRepetition::first();
+
+        $response = $this->get('/event/'.$eventSaved->slug.'/'.$eventRepetitionSaved->id);
+        $response->assertViewIs('laravel-events-calendar::events.show')
+                 ->assertStatus(200);
+    }
+    
+    /** @test */
+    public function it_gets_a_monthy_event_by_slug_and_repetition()
+    {  
+        $user = User::first();
+        auth()->login($user);
+        $attributes = factory(Event::class)->raw([
+                        'title' => 'test title',
+                        'repeat_type' => '3',
+                        'startDate' => '10/01/2020',
+                        'endDate' => '10/01/2020',
+                        'time_start' => '10:00',
+                        'time_end' => '12:00',
+                        'repeat_until' => '10/10/2020',
+                        'on_monthly_kind' => '0|7',
+                    ]);
+        $this->post('/events', $attributes);
+
+        $eventSaved = Event::first();
+        $eventRepetitionSaved = EventRepetition::first();
+
+        $response = $this->get('/event/'.$eventSaved->slug.'/'.$eventRepetitionSaved->id);
+        $response->assertViewIs('laravel-events-calendar::events.show')
+                 ->assertStatus(200);
+    }
+
+    /** @test */
     public function it_decode_on_monthly_kind_string()
     {
         $eventController = new EventController();
