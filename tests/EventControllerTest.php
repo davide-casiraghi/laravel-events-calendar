@@ -398,7 +398,7 @@ class EventControllerTest extends TestCase
                         ->call('POST', '/mailToOrganizer', $requestAttributes)
                         ->assertViewIs('laravel-events-calendar::emails.contact.organizer-sent');
     }
-    
+
     /** @test */
     public function it_sends_mail_report_misuse()
     {
