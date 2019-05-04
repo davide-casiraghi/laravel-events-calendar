@@ -548,13 +548,13 @@ class EventController extends Controller
     public function reportMisuse(Request $request)
     {
         $report = [];
-
+        
         $report['senderEmail'] = 'noreply@globalcicalendar.com';
         $report['senderName'] = 'Anonymus User';
         $report['subject'] = 'Report misuse form';
         $report['adminEmail'] = env('ADMIN_MAIL');
         $report['creatorEmail'] = $this->getCreatorEmail($request->created_by);
-
+        
         $report['message'] = $request->message;
         $report['event_title'] = $request->event_title;
         $report['event_id'] = $request->event_id;
