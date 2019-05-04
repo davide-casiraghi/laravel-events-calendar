@@ -24,7 +24,7 @@ class EventCategory extends Model
 
     /***************************************************************************/
 
-    /**
+    /*
      * Return the category name.
      *
      * @param  int  $categoryId
