@@ -266,7 +266,7 @@ class EventControllerTest extends TestCase
 
     /** @test */
     public function it_gets_a_weekly_event_by_slug_and_repetition()
-    { 
+    {
         $user = User::first();
         auth()->login($user);
         $attributes = factory(Event::class)->raw([
@@ -288,10 +288,10 @@ class EventControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_gets_a_monthy_event_by_slug_and_repetition()
-    {  
+    {
         $user = User::first();
         auth()->login($user);
         $attributes = factory(Event::class)->raw([
@@ -463,17 +463,17 @@ class EventControllerTest extends TestCase
         $request = $this->followingRedirects()
                         ->call('POST', '/misuse', $requestAttributes)
                         ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
-                        
+
         $requestAttributes['reason'] = '2';
         $request = $this->followingRedirects()
                         ->call('POST', '/misuse', $requestAttributes)
                         ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
-        
+
         $requestAttributes['reason'] = '3';
         $request = $this->followingRedirects()
                         ->call('POST', '/misuse', $requestAttributes)
                         ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
-        
+
         $requestAttributes['reason'] = '4';
         $request = $this->followingRedirects()
                         ->call('POST', '/misuse', $requestAttributes)
