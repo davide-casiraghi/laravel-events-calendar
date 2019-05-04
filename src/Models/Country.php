@@ -45,7 +45,7 @@ class Country extends Model
      *
      * @return string
      */
-    public static function getActiveCountriesByContinent()
+    /*public static function getActiveCountriesByContinent()
     {
         $minutes = 15;
         $ret = Cache::remember('active_continent_countries_json_tree', $minutes, function () {
@@ -53,5 +53,5 @@ class Country extends Model
         });
 
         return $ret;
-    }
+    }*/
 }
