@@ -67,5 +67,6 @@ $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Event::class, func
             'repeat_type' => '1',
             'facebook_event_link' => 'https://www.facebook.com/'.$this->faker->word,
             'website_event_link' => $this->faker->url,
+            'repeat_weekly_on_day' => null,
     ];
 });
