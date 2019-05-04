@@ -35,12 +35,11 @@ class ReportMisuse extends Mailable
     public function build()
     {
         // Configure email parameters in .env file
-
         switch ($this->report['reason']) {
-
+                            
              /* Send email to the user that has created the event */
              case 'It is not translated in english':
-
+                dd("sss 5");
                 return $this->markdown('emails.misuse.organizer-event-not-english')
                  ->to($this->report['creatorEmail'])
                  ->from('noreply@globalcalendar.com', 'Global CI Calendar')

@@ -1,5 +1,3 @@
-
-
 @component('mail::message')
 
 # Report from the Global CI Calendar
