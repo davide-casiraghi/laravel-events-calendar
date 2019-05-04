@@ -44,7 +44,7 @@ class EventControllerTest extends TestCase
         $response->assertRedirect('/events/');
         $this->assertDatabaseHas('events', ['title' => 'test title']);
     }
-    
+
     /** @test */
     public function it_stores_a_valid_event_with_weekly_repetitions()
     {
@@ -58,7 +58,7 @@ class EventControllerTest extends TestCase
                         'time_start' => '10:00',
                         'time_end' => '12:00',
                         'repeat_until' => '10/10/2020',
-                        'repeat_weekly_on_day' => ['3','6'],
+                        'repeat_weekly_on_day' => ['3', '6'],
                     ]);
 
         $response = $this->post('/events', $attributes);
@@ -67,7 +67,7 @@ class EventControllerTest extends TestCase
         $this->assertDatabaseHas('event_repetitions', ['id' => 1]);
         $this->assertDatabaseHas('event_repetitions', ['id' => 2]);
     }
-    
+
     /** @test */
     public function it_stores_a_valid_event_with_monthly_repetitions_same_day_number()
     {
@@ -90,7 +90,7 @@ class EventControllerTest extends TestCase
         $this->assertDatabaseHas('event_repetitions', ['id' => 1]);
         $this->assertDatabaseHas('event_repetitions', ['id' => 2]);
     }
-    
+
     /** @test */
     public function it_stores_a_valid_event_with_monthly_repetitions_same_weekday_week_of_the_month()
     {
@@ -136,7 +136,7 @@ class EventControllerTest extends TestCase
         $this->assertDatabaseHas('event_repetitions', ['id' => 1]);
         $this->assertDatabaseHas('event_repetitions', ['id' => 2]);
     }
-    
+
     /** @test */
     public function it_stores_a_valid_event_with_monthly_repetitions_same_weekday_week_of_the_month_from_end()
     {
