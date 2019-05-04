@@ -36,10 +36,11 @@ class ReportMisuse extends Mailable
     {
         // Configure email parameters in .env file
         switch ($this->report['reason']) {
-                            
+
              /* Send email to the user that has created the event */
              case 'It is not translated in english':
-                dd("aa 1");
+                dd('aa 1');
+
                 return $this->markdown('laravel-events-calendar::emails.misuse.organizer-event-not-english')
                  ->to($this->report['creatorEmail'])
                  ->from('noreply@globalcalendar.com', 'Global CI Calendar')
@@ -56,7 +57,7 @@ class ReportMisuse extends Mailable
 
              /* Send email to the administrator */
              default:
-                
+
                 return $this->markdown('laravel-events-calendar::emails.misuse.administrator-report-misuse')
                     ->from('noreply@globalcalendar.com', 'Global CI Calendar')
                     ->replyTo('noreply@globalcalendar.com', 'Global CI Calendar')
