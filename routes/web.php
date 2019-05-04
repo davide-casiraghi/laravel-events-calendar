@@ -47,12 +47,11 @@
         /* Continents and Countries */
         Route::resource('continents', 'ContinentController');
         Route::resource('countries', 'CountryController');
-        
+
         /* Homepage - Event Search */
         Route::get('/', 'EventSearchController@index')->name('home');
         Route::resource('eventSearch', 'EventSearchController');
         Route::get('/eventSearch#dataarea', 'EventSearchController@index');
-
     });
 
     /*Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'auth'], function () {
