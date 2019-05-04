@@ -463,5 +463,20 @@ class EventControllerTest extends TestCase
         $request = $this->followingRedirects()
                         ->call('POST', '/misuse', $requestAttributes)
                         ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
+                        
+        $requestAttributes['reason'] = '2';
+        $request = $this->followingRedirects()
+                        ->call('POST', '/misuse', $requestAttributes)
+                        ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
+        
+        $requestAttributes['reason'] = '3';
+        $request = $this->followingRedirects()
+                        ->call('POST', '/misuse', $requestAttributes)
+                        ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
+        
+        $requestAttributes['reason'] = '4';
+        $request = $this->followingRedirects()
+                        ->call('POST', '/misuse', $requestAttributes)
+                        ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
     }
 }
