@@ -34,7 +34,7 @@ class UserActivationConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.user-activation-confirmation')
+        return $this->markdown('laravel-events-calendar::emails.user-activation-confirmation')
                ->to($this->mailDatas['emailTo'])
                ->from('noreply@globalcalendar.com', 'noReply - Global CI Calendar')
                ->replyTo('noreply@globalcalendar.com', 'noReply - CI Calendar')

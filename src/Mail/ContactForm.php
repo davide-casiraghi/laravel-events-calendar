@@ -36,7 +36,7 @@ class ContactForm extends Mailable
     {
         // Configure email parameters in .env file
 
-        return $this->markdown('emails.contact.contactform')
+        return $this->markdown('laravel-events-calendar::emails.contact.contactform')
                 ->to($this->report['emailTo'])
                 ->from($this->report['email'], $this->report['name'])
                 ->replyTo($this->report['email'], $this->report['name'])

@@ -552,7 +552,7 @@ class EventController extends Controller
         $report['senderEmail'] = 'noreply@globalcicalendar.com';
         $report['senderName'] = 'Anonymus User';
         $report['subject'] = 'Report misuse form';
-        $report['adminEmail'] = env('ADMIN_MAIL');
+        //$report['adminEmail'] = env('ADMIN_MAIL');
         $report['creatorEmail'] = $this->getCreatorEmail($request->created_by);
         
         $report['message'] = $request->message;
@@ -573,9 +573,9 @@ class EventController extends Controller
                 $report['reason'] = 'Other (specify in the message)';
                 break;
         }
-
+        
         //Mail::to($request->user())->send(new ReportMisuse($report));
-        Mail::to('davide.casiraghi@gmail.com')->send(new ReportMisuse($report));
+        Mail::to(env('ADMIN_MAIL'))->send(new ReportMisuse($report));
 
         return redirect()->route('events.misuse-thankyou');
     }

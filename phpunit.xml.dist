@@ -41,6 +41,8 @@
        <env name="CACHE_DRIVER" value="array"/>
        <env name="SESSION_DRIVER" value="array"/>
        <env name="QUEUE_DRIVER" value="sync"/>
+       
+       <env name="ADMIN_MAIL" value="test@test.com"/>
 
     </php>
 </phpunit>

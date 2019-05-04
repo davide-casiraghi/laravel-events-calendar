@@ -36,7 +36,7 @@ class UserActivation extends Mailable
     {
         // Configure email parameters in .env file
 
-        return $this->markdown('emails.user-activation')
+        return $this->markdown('laravel-events-calendar::emails.user-activation')
                 ->to(env('ADMIN_MAIL'))
                 ->from('noreply@globalcalendar.com', 'Global CI Calendar')
                 ->replyTo('noreply@globalcalendar.com', 'Global CI Calendar')
