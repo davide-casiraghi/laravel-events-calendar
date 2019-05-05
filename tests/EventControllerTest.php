@@ -509,8 +509,8 @@ class EventControllerTest extends TestCase
             'teacher' => null,
             'country' => '1',
             'continent' => '1',
-            'city' => null,
-            'venue' => null,
+            'city' => $eventCreated->sc_city_name,
+            'venue' => $eventCreated->sc_venue_name,
         ];
 
         $itemPerPage = 20;
