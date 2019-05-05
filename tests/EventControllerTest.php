@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventController;
 
 class EventControllerTest extends TestCase
@@ -495,10 +496,14 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_gets_filtered_events()
     {
-        $attributes = factory(Event::class)->raw(['title'=>'test title']);
+        $teacher = factory(Teacher::class)->create();
+        $eventAttributes = factory(Event::class)->raw([
+            'title'=>'test title',
+            'multiple_teachers' => $teacher->id
+        ]);
         $user = User::first();
         auth()->login($user);
-        $this->post('/events', $attributes);
+        $this->post('/events', $eventAttributes);
         
         $eventCreated = Event::first();
         
