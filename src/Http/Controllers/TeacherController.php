@@ -151,18 +151,18 @@ class TeacherController extends Controller
             //return EventCategory::orderBy('name')->pluck('name', 'id');
             return EventCategory::listsTranslations('name')->pluck('name', 'id');
         });
-        
+
         // Get for each event the first event repetition in the near future (JUST THE QUERY)
         date_default_timezone_set('Europe/Rome');
         $searchStartDate = date('Y-m-d', time()); // search start from today's date
         $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
-        
+
         // Get the events where this teacher is teaching to
         //DB::enableQueryLog();
         $eventsTeacherWillTeach = Teacher::eventsByTeacher($teacher, $lastestEventsRepetitionsQuery);
-                                              
+
         //dd(DB::getQueryLog());
-        
+
         return view('laravel-events-calendar::teachers.show', compact('teacher'))
             ->with('country', $country)
             ->with('eventCategories', $eventCategories)

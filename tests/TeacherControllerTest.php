@@ -5,8 +5,8 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\TeacherController;
 
@@ -214,36 +214,35 @@ class TeacherControllerTest extends TestCase
 
         Storage::assertExists($filePath);
     }
-    
+
     /** @test */
     public function it_displays_the_teacher_show_page_showing_the_events_of_that_teacher()
     {
         $user = User::first();
         auth()->login($user);
-        
+
         //Add event category
         $eventCategory = factory(EventCategory::class)->create();
-    
+
         // Add event
         $teacher = factory(Teacher::class)->create();
-        
+
         // Add the first event
         $attributes_first_event = factory(Event::class)->raw(
             ['multiple_teachers' => $teacher->id]
         );
         $this->post('/events', $attributes_first_event);
-        
+
         // Add the second event
         $attributes_second_event = factory(Event::class)->raw(
             ['multiple_teachers' => $teacher->id]
         );
         $this->post('/events', $attributes_second_event);
-        
+
         $response = $this->get("/teachers/{$teacher->id}");
         $response->assertViewIs('laravel-events-calendar::teachers.show')
                  ->assertStatus(200)
                  ->assertSee($attributes_first_event['title'])
                  ->assertSee($attributes_second_event['title']);
     }
-    
 }
