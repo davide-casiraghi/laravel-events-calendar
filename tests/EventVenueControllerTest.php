@@ -201,4 +201,25 @@ class EventVenueControllerTest extends TestCase
            'name' => $name,
         ]);
     }
+    
+    /** @test */
+    public function it_gets_venue_name_by_id()
+    {
+        Continent::insert([
+            'name' => 'Europe',
+            'code' => 'EU',
+        ]);
+        Country::insert([
+            'name' => 'Italy',
+            'code' => 'IT',
+            'continent_id' => 1,
+        ]);
+
+        $eventVenue = factory(EventVenue::class)->create();
+        $venueName = EventVenue::getVenueName($eventVenue->id);
+        
+        $this->assertSame($eventVenue->name,$venueName);
+    }
+    
+    
 }

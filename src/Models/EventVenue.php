@@ -23,7 +23,7 @@ class EventVenue extends Model
     /***************************************************************************/
 
     /**
-     * Return the venue name.
+     * Return the venue name - used by - /http/resources/event.php
      *
      * @param int $venueId
      * @return string
