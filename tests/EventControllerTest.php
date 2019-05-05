@@ -480,7 +480,6 @@ class EventControllerTest extends TestCase
                         ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
     }
     
-    
     /** @test */
     public function it_gets_active_events()
     {
@@ -490,6 +489,20 @@ class EventControllerTest extends TestCase
         $this->post('/events', $attributes);
         
         $activeEvents = Event::getActiveEvents();
+        $this->assertEquals($activeEvents[0]->title, 'test title');
+    }
+    
+    /** @test */
+    public function it_gets_filtered_events()
+    {
+        $attributes = factory(Event::class)->raw(['title'=>'test title']);
+        $user = User::first();
+        auth()->login($user);
+        $this->post('/events', $attributes);
+        
+        $filters['keywords'] = "test title";
+        $itemPerPage = 20;
+        $events = Event::getEvents($filters, $itemPerPage);
         $this->assertEquals($activeEvents[0]->title, 'test title');
     }
     
