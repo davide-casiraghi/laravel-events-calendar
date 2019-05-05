@@ -142,10 +142,10 @@ class Event extends Model
     //$keywords, $category, $city, $country, $continent, $teacher, $venue, $startDate, $endDate,
     public static function getEvents($filters, $itemPerPage)
     {
-        if (! $filters['startDate']) {
+        if (!array_key_exists('startDate', $filters) || !$filters['startDate']) {
             $filters['startDate'] = Carbon::now()->format('Y-m-d');
         }
-
+        
         // Sub-Query Joins - https://laravel.com/docs/5.7/queries
         $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($filters['startDate'], $filters['endDate']);
 
