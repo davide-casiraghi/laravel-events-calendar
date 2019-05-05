@@ -500,22 +500,23 @@ class EventControllerTest extends TestCase
         auth()->login($user);
         $this->post('/events', $attributes);
         
+        $eventCreated = Event::first();
+        
         $filters = [
             'keywords' => 'test title',
-            'endDate' => null,
-            'category' => null,
+            'endDate' => '2030-02-02',
+            'category' => '1',
             'teacher' => null,
-            'country' => null,
-            'continent' => null,
+            'country' => '1',
+            'continent' => '1',
             'city' => null,
             'venue' => null,
         ];
-        
 
-        
         $itemPerPage = 20;
         $events = Event::getEvents($filters, $itemPerPage);
-        $this->assertEquals($activeEvents[0]->title, 'test title');
+        //dd($events[0]);
+        $this->assertEquals($events[0]->title, 'test title');
     }
     
 }
