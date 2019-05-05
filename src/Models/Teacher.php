@@ -36,11 +36,11 @@ class Teacher extends Model
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public static function eventsByTeacher($teacher, $lastestEventsRepetitionsQuery, $searchStartDate)
+    public static function eventsByTeacher($teacher, $lastestEventsRepetitionsQuery)
     {
         $ret = $teacher->events()
-                         ->select('events.title', 'events.category_id', 'events.slug', 'events.venue_id', 'events.sc_venue_name', 'events.sc_country_name', 'events.sc_city_name', 'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
-                         ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) use ($searchStartDate) {
+                         ->select('events.title', 'events.category_id', 'events.slug', 'events.sc_venue_name', 'events.sc_country_name', 'events.sc_city_name', 'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
+                         ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
                              $join->on('events.id', '=', 'event_repetitions.event_id');
                          })
                          ->orderBy('event_repetitions.start_repeat', 'asc')

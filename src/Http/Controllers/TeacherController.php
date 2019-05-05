@@ -141,7 +141,6 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        
         // Get the name of the teacher's country
         $country = Country::select('name')
             ->where('id', $teacher->country_id)
@@ -160,18 +159,10 @@ class TeacherController extends Controller
         
         // Get the events where this teacher is teaching to
         //DB::enableQueryLog();
-        $eventsTeacherWillTeach = $teacher->events()
-                                              ->select('events.title', 'events.category_id', 'events.slug', 'events.sc_venue_name', 'events.sc_country_name', 'events.sc_city_name', 'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
-                                              ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
-                                                  $join->on('events.id', '=', 'event_repetitions.event_id');
-                                              })
-                                              ->orderBy('event_repetitions.start_repeat', 'asc')
-                                              ->get();
+        $eventsTeacherWillTeach = Teacher::eventsByTeacher($teacher, $lastestEventsRepetitionsQuery);
                                               
-        
         //dd(DB::getQueryLog());
-        //dd($eventsTeacherWillTeach);
-
+        
         return view('laravel-events-calendar::teachers.show', compact('teacher'))
             ->with('country', $country)
             ->with('eventCategories', $eventCategories)
