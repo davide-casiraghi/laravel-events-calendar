@@ -241,7 +241,9 @@ class TeacherControllerTest extends TestCase
         
         $response = $this->get("/teachers/{$teacher->id}");
         $response->assertViewIs('laravel-events-calendar::teachers.show')
-                 ->assertStatus(200);
+                 ->assertStatus(200)
+                 ->assertSee($attributes_first_event['title'])
+                 ->assertSee($attributes_second_event['title']);
     }
     
 }
