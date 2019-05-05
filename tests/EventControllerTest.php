@@ -511,7 +511,7 @@ class EventControllerTest extends TestCase
             'keywords' => 'test title',
             'endDate' => '2030-02-02',
             'category' => '1',
-            'teacher' => null,
+            'teacher' => null,  //use just integer 1,  no such function: json_contains
             'country' => '1',
             'continent' => '1',
             'city' => $eventCreated->sc_city_name,
