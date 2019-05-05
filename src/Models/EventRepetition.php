@@ -20,10 +20,10 @@ class EventRepetition extends Model
         'event_id', 'start_repeat', 'end_repeat',
     ];
 
-    public function user()
+    /*public function user()
     {
         return $this->belongsTo('DavideCasiraghi\LaravelEventsCalendar\Models\Event', 'event_id', 'id');
-    }
+    }*/
 
     /***************************************************************************/
 
