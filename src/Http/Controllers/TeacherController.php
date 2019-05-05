@@ -141,7 +141,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-
+        
         // Get the name of the teacher's country
         $country = Country::select('name')
             ->where('id', $teacher->country_id)
@@ -149,14 +149,15 @@ class TeacherController extends Controller
 
         $cacheExpireTime = 900; // Set the duration time of the cache (15 min - 900sec)
         $eventCategories = Cache::remember('categories', $cacheExpireTime, function () {
-            return EventCategory::orderBy('name')->pluck('name', 'id');
+            //return EventCategory::orderBy('name')->pluck('name', 'id');
+            return EventCategory::listsTranslations('name')->pluck('name', 'id');
         });
-
+        
         // Get for each event the first event repetition in the near future (JUST THE QUERY)
         date_default_timezone_set('Europe/Rome');
         $searchStartDate = date('Y-m-d', time()); // search start from today's date
         $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
-
+        
         // Get the events where this teacher is teaching to
         //DB::enableQueryLog();
         $eventsTeacherWillTeach = $teacher->events()
@@ -166,6 +167,8 @@ class TeacherController extends Controller
                                               })
                                               ->orderBy('event_repetitions.start_repeat', 'asc')
                                               ->get();
+                                              
+        
         //dd(DB::getQueryLog());
         //dd($eventsTeacherWillTeach);
 
