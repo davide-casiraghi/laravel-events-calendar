@@ -479,4 +479,18 @@ class EventControllerTest extends TestCase
                         ->call('POST', '/misuse', $requestAttributes)
                         ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
     }
+    
+    
+    /** @test */
+    public function it_gets_active_events()
+    {
+        $attributes = factory(Event::class)->raw(['title'=>'test title']);
+        $user = User::first();
+        auth()->login($user);
+        $this->post('/events', $attributes);
+        
+        $activeEvents = Event::getActiveEvents();
+        $this->assertEquals($activeEvents[0]->title, 'test title');
+    }
+    
 }
