@@ -201,7 +201,7 @@ class EventVenueControllerTest extends TestCase
            'name' => $name,
         ]);
     }
-    
+
     /** @test */
     public function it_gets_venue_name_by_id()
     {
@@ -217,9 +217,7 @@ class EventVenueControllerTest extends TestCase
 
         $eventVenue = factory(EventVenue::class)->create();
         $venueName = EventVenue::getVenueName($eventVenue->id);
-        
-        $this->assertSame($eventVenue->name,$venueName);
+
+        $this->assertSame($eventVenue->name, $venueName);
     }
-    
-    
 }
