@@ -85,7 +85,6 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teacher_show_page()
     {
-        $this->authenticateAsAdmin();
         $teacher = factory(Teacher::class)->create();
         $response = $this->get("/teachers/{$teacher->id}");
         $response->assertViewIs('laravel-events-calendar::teachers.show')
@@ -165,7 +164,6 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_gets_a_teacher_by_slug()
     {
-        $this->authenticateAsAdmin();
         $teacher = factory(Teacher::class)->create();
         $response = $this->get('/teacher/'.$teacher->slug);
         $response->assertViewIs('laravel-events-calendar::teachers.show')
