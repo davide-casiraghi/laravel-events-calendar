@@ -18,9 +18,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_venues_index_page()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticateAsAdmin();
         $this->get('eventVenues')
             ->assertViewIs('laravel-events-calendar::eventVenues.index')
             ->assertStatus(200);
@@ -29,9 +27,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_venues_index_page_with_search_keywords()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticateAsAdmin();
         $request = $this->call('GET', 'eventVenues', ['keywords' => 'test keywords'])
             ->assertStatus(200);
     }
@@ -39,6 +35,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_venue_create_page()
     {
+        $this->authenticateAsAdmin();
         $this->get('eventVenues/create')
             ->assertViewIs('laravel-events-calendar::eventVenues.create')
             ->assertStatus(200);
@@ -47,6 +44,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_venue()
     {
+        $this->authenticateAsAdmin();
         $attributes = factory(EventVenue::class)->raw();
 
         Continent::insert([
@@ -59,9 +57,6 @@ class EventVenueControllerTest extends TestCase
             'continent_id' => 1,
         ]);
 
-        $user = User::first();
-        auth()->login($user);
-
         $response = $this->post('/eventVenues', $attributes);
         $eventVenue = EventVenue::first();
 
@@ -72,6 +67,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_does_not_store_invalid_event_venue()
     {
+        $this->authenticateAsAdmin();
         $response = $this->post('/eventVenues', []);
         $response->assertSessionHasErrors();
         $this->assertNull(EventVenue::first());
@@ -80,6 +76,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_venue_show_page()
     {
+        $this->authenticate();
         Continent::insert([
             'name' => 'Europe',
             'code' => 'EU',
@@ -99,9 +96,10 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_venue_edit_page()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        $this->authenticateAsAdmin();
+        //$user = User::first();
+        //auth()->login($user);
+        
         Continent::insert([
             'name' => 'Europe',
             'code' => 'EU',
@@ -121,9 +119,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_updates_valid_event_venue()
     {
-        // https://www.neontsunami.com/posts/scaffolding-laravel-tests
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticateAsAdmin();
 
         Continent::insert([
             'name' => 'Europe',
@@ -145,6 +141,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_does_not_update_invalid_event_venue()
     {
+        $this->authenticateAsAdmin();
         $eventVenue = factory(EventVenue::class)->create(['name' => 'Example']);
         $response = $this->put("/eventVenues/{$eventVenue->id}", []);
         $response->assertSessionHasErrors();
@@ -154,6 +151,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_deletes_event_venues()
     {
+        $this->authenticateAsAdmin();
         $eventVenue = factory(EventVenue::class)->create();
         $response = $this->delete("/eventVenues/{$eventVenue->id}");
         $response->assertRedirect('/eventVenues');
@@ -163,8 +161,7 @@ class EventVenueControllerTest extends TestCase
     /** @test */
     public function it_store_from_event_venue_modal()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticateAsAdmin();
 
         Continent::insert([
             'name' => 'Europe',

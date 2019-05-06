@@ -15,10 +15,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 class EventVenueController extends Controller
 {
     /* Restrict the access to this resource just to logged in users except show view */
-    /*public function __construct()
+    public function __construct()
     {
         $this->middleware('auth', ['except' => ['show']]);
-    }*/
+    }
 
     /***************************************************************************/
 
@@ -141,7 +141,8 @@ class EventVenueController extends Controller
     public function edit(EventVenue $eventVenue)
     {
         //if (Auth::user()->id == $eventVenue->created_by || Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
-        if (Auth::user()->id == $eventVenue->created_by) {
+        //if (Auth::user()->id == $eventVenue->created_by) {
+        if (Auth::user()->id == $eventVenue->created_by || Auth::user()->group == 1 || Auth::user()->group == 2) {
             $authorUserId = $this->getLoggedAuthorId();
             $users = User::pluck('name', 'id');
             $countries = Country::getCountries();
