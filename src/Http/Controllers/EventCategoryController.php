@@ -12,10 +12,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 class EventCategoryController extends Controller
 {
     /* Restrict the access to this resource just to logged in users except show view */
-    /*public function __construct()
+    public function __construct()
     {
         $this->middleware('admin', ['except' => ['show']]);
-    }*/
+    }
 
     /**
      * Display a listing of the resource.

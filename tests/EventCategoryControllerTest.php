@@ -29,9 +29,7 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_categories_index_page()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticateAsAdmin();
         $this->get('eventCategories')
             ->assertViewIs('laravel-events-calendar::eventCategories.index')
             ->assertStatus(200);
@@ -40,6 +38,7 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_category_create_page()
     {
+        $this->authenticateAsAdmin();
         $this->get('eventCategories/create')
             ->assertViewIs('laravel-events-calendar::eventCategories.create')
             ->assertStatus(200);
@@ -48,9 +47,10 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_category()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        /*$user = User::first();
+        auth()->login($user);*/
+        $this->authenticateAsAdmin();
+        
         $data = [
             'name' => 'test title',
             'slug' => 'test body',
@@ -67,6 +67,7 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_does_not_store_invalid_event_category()
     {
+        $this->authenticateAsAdmin();
         $response = $this->post('/eventCategories', []);
         $response->assertSessionHasErrors();
         $this->assertNull(EventCategory::first());
@@ -75,11 +76,9 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_category_show_page()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
 
         $eventCategory = factory(EventCategory::class)->create();
-
         $response = $this->get('/eventCategories/'.$eventCategory->id);
         $response->assertViewIs('laravel-events-calendar::eventCategories.show')
                  ->assertStatus(200);
@@ -88,8 +87,9 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_category_edit_page()
     {
+        $this->authenticateAsAdmin();
+        
         $eventCategory = factory(EventCategory::class)->create();
-
         $response = $this->get("/eventCategories/{$eventCategory->id}/edit");
         $response->assertViewIs('laravel-events-calendar::eventCategories.edit')
                  ->assertStatus(200);
@@ -98,9 +98,7 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_updates_valid_event_category()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create();
 
         $attributes = ([
@@ -117,8 +115,7 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_does_not_update_invalid_event_category()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticateAsAdmin();
 
         $eventCategory = factory(EventCategory::class)->create();
         $response = $this->put('/eventCategories/'.$eventCategory->id, []);
@@ -128,8 +125,7 @@ class EventCategoryControllerTest extends TestCase
     /** @test */
     public function it_deletes_event_categories()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticateAsAdmin();
 
         $eventCategory = factory(EventCategory::class)->create();
 
