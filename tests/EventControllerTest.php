@@ -5,8 +5,8 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventController;
 
 class EventControllerTest extends TestCase
@@ -480,7 +480,7 @@ class EventControllerTest extends TestCase
                         ->call('POST', '/misuse', $requestAttributes)
                         ->assertViewIs('laravel-events-calendar::emails.report-thankyou');
     }
-    
+
     /** @test */
     public function it_gets_active_events()
     {
@@ -488,25 +488,25 @@ class EventControllerTest extends TestCase
         $user = User::first();
         auth()->login($user);
         $this->post('/events', $attributes);
-        
+
         $activeEvents = Event::getActiveEvents();
         $this->assertEquals($activeEvents[0]->title, 'test title');
     }
-    
+
     /** @test */
     public function it_gets_filtered_events()
     {
         $teacher = factory(Teacher::class)->create();
         $eventAttributes = factory(Event::class)->raw([
             'title'=>'test title',
-            'multiple_teachers' => $teacher->id
+            'multiple_teachers' => $teacher->id,
         ]);
         $user = User::first();
         auth()->login($user);
         $this->post('/events', $eventAttributes);
-        
+
         $eventCreated = Event::first();
-        
+
         $filters = [
             'keywords' => 'test title',
             'endDate' => '2030-02-02',
@@ -519,12 +519,12 @@ class EventControllerTest extends TestCase
         ];
 
         $itemPerPage = 20;
-        
+
         $events = Event::getEvents($filters, $itemPerPage);
         //dd($events[0]);
         $this->assertEquals($events[0]->title, 'test title');
     }
-    
+
     /** @test */
     public function it_gets_the_event_repetitions()
     {
@@ -532,11 +532,10 @@ class EventControllerTest extends TestCase
         auth()->login($user);
         $attributes = factory(Event::class)->raw();
         $this->post('/events', $attributes);
-        
+
         $eventCreated = Event::first();
         $eventRepetition = $eventCreated->eventRepetitions();
-        
+
         $this->assertEquals($eventRepetition->first()->event_id, 1);
     }
-    
 }

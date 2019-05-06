@@ -17,7 +17,7 @@ class LaravelEventsCalendar
     public static function formatDatePickerDateForMysql($DatePickerDate)
     {
         if ($DatePickerDate) {
-            list($tid, $tim, $tiy) = explode('/', $DatePickerDate);
+            [$tid, $tim, $tiy] = explode('/', $DatePickerDate);
             $ret = "$tiy-$tim-$tid";
         } else {
             date_default_timezone_set('Europe/Rome');
