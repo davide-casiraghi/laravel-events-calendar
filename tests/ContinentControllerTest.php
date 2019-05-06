@@ -16,7 +16,7 @@ class ContinentControllerTest extends TestCase
     public function it_displays_the_continents_index_page()
     {
         // Authenticate the admin
-        //$this->authenticateAsAdmin();
+        $this->authenticateAsAdmin();
 
         $this->get('continents')
             ->assertViewIs('laravel-events-calendar::continents.index')
