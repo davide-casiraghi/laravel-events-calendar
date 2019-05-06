@@ -15,8 +15,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_category_translation_create_page()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticateAsAdmin();
 
         $eventCategoryId = 1;
         $languageCode = 'es';
@@ -29,9 +28,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_category_translation()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create([
                             'name' => 'Regular Jams',
                             'slug' => 'regular-jams',
@@ -54,9 +51,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     /** @test */
     public function it_does_not_store_invalid_event_category_translation()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        $this->authenticateAsAdmin();
         $response = $this
             ->followingRedirects()
             ->post('/eventCategoryTranslations/store', []);
@@ -67,9 +62,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_category_translation_edit_page()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create([
                             'name' => 'Regular Jams',
                             'slug' => 'regular-jams',
@@ -91,9 +84,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     /** @test */
     public function it_updates_valid_event_category_translation()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create([
                             'name' => 'Regular Jams',
                             'slug' => 'regular-jams',
@@ -128,9 +119,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     /** @test */
     public function it_does_not_update_invalid_event_category()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create([
                             'name' => 'Regular Jams',
                             'slug' => 'regular-jams',
@@ -158,9 +147,7 @@ class EventCategoryTranslationControllerTest extends TestCase
     /** @test */
     public function it_deletes_event_category_translation()
     {
-        $user = User::first();
-        auth()->login($user);
-
+        $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create();
 
         $data = [

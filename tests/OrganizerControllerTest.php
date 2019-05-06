@@ -16,9 +16,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_displays_the_organizers_index_page()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticateAsAdmin();
         $this->get('organizers')
             ->assertViewIs('laravel-events-calendar::organizers.index')
             ->assertStatus(200);
@@ -27,9 +25,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_displays_the_organizers_index_page_with_search_keywords()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticateAsAdmin();
         $request = $this->call('GET', 'organizers', ['keywords' => 'test keywords'])
             ->assertStatus(200);
     }
@@ -37,6 +33,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_displays_the_organizer_create_page()
     {
+        $this->authenticateAsAdmin();
         $this->get('organizers/create')
             ->assertViewIs('laravel-events-calendar::organizers.create')
             ->assertStatus(200);
@@ -45,11 +42,9 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_organizer()
     {
+        $this->authenticateAsAdmin();
         $attributes = factory(Organizer::class)->raw();
-
-        $user = User::first();
-        auth()->login($user);
-
+        
         $response = $this->post('/organizers', $attributes);
         $organizer = Organizer::first();
 
@@ -60,6 +55,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_does_not_store_invalid_organizer()
     {
+        $this->authenticateAsAdmin();
         $response = $this->post('/organizers', []);
         $response->assertSessionHasErrors();
         $this->assertNull(Organizer::first());
@@ -68,6 +64,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_displays_the_organizer_show_page()
     {
+        $this->authenticate();
         $organizer = factory(Organizer::class)->create();
         $response = $this->get("/organizers/{$organizer->id}");
         $response->assertViewIs('laravel-events-calendar::organizers.show')
@@ -77,6 +74,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_displays_the_organizer_edit_page()
     {
+        $this->authenticateAsAdmin();
         $organizer = factory(Organizer::class)->create();
         $response = $this->get("/organizers/{$organizer->id}/edit");
         $response->assertViewIs('laravel-events-calendar::organizers.edit')
@@ -86,12 +84,10 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_updates_valid_organizer()
     {
+        $this->authenticateAsAdmin();
         // https://www.neontsunami.com/posts/scaffolding-laravel-tests
         $organizer = factory(Organizer::class)->create();
         $attributes = factory(Organizer::class)->raw(['name' => 'Updated']);
-
-        $user = User::first();
-        auth()->login($user);
 
         $response = $this->put("/organizers/{$organizer->id}", $attributes);
         $response->assertRedirect('/organizers/');
@@ -101,6 +97,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_does_not_update_invalid_organizer()
     {
+        $this->authenticateAsAdmin();
         $organizer = factory(Organizer::class)->create(['name' => 'Example']);
         $response = $this->put("/organizers/{$organizer->id}", []);
         $response->assertSessionHasErrors();
@@ -110,6 +107,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_deletes_organizers()
     {
+        $this->authenticateAsAdmin();
         $organizer = factory(Organizer::class)->create();
         $response = $this->delete("/organizers/{$organizer->id}");
         $response->assertRedirect('/organizers');
@@ -119,6 +117,7 @@ class OrganizerControllerTest extends TestCase
     /** @test */
     public function it_store_from_organizer_modal()
     {
+        $this->authenticateAsAdmin();
         $request = new \Illuminate\Http\Request();
 
         $description = $this->faker->paragraph;
@@ -129,11 +128,7 @@ class OrganizerControllerTest extends TestCase
             'email' => $this->faker->email,
             'phone' => $this->faker->e164PhoneNumber,
         ];
-
         $request->replace($data);
-
-        $user = User::first();
-        auth()->login($user);
 
         $organizerController = new OrganizerController();
         $organizerController->storeFromModal($request);
