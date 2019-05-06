@@ -210,7 +210,7 @@ class Event extends Model
      * @param string $DatePickerStartDate
      * @return string
      */
-    public static function prepareStartDate($DatePickerStartDate)
+    /*public static function prepareStartDate($DatePickerStartDate)
     {
         if ($DatePickerStartDate) {
             list($tid, $tim, $tiy) = explode('/', $DatePickerStartDate);
@@ -222,7 +222,7 @@ class Event extends Model
         }
 
         return $ret;
-    }
+    }*/
 
     /***************************************************************************/
 
@@ -232,7 +232,7 @@ class Event extends Model
      * @param string $DatePickerEndDate
      * @return string
      */
-    public static function prepareEndDate($DatePickerEndDate)
+    /*public static function prepareEndDate($DatePickerEndDate)
     {
         if ($DatePickerEndDate) {
             list($tid, $tim, $tiy) = explode('/', $DatePickerEndDate);
@@ -242,5 +242,5 @@ class Event extends Model
         }
 
         return $ret;
-    }
+    }*/
 }

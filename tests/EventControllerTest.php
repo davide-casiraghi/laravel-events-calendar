@@ -174,9 +174,9 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_edit_page()
     {
-        $attributes = factory(Event::class)->raw();
         $user = User::first();
         auth()->login($user);
+        $attributes = factory(Event::class)->raw();
         $this->post('/events', $attributes);
 
         //dd(app()->getLocale());
@@ -519,9 +519,24 @@ class EventControllerTest extends TestCase
         ];
 
         $itemPerPage = 20;
+        
         $events = Event::getEvents($filters, $itemPerPage);
         //dd($events[0]);
         $this->assertEquals($events[0]->title, 'test title');
+    }
+    
+    /** @test */
+    public function it_gets_the_event_repetitions()
+    {
+        $user = User::first();
+        auth()->login($user);
+        $attributes = factory(Event::class)->raw();
+        $this->post('/events', $attributes);
+        
+        $eventCreated = Event::first();
+        $eventRepetition = $eventCreated->eventRepetitions();
+        
+        $this->assertEquals($eventRepetition->first()->event_id, 1);
     }
     
 }
