@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.textarea-plain', [
+                    @include('laravel-events-calendar::partials.textarea', [
                           'title' =>  __('views.bio'),
                           'name' => 'bio',
                           'value' => old('bio'),
