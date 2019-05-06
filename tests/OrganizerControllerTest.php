@@ -115,6 +115,15 @@ class OrganizerControllerTest extends TestCase
     }
 
     /** @test */
+    public function it_opens_an_organizers_modal()
+    {
+        $this->authenticateAsAdmin();
+        $this->get('/create-organizer/modal/')
+            ->assertViewIs('laravel-events-calendar::organizers.modal')
+            ->assertStatus(200);
+    }
+
+    /** @test */
     public function it_store_from_organizer_modal()
     {
         $this->authenticateAsAdmin();
