@@ -55,7 +55,7 @@ class User extends Authenticatable
     }
 
     public function isAdmin()
-    {
+    { 
         if ($this->group == 2) {
             return true;
         } else {

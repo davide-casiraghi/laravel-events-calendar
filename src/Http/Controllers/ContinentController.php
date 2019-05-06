@@ -9,10 +9,10 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 class ContinentController extends Controller
 {
     /* Restrict the access to this resource just to logged in users */
-    /*public function __construct()
+    public function __construct()
     {
         $this->middleware('admin');
-    }*/
+    }
 
     /**
      * Display a listing of the resource.
