@@ -18,9 +18,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_displays_the_events_index_page()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticate();
         $this->get('events')
             ->assertViewIs('laravel-events-calendar::events.index')
             ->assertStatus(200);
@@ -29,6 +27,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_create_page()
     {
+        $this->authenticate();
         $this->get('events/create')
             ->assertViewIs('laravel-events-calendar::events.create')
             ->assertStatus(200);
@@ -37,8 +36,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_with_no_repetitions()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw(['title'=>'test title']);
 
         $response = $this->post('/events', $attributes);
@@ -49,8 +47,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_with_weekly_repetitions()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw([
                         'title' => 'test title',
                         'repeat_type' => '2',
@@ -72,8 +69,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_with_monthly_repetitions_same_day_number()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw([
                         'title' => 'test title',
                         'repeat_type' => '3',
@@ -95,8 +91,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_with_monthly_repetitions_same_weekday_week_of_the_month()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw([
                         'title' => 'test title',
                         'repeat_type' => '3',
@@ -118,8 +113,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_with_monthly_repetitions_day_of_the_month()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw([
                         'title' => 'test title',
                         'repeat_type' => '3',
@@ -141,8 +135,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_event_with_monthly_repetitions_same_weekday_week_of_the_month_from_end()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw([
                         'title' => 'test title',
                         'repeat_type' => '3',
@@ -164,8 +157,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_does_not_store_invalid_event()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $response = $this->post('/events', []);
         $response->assertSessionHasErrors();
         $this->assertNull(Event::first());
@@ -174,8 +166,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_edit_page()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw();
         $this->post('/events', $attributes);
 
@@ -189,9 +180,8 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_updates_valid_event()
     {
+        $this->authenticate();
         $attributes = factory(Event::class)->raw();
-        $user = User::first();
-        auth()->login($user);
         $this->post('/events', $attributes);
 
         $attributes['name'] = 'Updated';
@@ -204,9 +194,8 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_does_not_update_invalid_event()
     {
+        $this->authenticate();
         $attributes = factory(Event::class)->raw();
-        $user = User::first();
-        auth()->login($user);
         $this->post('/events', $attributes);
 
         $response = $this->put('/events/1', []);
@@ -228,8 +217,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_gets_an_event_by_slug_and_test_event_show_single_repetition()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw(['slug'=>'test-slug']);
         $this->post('/events', $attributes);
 
@@ -245,8 +233,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_gets_an_event_by_slug_and_repetition()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw(['slug'=>'test-slug']);
         $this->post('/events', $attributes);
 
@@ -268,8 +255,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_gets_a_weekly_event_by_slug_and_repetition()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw([
                         'title' => 'test title',
                         'repeat_type' => '2',
@@ -293,8 +279,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_gets_a_monthy_event_by_slug_and_repetition()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw([
                         'title' => 'test title',
                         'repeat_type' => '3',
@@ -484,9 +469,8 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_gets_active_events()
     {
+        $this->authenticate();
         $attributes = factory(Event::class)->raw(['title'=>'test title']);
-        $user = User::first();
-        auth()->login($user);
         $this->post('/events', $attributes);
 
         $activeEvents = Event::getActiveEvents();
@@ -496,13 +480,12 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_gets_filtered_events()
     {
+        $this->authenticate();
         $teacher = factory(Teacher::class)->create();
         $eventAttributes = factory(Event::class)->raw([
             'title'=>'test title',
             'multiple_teachers' => $teacher->id,
         ]);
-        $user = User::first();
-        auth()->login($user);
         $this->post('/events', $eventAttributes);
 
         $eventCreated = Event::first();
@@ -528,8 +511,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_gets_the_event_repetitions()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticate();
         $attributes = factory(Event::class)->raw();
         $this->post('/events', $attributes);
 
