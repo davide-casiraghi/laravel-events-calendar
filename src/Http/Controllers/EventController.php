@@ -1061,7 +1061,7 @@ class EventController extends Controller
      * Get creator email.
      *
      * @param  int $created_by
-     * @return \App\User
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\User
      */
     public function getCreatorEmail($created_by)
     {

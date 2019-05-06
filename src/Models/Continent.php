@@ -26,7 +26,7 @@ class Continent extends Model
     /**
      * Return all the continents ordered by name.
      *
-     * @return \App\Continent
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Continent
      */
     public static function getContinents()
     {

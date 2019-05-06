@@ -68,7 +68,7 @@ class User extends Authenticatable
     /**
      * Return the user group string.
      *
-     * @param  \App\User  $post
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\User  $post
      * @return string $ret - the user role description string
      */
     public static function getUserGroupString($group_id)

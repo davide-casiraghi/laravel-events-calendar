@@ -68,7 +68,7 @@ class ContinentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Continent  $continent
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Continent  $continent
      * @return \Illuminate\Http\Response
      */
     public function show(Continent $continent)
@@ -79,7 +79,7 @@ class ContinentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Continent  $continent
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Continent  $continent
      * @return \Illuminate\Http\Response
      */
     public function edit(Continent $continent)
@@ -91,7 +91,7 @@ class ContinentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Continent  $continent
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Continent  $continent
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Continent $continent)
@@ -110,7 +110,7 @@ class ContinentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Continent  $continent
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Continent  $continent
      * @return \Illuminate\Http\Response
      */
     public function destroy(Continent $continent)
