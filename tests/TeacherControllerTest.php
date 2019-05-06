@@ -19,9 +19,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teachers_index_page()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticateAsAdmin();
         $this->get('teachers')
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
@@ -30,9 +28,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teachers_index_page_with_search_keywords()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticateAsAdmin();
         $request = $this->call('GET', 'teachers', ['keywords' => 'test keywords'])
             ->assertStatus(200);
     }
@@ -40,9 +36,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_opens_a_teacher_modal()
     {
-        // Authenticate the admin
-        //$this->authenticateAsAdmin();
-
+        $this->authenticateAsAdmin();
         $this->get('/create-teacher/modal/')
             ->assertViewIs('laravel-events-calendar::teachers.modal')
             ->assertStatus(200);
@@ -51,6 +45,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teachers_directory_index_page()
     {
+        $this->authenticateAsAdmin();
         $this->get('teachersDirectory')
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
@@ -59,6 +54,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teacher_create_page()
     {
+        $this->authenticateAsAdmin();
         $this->get('teachers/create')
             ->assertViewIs('laravel-events-calendar::teachers.create')
             ->assertStatus(200);
@@ -67,10 +63,8 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_stores_a_valid_teacher()
     {
+        $this->authenticateAsAdmin();
         $attributes = factory(Teacher::class)->raw();
-
-        $user = User::first();
-        auth()->login($user);
 
         $response = $this->post('/teachers', $attributes);
         $teacher = Teacher::first();
@@ -82,6 +76,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_does_not_store_invalid_teacher()
     {
+        $this->authenticateAsAdmin();
         $response = $this->post('/teachers', []);
         $response->assertSessionHasErrors();
         $this->assertNull(Teacher::first());
@@ -90,6 +85,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teacher_show_page()
     {
+        $this->authenticateAsAdmin();
         $teacher = factory(Teacher::class)->create();
         $response = $this->get("/teachers/{$teacher->id}");
         $response->assertViewIs('laravel-events-calendar::teachers.show')
@@ -99,6 +95,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teacher_edit_page()
     {
+        $this->authenticateAsAdmin();
         $teacher = factory(Teacher::class)->create();
         $response = $this->get("/teachers/{$teacher->id}/edit");
         $response->assertViewIs('laravel-events-calendar::teachers.edit')
@@ -108,12 +105,9 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_updates_valid_teacher()
     {
-        // https://www.neontsunami.com/posts/scaffolding-laravel-tests
+        $this->authenticateAsAdmin();
         $teacher = factory(Teacher::class)->create();
         $attributes = factory(Teacher::class)->raw(['name' => 'Updated']);
-
-        $user = User::first();
-        auth()->login($user);
 
         $response = $this->put("/teachers/{$teacher->id}", $attributes);
         $response->assertRedirect('/teachers/');
@@ -123,6 +117,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_does_not_update_invalid_teacher()
     {
+        $this->authenticateAsAdmin();
         $teacher = factory(Teacher::class)->create(['name' => 'Example']);
         $response = $this->put("/teachers/{$teacher->id}", []);
         $response->assertSessionHasErrors();
@@ -132,6 +127,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_deletes_teachers()
     {
+        $this->authenticateAsAdmin();
         $teacher = factory(Teacher::class)->create();
         $response = $this->delete("/teachers/{$teacher->id}");
         $response->assertRedirect('/teachers');
@@ -141,6 +137,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_store_from_teacher_modal()
     {
+        $this->authenticateAsAdmin();
         $request = new \Illuminate\Http\Request();
 
         $name = $this->faker->name;
@@ -157,9 +154,6 @@ class TeacherControllerTest extends TestCase
 
         $request->replace($data);
 
-        $user = User::first();
-        auth()->login($user);
-
         $teacherController = new TeacherController();
         $teacherController->storeFromModal($request);
 
@@ -171,6 +165,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_gets_a_teacher_by_slug()
     {
+        $this->authenticateAsAdmin();
         $teacher = factory(Teacher::class)->create();
         $response = $this->get('/teacher/'.$teacher->slug);
         $response->assertViewIs('laravel-events-calendar::teachers.show')
@@ -180,6 +175,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_uploads_a_teacher_profile_image()
     {
+        $this->authenticateAsAdmin();
         // Delete directory
         //dd(Storage::directories('public/images')); // List directories
         $directory = 'public/images/teachers_profile/';
@@ -218,8 +214,7 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teacher_show_page_showing_the_events_of_that_teacher()
     {
-        $user = User::first();
-        auth()->login($user);
+        $this->authenticateAsAdmin();
 
         //Add event category
         $eventCategory = factory(EventCategory::class)->create();

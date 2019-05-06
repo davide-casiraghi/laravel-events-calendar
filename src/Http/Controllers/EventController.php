@@ -225,7 +225,8 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        if (Auth::user()->id == $event->created_by || Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
+        //if (Auth::user()->id == $event->created_by || Auth::user()->isSuperAdmin() || Auth::user()->isAdmin()) {
+        if (Auth::user()->id == $eventVenue->created_by || Auth::user()->group == 1 || Auth::user()->group == 2) {
             $authorUserId = $this->getLoggedAuthorId();
 
             //$eventCategories = EventCategory::pluck('name', 'id');  // removed because was braking the tests
