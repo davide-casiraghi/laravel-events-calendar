@@ -19,7 +19,6 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teachers_index_page()
     {
-        $this->authenticateAsAdmin();
         $this->get('teachers')
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
@@ -28,7 +27,6 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teachers_index_page_with_search_keywords()
     {
-        $this->authenticateAsAdmin();
         $request = $this->call('GET', 'teachers', ['keywords' => 'test keywords'])
             ->assertStatus(200);
     }
@@ -45,7 +43,6 @@ class TeacherControllerTest extends TestCase
     /** @test */
     public function it_displays_the_teachers_directory_index_page()
     {
-        $this->authenticateAsAdmin();
         $this->get('teachersDirectory')
             ->assertViewIs('laravel-events-calendar::teachers.index')
             ->assertStatus(200);
