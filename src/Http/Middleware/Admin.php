@@ -21,7 +21,7 @@ class Admin
         if (! $user) {
             return redirect('/')->with('message', 'You have not admin access');
         }
-        
+
         // If user is logged and admin/superadmin
         //if (($user->isAdmin() || $user->isSuperAdmin()) == 1) {
         if (($user->group == 2) || ($user->group == 1)) {

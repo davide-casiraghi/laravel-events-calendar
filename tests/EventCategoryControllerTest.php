@@ -50,7 +50,7 @@ class EventCategoryControllerTest extends TestCase
         /*$user = User::first();
         auth()->login($user);*/
         $this->authenticateAsAdmin();
-        
+
         $data = [
             'name' => 'test title',
             'slug' => 'test body',
@@ -88,7 +88,7 @@ class EventCategoryControllerTest extends TestCase
     public function it_displays_the_event_category_edit_page()
     {
         $this->authenticateAsAdmin();
-        
+
         $eventCategory = factory(EventCategory::class)->create();
         $response = $this->get("/eventCategories/{$eventCategory->id}/edit");
         $response->assertViewIs('laravel-events-calendar::eventCategories.edit')

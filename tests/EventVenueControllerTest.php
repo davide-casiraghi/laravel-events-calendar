@@ -99,7 +99,7 @@ class EventVenueControllerTest extends TestCase
         $this->authenticateAsAdmin();
         //$user = User::first();
         //auth()->login($user);
-        
+
         Continent::insert([
             'name' => 'Europe',
             'code' => 'EU',
