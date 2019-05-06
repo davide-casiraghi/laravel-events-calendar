@@ -23,7 +23,8 @@ class Admin
         }
         
         // If user is logged and admin/superadmin
-        if (($user->isAdmin() || $user->isSuperAdmin()) == 1) {
+        //if (($user->isAdmin() || $user->isSuperAdmin()) == 1) {
+        if (($user->group == 2) || ($user->group == 1)) {
             return $next($request);
         }
 
