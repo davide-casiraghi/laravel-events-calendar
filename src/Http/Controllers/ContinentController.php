@@ -6,7 +6,6 @@ use Validator;
 use Illuminate\Http\Request;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 
-
 class ContinentController extends Controller
 {
     /* Restrict the access to this resource just to logged in users */

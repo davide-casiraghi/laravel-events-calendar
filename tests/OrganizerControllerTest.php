@@ -2,7 +2,6 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\OrganizerController;
@@ -44,7 +43,7 @@ class OrganizerControllerTest extends TestCase
     {
         $this->authenticateAsAdmin();
         $attributes = factory(Organizer::class)->raw();
-        
+
         $response = $this->post('/organizers', $attributes);
         $organizer = Organizer::first();
 
