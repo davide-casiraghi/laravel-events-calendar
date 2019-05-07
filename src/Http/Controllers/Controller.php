@@ -68,9 +68,9 @@ class Controller extends BaseController
             //$ret = (! $user->isSuperAdmin() && ! $user->isAdmin()) ? $user->id : 0;
             $ret = (! $user->group == 1 && ! $user->group == 2) ? $user->id : 0;
         }
-        if ($user) {
+        /*if ($user) {
             $ret = $user->id;
-        }
+        }*/
 
         return $ret;
     }
