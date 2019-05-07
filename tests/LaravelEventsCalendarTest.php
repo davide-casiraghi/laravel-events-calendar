@@ -90,7 +90,7 @@ class LaravelEventsCalendarTest extends TestCase
 
         $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql(null, 1);
         $this->assertEquals($startDateMysqlDateFormat, $todaysMysqlDateFormat);
-        
+
         $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql(null, 0);
         $this->assertEquals($startDateMysqlDateFormat, null);
 
