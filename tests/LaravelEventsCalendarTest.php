@@ -88,11 +88,14 @@ class LaravelEventsCalendarTest extends TestCase
     {
         $todaysMysqlDateFormat = Carbon::now()->format('Y-m-d');
 
-        $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql(null);
+        $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql(null, 1);
         $this->assertEquals($startDateMysqlDateFormat, $todaysMysqlDateFormat);
+        
+        $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql(null, 0);
+        $this->assertEquals($startDateMysqlDateFormat, null);
 
         $startDateFromDatePicker = Carbon::now()->format('d/m/Y');
-        $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql($startDateFromDatePicker);
+        $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql($startDateFromDatePicker, 1);
         $this->assertEquals($startDateMysqlDateFormat, $todaysMysqlDateFormat);
     }
 }
