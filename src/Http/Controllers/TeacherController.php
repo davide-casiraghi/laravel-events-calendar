@@ -262,7 +262,7 @@ class TeacherController extends Controller
         $teacher->website = $request->get('website');
         $teacher->facebook = $request->get('facebook');
 
-        //$teacher->created_by = \Auth::user()->id;
+        //$teacher->created_by = Auth::id();
         $teacher->created_by = Auth::id();
 
         if (! $teacher->slug) {

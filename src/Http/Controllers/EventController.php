@@ -979,7 +979,7 @@ class EventController extends Controller
         $event->title = $request->get('title');
         //$event->description = $request->get('description');
         $event->description = clean($request->get('description'));
-        $event->created_by = \Auth::user()->id;
+        $event->created_by = Auth::id();
         if (! $event->slug) {
             $event->slug = Str::slug($event->title, '-').'-'.rand(100000, 1000000);
         }
