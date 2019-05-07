@@ -314,8 +314,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        $eventFirstRepetition = DB::table('event_repetitions')
-                //->where('active', 0)->delete();
+        DB::table('event_repetitions')
                 ->where('event_id', $event->id)
                 ->delete();
 
