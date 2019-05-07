@@ -21,11 +21,10 @@ class LaravelEventsCalendar
         if ($DatePickerDate) {
             [$tid, $tim, $tiy] = explode('/', $DatePickerDate);
             $ret = "$tiy-$tim-$tid";
-        } elseif($todaysDateIfNull) {
+        } elseif ($todaysDateIfNull) {
             date_default_timezone_set('Europe/Rome');
             $ret = date('Y-m-d', time());
-        }
-        else{
+        } else {
             $ret = null;
         }
 
