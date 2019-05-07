@@ -63,10 +63,11 @@ class Controller extends BaseController
 
         $ret = null;
 
-        //disabled for the tests errors -- still to solve the isSuperAdmin()
-        /*if ($user) {
-            $ret = (! $user->isSuperAdmin() && ! $user->isAdmin()) ? $user->id : 0;
-        }*/
+        if ($user) {
+            //disabled for the tests errors -- still to solve the isSuperAdmin()
+            //$ret = (! $user->isSuperAdmin() && ! $user->isAdmin()) ? $user->id : 0;
+            $ret = (! $user->group == 1 && ! $user->group == 2) ? $user->id : 0;
+        }
         if ($user) {
             $ret = $user->id;
         }
