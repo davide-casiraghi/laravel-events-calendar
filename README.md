@@ -43,10 +43,10 @@ You can run unit tests checking the **code coverage** using this command.
 ```
 So you can find the reports about the code coverage in this file /html/index.html  
 
-Since there are more that 100 tests in place you can run specific tests using commands such as:
-``` ./vendor/bin/phpunit tests/TeacherControllerTest.php ```
-or
-``` ./vendor/bin/phpunit --filter it_gets_the_event_repetitions EventControllerTest tests/EventControllerTest.php ```
+Since there are more that 100 tests in place you can run specific tests using commands such as:  
+``` ./vendor/bin/phpunit tests/TeacherControllerTest.php ```  
+or  
+``` ./vendor/bin/phpunit --filter it_gets_the_event_repetitions EventControllerTest tests/EventControllerTest.php ```  
 
 ### Changelog
 
