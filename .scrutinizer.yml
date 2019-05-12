@@ -29,9 +29,11 @@ build:
                 override:
                     - php-scrutinizer-run
                     - js-scrutinizer-run
-    tests:
-        override:
-          - command: './vendor/bin/phpunit --coverage-clover=build/logs/clover.xml'
-            coverage:
-              file: build/logs/clover.xml  
-              format: php-clover
+        tests-and-coverage:
+            tests:
+                override:
+                    - command: './vendor/bin/phpunit --coverage-clover=build/logs/clover.xml'
+                      coverage:
+                         file: build/logs/clover.xml  
+                         format: clover
+    
