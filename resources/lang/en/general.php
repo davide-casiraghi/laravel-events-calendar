@@ -13,9 +13,5 @@ return [
     'phone' => 'Phone',
     'website' => 'Website',
     'description' => 'Description',
-    
-    
-    
-    
-    
+
 ];
