@@ -99,7 +99,7 @@ class EventController extends Controller
     {
         $authorUserId = $this->getLoggedAuthorId();
 
-        $eventCategories = EventCategory::pluck('name', 'id');
+        $eventCategories = EventCategory::listsTranslations('name')->pluck('name', 'id');
         $users = User::pluck('name', 'id');
         $teachers = Teacher::pluck('name', 'id');
         $organizers = Organizer::pluck('name', 'id');
@@ -230,7 +230,7 @@ class EventController extends Controller
             $authorUserId = $this->getLoggedAuthorId();
 
             //$eventCategories = EventCategory::pluck('name', 'id');  // removed because was braking the tests
-            $eventCategories = EventCategory::listsTranslations('name')->pluck('name', 'id');
+            $eventCategories = EventCategory::listsTranslations('name')->orderBy('name')->pluck('name', 'id');
 
             $users = User::pluck('name', 'id');
             $teachers = Teacher::pluck('name', 'id');
