@@ -15,7 +15,7 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-events-calendar');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'laravel-events-calendar');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-events-calendar');
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
@@ -48,9 +48,9 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
             ], 'assets');*/
 
             // Publishing the translation files.
-            /*$this->publishes([
+            $this->publishes([
                 __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-events-calendar'),
-            ], 'lang');*/
+            ], 'lang');
 
             // Registering package commands.
             // $this->commands([]);
