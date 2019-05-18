@@ -8,4 +8,14 @@ return [
     'code' => 'Code',
     'continent' => 'Continent',
     'country' => 'Country',
+    'name' => 'Name',
+    'created_by' => 'Created by',
+    'phone' => 'Phone',
+    'website' => 'Website',
+    'description' => 'Description',
+    
+    
+    
+    
+    
 ];

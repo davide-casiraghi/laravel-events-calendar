@@ -16,7 +16,7 @@
                 <h3>@lang('laravel-events-calendar::country.countries_management')</h3>
             </div>
             <div class="col-12 col-sm-6 mt-4 mt-sm-0 text-right">
-                <a class="btn btn-success create-new" href="{{ route('countries.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('views.create_new_country')</a>
+                <a class="btn btn-success create-new" href="{{ route('countries.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::country.create_new_country')</a>
             </div>
         </div>
 
