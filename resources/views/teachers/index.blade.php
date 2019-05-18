@@ -60,8 +60,8 @@
                         ])
                     </div>
                     <div class="col-12">
-                        <input type="submit" value="@lang('general.search')" class="btn btn-primary float-right ml-2">
-                        <a id="resetButton" class="btn btn-outline-primary float-right" href="#">@lang('general.reset')</a>
+                        <input type="submit" value="@lang('laravel-events-calendar::general.search')" class="btn btn-primary float-right ml-2">
+                        <a id="resetButton" class="btn btn-outline-primary float-right" href="#">@lang('laravel-events-calendar::general.reset')</a>
                     </div>
                 </div>
             </form>
