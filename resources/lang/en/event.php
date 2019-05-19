@@ -23,17 +23,5 @@ return [
     'people' => 'people',
     'select_one_or_more_people' => 'select_one_or_more_people',
     'first_country_event_notice' => 'first_country_event_notice',
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 ];
