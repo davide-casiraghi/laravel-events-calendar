@@ -23,17 +23,5 @@ return [
     'people' => 'People',
     'select_one_or_more_people' => 'Select one or more people, if you are adding a new one the page will be reloaded.',
     'first_country_event_notice' => 'Please notice that if this is the first event inserted for your country it can take up to 15 minutes before your country appear in the homepage search filters.',
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 ];
