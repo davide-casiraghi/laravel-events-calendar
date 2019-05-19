@@ -23,6 +23,6 @@ return [
     'teachers' => 'Teachers',
     'organizers' => 'Organizers',
     'venues' => 'Venues',
-    'select_date' => 'Select date'
+    'select_date' => 'Select date',
 
 ];
