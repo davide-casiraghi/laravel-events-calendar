@@ -18,6 +18,5 @@ return [
     'select_owner' => 'Select owner',
     'select_country' => 'Select country',
     'website' => 'Website',
-    
 
 ];
