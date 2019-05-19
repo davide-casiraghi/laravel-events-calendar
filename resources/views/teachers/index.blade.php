@@ -19,15 +19,15 @@
             <div class="row">
                 <div class="col-12 col-sm-7">
                     @if(Route::current()->getName() == 'teachers.index') 
-                        <h3>@lang('views.teachers_management')</h3>
+                        <h3>@lang('laravel-events-calendar::teacher.teachers_management')</h3>
                     @elseif(Route::current()->getName() == 'teachers.directory') 
-                        <h3>@lang('views.teachers_directory')</h3>
+                        <h3>@lang('laravel-events-calendar::teacher.teachers_directory')</h3>
                     @endif
                 </div>
                 
                 @if(Route::current()->getName() == 'teachers.index') 
                     <div class="col-12 col-sm-5 mt-4 mt-sm-0 text-right">
-                        <a class="btn btn-success create-new" href="{{ route('teachers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('views.create_new_teacher')</a>
+                        <a class="btn btn-success create-new" href="{{ route('teachers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_teacher')</a>
                     </div>
                 @endif
             </div>
@@ -82,7 +82,7 @@
                     
                     @if(Route::current()->getName() == 'teachers.index') 
                         <div class="col-12">
-                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('teachers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('views.create_new_teacher')</a>
+                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('teachers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_teacher')</a>
                         </div>
                     @endif
                 </div>
@@ -117,19 +117,19 @@
                                 <div class="col-12 pb-2 action">
                                     <form action="{{ route('teachers.destroy',$teacher->id) }}" method="POST">
 
-                                        <a class="btn btn-primary float-right" href="{{ route('teachers.edit',$teacher->id) }}">@lang('views.edit')</a>
-                                        <a class="btn btn-outline-primary mr-2 float-right" href="{{ route('teachers.show',$teacher->id) }}">@lang('views.view')</a>
+                                        <a class="btn btn-primary float-right" href="{{ route('teachers.edit',$teacher->id) }}">@lang('laravel-events-calendar::general.edit')</a>
+                                        <a class="btn btn-outline-primary mr-2 float-right" href="{{ route('teachers.show',$teacher->id) }}">@lang('laravel-events-calendar::general.view')</a>
                                         
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="btn btn-link pl-0">@lang('views.delete')</button>
+                                        <button type="submit" class="btn btn-link pl-0">@lang('laravel-events-calendar::general.delete')</button>
                                     </form>
                                 </div>
                             {{-- Teachers directory  --}}
                             @else
                                 <div class="col-12 pb-2 action">
-                                    <a class="btn btn-primary float-right" href="{{ route('teachers.show',$teacher->id) }}">@lang('views.view')</a>
+                                    <a class="btn btn-primary float-right" href="{{ route('teachers.show',$teacher->id) }}">@lang('laravel-events-calendar::general.view')</a>
                                 </div>
                             @endif
                         </div>

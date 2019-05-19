@@ -5,7 +5,7 @@
     <div class="container max-w-md px-0">
         <div class="row mb-4">
             <div class="col-12">
-                <h4>@lang('views.add_new_venue')</h4>
+                <h4>@lang('laravel-events-calendar::venue.add_new_venue')</h4>
             </div>
         </div>
 

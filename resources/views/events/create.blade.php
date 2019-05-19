@@ -14,7 +14,7 @@
     <div class="container max-w-lg px-0">
         <div class="row pt-4">
             <div class="col-12">
-                <h4>@lang('views.add_new_event')</h4>
+                <h4>@lang('laravel-events-calendar::event.add_new_event')</h4>
             </div>
         </div>
         
@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-12 col-md form-sidebar">
                         <h5 class="text-xl">Notice</h5>
-                        <span class="dark-gray">@lang('views.first_country_event_notice')</span>
+                        <span class="dark-gray">@lang('laravel-events-calendar::event.first_country_event_notice')</span>
                     </div>
                     <div class="col-12 col-md main">
                         <div class="row">
@@ -86,8 +86,8 @@
             {{-- People --}}
                 <div class="row">
                     <div class="col form-sidebar">
-                        <h5 class="text-xl">@lang('views.people')</h5>
-                        <span class="dark-gray">@lang('views.select_one_or_more_people')</span>
+                        <h5 class="text-xl">@lang('laravel-events-calendar::event.people')</h5>
+                        <span class="dark-gray">@lang('laravel-events-calendar::event.select_one_or_more_people')</span>
                     </div>
                     <div class="col main">
                         <div class="row">
@@ -105,7 +105,7 @@
                 <div class="row">
                     <div class="col form-sidebar">
                         <h5 class="text-xl">Venue</h5>
-                        <span class="dark-gray">@lang('views.select_venue')</span>
+                        <span class="dark-gray">@lang('laravel-events-calendar::event.select_venue')</span>
                     </div>
                     <div class="col main">
                         <div class="row">
@@ -121,8 +121,8 @@
             {{-- Description --}}
                 <div class="row">
                     <div class="col form-sidebar">
-                        <h5 class="text-xl">@lang('general.description')</h5>
-                        <span class="dark-gray">@lang('views.please_insert_english_translation')</span>
+                        <h5 class="text-xl">@lang('laravel-events-calendar::general.description')</h5>
+                        <span class="dark-gray">@lang('laravel-events-calendar::event.please_insert_english_translation')</span>
                     </div>
                     <div class="col main">
                         <div class="row">
@@ -144,8 +144,8 @@
             {{-- Duration --}}
                 <div class="row">
                     <div class="col form-sidebar">
-                        <h5 class="text-xl">@lang('views.start_end_duration')</h5>
-                        <span class="dark-gray">@lang('views.please_use_repeat_until')</span>
+                        <h5 class="text-xl">@lang('laravel-events-calendar::event.start_end_duration')</h5>
+                        <span class="dark-gray">@lang('laravel-events-calendar::event.please_use_repeat_until')</span>
                     </div>
                     <div class="col main">
                         {{-- Start date --}}
@@ -207,7 +207,7 @@
             {{-- Links --}}
                 <div class="row">
                     <div class="col form-sidebar">
-                        <h5 class="text-xl">@lang('views.contacts_and_links')</h5>
+                        <h5 class="text-xl">@lang('laravel-events-calendar::event.contacts_and_links')</h5>
                     </div>
                     <div class="col main">
                         <div class="row">

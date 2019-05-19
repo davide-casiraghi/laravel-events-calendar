@@ -16,10 +16,10 @@
         @if($eventVenues->count() > 0)
             <div class="row">
                 <div class="col-12 col-sm-7">
-                    <h4>@lang('views.events_venue_management')</h4>
+                    <h4>@lang('laravel-events-calendar::venue.events_venue_management')</h4>
                 </div>
                 <div class="col-12 col-sm-5 mt-4 mt-sm-0 text-right">
-                    <a class="btn btn-success create-new" href="{{ route('eventVenues.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('views.create_new_venue')</a>
+                    <a class="btn btn-success create-new" href="{{ route('eventVenues.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_venue')</a>
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
                     
                     @if(Route::current()->getName() == 'eventVenues.index') 
                         <div class="col-12">
-                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('eventVenues.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('views.create_new_venue')</a>
+                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('eventVenues.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_venue')</a>
                         </div>
                     @endif
                 </div>
@@ -99,13 +99,13 @@
                     <div class="col-12 pb-2 action">
                         <form action="{{ route('eventVenues.destroy',$eventVenue->id) }}" method="POST">
 
-                            <a class="btn btn-primary float-right" href="{{ route('eventVenues.edit',$eventVenue->id) }}">@lang('views.edit')</a>
-                            <a class="btn btn-outline-primary mr-2 float-right" href="{{ route('eventVenues.show',$eventVenue->id) }}">@lang('views.view')</a>
+                            <a class="btn btn-primary float-right" href="{{ route('eventVenues.edit',$eventVenue->id) }}">@lang('laravel-events-calendar::general.edit')</a>
+                            <a class="btn btn-outline-primary mr-2 float-right" href="{{ route('eventVenues.show',$eventVenue->id) }}">@lang('laravel-events-calendar::general.view')</a>
                             
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="btn btn-link pl-0">@lang('views.delete')</button>
+                            <button type="submit" class="btn btn-link pl-0">@lang('laravel-events-calendar::general.delete')</button>
                         </form>
                     </div>
                 </div>    
@@ -125,13 +125,13 @@
                     <div class="col-12 pb-2 action">
                         <form action="{{ route('eventVenues.destroy',$eventVenue->id) }}" method="POST">
 
-                            <a class="btn btn-info mr-2" href="{{ route('eventVenues.show',$eventVenue->id) }}">@lang('views.view')</a>
-                            <a class="btn btn-primary" href="{{ route('eventVenues.edit',$eventVenue->id) }}">@lang('views.edit')</a>
+                            <a class="btn btn-info mr-2" href="{{ route('eventVenues.show',$eventVenue->id) }}">@lang('laravel-events-calendar::general.view')</a>
+                            <a class="btn btn-primary" href="{{ route('eventVenues.edit',$eventVenue->id) }}">@lang('laravel-events-calendar::general.edit')</a>
 
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger float-right">@lang('views.delete')</button>
+                            <button type="submit" class="btn btn-danger float-right">@lang('laravel-events-calendar::general.delete')</button>
                         </form>
                     </div>
                 </div>

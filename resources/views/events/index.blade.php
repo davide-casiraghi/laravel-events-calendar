@@ -17,10 +17,10 @@
         @if($events->count() > 0)
             <div class="row">
                 <div class="col-12 col-sm-7">
-                    <h3>@lang('views.events_management')</h3>
+                    <h3>@lang('laravel-events-calendar::event.events_management')</h3>
                 </div>
                 <div class="col-12 col-sm-5 mt-4 mt-sm-0 text-right">
-                    <a class="btn btn-success create-new" href="{{ route('events.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('views.create_new_event')</a>
+                    <a class="btn btn-success create-new" href="{{ route('events.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_event')</a>
                 </div>
             </div>
 
@@ -83,7 +83,7 @@
                     
                     @if(Route::current()->getName() == 'events.index') 
                         <div class="col-12">
-                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('events.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('views.create_new_event')</a>
+                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('events.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_event')</a>
                         </div>
                     @endif
                 </div>
@@ -110,22 +110,22 @@
                                 <h5 class="darkest-gray">{{ $event->title }}</h5>
                             </div>
                             <div class="col-12 mb-4">
-                                <i data-toggle="tooltip" data-placement="top" title="" class="fa fa-tag mr-1 dark-gray" data-original-title="@lang('general.category')"></i>
+                                <i data-toggle="tooltip" data-placement="top" title="" class="fa fa-tag mr-1 dark-gray" data-original-title="@lang('laravel-events-calendar::general.category')"></i>
                                 {{ $eventCategories[$event->category_id] }}
                                 
-                                <i data-toggle="tooltip" data-placement="top" title="" class="far fa-globe-americas mr-1 ml-4 dark-gray" data-original-title="@lang('general.country')"></i>
+                                <i data-toggle="tooltip" data-placement="top" title="" class="far fa-globe-americas mr-1 ml-4 dark-gray" data-original-title="@lang('laravel-events-calendar::general.country')"></i>
                                 {{ $countries[$venues[$event->venue_id]] }}
                             </div>
                             <div class="col-12 pb-2 action">
                                 <form action="{{ route('events.destroy',$event->id) }}" method="POST">
 
-                                    <a class="btn btn-primary float-right" href="{{ route('events.edit',$event->id) }}">@lang('views.edit')</a>
-                                    <a class="btn btn-outline-primary mr-2 float-right" href="{{ route('events.eventBySlug',$event->slug) }}">@lang('views.view')</a>
+                                    <a class="btn btn-primary float-right" href="{{ route('events.edit',$event->id) }}">@lang('laravel-events-calendar::general.edit')</a>
+                                    <a class="btn btn-outline-primary mr-2 float-right" href="{{ route('events.eventBySlug',$event->slug) }}">@lang('laravel-events-calendar::general.view')</a>
                                     
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-link pl-0">@lang('views.delete')</button>
+                                    <button type="submit" class="btn btn-link pl-0">@lang('laravel-events-calendar::general.delete')</button>
                                 </form>
                             </div>
                         </div>

@@ -61,7 +61,7 @@
                     
                     <div class="col-12 pb-2 action">
                         <form action="{{ route('countries.destroy',$country->id) }}" method="POST">
-                            <a class="btn btn-primary float-right" href="{{ route('countries.edit',$country->id) }}">@lang('views.edit')</a>
+                            <a class="btn btn-primary float-right" href="{{ route('countries.edit',$country->id) }}">@lang('laravel-events-calendar::general.edit')</a>
                             
                             @csrf
                             @method('DELETE')

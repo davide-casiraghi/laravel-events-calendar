@@ -17,7 +17,7 @@
             </button>
         </div>
         <div class="col-12 pb-3">
-            <h4>@lang('views.add_new_teacher')</h4>
+            <h4>@lang('laravel-events-calendar::teacher.add_new_teacher')</h4>
         </div>
     </div>
 
