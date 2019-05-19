@@ -4,7 +4,7 @@ return [
     'add_new_event' => 'Add New event',
     'create_new_event' => 'Create new event',
     'edit_event' => 'Edit event',
-    'event_management' =>  'Events management',
+    'events_management' =>  'Events management',
     'category' => 'Category',
     'date_start' => 'Date Start',
     'date_end' => 'Date End',

@@ -10,5 +10,4 @@ return [
     'city' => 'City',
     'street' => 'Street',
     'zip_code' => 'Zip code',
-
 ];

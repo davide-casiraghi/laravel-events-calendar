@@ -18,12 +18,11 @@ return [
     'delete_translation' => 'Delete translation',
     'select_owner' => 'Select owner',
     'select_country' => 'Select country',
-    'website' => 'Website',
+    'select_date' => 'Select date',
     'email_address' => 'Email address',
     'teachers' => 'Teachers',
     'organizers' => 'Organizers',
     'venues' => 'Venues',
-    'select_date' => 'Select date',
     'choose' => 'Choose...',
     'select_one' => 'Select one',
 ];

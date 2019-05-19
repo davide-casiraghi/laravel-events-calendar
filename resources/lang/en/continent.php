@@ -5,5 +5,5 @@ return [
     'create_new_continent' => 'Create new continent',
     'edit_continent' =>  'Edit continent',
     'continents_management' =>  'Continents management',
-    'continent_code' => 'Menu position',
+    'continent_code' => 'Continent code',
 ];
