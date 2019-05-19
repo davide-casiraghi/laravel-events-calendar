@@ -152,7 +152,7 @@
                                 @include('laravel-events-calendar::partials.input-date', [
                                       'title' => __('laravel-events-calendar::event.date_start'),
                                       'name' => 'startDate',
-                                      'placeholder' => __('laravel-events-calendar::event.select_date'),
+                                      'placeholder' => __('laravel-events-calendar::general.select_date'),
                                       'value' => $dateTime['dateStart'],
                                       'required' => true,
                                 ])
@@ -175,7 +175,7 @@
                                 @include('laravel-events-calendar::partials.input-date', [
                                       'title' =>  __('laravel-events-calendar::event.date_end'),
                                       'name' => 'endDate',
-                                      'placeholder' => __('laravel-events-calendar::event.select_date'),
+                                      'placeholder' => __('laravel-events-calendar::general.select_date'),
                                       'value' => $dateTime['dateEnd'],
                                       'required' => true,
                                 ])

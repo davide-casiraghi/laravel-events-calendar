@@ -16,10 +16,10 @@
         @if($eventVenues->count() > 0)
             <div class="row">
                 <div class="col-12 col-sm-7">
-                    <h4>@lang('laravel-events-calendar::venue.events_venue_management')</h4>
+                    <h4>@lang('laravel-events-calendar::eventVenue.events_venue_management')</h4>
                 </div>
                 <div class="col-12 col-sm-5 mt-4 mt-sm-0 text-right">
-                    <a class="btn btn-success create-new" href="{{ route('eventVenues.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_venue')</a>
+                    <a class="btn btn-success create-new" href="{{ route('eventVenues.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::eventVenue.create_new_venue')</a>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
                     <div class="col-12 col-sm-6 pr-sm-2">
                         @include('laravel-events-calendar::partials.input', [
                             'name' => 'keywords',
-                            'placeholder' => __('laravel-events-calendar::venue.search_by_venue_name'),
+                            'placeholder' => __('laravel-events-calendar::eventVenue.search_by_venue_name'),
                             'value' => $searchKeywords
                         ])
                     </div>
@@ -72,7 +72,7 @@
                     
                     @if(Route::current()->getName() == 'eventVenues.index') 
                         <div class="col-12">
-                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('eventVenues.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_venue')</a>
+                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('eventVenues.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::eventVenue.create_new_venue')</a>
                         </div>
                     @endif
                 </div>

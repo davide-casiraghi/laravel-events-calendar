@@ -11,6 +11,6 @@
         </div>
     </div>
     <div class="col-12 mb-1">
-        <button type="button" data-toggle="modal" class="btn btn-primary float-right" data-remote="{{ route('eventVenues.modal') }}" data-target=".modalFrame"><i class="fa fas fa-plus-circle "></i> @lang('laravel-events-calendar::teacher.views.create_new_venue')</button>
+        <button type="button" data-toggle="modal" class="btn btn-primary float-right" data-remote="{{ route('eventVenues.modal') }}" data-target=".modalFrame"><i class="fa fas fa-plus-circle "></i> @lang('laravel-events-calendar::eventVenue.create_new_venue')</button>
     </div>
 </div>
