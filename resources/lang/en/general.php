@@ -9,6 +9,7 @@ return [
     'continent' => 'Continent',
     'country' => 'Country',
     'name' => 'Name',
+    'title' => 'Title',
     'created_by' => 'Created by',
     'phone' => 'Phone',
     'website' => 'Website',
@@ -18,5 +19,9 @@ return [
     'select_owner' => 'Select owner',
     'select_country' => 'Select country',
     'website' => 'Website',
+    'email_address' => 'Email address',
+    'teachers' => 'Teachers',
+    'organizers' => 'Organizers',
+    'venues' => 'Venues',
 
 ];

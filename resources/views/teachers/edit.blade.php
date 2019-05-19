@@ -23,7 +23,7 @@
                     @include('laravel-events-calendar::partials.input', [
                         'title' => __('laravel-events-calendar::general.name'),
                         'name' => 'name',
-                         'placeholder' => __('homepage-serach.teacher_name'),
+                        'placeholder' => '',
                         'value' => $teacher->name,
                         'required' => true,
                     ])

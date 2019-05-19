@@ -27,7 +27,7 @@
                 
                 @if(Route::current()->getName() == 'teachers.index') 
                     <div class="col-12 col-sm-5 mt-4 mt-sm-0 text-right">
-                        <a class="btn btn-success create-new" href="{{ route('teachers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_teacher')</a>
+                        <a class="btn btn-success create-new" href="{{ route('teachers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.create_new_teacher')</a>
                     </div>
                 @endif
             </div>
@@ -82,7 +82,7 @@
                     
                     @if(Route::current()->getName() == 'teachers.index') 
                         <div class="col-12">
-                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('teachers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_teacher')</a>
+                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('teachers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.create_new_teacher')</a>
                         </div>
                     @endif
                 </div>

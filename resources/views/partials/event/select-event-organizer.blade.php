@@ -27,6 +27,6 @@
         </div>
     </div>
     <div class="col-12 mb-1">
-        <button type="button" data-toggle="modal" class="btn btn-primary float-right" data-remote="{{ route('organizers.modal') }}" data-target=".modalFrame"><i class="fa fas fa-plus-circle "></i> @lang('laravel-events-calendar::teacher.views.create_new_organizer')</button>
+        <button type="button" data-toggle="modal" class="btn btn-primary float-right" data-remote="{{ route('organizers.modal') }}" data-target=".modalFrame"><i class="fa fas fa-plus-circle "></i> @lang('laravel-events-calendar::organizer.create_new_organizer')</button>
     </div>
 </div>

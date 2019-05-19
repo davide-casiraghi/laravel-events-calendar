@@ -22,7 +22,7 @@
                     @include('laravel-events-calendar::partials.input', [
                         'title' => __('laravel-events-calendar::general.name'),
                         'name' => 'name',
-                        'placeholder' => __('homepage-serach.organizer_name'),
+                        'placeholder' => '',
                         'value' => $organizer->name,
                         'required' => true,
                     ])
