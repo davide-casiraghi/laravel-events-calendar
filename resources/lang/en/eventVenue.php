@@ -5,5 +5,14 @@ return [
     'create_new_venue' => 'Create new venue',
     'edit_venue' => 'Edit venue',
     'events_venue_management' => 'Venues management',
+    'country' => 'Country',
+    'state_province' => 'State province',
+    'city' => 'City',
+    'street' => 'Street',
+    'zip_code' => 'Zip code',
+    
+    
+    
+    
 
 ];

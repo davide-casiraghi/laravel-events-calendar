@@ -150,9 +150,9 @@
                         <div class="row">
                             <div class="col-6">
                                 @include('laravel-events-calendar::partials.input-date', [
-                                      'title' => __('views.date_start'),
+                                      'title' => __('laravel-events-calendar::event.date_start'),
                                       'name' => 'startDate',
-                                      'placeholder' => __('views.select_date'),
+                                      'placeholder' => __('laravel-events-calendar::event.select_date'),
                                       'value' => $dateTime['dateStart'],
                                       'required' => true,
                                 ])
@@ -160,9 +160,9 @@
 
                             <div class="col-6">
                                 @include('laravel-events-calendar::partials.input-time', [
-                                      'title' =>  __('views.time_start'),
+                                      'title' =>  __('laravel-events-calendar::event.time_start'),
                                       'name' => 'time_start',
-                                      'placeholder' => __('views.select_time'),
+                                      'placeholder' => __('laravel-events-calendar::event.select_time'),
                                       'value' => $dateTime['timeStart'],
                                       'required' => true,
                                 ])
@@ -173,18 +173,18 @@
                         <div class="row">
                             <div class="col-6">
                                 @include('laravel-events-calendar::partials.input-date', [
-                                      'title' =>  __('views.date_end'),
+                                      'title' =>  __('laravel-events-calendar::event.date_end'),
                                       'name' => 'endDate',
-                                      'placeholder' => __('views.select_date'),
+                                      'placeholder' => __('laravel-events-calendar::event.select_date'),
                                       'value' => $dateTime['dateEnd'],
                                       'required' => true,
                                 ])
                             </div>
                             <div class="col-6">
                                 @include('laravel-events-calendar::partials.input-time', [
-                                      'title' =>  __('views.time_end'),
+                                      'title' =>  __('laravel-events-calendar::event.time_end'),
                                       'name' => 'time_end',
-                                      'placeholder' => __('views.select_time'),
+                                      'placeholder' => __('laravel-events-calendar::event.select_time'),
                                       'value' => $dateTime['timeEnd'],
                                       'required' => true,
                                 ])
@@ -210,16 +210,16 @@
                         <div class="row">
                             <div class="col-12">
                                 @include('laravel-events-calendar::partials.input', [
-                                      'title' =>  __('views.email_for_more_info'),
+                                      'title' =>  __('laravel-events-calendar::event.email_for_more_info'),
                                       'name' => 'contact_email',
-                                      'placeholder' => '', //__('views.email_for_more_info_placeholder')
+                                      'placeholder' => '', //__('laravel-events-calendar::event.email_for_more_info_placeholder')
                                       'value' => $event->contact_email,
                                       'required' => false,
                                 ])
                             </div>
                             <div class="col-12">
                                 @include('laravel-events-calendar::partials.input', [
-                                      'title' =>  __('views.facebook_event'),
+                                      'title' =>  __('laravel-events-calendar::event.facebook_event'),
                                       'name' => 'facebook_event_link',
                                       'placeholder' => 'https://www.facebook.com/events/...',
                                       'value' => $event->facebook_event_link,
@@ -228,7 +228,7 @@
                             </div>
                             <div class="col-12">
                                 @include('laravel-events-calendar::partials.input', [
-                                      'title' => __('views.event_url'),
+                                      'title' => __('laravel-events-calendar::event.event_url'),
                                       'name' => 'website_event_link',
                                       'placeholder' => 'https://www...',
                                       'value' => $event->website_event_link,
@@ -250,7 +250,7 @@
                     <div class="col main">
                         <div class="row">
                             @include('laravel-events-calendar::partials.upload-image', [
-                                  'title' => __('views.upload_event_teaser_image'), 
+                                  'title' => __('laravel-events-calendar::event.upload_event_teaser_image'), 
                                   'name' => 'image',
                                   'folder' => 'events_teaser',
                                   'value' => $event->image,

@@ -36,14 +36,14 @@
                     <div class="col-12 col-sm-6 pr-sm-2">
                         @include('laravel-events-calendar::partials.input', [
                             'name' => 'keywords',
-                            'placeholder' => __('views.search_by_venue_name'),
+                            'placeholder' => __('laravel-events-calendar::venue.search_by_venue_name'),
                             'value' => $searchKeywords
                         ])
                     </div>
                     <div class="col-12 col-sm-6">
                         @include('laravel-events-calendar::partials.select', [
                             'name' => 'country_id',
-                            'placeholder' => __('views.filter_by_country'),
+                            'placeholder' => __('laravel-events-calendar::general.filter_by_country'),
                             'records' => $countries,
                             'seleted' => $searchCountry,
                             'liveSearch' => 'true',

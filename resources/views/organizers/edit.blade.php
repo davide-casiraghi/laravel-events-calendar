@@ -34,7 +34,7 @@
                         @include('laravel-events-calendar::partials.select', [
                               'title' => __('laravel-events-calendar::general.created_by'),
                               'name' => 'created_by',
-                              'placeholder' => __('views.select_owner'),
+                              'placeholder' => __('laravel-events-calendar.select_owner'),
                               'records' => $users,
                               'seleted' => $organizer->created_by,
                               'liveSearch' => 'true',

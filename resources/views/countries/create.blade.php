@@ -40,7 +40,7 @@
                 @include('laravel-events-calendar::partials.select', [
                       'title' => __('laravel-events-calendar::general.continent'),
                       'name' => 'continent_id',
-                      'placeholder' => __('general.select_continent'),
+                      'placeholder' => __('laravel-events-calendar::general.select_continent'),
                       'records' => $continents,
                       'liveSearch' => 'false',
                       'mobileNativeMenu' => true,

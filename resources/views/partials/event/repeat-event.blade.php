@@ -159,13 +159,13 @@
         <div class="col-12 col-xl-5 mt-3 mt-xl-0">
 
             @include('laravel-events-calendar::partials.input-date', [
-                  'title' => __('views.repeat_until'),
+                  'title' => __('laravel-events-calendar::event.repeat_until'),
                   'name' => 'repeat_until',
-                  'placeholder' => __('views.select_date'),
+                  'placeholder' => __('laravel-events-calendar::general.select_date'),
                   'endDate' => '+1y',
                   'value' => $dateTime['repeatUntil'],
                   'tooltipFontAwesomeClass' => 'fa fa-info-circle',
-                  'tooltipText' => __('views.max_until'),
+                  'tooltipText' => __('laravel-events-calendar::event.max_until'),
                   'required' => true,
             ])
 

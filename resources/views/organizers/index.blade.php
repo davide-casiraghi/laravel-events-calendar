@@ -36,7 +36,7 @@
                     <div class="col-12 col-sm-7 pr-sm-2">
                         @include('laravel-events-calendar::partials.input', [
                             'name' => 'keywords',
-                            'placeholder' => __('views.search_by_organizer_name'),
+                            'placeholder' => __('laravel-events-calendar::organizer.search_by_organizer_name'),
                             'value' => $searchKeywords
                         ])
                     </div>

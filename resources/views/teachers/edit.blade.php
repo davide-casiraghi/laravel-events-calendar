@@ -35,7 +35,7 @@
                         @include('laravel-events-calendar::partials.select', [
                               'title' => __('laravel-events-calendar::general.created_by'),
                               'name' => 'created_by',
-                              'placeholder' => __('views.select_owner'),
+                              'placeholder' => __('laravel-events-calendar.select_owner'),
                               'records' => $users,
                               'seleted' => $teacher->created_by,
                               'liveSearch' => 'true',
@@ -49,7 +49,7 @@
                     @include('laravel-events-calendar::partials.select', [
                           'title' => __('laravel-events-calendar::general.country'),
                           'name' => 'country_id',
-                          'placeholder' => __('views.select_country'),
+                          'placeholder' => __('laravel-events-calendar::general.select_country'),
                           'records' => $countries,
                           'seleted' => $teacher->country_id,
                           'liveSearch' => 'true',

@@ -37,7 +37,7 @@
                     <div class="col-12 col-sm-6 order-1">
                         @include('laravel-events-calendar::partials.input', [
                             'name' => 'keywords',
-                            'placeholder' => __('views.search_by_event_name'),
+                            'placeholder' => __('laravel-events-calendar::event.search_by_event_name'),
                             'value' => $searchKeywords
                         ])
                     </div>
@@ -49,7 +49,7 @@
                     <div class="col-12 col-sm-6 order-2 order-sm-3">
                         @include('laravel-events-calendar::partials.select', [
                             'name' => 'category_id',
-                            'placeholder' => __('views.filter_by_category'),
+                            'placeholder' => __('laravel-events-calendar::event.filter_by_category'),
                             'records' => $eventCategories,
                             'seleted' => $searchCategory,
                             'liveSearch' => 'true',
@@ -59,7 +59,7 @@
                     <div class="col-12 col-sm-6 order-3 order-sm-4">
                         @include('laravel-events-calendar::partials.select', [
                             'name' => 'country_id',
-                            'placeholder' => __('views.filter_by_country'),
+                            'placeholder' => __('laravel-events-calendar::event.filter_by_country'),
                             'records' => $countries,
                             'seleted' => $searchCountry,
                             'liveSearch' => 'true',

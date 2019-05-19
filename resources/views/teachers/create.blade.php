@@ -22,7 +22,7 @@
                     @include('laravel-events-calendar::partials.input', [
                           'title' => __('laravel-events-calendar::general.name'),
                           'name' => 'name',
-                          'placeholder' => __('homepage-serach.teacher_name'),
+                          'placeholder' => __('laravel-events-calendar::teacher.teacher_name'),
                           'value' => old('name'),
                           'required' => true,
                     ])
@@ -32,9 +32,9 @@
                 {{--@if(empty($authorUserId))
                     <div class="col-12">
                         @include('laravel-events-calendar::partials.select', [
-                              'title' => __('views.created_by'),
+                              'title' => __('laravel-events-calendar::general.created_by'),
                               'name' => 'created_by',
-                              'placeholder' => __('views.select_owner'),
+                              'placeholder' => __('laravel-events-calendar.select_owner'),
                               'records' => $users,
                               'liveSearch' => 'true',
                               'mobileNativeMenu' => false,
@@ -47,7 +47,7 @@
                     @include('laravel-events-calendar::partials.select', [
                           'title' => __('laravel-events-calendar::general.country'),
                           'name' => 'country_id',
-                          'placeholder' => __('views.select_country'), 
+                          'placeholder' => __('laravel-events-calendar::general.select_country'), 
                           'records' => $countries,
                           'liveSearch' => 'true',
                           'mobileNativeMenu' => false,
