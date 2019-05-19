@@ -21,7 +21,7 @@
                     @include('laravel-events-calendar::partials.input', [
                         'title' => __('laravel-events-calendar::general.name'),
                         'name' => 'name',
-                        'placeholder' => __('homepage-serach.venue_name'),
+                        'placeholder' => '',
                         'value' => old('name'),
                         'required' => true,
                     ])

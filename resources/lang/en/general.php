@@ -24,5 +24,6 @@ return [
     'organizers' => 'Organizers',
     'venues' => 'Venues',
     'select_date' => 'Select date',
-
+    'choose' => 'Choose...',
+    'select_one' => 'Select one',
 ];

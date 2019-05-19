@@ -27,6 +27,5 @@ return [
     'weekly_on' => 'Weekly on',
     'repeat_until' => 'Repeat until',
     'please_insert_english_translation' => 'Please insert also an english translation of your event below the description, even short.',
-    'choose' => 'Choose...',
     'select_category' => 'Select category',
 ];
