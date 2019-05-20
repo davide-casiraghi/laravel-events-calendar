@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'search' => 'Suche',
+    'reset' => 'Zurücksetzten',
+    'edit' => 'Editieren',
+    'delete' => 'Löschen',
+    'code' => 'Code',
+    'continent' => 'Kontinent',
+    'country' => 'Land',
+    'name' => 'Name',
+    'title' => 'Titel',
+    'created_by' => 'Erzeugt von',
+    'phone' => 'Telefon',
+    'website' => 'Website',
+    'description' => 'Beschreibung',
+    'add_new_translation' => 'Neue Übersetzung hinzufügen',
+    'delete_translation' => 'Übersetzung löschen',
+    'select_owner' => 'Besitzer*in auswählen',
+    'select_country' => 'Land auswählen',
+    'select_date' => 'Wähle ein Datum',
+    'email_address' => 'E-Mail-Adresse',
+    'teachers' => 'Lehrer*innen',
+    'organizers' => 'Organisator*innen',
+    'venues' => 'Veranstaltungsort',
+    'choose' => 'Wähle...',
+    'select_one' => 'Wähle ein/es aus',
+];
