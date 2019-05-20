@@ -42,6 +42,10 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                 __DIR__.'/../resources/assets/js' => resource_path('js/vendor/laravel-events-calendar/'),
             ], 'js');
 
+            $this->publishes([
+            __DIR__.'/../resources/assets/images' => public_path('vendor/laravel-events-calendar/images/'),
+            ], 'images');
+
             // Publishing assets.
             /*$this->publishes([
                 __DIR__.'/../resources/assets' => public_path('vendor/laravel-events-calendar'),

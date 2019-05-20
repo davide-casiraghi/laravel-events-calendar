@@ -1,6 +1,22 @@
+$buttonColor: #f08e0d;
+
 .empty-page{
     position: relative;
-    &:after{
+    
+    
+    &.empty-page-venue{
+        top: 10px;
+        right: 10px;
+        
+        background-color: $buttonColor;
+	    -webkit-mask-image: url(/vendor/laravel-events-calendar/images/map-marker-alt.svg);
+	    mask-image: url(/vendor/laravel-events-calendar/images/map-marker-alt.svg);
+	    width: 30px;
+	    height: 30px;
+    }
+    
+    
+    /*&:after{
         font-family: "Font Awesome 5 Pro";
         font-style: normal;
         font-weight: normal;
@@ -40,5 +56,5 @@
     .inner{
         position: relative;
         z-index: 2;
-    }
+    }*/
 }
