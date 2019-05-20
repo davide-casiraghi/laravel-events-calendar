@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'search' => 'Rechercher',
+    'reset' => 'Réinitialiser',
+    'edit' => 'Modifier',
+    'delete' => 'Supprimer',
+    'code' => 'Code',
+    'continent' => 'Continent',
+    'country' => 'Pays',
+    'name' => 'Nom',
+    'title' => 'Titre',
+    'created_by' => 'Créé par',
+    'phone' => 'Téléphone',
+    'website' => 'Site web de l\'événement',
+    'description' => 'Description',
+    'add_new_translation' => 'Ajouter une nouvelle traduction',
+    'delete_translation' => 'Supprimer la traduction',
+    'select_owner' => 'Sélectionner le/la propriétaire-trice',
+    'select_country' => 'Sélectionner le pays',
+    'select_date' => 'Choisir une date',
+    'email_address' => 'Courriel',
+    'teachers' => 'Enseignant-es',
+    'organizers' => 'Organisateur-trice',
+    'venues' => 'Lieux',
+    'choose' => 'Choisir...',
+    'select_one' => 'Sélectionnez une',
+];
