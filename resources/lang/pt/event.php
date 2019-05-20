@@ -18,7 +18,7 @@ return [
     'weekly' => 'Semanal',
     'monthly' => 'Mensal',
     'repeat_until' => 'Repetir até',
-    'please_use_repeat_until' => 'Please notice, if you are creating a repetitive event, the start date and the end date should be the one of the first repetition and be the same.',
+    'please_use_repeat_until' => 'Se você está criando um evento recorrente, primeiro insira a data de início e de fim da PRIMEIRA OCORRÊNCIA do evento.',
     'contacts_and_links' => 'Contatos e Links',
     'select_venue' => 'Selecione o local que irá receber o evento; se você está adicionando um local novo, a página será atualizada.',
     'people' => 'Pessoas',

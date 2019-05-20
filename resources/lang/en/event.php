@@ -18,7 +18,7 @@ return [
     'weekly' => 'Weekly',
     'monthly' => 'Monthly',
     'repeat_until' => 'Repeat until',
-    'please_use_repeat_until' => 'Please notice, if you are creating a repetitive event, the start date and the end date should be the one of the first repetition and be the same.',
+    'please_use_repeat_until' => 'If you are creating a repetitive event, the start date and the end date should be the one of the first repetition and be the same.',
     'contacts_and_links' => 'Contacts and Links',
     'select_venue' => 'Select the venue that will host the event, if you are adding a new one the page will be reloaded.',
     'people' => 'People',
