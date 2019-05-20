@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'add_new_continent' => 'Add new continent',
-    'create_new_continent' => 'Create new continent',
-    'edit_continent' =>  'Edit continent',
-    'continents_management' =>  'Continents management',
-    'continent_code' => 'Continent code',
+    'add_new_continent' => 'Dodaj kontynent',
+    'create_new_continent' => 'Utwórz kontynent',
+    'edit_continent' => 'Edytuj kontynent',
+    'continents_management' => 'Zarządzanie kontynentami',
+    'continent_code' => 'Kod kontynentu',
 ];
