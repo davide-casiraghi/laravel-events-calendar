@@ -23,7 +23,7 @@ return [
     'select_venue' => 'Sélectionnez le lieu qui accueillera l\'événement, si vous en ajoutez un nouveau, la page sera rechargée.',
     'people' => 'Personne',
     'select_one_or_more_people' => 'Sélectionnez une ou plusieurs personnes, si vous en ajoutez une nouvelle, la page sera rechargée.',
-    'first_country_event_notice' => 'Veuillez noter que lorsqu'il s'agit du premier événement inséré pour votre pays, celà peut prendre jusqu\'à 15 minutes avant que votre pays apparaisse dans les filtres de recherche de la page d\'accueil. Sélectionnez d\'abord le/la professeur et le lieu svp. Si vous ne les trouvez pas dans la liste, créez-les d\'abord sur cette page.',
+    'first_country_event_notice' => 'Veuillez noter que lorsqu\'il s\'agit du premier événement inséré pour votre pays, celà peut prendre jusqu\'à 15 minutes avant que votre pays apparaisse dans les filtres de recherche de la page d\'accueil. Sélectionnez d\'abord le/la professeur et le lieu svp. Si vous ne les trouvez pas dans la liste, créez-les d\'abord sur cette page.',
     'repeat_type' => 'Type de fréquence',
     'weekly_on' => 'Hebdomadaire le',
     'please_insert_english_translation' => 'Insérez SVP une traduction en anglais de votre proposition, même courte, sous sa description.',
