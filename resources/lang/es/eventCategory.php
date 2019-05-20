@@ -5,5 +5,5 @@ return [
     'create_new_event_category' => 'Create una nueva categoría',
     'edit_event_category' => 'Editar la categoría del evento',
     'events_category_management' => 'Administración de categorías de eventos',
-    'create_new_category' => 'Create una nueva categoría'',
+    'create_new_category' => 'Create una nueva categoría',
 ];
