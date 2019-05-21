@@ -83,7 +83,7 @@
                     
                     @if(Route::current()->getName() == 'events.index') 
                         <div class="col-12">
-                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('events.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_event')</a>
+                            <a class="btn blue-bg-4 create-new white mt-4" href="{{ route('events.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::event.create_new_event')</a>
                         </div>
                     @endif
                 </div>
