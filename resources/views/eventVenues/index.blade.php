@@ -58,7 +58,7 @@
             </form>
         @else
             {{--  Empty Page --}}
-            <div class="wrap empty-page empty-page-venue min-vh-100">
+            <div class="empty-page empty-page-venue min-vh-100">
                 <div class="row inner">
                     <div class="col-12 mt-5 max-w-sm">
                         <h3 class="mb-4">Create a venue</h3>
@@ -76,6 +76,7 @@
                         </div>
                     @endif
                 </div>
+                <div class="inner-background"></div>
             </div>
         @endif
             
