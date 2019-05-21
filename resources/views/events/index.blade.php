@@ -20,7 +20,7 @@
                     <h3>@lang('laravel-events-calendar::event.events_management')</h3>
                 </div>
                 <div class="col-12 col-sm-5 mt-4 mt-sm-0 text-right">
-                    <a class="btn btn-success create-new" href="{{ route('events.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::teacher.views.create_new_event')</a>
+                    <a class="btn btn-success create-new" href="{{ route('events.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::event.create_new_event')</a>
                 </div>
             </div>
 

@@ -10,22 +10,53 @@ $backgroundImageColor: #e0e8ee;
     
     .inner-background{
         position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 300px;
-        height: 240px;
-        position: absolute;
         background-color: $backgroundImageColor;
         z-index: 0;
     }
     
     &.empty-page-venue {
         .inner-background{
+        width: 263px;
+        height: 350px;
+        top: 100px;
+        right: 0;
          -webkit-mask-image: url(/vendor/laravel-events-calendar/images/regular/map-marker-alt.svg);
         mask-image: url(/vendor/laravel-events-calendar/images/regular/map-marker-alt.svg);
         }
     }
     
+    &.empty-page-event {
+        .inner-background{
+        width: 263px;
+        height: 350px;
+        top: 100px;
+        right: 0;
+         -webkit-mask-image: url(/vendor/laravel-events-calendar/images/regular/calendar-alt.svg);
+        mask-image: url(/vendor/laravel-events-calendar/images/regular/calendar-alt.svg);
+        }
+    }
+    
+    &.empty-page-teacher {
+        .inner-background{
+        width: 263px;
+        height: 350px;
+        top: 100px;
+        right: 0;
+         -webkit-mask-image: url(/vendor/laravel-events-calendar/images/regular/users.svg);
+        mask-image: url(/vendor/laravel-events-calendar/images/regular/users.svg);
+        }
+    }
+    
+    &.empty-page-organizer {
+        .inner-background{
+        width: 263px;
+        height: 350px;
+        top: 100px;
+        right: 0;
+         -webkit-mask-image: url(/vendor/laravel-events-calendar/images/regular/user-alt.svg);
+        mask-image: url(/vendor/laravel-events-calendar/images/regular/user-alt.svg);
+        }
+    }
     
     /*
     &.empty-page-venue{
