@@ -28,7 +28,7 @@ $backgroundImageColor: #e0e8ee;
     &.empty-page-event {
         .inner-background{
         width: 263px;
-        height: 350px;
+        height: 300px;
         top: 100px;
         right: 0;
          -webkit-mask-image: url(/vendor/laravel-events-calendar/images/regular/calendar-alt.svg);
@@ -39,7 +39,7 @@ $backgroundImageColor: #e0e8ee;
     &.empty-page-teacher {
         .inner-background{
         width: 263px;
-        height: 350px;
+        height: 215px;
         top: 100px;
         right: 0;
          -webkit-mask-image: url(/vendor/laravel-events-calendar/images/regular/users.svg);
@@ -50,7 +50,7 @@ $backgroundImageColor: #e0e8ee;
     &.empty-page-organizer {
         .inner-background{
         width: 263px;
-        height: 350px;
+        height: 263px;
         top: 100px;
         right: 0;
          -webkit-mask-image: url(/vendor/laravel-events-calendar/images/regular/user-alt.svg);
