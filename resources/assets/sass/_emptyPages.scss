@@ -21,8 +21,8 @@ $backgroundImageColor: #e0e8ee;
     
     &.empty-page-venue {
         .inner-background{
-         -webkit-mask-image: url(/vendor/laravel-events-calendar/images/map-marker-alt.svg);
-        mask-image: url(/vendor/laravel-events-calendar/images/map-marker-alt.svg);
+         -webkit-mask-image: url(/vendor/laravel-events-calendar/images/regular/map-marker-alt.svg);
+        mask-image: url(/vendor/laravel-events-calendar/images/regular/map-marker-alt.svg);
         }
     }
     
