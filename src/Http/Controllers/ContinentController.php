@@ -62,7 +62,7 @@ class ContinentController extends Controller
         $continent->save();
 
         return redirect()->route('continents.index')
-                        ->with('success', __('messages.continent_added_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.continent_added_successfully'));
     }
 
     /**
@@ -104,7 +104,7 @@ class ContinentController extends Controller
         $continent->update($request->all());
 
         return redirect()->route('continents.index')
-                        ->with('success', __('messages.continent_updated_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.continent_updated_successfully'));
     }
 
     /**
@@ -118,6 +118,6 @@ class ContinentController extends Controller
         $continent->delete();
 
         return redirect()->route('continents.index')
-                        ->with('success', __('messages.continent_deleted_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.continent_deleted_successfully'));
     }
 }

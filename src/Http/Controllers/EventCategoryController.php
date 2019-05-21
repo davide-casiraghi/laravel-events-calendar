@@ -66,7 +66,7 @@ class EventCategoryController extends Controller
         $this->saveOnDb($request, $eventCategory);
 
         return redirect()->route('eventCategories.index')
-                        ->with('success', __('messages.category_added_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.category_added_successfully'));
     }
 
     /**
@@ -107,7 +107,7 @@ class EventCategoryController extends Controller
         $this->saveOnDb($request, $eventCategory);
 
         return redirect()->route('eventCategories.index')
-                        ->with('success', __('messages.category_updated_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.category_updated_successfully'));
     }
 
     /**
@@ -121,7 +121,7 @@ class EventCategoryController extends Controller
         $eventCategory->delete();
 
         return redirect()->route('eventCategories.index')
-                        ->with('success', __('messages.category_deleted_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.category_deleted_successfully'));
     }
 
     // **********************************************************************

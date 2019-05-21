@@ -83,7 +83,7 @@ class CountryController extends Controller
         $country->save();
 
         return redirect()->route('countries.index')
-                        ->with('success', __('messages.country_added_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.country_added_successfully'));
     }
 
     /***************************************************************************/
@@ -134,7 +134,7 @@ class CountryController extends Controller
         $country->update($request->all());
 
         return redirect()->route('countries.index')
-                        ->with('success', __('messages.country_updated_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.country_updated_successfully'));
     }
 
     /***************************************************************************/
@@ -150,7 +150,7 @@ class CountryController extends Controller
         $country->delete();
 
         return redirect()->route('countries.index')
-                        ->with('success', __('messages.country_deleted_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.country_deleted_successfully'));
     }
 
     /***************************************************************************/

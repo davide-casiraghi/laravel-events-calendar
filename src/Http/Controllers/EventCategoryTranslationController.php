@@ -141,6 +141,6 @@ class EventCategoryTranslationController extends Controller
         $eventCategoryTranslation->delete();
 
         return redirect()->route('eventCategories.index')
-                        ->with('success', __('messages.event_category_translation_deleted_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.event_category_translation_deleted_successfully'));
     }
 }

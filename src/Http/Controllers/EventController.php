@@ -141,7 +141,7 @@ class EventController extends Controller
         $this->saveOnDb($request, $event);
 
         return redirect()->route('events.index')
-                        ->with('success', __('messages.event_added_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.event_added_successfully'));
     }
 
     /***************************************************************************/
@@ -301,7 +301,7 @@ class EventController extends Controller
         $this->saveOnDb($request, $event);
 
         return redirect()->route('events.index')
-                        ->with('success', __('messages.event_updated_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.event_updated_successfully'));
     }
 
     /***************************************************************************/
@@ -321,7 +321,7 @@ class EventController extends Controller
         $event->delete();
 
         return redirect()->route('events.index')
-                        ->with('success', __('messages.event_deleted_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.event_deleted_successfully'));
     }
 
     /***************************************************************************/

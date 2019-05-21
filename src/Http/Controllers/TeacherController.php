@@ -128,7 +128,7 @@ class TeacherController extends Controller
         $this->saveOnDb($request, $teacher);
 
         return redirect()->route('teachers.index')
-                        ->with('success', __('messages.teacher_added_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.teacher_added_successfully'));
     }
 
     /***************************************************************************/
@@ -208,7 +208,7 @@ class TeacherController extends Controller
         $this->saveOnDb($request, $teacher);
 
         return redirect()->route('teachers.index')
-                        ->with('success', __('messages.teacher_updated_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.teacher_updated_successfully'));
     }
 
     /***************************************************************************/
@@ -224,7 +224,7 @@ class TeacherController extends Controller
         $teacher->delete();
 
         return redirect()->route('teachers.index')
-                        ->with('success', __('messages.teacher_deleted_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.teacher_deleted_successfully'));
     }
 
     /***************************************************************************/
@@ -306,7 +306,7 @@ class TeacherController extends Controller
 
         $this->saveOnDb($request, $teacher);
 
-        return redirect()->back()->with('message', __('messages.teacher_added_successfully'));
+        return redirect()->back()->with('message', __('laravel-events-calendar::messages.teacher_added_successfully'));
     }
 
     /***************************************************************************/

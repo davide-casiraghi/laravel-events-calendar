@@ -91,7 +91,7 @@ class OrganizerController extends Controller
         $this->saveOnDb($request, $organizer);
 
         return redirect()->route('organizers.index')
-                        ->with('success', __('messages.organizer_added_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.organizer_added_successfully'));
     }
 
     /***************************************************************************/
@@ -145,7 +145,7 @@ class OrganizerController extends Controller
         $this->saveOnDb($request, $organizer);
 
         return redirect()->route('organizers.index')
-                        ->with('success', __('messages.organizer_updated_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.organizer_updated_successfully'));
     }
 
     /***************************************************************************/
@@ -161,7 +161,7 @@ class OrganizerController extends Controller
         $organizer->delete();
 
         return redirect()->route('organizers.index')
-                        ->with('success', __('messages.organizer_deleted_successfully'));
+                        ->with('success', __('laravel-events-calendar::messages.organizer_deleted_successfully'));
     }
 
     /***************************************************************************/
