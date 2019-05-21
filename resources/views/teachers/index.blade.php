@@ -15,7 +15,6 @@
         
         
         @if($teachers->count() > 0) 
-            
             <div class="row">
                 <div class="col-12 col-sm-7">
                     @if(Route::current()->getName() == 'teachers.index') 
@@ -86,6 +85,7 @@
                         </div>
                     @endif
                 </div>
+                <div class="inner-background"></div>
             </div>
             
         @endif

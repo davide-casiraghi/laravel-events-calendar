@@ -87,6 +87,7 @@
                         </div>
                     @endif
                 </div>
+                <div class="inner-background"></div>
             </div>
         @endif
         
