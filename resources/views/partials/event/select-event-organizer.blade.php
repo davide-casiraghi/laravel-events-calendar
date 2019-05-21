@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-12">
         <div class="form-group" >
-            <label>@lang('laravel-events-calendar::event.organizers')</label>
+            <label>@lang('laravel-events-calendar::general.organizers')</label>
             <select id="organizer" class="selectpicker multiselect" multiple data-live-search="true" title="@lang('laravel-events-calendar::general.choose')">
                 @foreach ($organizers as $value => $organizer)
                     <option value="{{$value}}">{!! $organizer !!}</option>
