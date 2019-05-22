@@ -31,4 +31,5 @@ return [
     'write_for_more_info' => 'Scrivici per ricevere maggiori informazioni',
     'write_for_more_info_details' => 'Stai per inviare un\'email agli organizzatori di questo evento',
     'search_by_event_name' => 'Cerca nome evento',
+    'filter_by_category' => 'Filtra per categoria',
 ];

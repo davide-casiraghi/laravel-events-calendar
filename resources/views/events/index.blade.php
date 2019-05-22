@@ -59,7 +59,7 @@
                     <div class="col-12 col-sm-6 order-3 order-sm-4">
                         @include('laravel-events-calendar::partials.select', [
                             'name' => 'country_id',
-                            'placeholder' => __('laravel-events-calendar::event.filter_by_country'),
+                            'placeholder' => __('laravel-events-calendar::general.filter_by_country'),
                             'records' => $countries,
                             'seleted' => $searchCountry,
                             'liveSearch' => 'true',

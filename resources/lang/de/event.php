@@ -31,4 +31,5 @@ return [
     'write_for_more_info' => 'Weitere Informationen anfragen',
     'write_for_more_info_details' => 'Du schickst eine email an den/die Organisator*in der Veranstaltung',
     'search_by_event_name' => 'Suche nach Eventnamen',
+    'filter_by_category' => 'Nach Kategorie filtern',
 ];
