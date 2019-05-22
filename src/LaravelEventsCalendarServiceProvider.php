@@ -3,8 +3,8 @@
 namespace DavideCasiraghi\LaravelEventsCalendar;
 
 use Carbon\Carbon;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
 
 class LaravelEventsCalendarServiceProvider extends ServiceProvider
 {
@@ -97,7 +97,7 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                 __DIR__.'/../database/seeds/EventCategoriesTableSeeder.php' => database_path('seeds/EventCategoriesTableSeeder.php'),
             ], 'seed-event-categories');
         }
-        
+
         /* Directives to manage the dates*/
         Blade::directive('date', function ($expression) {
             return "<?php echo date('d/m/Y', strtotime($expression))?>";
@@ -116,7 +116,6 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
         Blade::directive('time_am_pm', function ($expression) {
             return "<?php echo date('g.i a', strtotime($expression))?>";
         });
-
     }
 
     /**
