@@ -10,4 +10,5 @@ return [
     'city' => 'Città',
     'street' => 'Via',
     'zip_code' => 'CAP',
+    'search_by_venue_name' => 'Cerca nome spazio',
 ];

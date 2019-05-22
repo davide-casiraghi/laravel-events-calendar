@@ -10,4 +10,5 @@ return [
     'city' => 'Stadt',
     'street' => 'Straße',
     'zip_code' => 'Postleitzahl',
+    'search_by_venue_name' => 'Suche nach Veranstaltungsort',
 ];

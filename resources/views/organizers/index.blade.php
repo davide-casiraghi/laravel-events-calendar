@@ -19,7 +19,7 @@
                     <h4>@lang('laravel-events-calendar::organizer.organizers_management')</h4>
                 </div>
                 <div class="col-12 col-sm-6 mt-4 mt-sm-0 text-right">
-                    <a class="btn btn-success create-new" href="{{ route('organizers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::organizer.views.create_new_organizer')</a>
+                    <a class="btn btn-success create-new" href="{{ route('organizers.create') }}"><i class="fa fas fa-plus-circle"></i> @lang('laravel-events-calendar::organizer.create_new_organizer')</a>
                 </div>
             </div>
 
