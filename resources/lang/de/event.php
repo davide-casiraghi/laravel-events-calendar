@@ -29,4 +29,5 @@ return [
     'please_insert_english_translation' => 'Bitte füge unterhalb der Beschreibung auch eine englische Übersetzung deiner Veranstaltung ein, auch kurz.',
     'select_category' => 'Kategorie auswählen',
     'write_for_more_info' => 'Weitere Informationen anfragen',
+    'write_for_more_info_details' => 'Du schickst eine email an den/die Organisator*in der Veranstaltung',
 ];

@@ -29,4 +29,5 @@ return [
     'please_insert_english_translation' => 'Insérez SVP une traduction en anglais de votre proposition, même courte, sous sa description.',
     'select_category' => 'Sélectionner une catégorie',
     'write_for_more_info' => 'Écrire pour plus d\'info',
+    'write_for_more_info_details' => 'Vous envoyez un courriel à l\'organisateur de cet événement',
 ];
