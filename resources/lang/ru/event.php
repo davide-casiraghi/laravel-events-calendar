@@ -30,4 +30,5 @@ return [
     'select_category' => 'Выбрать категорию',
     'write_for_more_info' => 'Написать, чтобы получить больше информации',
     'write_for_more_info_details' => 'Вы отправляете сообщение организатору события',
+    'search_by_event_name' => 'Поиск по названию события',
 ];

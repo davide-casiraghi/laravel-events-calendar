@@ -30,4 +30,5 @@ return [
     'select_category' => 'Wybierz kategorię',
     'write_for_more_info' => 'Napisz, aby uzyskać więcej informacji',
     'write_for_more_info_details' => 'Wysyłasz wiadomość e-mail do organizatora tego wydarzenia',
+    'search_by_event_name' => 'Wyszukaj według nazwy wydarzenia',
 ];

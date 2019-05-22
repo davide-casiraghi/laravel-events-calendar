@@ -30,4 +30,5 @@ return [
     'select_category' => 'Sélectionner une catégorie',
     'write_for_more_info' => 'Écrire pour plus d\'info',
     'write_for_more_info_details' => 'Vous envoyez un courriel à l\'organisateur de cet événement',
+    'search_by_event_name' => 'Recherche par nom d\'événement',
 ];

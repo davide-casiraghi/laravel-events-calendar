@@ -30,4 +30,5 @@ return [
     'select_category' => 'Select category',
     'write_for_more_info' => 'Write for more info',
     'write_for_more_info_details' => 'You are sending an email to the organizer of this event',
+    'search_by_event_name' => 'Search by event name',
 ];
