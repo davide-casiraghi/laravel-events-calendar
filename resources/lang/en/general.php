@@ -3,6 +3,7 @@
 return [
     'search' => 'Search',
     'reset' => 'Reset',
+    'view' => 'View',
     'edit' => 'Edit',
     'delete' => 'Delete',
     'code' => 'Code',
@@ -25,4 +26,5 @@ return [
     'venues' => 'Venues',
     'choose' => 'Choose...',
     'select_one' => 'Select one',
+    'filter_by_country' => 'Filter by country',
 ];

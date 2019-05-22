@@ -12,4 +12,5 @@ return [
     'significant_teachers' => 'Znaczący nauczyciele',
     'facebook_profile' => 'Profil na Facebooku',
     'upload_profile_picture' => 'Prześlij zdjęcie profilowa',
+    'search_by_teacher_name' => 'Wyszukaj według imienia i nazwiska nauczyciela',
 ];

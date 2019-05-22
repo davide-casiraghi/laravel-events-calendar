@@ -12,4 +12,5 @@ return [
     'significant_teachers' => 'Significant teachers',
     'facebook_profile' => 'Facebook profile',
     'upload_profile_picture' => 'Upload profile picture',
+    'search_by_teacher_name' => 'Search by teacher name',
 ];

@@ -12,4 +12,5 @@ return [
     'significant_teachers' => 'Bedeutende CI Lehrer*innen',
     'facebook_profile' => 'Facebook Profil',
     'upload_profile_picture' => 'Profilbild hochladen',
+    'search_by_teacher_name' => 'Suche nach Lehrer*innen Namen',
 ];

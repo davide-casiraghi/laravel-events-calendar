@@ -28,4 +28,5 @@ return [
     'weekly_on' => 'Giorno/i della settimana',
     'please_insert_english_translation' => 'Ti preghiamo di inserire sotto alla descrizione anche una traduzione in inglese, anche breve.',
     'select_category' => 'Seleziona categoria',
+    'write_for_more_info' => 'Scrivici per ricevere maggiori informazioni',
 ];

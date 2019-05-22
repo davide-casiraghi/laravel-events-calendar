@@ -12,4 +12,5 @@ return [
     'significant_teachers' => 'значимые учителя',
     'facebook_profile' => 'Профиль в Фейсбуке',
     'upload_profile_picture' => 'Загрузить картинку профиля',
+    'search_by_teacher_name' => 'Поиск по фио учителя',
 ];

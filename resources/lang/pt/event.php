@@ -28,4 +28,5 @@ return [
     'weekly_on' => 'Semanalmente às',
     'please_insert_english_translation' => 'Por favor, insira também uma tradução em inglês do seu evento, abaixo da descrição, mesmo que curta.',
     'select_category' => 'Selecionar categoria',
+    'write_for_more_info' => 'Escreva para receber mais informações',
 ];

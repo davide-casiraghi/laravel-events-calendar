@@ -28,4 +28,5 @@ return [
     'weekly_on' => 'Weekly on',
     'please_insert_english_translation' => 'Dodaj poniżej opisu angielskie tłumaczenie swojego wydarzenia (może być krótkie).',
     'select_category' => 'Wybierz kategorię',
+    'write_for_more_info' => 'Napisz, aby uzyskać więcej informacji',
 ];

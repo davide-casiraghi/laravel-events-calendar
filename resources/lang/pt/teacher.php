@@ -12,4 +12,5 @@ return [
     'significant_teachers' => 'Professor@s relevant@s',
     'facebook_profile' => 'Perfil no facebook',
     'upload_profile_picture' => 'Carregar imagem do perfil',
+    'search_by_teacher_name' => 'Procurar pelo nome do professor',
 ];

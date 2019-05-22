@@ -3,6 +3,7 @@
 return [
     'search' => 'Buscar',
     'reset' => 'Deshacer',
+    'view' => 'Ver',
     'edit' => 'Editar',
     'delete' => 'Borrar',
     'code' => 'Código',
@@ -25,4 +26,5 @@ return [
     'venues' => 'Lugar',
     'choose' => 'Escoger...',
     'select_one' => 'Seleccione uno',
+    'filter_by_country' => 'Filtrar por país',
 ];

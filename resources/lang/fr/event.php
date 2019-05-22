@@ -28,4 +28,5 @@ return [
     'weekly_on' => 'Hebdomadaire le',
     'please_insert_english_translation' => 'Insérez SVP une traduction en anglais de votre proposition, même courte, sous sa description.',
     'select_category' => 'Sélectionner une catégorie',
+    'write_for_more_info' => 'Écrire pour plus d\'info',
 ];
