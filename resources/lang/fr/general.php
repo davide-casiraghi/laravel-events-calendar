@@ -16,6 +16,7 @@ return [
     'website' => 'Site web de l\'événement',
     'description' => 'Description',
     'add_new_translation' => 'Ajouter une nouvelle traduction',
+    'edit_translation' => 'Modifier la traduction',
     'delete_translation' => 'Supprimer la traduction',
     'select_owner' => 'Sélectionner le/la propriétaire-trice',
     'select_country' => 'Sélectionner le pays',

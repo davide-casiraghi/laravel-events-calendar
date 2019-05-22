@@ -16,6 +16,7 @@ return [
     'website' => 'Website',
     'description' => 'Beschreibung',
     'add_new_translation' => 'Neue Übersetzung hinzufügen',
+    'edit_translation' => 'Übersetzung bearbeiten',
     'delete_translation' => 'Übersetzung löschen',
     'select_owner' => 'Besitzer*in auswählen',
     'select_country' => 'Land auswählen',

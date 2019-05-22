@@ -16,6 +16,7 @@ return [
     'website' => 'Сайт',
     'description' => 'Описание',
     'add_new_translation' => 'Добавить новый перевод',
+    'edit_translation' => 'Редактировать перевод',
     'delete_translation' => 'Удалить перевод',
     'select_owner' => 'Выбрать владельца',
     'select_country' => 'Выбрать страну',
