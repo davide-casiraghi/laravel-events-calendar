@@ -42,7 +42,7 @@ php artisan db:seed --class=EventCategoriesTableSeeder
 > Just the users that have **Admin** and **Super admin** privileges can access to the routes that allow to create, edit and delete the blogs, categories and posts. Otherwise you get redirected to the homepage.
 
 ### Access to the package
-After the package is published it adds three new routes:
+After the package is published this new routes will be available:
 - /eventCategories
 - /events
 - /eventVenues
