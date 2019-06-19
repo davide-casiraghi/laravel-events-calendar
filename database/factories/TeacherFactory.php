@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Teacher::class, function (Faker $faker) {
+$factory->define(Teacher::class, function (Faker $faker) {
     $teacher_name = $faker->name;
     $slug = Str::slug($teacher_name, '-').rand(10000, 100000);
     $year_starting_practice = $faker->numberBetween($min = 1972, $max = 2018);
