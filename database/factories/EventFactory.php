@@ -2,7 +2,6 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Foundation\Auth\User;
-
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 
 /*
