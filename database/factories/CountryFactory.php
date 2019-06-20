@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
