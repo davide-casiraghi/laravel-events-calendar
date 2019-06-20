@@ -4,6 +4,9 @@ use Faker\Generator as Faker;
 use Illuminate\Foundation\Auth\User;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -15,8 +18,14 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 */
 
 $factory->define(Event::class, function (Faker $faker) {
-    $continent = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Continent::class)->create();
-    $country = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Country::class)->create();
+    $continent = Continent::first();
+    if ($continent == null){
+        $continent = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Continent::class)->create();
+    }
+    $country = Country::first();
+    if ($country == null){
+        $country = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Country::class)->create();
+    }
     $eventCategory = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory::class)->create();
 
     $venue = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue::class)->create();
