@@ -190,12 +190,12 @@ class EventVenueController extends Controller
      */
     public function destroy(EventVenue $eventVenue)
     {
-        if (EventVenue::venueContainsEvents($eventVenue->id)){
+        if (EventVenue::venueContainsEvents($eventVenue->id)) {
             return redirect()->route('eventVenues.index')
                             ->with('success', __('laravel-events-calendar::messages.venue_not_deleted'));
-        }
-        else{
+        } else {
             $eventVenue->delete();
+
             return redirect()->route('eventVenues.index')
                             ->with('success', __('laravel-events-calendar::messages.venue_deleted_successfully'));
         }
