@@ -227,8 +227,6 @@ class EventVenueControllerTest extends TestCase
         $response = $this->post('/events', $attributes);
         $venueContainsEvents = EventVenue::venueContainsEvents($attributes['venue_id']);
         $this->assertSame($venueContainsEvents, true);
-        
-        //$response = $this->delete("/eventVenues/".$attributes['venue_id'])->dump();
     }
     
     /** @test */
@@ -238,7 +236,16 @@ class EventVenueControllerTest extends TestCase
         $this->assertSame($venueContainsEvents, false);
     }
     
-    
+    /** @test */
+    public function it_blocks_venue_delete_if_any_event_present()
+    {        
+        $this->authenticate();
+        $attributes = factory(Event::class)->raw(['title'=>'test title']);
+        $response = $this->post('/events', $attributes);
+        
+        $response = $this->followingRedirects()->delete("/eventVenues/".$attributes['venue_id']);
+        $response->assertSee('The venue contains one or more events and cannot be deleted');
+    }
     
     
     
