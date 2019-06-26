@@ -34,4 +34,20 @@ class EventVenue extends Model
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Return true if any event is present in a Venue
+     *
+     * @param int $venueId
+     * @return string
+     */
+    public static function venueContainsEvents($venueId)
+    {
+        $ret = Event::contains('venue_id', $venueId);
+        
+        return $ret;
+    }
+
 }
