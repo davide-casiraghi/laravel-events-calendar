@@ -4,10 +4,10 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventVenueController;
 
 class EventVenueControllerTest extends TestCase
@@ -218,36 +218,32 @@ class EventVenueControllerTest extends TestCase
 
         $this->assertSame($eventVenue->name, $venueName);
     }
-    
+
     /** @test */
     public function it_gets_when_venue_contains_any_event()
-    {        
+    {
         $this->authenticate();
         $attributes = factory(Event::class)->raw(['title'=>'test title']);
         $response = $this->post('/events', $attributes);
         $venueContainsEvents = EventVenue::venueContainsEvents($attributes['venue_id']);
         $this->assertSame($venueContainsEvents, true);
     }
-    
+
     /** @test */
     public function it_gets_when_venue_contains_no_events()
-    {        
+    {
         $venueContainsEvents = EventVenue::venueContainsEvents(1);
         $this->assertSame($venueContainsEvents, false);
     }
-    
+
     /** @test */
     public function it_blocks_venue_delete_if_any_event_present()
-    {        
+    {
         $this->authenticate();
         $attributes = factory(Event::class)->raw(['title'=>'test title']);
         $response = $this->post('/events', $attributes);
-        
-        $response = $this->followingRedirects()->delete("/eventVenues/".$attributes['venue_id']);
+
+        $response = $this->followingRedirects()->delete('/eventVenues/'.$attributes['venue_id']);
         $response->assertSee('The venue contains one or more events and cannot be deleted');
     }
-    
-    
-    
-    
 }
