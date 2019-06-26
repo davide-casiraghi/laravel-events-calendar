@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "dimsav/laravel-translatable": "^9.4",
+        "dimsav/laravel-translatable": "^10.0",
         "fzaninotto/faker": "^1.8",
         "illuminate/support": "5.8.*",
         "intervention/image": "^2.4",
