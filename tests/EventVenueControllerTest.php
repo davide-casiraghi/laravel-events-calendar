@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventVenueController;
 
 class EventVenueControllerTest extends TestCase
@@ -217,4 +218,29 @@ class EventVenueControllerTest extends TestCase
 
         $this->assertSame($eventVenue->name, $venueName);
     }
+    
+    /** @test */
+    public function it_gets_when_venue_contains_any_event()
+    {        
+        $this->authenticate();
+        $attributes = factory(Event::class)->raw(['title'=>'test title']);
+        $response = $this->post('/events', $attributes);
+        $venueContainsEvents = EventVenue::venueContainsEvents($attributes['venue_id']);
+        $this->assertSame($venueContainsEvents, true);
+        
+        //$response = $this->delete("/eventVenues/".$attributes['venue_id'])->dump();
+    }
+    
+    /** @test */
+    public function it_gets_when_venue_contains_no_events()
+    {        
+        $venueContainsEvents = EventVenue::venueContainsEvents(1);
+        $this->assertSame($venueContainsEvents, false);
+    }
+    
+    
+    
+    
+    
+    
 }

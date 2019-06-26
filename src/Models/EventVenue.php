@@ -44,8 +44,14 @@ class EventVenue extends Model
      * @return string
      */
     public static function venueContainsEvents($venueId)
-    {
-        $ret = Event::contains('venue_id', $venueId);
+    {    
+        $events = Event::where('venue_id', '=', $venueId)->first();
+        if ($events === null) {
+           $ret = false;
+        }
+        else{
+            $ret = true;
+        }
         
         return $ret;
     }
