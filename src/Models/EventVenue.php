@@ -38,7 +38,7 @@ class EventVenue extends Model
     /***************************************************************************/
 
     /**
-     * Return true if any event is present in a Venue
+     * Return true if the Venue contains any event
      *
      * @param int $venueId
      * @return string
