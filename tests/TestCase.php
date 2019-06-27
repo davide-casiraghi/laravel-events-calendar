@@ -56,7 +56,7 @@ abstract class TestCase extends BaseTestCase
             LaravelEventsCalendarServiceProvider::class,
             \Mews\Purifier\PurifierServiceProvider::class,
             \Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
-            \Dimsav\Translatable\TranslatableServiceProvider::class,
+            \Astrotomic\Translatable\TranslatableServiceProvider::class,
         ];
     }
 

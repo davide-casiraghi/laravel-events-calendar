@@ -1,8 +1,9 @@
 <?php
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
-
 use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 
 class EventCategory extends Model
 {
@@ -16,7 +17,7 @@ class EventCategory extends Model
 
     /***************************************************************************/
 
-    use \Dimsav\Translatable\Translatable;
+    use Translatable;
 
     public $translatedAttributes = ['name', 'slug'];
     protected $fillable = [];
