@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        @include('laravel-events-calendar::partials.error-management', [
+        @include('laravel-form-partials::error-management', [
             'style' => 'alert-danger',
         ])
 
