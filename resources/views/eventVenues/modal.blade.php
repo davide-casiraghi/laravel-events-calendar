@@ -61,7 +61,7 @@
                 ])
             </div>
             <div class="col-12">
-                @include('laravel-events-calendar::partials.select', [
+                @include('laravel-form-partials::select', [
                       'title' => __('laravel-events-calendar::eventVenue.country'),
                       'name' => 'country_id',
                       'placeholder' => 'Select country',

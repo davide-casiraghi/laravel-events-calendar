@@ -46,7 +46,7 @@
                            {{-- Show the created by field just to the admin and super admin --}}
                            @if(empty($authorUserId))
                                <div class="col-12">
-                                   @include('laravel-events-calendar::partials.select', [
+                                   @include('laravel-form-partials::select', [
                                          'title' => 'Created by',
                                          'name' => 'created_by',
                                          'placeholder' => 'Select owner',
@@ -60,7 +60,7 @@
                            @endif
 
                            <div class="col-12">
-                               @include('laravel-events-calendar::partials.select', [
+                               @include('laravel-form-partials::select', [
                                      'title' => 'Category',
                                      'name' => 'category_id',
                                      'placeholder' => 'Select category',

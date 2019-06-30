@@ -31,7 +31,7 @@
                 {{-- Show the created by field just to the admin and super admin --}}
                 {{--@if(empty($authorUserId))
                     <div class="col-12">
-                        @include('laravel-events-calendar::partials.select', [
+                        @include('laravel-form-partials::select', [
                               'title' => __('laravel-events-calendar::general.created_by'),
                               'name' => 'created_by',
                               'placeholder' => __('laravel-events-calendar.select_owner'),
@@ -44,7 +44,7 @@
                 @endif--}}
 
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.select', [
+                    @include('laravel-form-partials::select', [
                           'title' => __('laravel-events-calendar::general.country'),
                           'name' => 'country_id',
                           'placeholder' => __('laravel-events-calendar::general.select_country'), 

@@ -41,7 +41,7 @@
                         ])
                     </div>
                     <div class="col-12 col-sm-6">
-                        @include('laravel-events-calendar::partials.select', [
+                        @include('laravel-form-partials::select', [
                             'name' => 'country_id',
                             'placeholder' => __('laravel-events-calendar::general.filter_by_country'),
                             'records' => $countries,
