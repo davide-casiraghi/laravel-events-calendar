@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        @include('laravel-events-calendar::partials.buttons-back-submit', [
+        @include('laravel-form-partials::buttons-back-submit', [
             'route' => 'countries.index'  
         ])
 

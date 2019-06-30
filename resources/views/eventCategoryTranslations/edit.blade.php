@@ -48,7 +48,7 @@
         
         <div class="row mt-2">  
             <div class="col-12 action">
-                @include('laravel-events-calendar::partials.buttons-back-submit', [
+                @include('laravel-form-partials::buttons-back-submit', [
                     'route' => 'eventCategories.index'  
                 ])
     </form>
