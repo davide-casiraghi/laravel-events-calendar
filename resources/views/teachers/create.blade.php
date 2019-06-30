@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.textarea', [
+                    @include('laravel-form-partials::textarea', [
                           'title' =>  __('laravel-events-calendar::teacher.bio'),
                           'name' => 'bio',
                           'value' => old('bio'),
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.textarea-plain', [
+                    @include('laravel-form-partials::textarea-plain', [
                           'title' =>  __('laravel-events-calendar::teacher.significant_teachers'),
                           'name' => 'significant_teachers',
                           'value' => old('significant_teachers'),
@@ -116,7 +116,7 @@
                     ])
                 </div>
 
-                @include('laravel-events-calendar::partials.upload-image', [
+                @include('laravel-form-partials::upload-image', [
                       'title' => __('laravel-events-calendar::teacher.upload_profile_picture'), 
                       'name' => 'profile_picture',
                       'folder' => 'teachers_profile',

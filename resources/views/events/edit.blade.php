@@ -127,7 +127,7 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
-                                @include('laravel-events-calendar::partials.textarea', [
+                                @include('laravel-form-partials::textarea', [
                                       'title' => 'Description',
                                       'name' => 'description',
                                       'placeholder' => 'Event description',
@@ -251,7 +251,7 @@
                     </div>
                     <div class="col main">
                         <div class="row">
-                            @include('laravel-events-calendar::partials.upload-image', [
+                            @include('laravel-form-partials::upload-image', [
                                   'title' => __('laravel-events-calendar::event.upload_event_teaser_image'), 
                                   'name' => 'image',
                                   'folder' => 'events_teaser',
