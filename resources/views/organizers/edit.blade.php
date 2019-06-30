@@ -19,7 +19,7 @@
 
              <div class="row">
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.name'),
                         'name' => 'name',
                         'placeholder' => '',
@@ -45,7 +45,7 @@
                 @endif
 
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.email_address'),
                         'name' => 'email',
                         'value' => $organizer->email,
@@ -53,7 +53,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.phone'),
                         'name' => 'phone',
                         'value' => $organizer->phone,
@@ -61,7 +61,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.website'),
                         'name' => 'website',
                         'placeholder' => 'https://...',
@@ -81,7 +81,7 @@
             </div>
 
             {{-- used to not update the slug --}}
-            @include('laravel-events-calendar::partials.input-hidden', [
+            @include('laravel-form-partials::input-hidden', [
                   'name' => 'slug',
                   'value' => $organizer->slug,
             ])

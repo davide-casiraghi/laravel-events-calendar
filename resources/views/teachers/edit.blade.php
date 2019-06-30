@@ -20,7 +20,7 @@
 
              <div class="row">
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.name'),
                         'name' => 'name',
                         'placeholder' => '',
@@ -67,7 +67,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                           'title' => __('laravel-events-calendar::teacher.year_of_starting_to_practice'),
                           'name' => 'year_starting_practice',
                           'placeholder' => 'AAAA',
@@ -76,7 +76,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                           'title' => __('laravel-events-calendar::teacher.year_of_starting_to_teach'),
                           'name' => 'year_starting_teach',
                           'placeholder' => 'AAAA',
@@ -95,7 +95,7 @@
                 </div>
                 
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                           'title' => __('laravel-events-calendar::teacher.facebook_profile'),
                           'name' => 'facebook',
                           'placeholder' => 'https://...',
@@ -104,7 +104,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                           'title' => __('laravel-events-calendar::general.website'),
                           'name' => 'website',
                           'placeholder' => 'https://...',
@@ -122,7 +122,7 @@
             </div>
 
             {{-- used to not update the slug --}}
-            @include('laravel-events-calendar::partials.input-hidden', [
+            @include('laravel-form-partials::input-hidden', [
                   'name' => 'slug',
                   'value' => $teacher->slug,
             ])

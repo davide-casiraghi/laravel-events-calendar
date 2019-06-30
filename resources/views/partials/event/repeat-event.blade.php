@@ -158,7 +158,7 @@
 
         <div class="col-12 col-xl-5 mt-3 mt-xl-0">
 
-            @include('laravel-events-calendar::partials.input-date', [
+            @include('laravel-form-partials::input-date', [
                   'title' => __('laravel-events-calendar::event.repeat_until'),
                   'name' => 'repeat_until',
                   'placeholder' => __('laravel-events-calendar::general.select_date'),

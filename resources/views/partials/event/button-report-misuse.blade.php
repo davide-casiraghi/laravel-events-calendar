@@ -33,17 +33,17 @@
                                    'required' => true,
                              ])
 
-                             @include('laravel-events-calendar::partials.input-hidden', [
+                             @include('laravel-form-partials::input-hidden', [
                                    'name' => 'event_title',
                                    'value' => $event->title
                              ])
 
-                             @include('laravel-events-calendar::partials.input-hidden', [
+                             @include('laravel-form-partials::input-hidden', [
                                    'name' => 'event_id',
                                    'value' => $event->id
                              ])
                              
-                             @include('laravel-events-calendar::partials.input-hidden', [
+                             @include('laravel-form-partials::input-hidden', [
                                    'name' => 'created_by',
                                    'value' => $event->created_by
                              ])

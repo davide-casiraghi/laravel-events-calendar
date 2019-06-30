@@ -18,7 +18,7 @@
 
              <div class="row">
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.name'),
                         'name' => 'name',
                         'placeholder' => '',
@@ -43,7 +43,7 @@
                 @endif
 
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::eventVenue.street'),
                         'name' => 'address',
                         'placeholder' => '',
@@ -52,7 +52,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::eventVenue.city'),
                         'name' => 'city',
                         'placeholder' => '',
@@ -61,7 +61,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::eventVenue.state_province'),
                         'name' => 'state_province',
                         'placeholder' => '',
@@ -81,7 +81,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::eventVenue.zip_code'),
                         'name' => 'zip_code',
                         'placeholder' => '',
@@ -90,7 +90,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.website'),
                         'name' => 'website',
                         'placeholder' => 'https://...',

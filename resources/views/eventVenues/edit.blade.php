@@ -19,7 +19,7 @@
 
              <div class="row">
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.name'),
                         'name' => 'name',
                         'placeholder' => __('laravel-events-calendar::eventVenue.venue_name'),
@@ -45,7 +45,7 @@
                 @endif
 
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::eventVenue.street'),
                         'name' => 'address',
                         'value' => $eventVenue->address,
@@ -53,7 +53,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::eventVenue.city'),
                         'name' => 'city',
                         'value' => $eventVenue->city,
@@ -61,7 +61,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::eventVenue.state_province'),
                         'name' => 'state_province',
                         'value' => $eventVenue->state_province,
@@ -81,7 +81,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::eventVenue.zip_code'),
                         'name' => 'zip_code',
                         'placeholder' => '',
@@ -90,7 +90,7 @@
                     ])
                 </div>
                 <div class="col-12">
-                    @include('laravel-events-calendar::partials.input', [
+                    @include('laravel-form-partials::input', [
                         'title' => __('laravel-events-calendar::general.website'),
                         'name' => 'website',
                         'placeholder' => 'https://...',
@@ -110,7 +110,7 @@
             </div>
 
             {{-- used to not update the slug --}}
-            @include('laravel-events-calendar::partials.input-hidden', [
+            @include('laravel-form-partials::input-hidden', [
                   'name' => 'slug',
                   'value' => $eventVenue->slug,
             ])
