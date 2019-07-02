@@ -40,6 +40,35 @@ class Country extends Model
 
     /***************************************************************************/
 
+    /**
+     * Return the all countries with active events.
+     *
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
+     */
+    public static function getActiveCountries()
+    {
+        $cacheExpireMinutes = 15; // Set the duration time of the cache
+
+        $ret = Cache::remember('active_countries', $cacheExpireMinutes, function () {
+            date_default_timezone_set('Europe/Rome');
+            $searchStartDate = date('Y-m-d', time());
+            $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
+
+            return self::
+            select('countries.*')
+                ->join('event_venues', 'countries.id', '=', 'event_venues.country_id')
+                ->join('events', 'event_venues.id', '=', 'events.venue_id')
+                ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
+                    $join->on('events.id', '=', 'event_repetitions.event_id');
+                })
+                ->get();
+        });
+
+        return $ret;
+    }
+
+    /***************************************************************************/
+
     /*
      * Return active Continent and Countries JSON Tree (for hp select filters, vue component).
      *
