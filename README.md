@@ -34,7 +34,7 @@ php artisan db:seed --class=EventCategoriesTableSeeder
 
 ### Import the scss files
 Add this line to your **resources/sass/app.scss** file:  
-```@import 'vendor/laravel-events-calendar/emptyPages';```
+```@import 'vendor/laravel-events-calendar/emptyPages';```   
 and then run in console:  
 ```npm run dev```  
 
