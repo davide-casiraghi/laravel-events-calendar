@@ -38,21 +38,25 @@
                 switch(radioVal) {
                     case '1':  // No Repeat
                         $('.repeatDetails').hide();
+                        $('.repeatUntilSelector').hide();
                     break;
                     case '2':  // Repeat Weekly
                         $('.repeatDetails').show();
                         $('.onFrequency').hide();
                         $('#onWeekly').show();
+                        $('.repeatUntilSelector').show();
                     break;
                     case '3':  // Repeat Monthly
                         $('.repeatDetails').show();
                         $('.onFrequency').hide();
                         $('#onMonthly').show();
+                        $('.repeatUntilSelector').show();
                     break;
                     case '4':  // Repeat Multiple
                         $('.repeatDetails').show();
                         $('.onFrequency').hide();
                         $('#onMultiple').show();
+                        $('.repeatUntilSelector').hide();
                     break;
                 }
 
@@ -177,7 +181,7 @@
             ])
         </div>
 
-        <div class="col-12 col-xl-5 mt-3 mt-xl-0">
+        <div class="col-12 col-xl-5 mt-3 mt-xl-0 repeatUntilSelector" style="display:none">
 
             @include('laravel-form-partials::input-date', [
                   'title' => __('laravel-events-calendar::event.repeat_until'),
