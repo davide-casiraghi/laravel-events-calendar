@@ -992,6 +992,7 @@ class EventController extends Controller
         $event->facebook_event_link = $request->get('facebook_event_link');
         $event->status = $request->get('status');
         $event->on_monthly_kind = $request->get('on_monthly_kind');
+        $event->multiple_dates = $request->get('multiple_dates');
 
         // Event teaser image upload
         //dd($request->file('image'));
