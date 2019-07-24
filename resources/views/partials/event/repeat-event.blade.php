@@ -165,11 +165,16 @@
         </div>
         
         <div id="onMultiple" class="onFrequency col-12 col-xl-7" style="display:none">
-            <label>@lang('laravel-events-calendar::event.multiple') *</label>
-            <select name="on_multiple_kind" id="on_multiple_kind" class="selectpicker" title="Select repeat multiple kind">
-                <option value="1">1</option>
-            </select>
-            <input type="hidden" name="on_multiple_kind_value" @if(!empty($event->on_multiple_kind))  value="{{$event->on_multiple_kind}}" @endif/>
+            @include('laravel-form-partials::input-date-multiple', [
+                  'title' => __('laravel-events-calendar::event.multiple_dates'),
+                  'name' => 'multiple_dates',
+                  'placeholder' => __('laravel-events-calendar::event.select_multiple_dates'),
+                  'endDate' => '+1y',
+                  'value' => '',
+                  'tooltipFontAwesomeClass' => 'fa fa-info-circle',
+                  'tooltipText' => __('laravel-events-calendar::event.select_multiple_dates'),
+                  'required' => true,
+            ])
         </div>
 
         <div class="col-12 col-xl-5 mt-3 mt-xl-0">
