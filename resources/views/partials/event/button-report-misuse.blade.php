@@ -44,6 +44,11 @@
                              ])
                              
                              @include('laravel-form-partials::input-hidden', [
+                                   'name' => 'event_slug',
+                                   'value' => $event->slug
+                             ])
+                             
+                             @include('laravel-form-partials::input-hidden', [
                                    'name' => 'created_by',
                                    'value' => $event->created_by
                              ])

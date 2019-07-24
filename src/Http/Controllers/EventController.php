@@ -558,6 +558,7 @@ class EventController extends Controller
         $report['message'] = $request->message;
         $report['event_title'] = $request->event_title;
         $report['event_id'] = $request->event_id;
+        $report['event_slug'] = $request->slug;
 
         switch ($request->reason) {
             case '1':
@@ -599,6 +600,7 @@ class EventController extends Controller
         $message['message'] = $request->message;
         $message['event_title'] = $request->event_title;
         $message['event_id'] = $request->event_id;
+        $report['event_slug'] = $request->slug;
 
         /*
         $eventOrganizers = Event::find($request->event_id)->organizers;
