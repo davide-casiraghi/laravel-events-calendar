@@ -36,4 +36,5 @@ return [
     'search_by_event_name' => 'Search by event name',
     'filter_by_category' => 'Filter by category',
     'delete_event' => 'Delete event',
+    'start_end_duration' => 'Start, End, Duration',
 ];
