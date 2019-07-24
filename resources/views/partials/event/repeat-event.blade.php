@@ -49,6 +49,11 @@
                         $('.onFrequency').hide();
                         $('#onMonthly').show();
                     break;
+                    case '4':  // Repeat Multiple
+                        $('.repeatDetails').show();
+                        $('.onFrequency').hide();
+                        $('#onMultiple').show();
+                    break;
                 }
 
             {{-- Set date end to the same day of start if is a repeat event (this is to avoid mistakes of the users that set date end to the end of repetition) --}}
@@ -113,6 +118,9 @@
             <label class="btn btn-primary @if(!empty($event->repeat_type)) {{ $event->repeat_type == 3 ? 'active' : '' }} @endif ">
                 <input type="radio" name="repeat_type" value="3" @if(!empty($event->repeat_type)) {{ $event->repeat_type == 3 ? 'checked' : '' }}@endif> @lang('laravel-events-calendar::event.monthly')
             </label>
+            <label class="btn btn-primary @if(!empty($event->repeat_type)) {{ $event->repeat_type == 4 ? 'active' : '' }} @endif ">
+                <input type="radio" name="repeat_type" value="4" @if(!empty($event->repeat_type)) {{ $event->repeat_type == 4 ? 'checked' : '' }}@endif> @lang('laravel-events-calendar::event.multiple')
+            </label>
         </div>
     </div>
 </div>
@@ -154,6 +162,14 @@
                 <option value="1">1</option>
             </select>
             <input type="hidden" name="on_monthly_kind_value" @if(!empty($event->on_monthly_kind))  value="{{$event->on_monthly_kind}}" @endif/>
+        </div>
+        
+        <div id="onMultiple" class="onFrequency col-12 col-xl-7" style="display:none">
+            <label>@lang('laravel-events-calendar::event.multiple') *</label>
+            <select name="on_multiple_kind" id="on_multiple_kind" class="selectpicker" title="Select repeat multiple kind">
+                <option value="1">1</option>
+            </select>
+            <input type="hidden" name="on_multiple_kind_value" @if(!empty($event->on_multiple_kind))  value="{{$event->on_multiple_kind}}" @endif/>
         </div>
 
         <div class="col-12 col-xl-5 mt-3 mt-xl-0">
