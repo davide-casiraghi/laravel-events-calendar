@@ -174,7 +174,7 @@
                   'name' => 'multiple_dates',
                   'placeholder' => __('laravel-events-calendar::event.select_multiple_dates'),
                   'endDate' => '+1y',
-                  'value' => $event->multiple_dates,
+                  'value' => $dateTime['multipleDates'],
                   'tooltipFontAwesomeClass' => 'fa fa-info-circle',
                   'tooltipText' => __('laravel-events-calendar::event.select_multiple_dates'),
                   'required' => false,

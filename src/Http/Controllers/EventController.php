@@ -109,6 +109,7 @@ class EventController extends Controller
 
         $dateTime = [];
         $dateTime['repeatUntil'] = null;
+        $dateTime['multipleDates'] = null;
 
         return view('laravel-events-calendar::events.create')
             ->with('eventCategories', $eventCategories)
@@ -249,7 +250,8 @@ class EventController extends Controller
             $dateTime['timeStart'] = (isset($eventFirstRepetition->start_repeat)) ? date('g:i A', strtotime($eventFirstRepetition->start_repeat)) : '';
             $dateTime['timeEnd'] = (isset($eventFirstRepetition->end_repeat)) ? date('g:i A', strtotime($eventFirstRepetition->end_repeat)) : '';
             $dateTime['repeatUntil'] = date('d/m/Y', strtotime($event->repeat_until));
-
+            $dateTime['multipleDates'] = $event->multiple_dates;
+            
             // GET Multiple teachers
             $teachersDatas = $event->teachers;
             $teachersSelected = [];
