@@ -199,6 +199,10 @@ class EventController extends Controller
                     $repetitionFrequency = $this->decodeOnMonthlyKind($event->on_monthly_kind);
                     $repetition_text = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
                     break;
+                    
+                case '4': //repeatMultipleDays
+                    $repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
+                    break;
             }
 
         // True if the repetition start and end on the same day
