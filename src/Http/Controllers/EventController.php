@@ -378,6 +378,17 @@ class EventController extends Controller
                         $this->saveMonthlyRepeatDates($event, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
 
                     break;
+                    
+                case '4':  //repeatMultipleDays
+                    // Same of repeatWeekly
+                        $startDate = implode('-', array_reverse(explode('/', $request->get('startDate'))));
+                
+                    // Get the array with single day repeat details
+                        $singleDaysRepeatDatas = explode(',', $request->get('multiple_dates'));
+
+                        $this->saveMultipleRepeatDates($event, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd);
+
+                    break;
             }
     }
 
@@ -515,7 +526,35 @@ class EventController extends Controller
                 break;
         }
     }
-
+    
+    /***************************************************************************/
+    /**
+     * Save all the weekly repetitions inthe event_repetitions table
+     * useful: http://thisinterestsme.com/php-get-first-monday-of-month/.
+     *
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @param  array   $singleDaysRepeatDatas - explode of $request->get('multiple_dates')
+     * @param  string  $startDate (Y-m-d)
+     * @param  string  $timeStart (H:i:s)
+     * @param  string  $timeEnd (H:i:s)
+     * @return void
+     */
+     
+    public function saveMultipleRepeatDates($event, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd)
+    {
+        $dateTime = strtotime($startDate);
+        $day = date('Y-m-d', $dateTime);
+        $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
+        
+        foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
+            
+            $dateTime = strtotime($singleDayRepeatDatas);
+            $day = date('Y-m-d', $dateTime);
+            
+            $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
+        }
+    }
+    
     /***************************************************************************/
 
     /**
@@ -650,7 +689,6 @@ class EventController extends Controller
      */
     public function setEventRepeatFields($request, $event)
     {
-
         // Set Repeat Until
         $event->repeat_type = $request->get('repeat_type');
         if ($request->get('repeat_until')) {
