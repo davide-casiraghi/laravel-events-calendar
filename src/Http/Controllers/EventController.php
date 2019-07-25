@@ -201,7 +201,20 @@ class EventController extends Controller
                     break;
                     
                 case '4': //repeatMultipleDays
-                    $repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
+                    $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
+                    //$repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
+                    $repetition_text = 'The event happens on this dates: ';
+                    
+                    $i = 0;
+                    $len = count($singleDaysRepeatDatas); // to put "," to all items except the last
+                    
+                    foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
+                        $repetition_text .= $singleDayRepeatDatas;
+                        if ($i != $len - 1) {  // not last
+                            $repetition_text .= ', ';
+                        }
+                        $i++;
+                    }
                     break;
             }
 
