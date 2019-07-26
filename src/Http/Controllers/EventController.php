@@ -649,7 +649,7 @@ class EventController extends Controller
         $message['message'] = $request->message;
         $message['event_title'] = $request->event_title;
         $message['event_id'] = $request->event_id;
-        $report['event_slug'] = $request->slug;
+        $message['event_slug'] = $request->slug;
 
         /*
         $eventOrganizers = Event::find($request->event_id)->organizers;
