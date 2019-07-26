@@ -98,13 +98,13 @@ class LaravelEventsCalendarTest extends TestCase
         $startDateMysqlDateFormat = LaravelEventsCalendar::formatDatePickerDateForMysql($startDateFromDatePicker, 1);
         $this->assertEquals($startDateMysqlDateFormat, $todaysMysqlDateFormat);
     }
-    
+
     /** @test */
     public function it_get_string_from_array_separated_by_comma()
     {
-        $testArray = ['first','second','third'];
+        $testArray = ['first', 'second', 'third'];
         $testString = LaravelEventsCalendar::getStringFromArraySeparatedByComma($testArray);
 
-        $this->assertEquals($testString, "first, second, third");
+        $this->assertEquals($testString, 'first, second, third');
     }
 }
