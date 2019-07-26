@@ -1018,15 +1018,13 @@ class EventController extends Controller
     public function saveOnDb($request, $event)
     {
         $countries = Country::getCountries();
-        //$teachers = Teacher::pluck('name', 'id');
-
+        
         $venue = DB::table('event_venues')
                 ->select('event_venues.id AS venue_id', 'event_venues.name AS venue_name', 'event_venues.country_id AS country_id', 'event_venues.continent_id', 'event_venues.city')
                 ->where('event_venues.id', '=', $request->get('venue_id'))
                 ->first();
 
         $event->title = $request->get('title');
-        //$event->description = $request->get('description');
         $event->description = clean($request->get('description'));
         $event->created_by = Auth::id();
         if (! $event->slug) {
