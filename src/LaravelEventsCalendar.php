@@ -33,8 +33,6 @@ class LaravelEventsCalendar
 
     /***************************************************************************/
 
-    /***************************************************************************/
-
     /**
      * It returns a string that is composed by the array values separated by a comma
      *

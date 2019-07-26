@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
@@ -205,7 +206,9 @@ class EventController extends Controller
                     //$repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
                     $repetition_text = 'The event happens on this dates: ';
                     
-                    $i = 0;
+                    $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
+                    
+                    /*$i = 0;
                     $len = count($singleDaysRepeatDatas); // to put "," to all items except the last
                     
                     foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
@@ -214,7 +217,8 @@ class EventController extends Controller
                             $repetition_text .= ', ';
                         }
                         $i++;
-                    }
+                    }*/
+                    
                     break;
             }
 
