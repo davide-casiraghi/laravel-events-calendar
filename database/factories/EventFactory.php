@@ -5,6 +5,7 @@ use Illuminate\Foundation\Auth\User;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,10 @@ $factory->define(Event::class, function (Faker $faker) {
 
     // Generate two teachers and get the IDs eg (3, 4, 5)
     $teachers = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Teacher::class, 2)->create();
-    $teachers_id = '';
-    $i = 0;
+    $teachers_id = '';      
+    $teachers_id .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($teachers);
+    
+    /*$i = 0;
     $len = count($teachers);
     foreach ($teachers as $key => $teacher) {
         $teachers_id .= $teacher->id;
@@ -43,12 +46,15 @@ $factory->define(Event::class, function (Faker $faker) {
             $teachers_id .= ', ';
         }
         $i++;
-    }
+    }*/
 
     // Generate two organizers and get the IDs eg (3, 4, 5)
     $organizers = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Organizer::class, 2)->create();
+    
     $organizers_id = '';
-    $i = 0;
+    $organizers_id .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($organizers);
+    
+    /*$i = 0;
     $len = count($organizers);
     foreach ($organizers as $key => $organizer) {
         $organizers_id .= $organizer->id;
@@ -56,7 +62,7 @@ $factory->define(Event::class, function (Faker $faker) {
             $organizers_id .= ', ';
         }
         $i++;
-    }
+    }*/
 
     $title = $this->faker->sentence($nbWords = 3);
 
