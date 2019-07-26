@@ -39,7 +39,7 @@ class LaravelEventsCalendar
      * @param  array  $array
      * @return string  $ret
      */
-    public static function getStringFromArraySeparatedByComma($array)
+    public function getStringFromArraySeparatedByComma($array)
     {
         $ret = '';
         $i = 0;
