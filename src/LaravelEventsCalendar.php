@@ -32,4 +32,30 @@ class LaravelEventsCalendar
     }
 
     /***************************************************************************/
+
+    /***************************************************************************/
+
+    /**
+     * It returns a string that is composed by the array values separated by a comma
+     *
+     * @param  array  $array
+     * @return string  $ret
+     */
+    public static function getStringFromArraySeparatedByComma($array)
+    {
+        $ret = "";
+        $i = 0;
+        $len = count($array); // to put "," to all items except the last
+        
+        foreach ($array as $key => $value) {
+            $ret .= $value;
+            if ($i != $len - 1) {  // not last
+                $ret .= ', ';
+            }
+            $i++;
+        }
+
+        return $ret;
+    }
+
 }
