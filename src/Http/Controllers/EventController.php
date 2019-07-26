@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
@@ -23,6 +22,7 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 
 class EventController extends Controller
 {
@@ -200,13 +200,13 @@ class EventController extends Controller
                     $repetitionFrequency = $this->decodeOnMonthlyKind($event->on_monthly_kind);
                     $repetition_text = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
                     break;
-                    
+
                 case '4': //repeatMultipleDays
                     $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
                     //$repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
-                    $repetition_text = 'The event happens on this dates: ';        
+                    $repetition_text = 'The event happens on this dates: ';
                     $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
-                    
+
                     break;
             }
 
@@ -260,7 +260,7 @@ class EventController extends Controller
             $dateTime['timeEnd'] = (isset($eventFirstRepetition->end_repeat)) ? date('g:i A', strtotime($eventFirstRepetition->end_repeat)) : '';
             $dateTime['repeatUntil'] = date('d/m/Y', strtotime($event->repeat_until));
             $dateTime['multipleDates'] = $event->multiple_dates;
-            
+
             // GET Multiple teachers
             $teachersDatas = $event->teachers;
             $teachersSelected = [];
@@ -387,11 +387,11 @@ class EventController extends Controller
                         $this->saveMonthlyRepeatDates($event, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
 
                     break;
-                    
+
                 case '4':  //repeatMultipleDays
                     // Same of repeatWeekly
                         $startDate = implode('-', array_reverse(explode('/', $request->get('startDate'))));
-                
+
                     // Get the array with single day repeat details
                         $singleDaysRepeatDatas = explode(',', $request->get('multiple_dates'));
 
@@ -535,8 +535,9 @@ class EventController extends Controller
                 break;
         }
     }
-    
+
     /***************************************************************************/
+
     /**
      * Save all the weekly repetitions inthe event_repetitions table
      * useful: http://thisinterestsme.com/php-get-first-monday-of-month/.
@@ -548,22 +549,20 @@ class EventController extends Controller
      * @param  string  $timeEnd (H:i:s)
      * @return void
      */
-     
     public function saveMultipleRepeatDates($event, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd)
     {
         $dateTime = strtotime($startDate);
         $day = date('Y-m-d', $dateTime);
         $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
-        
+
         foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
-            
             $dateTime = strtotime($singleDayRepeatDatas);
             $day = date('Y-m-d', $dateTime);
-            
+
             $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
         }
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -1069,8 +1068,8 @@ class EventController extends Controller
         // Multiple teachers - populate support column field
         $event->sc_teachers_names = '';
         if ($request->get('multiple_teachers')) {
-            $multiple_teachers = explode(',', $request->get('multiple_teachers'));    
-            $event->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers);    
+            $multiple_teachers = explode(',', $request->get('multiple_teachers'));
+            $event->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers);
         }
 
         // Set the Event attributes about repeating (repeat until field and multiple days)
