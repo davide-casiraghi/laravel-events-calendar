@@ -1067,18 +1067,10 @@ class EventController extends Controller
         $event->sc_continent_id = $venue->continent_id;
 
         // Multiple teachers - populate support column field
-        
-        /*$multiple_teachers = ($request->get('multiple_teachers')) ? explode(',', $request->get('multiple_teachers')) : null;
-        $event->sc_teachers_names = '';      
-        $event->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers);
-        */
+        $event->sc_teachers_names = '';
         if ($request->get('multiple_teachers')) {
-            $multiple_teachers = explode(',', $request->get('multiple_teachers'));
-            
-            $event->sc_teachers_names = '';
+            $multiple_teachers = explode(',', $request->get('multiple_teachers'));    
             $event->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers);    
-        } else {
-            $event->sc_teachers_names = '';
         }
 
         // Set the Event attributes about repeating (repeat until field and multiple days)
