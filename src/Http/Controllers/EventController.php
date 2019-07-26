@@ -204,20 +204,8 @@ class EventController extends Controller
                 case '4': //repeatMultipleDays
                     $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
                     //$repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
-                    $repetition_text = 'The event happens on this dates: ';
-                    
+                    $repetition_text = 'The event happens on this dates: ';        
                     $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
-                    
-                    /*$i = 0;
-                    $len = count($singleDaysRepeatDatas); // to put "," to all items except the last
-                    
-                    foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
-                        $repetition_text .= $singleDayRepeatDatas;
-                        if ($i != $len - 1) {  // not last
-                            $repetition_text .= ', ';
-                        }
-                        $i++;
-                    }*/
                     
                     break;
             }
@@ -1079,19 +1067,16 @@ class EventController extends Controller
         $event->sc_continent_id = $venue->continent_id;
 
         // Multiple teachers - populate support column field
+        
+        /*$multiple_teachers = ($request->get('multiple_teachers')) ? explode(',', $request->get('multiple_teachers')) : null;
+        $event->sc_teachers_names = '';      
+        $event->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers);
+        */
         if ($request->get('multiple_teachers')) {
             $multiple_teachers = explode(',', $request->get('multiple_teachers'));
-            $i = 0;
-            $len = count($multiple_teachers); // to put "," to all items except the last
+            
             $event->sc_teachers_names = '';
-            foreach ($multiple_teachers as $key => $teacher_id) {
-                $event->sc_teachers_names .= $teachers[$teacher_id];
-
-                if ($i != $len - 1) {  // not last
-                    $event->sc_teachers_names .= ', ';
-                }
-                $i++;
-            }
+            $event->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers);    
         } else {
             $event->sc_teachers_names = '';
         }
