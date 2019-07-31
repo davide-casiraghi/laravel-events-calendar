@@ -490,7 +490,7 @@ class EventControllerTest extends TestCase
         ]);
         $this->post('/events', $eventAttributes)->dump();
 
-        /*$eventCreated = Event::first();
+        $eventCreated = Event::first();
 
         $filters = [
             'keywords' => 'test title',
@@ -507,7 +507,7 @@ class EventControllerTest extends TestCase
 
         $events = Event::getEvents($filters, $itemPerPage);
         //dd($events[0]);
-        $this->assertEquals($events[0]->title, 'test title');*/
+        $this->assertEquals($events[0]->title, 'test title');
     }
 
     /** @test */
