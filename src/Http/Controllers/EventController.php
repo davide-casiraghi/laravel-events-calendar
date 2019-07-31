@@ -202,9 +202,11 @@ class EventController extends Controller
                     break;
 
                 case '4': //repeatMultipleDays
+                    $dateStart = date('d/m/Y', strtotime($firstRpDates->start_repeat));
                     $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
                     //$repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
                     $repetition_text = 'The event happens on this dates: ';
+                    $repetition_text .= $dateStart.", ";
                     $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
 
                     break;
