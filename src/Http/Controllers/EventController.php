@@ -206,7 +206,7 @@ class EventController extends Controller
                     $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
                     //$repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
                     $repetition_text = 'The event happens on this dates: ';
-                    $repetition_text .= $dateStart.", ";
+                    $repetition_text .= $dateStart.', ';
                     $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
 
                     break;
