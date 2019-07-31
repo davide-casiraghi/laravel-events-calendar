@@ -488,7 +488,7 @@ class EventControllerTest extends TestCase
             'title'=>'test title',
             'multiple_teachers' => $teacher->id,
         ]);
-        $this->post('/events', $eventAttributes)->dump();
+        $this->post('/events', $eventAttributes);
 
         $eventCreated = Event::first();
 
