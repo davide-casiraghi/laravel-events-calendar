@@ -126,8 +126,14 @@
                     {{ $venue->address }}<br />
                     {{ $venue->city }}<br />
                     {{ $venue->zip_code }}<br />
-                    <b>{{ $country->name }}</b><br />
-                    {{ $venue->website }}<br /><br />
+                    <b>{{ $country->name }}</b><br /><br />
+                    
+                    @if(!empty($venue->website))
+                        <i class="fa fa-external-link dark-gray" style="margin-right: 10px;"></i>
+                        <a href="{{ $venue->website }}" target="_blank">{{ $venue->website }}</a>    
+                        <br /><br />
+                    @endif
+                    
                     {!! $venue->description !!}<br />
                 </div>
                 
