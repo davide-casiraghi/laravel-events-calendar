@@ -151,4 +151,38 @@
             </div>
 
     </div>
+    
+    {{-- Google Structured datas --}}
+    <script type="application/ld+json">
+	{
+		"startDate":"{{Carbon\Carbon::parse($datesTimes->start_repeat)->toIso8601String()}}",
+		"endDate":"{{Carbon\Carbon::parse($datesTimes->end_repeat)->toIso8601String()}}",
+		"name":"{{ $event->title }}",
+		"url":"{{Request::url()}}",
+		@if(!empty($event->image)) "image":"/storage/images/events_teaser/{{ $event->image }}", @endif
+		"eventStatus":"EventScheduled",
+		"location":{
+			"address":
+				{
+					"addressCountry":"{{$country->name}}",
+					"addressLocality":"{{$country->name}}",
+					"addressRegion":"{{$country->name}}",
+					"streetAddress":"{{$venue->address}}",
+					"postalCode":"{{$venue->zip_code}}",
+                    "@type":"PostalAddress"
+				},
+			"@type":"Place",
+			"name":"{{$venue->name}}"
+		},
+		"@context":"http://schema.org",
+		{{-- "organizer":{
+				"url":"https://www.eventbrite.ca/o/idriz-dragonjic-zig-25383244579",
+				"@type":"Organization",
+				"name":"Idriz Dragonjic-\u201cZig\u201d"
+			},--}}
+		"@type":"DanceEvent",
+		"description":"{{ strip_tags($event->description) }} "
+	}
+    </script>
+    
 @endsection
