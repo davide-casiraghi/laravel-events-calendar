@@ -160,7 +160,11 @@
 		"name":"{{ $event->title }}",
         "about":"Contact Improvisation",
 		"url":"{{Request::url()}}",
-		@if(!empty($event->image)) "image":"/storage/images/events_teaser/{{ $event->image }}", @endif
+		@if(!empty($event->image)) 
+            "image":"/storage/images/events_teaser/{{ $event->image }}", 
+        @else
+            "image":"/storage/logo/fb_logo_cigc_red.jpg", 
+        @endif
 		"eventStatus":"EventScheduled",
 		"location":{
 			"address":
