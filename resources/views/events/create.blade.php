@@ -92,6 +92,8 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
+                                <select-teacher></select-teacher>
+                        
                                 @include('laravel-events-calendar::partials.event.select-event-teacher')
                                 @include('laravel-events-calendar::partials.event.select-event-organizer')
                             </div>

@@ -1,31 +1,40 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
+            {{demo}}
+            <br />
+            <button v-on:click="showModal">Show Modal</button>
+            
+            <b-modal ref="myModal">
+                <div class="d-block text-center">
+                    <h3>Fancy</h3>
+                    <a class="fancybox" href="https://images.pexels.com/photos/1411677/pexels-photo-1411677.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        Open
+                    </a>
                 </div>
-            </div>
+            </b-modal>
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        props : [
+           'select_a_continent_placeholder',
+           'select_a_country_placeholder',
+           'continent-selected', 
+           'country-selected',
+       ],
         mounted() {
             console.log('Component mounted.');
             //this.loadData();
             
         },
-        /*data() {
+        data() {
             return {
                 demo:'hi there'
             }
-       },*/
+       },
        
        methods: {
            showModal:function(){
