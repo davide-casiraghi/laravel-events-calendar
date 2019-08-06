@@ -10,7 +10,16 @@
 @section('javascript-document-ready')
     @parent
     {{-- End date update after start date has changed, and doesn't allow to select a date before the start --}}
-    alert("ciao");
+    
+    
+    /*$("#save").click(function(){
+        alert("save");        
+    });*/
+    
+    $("form").on('submit', function(event){
+        event.preventDefault();
+        alert("save_1"); 
+    });
 @stop
 
 @section('content')
@@ -119,7 +128,7 @@
                 <button type="button" class="btn btn-primary" data-dismiss="modal">@lang('laravel-events-calendar::general.close')</button>
             </div>
             <div class="col-6 pull-right">
-              <button type="submit" class="btn btn-primary float-right">@lang('laravel-events-calendar::general.submit')</button>
+              <button id="save" type="submit" class="btn btn-primary float-right">@lang('laravel-events-calendar::general.submit')</button>
             </div>
         </div>
 
