@@ -7,6 +7,12 @@
 
 @extends('laravel-events-calendar::layouts.modal')
 
+@section('javascript-document-ready')
+    @parent
+    {{-- End date update after start date has changed, and doesn't allow to select a date before the start --}}
+    alert("ciao");
+@stop
+
 @section('content')
     
     <div class="row">
