@@ -107,7 +107,7 @@ class EventController extends Controller
         //$venues = EventVenue::pluck('name', 'id');
         $venues = DB::table('event_venues')
                 ->select('id', 'name', 'city')->get();
-                
+
         $countries = Country::orderBy('name')->pluck('name', 'id');
 
         $dateTime = [];
