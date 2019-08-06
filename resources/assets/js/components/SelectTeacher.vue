@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             {{demo}}
             <br />
-            <button v-on:click="showModal">Show Modal</button>
+            <button type="button" v-on:click="showModal">Show Modal</button>
             
             <b-modal ref="myModal">
                 <div class="d-block text-center">
