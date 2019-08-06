@@ -19,6 +19,21 @@
     $("form").on('submit', function(event){
         event.preventDefault();
         alert("save_1"); 
+        
+        $.ajax({
+            url: '{{ route('teachers.storeFromModal') }}',
+            data: {
+                display: $('#myInput').val(),
+            },
+            type: 'POST',
+            success: function(res) {
+                $('.modalFrame').modal('hide');
+            },
+            error: function(error) {
+                $('.modalFrame').modal('hide');
+                console.log(error);
+            }
+        })
     });
 @stop
 
