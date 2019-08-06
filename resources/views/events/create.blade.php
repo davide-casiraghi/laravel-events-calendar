@@ -92,6 +92,17 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
+                                <select-teacher></select-teacher>
+                                
+                                {{-- Teacher modal --}}
+                            {{--    $countries = Country::getCountries();--}}
+
+                            
+                                
+                                @include('laravel-events-calendar::teachers.modal', [
+                                    'countries' => $countries,
+                                ])
+                                
                                 @include('laravel-events-calendar::partials.event.select-event-teacher')
                                 @include('laravel-events-calendar::partials.event.select-event-organizer')
                             </div>

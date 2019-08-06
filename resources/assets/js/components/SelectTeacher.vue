@@ -1,16 +1,20 @@
 <template>
-    {{demo}}
-    <br />
-    <button v-on:click="showModal">Show Modal</button>
-    
-    <b-modal ref="myModal">
-        <div class="d-block text-center">
-            <h3>Fancy</h3>
-            <a class="fancybox" href="https://images.pexels.com/photos/1411677/pexels-photo-1411677.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                Open
-            </a>
+    <div class="container">
+        <div class="row justify-content-center">
+            <br />
+            <button type="button" v-on:click="showModal">Create a new teacher</button>
+            
+            <b-modal ref="myModal">
+                <div class="d-block text-center">
+                    <h3>Fancy</h3>
+                    {{demo}}
+                    <a class="fancybox" href="https://images.pexels.com/photos/1411677/pexels-photo-1411677.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        Open
+                    </a>
+                </div>
+            </b-modal>
         </div>
-    </b-modal>
+    </div>
 </template>
 
 <script>
@@ -28,7 +32,7 @@
         },
         data() {
             return {
-                demo:'hi there'
+                demo: document.getElementById('content').innerHTML + 'from Vue'
             }
        },
        
@@ -46,7 +50,4 @@
             }
         },
     }
-
-
-
 </script>
