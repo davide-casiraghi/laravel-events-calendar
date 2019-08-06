@@ -107,6 +107,8 @@ class EventController extends Controller
         //$venues = EventVenue::pluck('name', 'id');
         $venues = DB::table('event_venues')
                 ->select('id', 'name', 'city')->get();
+                
+        $countries = Country::orderBy('name')->pluck('name', 'id');
 
         $dateTime = [];
         $dateTime['repeatUntil'] = null;
@@ -118,6 +120,7 @@ class EventController extends Controller
             ->with('teachers', $teachers)
             ->with('organizers', $organizers)
             ->with('venues', $venues)
+            ->with('countries', $countries)
             ->with('dateTime', $dateTime)
             ->with('authorUserId', $authorUserId);
     }
