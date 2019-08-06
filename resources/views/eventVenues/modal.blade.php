@@ -101,10 +101,10 @@
 
        <div class="row mt-5">
            <div class="col-6 pull-left">
-               <button type="button" class="btn btn-primary" data-dismiss="modal">@lang('general.close')</button>
+               <button type="button" class="btn btn-primary" data-dismiss="modal">@lang('laravel-events-calendar::general.close')</button>
            </div>
            <div class="col-6 pull-right">
-               <button type="submit" class="btn btn-primary float-right">@lang('general.submit')</button>
+               <button type="submit" class="btn btn-primary float-right">@lang('laravel-events-calendar::general.submit')</button>
            </div>
        </div>
 
