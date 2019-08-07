@@ -215,7 +215,7 @@ class OrganizerController extends Controller
         $organizer = new Organizer();
 
         $organizerId = $this->saveOnDb($request, $organizer);
-        $organizer = Teacher::find($organizerId);
+        $organizer = Organizer::find($organizerId);
 
         return response()->json([
                         'organizerId' => $organizerId,
