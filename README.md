@@ -38,6 +38,14 @@ Add this line to your **resources/sass/app.scss** file:
 and then run in console:  
 ```npm run dev```  
 
+### Import the js files
+Run in the command line:   
+```npm i jquery-validation```   
+
+Add this line to your **resources/js/app.js** file:  
+```import 'jquery-validation';```
+
+
 ## Usage
 
 ### Authorization
