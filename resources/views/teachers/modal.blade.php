@@ -12,39 +12,57 @@
     {{-- End date update after start date has changed, and doesn't allow to select a date before the start --}}
     
     
-    /*$("#save").click(function(){
-        alert("save");        
-    });*/
-    
-    $("form").on('submit', function(event){
-        event.preventDefault();
-        alert("save_1"); 
-        
-        $.ajax({
-            url: '/create-teacher/modal/',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                name: $("input[name='name']").val(),
-                country_id: $("select[name='country_id']").val(),
-                bio: $("textarea[name='bio']").val(),
-                year_starting_practice: $("input[name='year_starting_practice']").val(),
-                year_starting_teach: $("input[name='year_starting_teach']").val(),
-                significant_teachers: $("textarea[name='significant_teachers']").val(),                
-                facebook: $("input[name='facebook']").val(),
-                website: $("input[name='website']").val(),
-                profile_picture: $("input[name='profile_picture']").val()
+    $('#teacherModalForm').validate({
+        rules: {
+            name: "required",
+            bio: "required",
+            year_starting_practice: {
+                required: true,
+                range: [1972, {{Carbon\Carbon::now()->year}}],
             },
-            type: 'POST',
-            success: function(res) {
-                //console.log("teacher created succesfully");
-                //$('.modalFrame').modal('hide');
+            year_starting_teach: {
+                required: true,
+                range: [1972, {{Carbon\Carbon::now()->year}}]
             },
-            error: function(error) {
-                //$('.modalFrame').modal('hide');
-                //console.log(error);
+            significant_teachers: "required",
+            facebook: {
+                required: false,
+                url: true
+            },
+            website: {
+                required: false,
+                url: true
             }
-        })
+        },
+        submitHandler: function(form) {
+            //alert("Do some stuff... 2");
+            $.ajax({
+                url: '/create-teacher/modal/',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    name: $("input[name='name']").val(),
+                    country_id: $("select[name='country_id']").val(),
+                    bio: $("textarea[name='bio']").val(),
+                    year_starting_practice: $("input[name='year_starting_practice']").val(),
+                    year_starting_teach: $("input[name='year_starting_teach']").val(),
+                    significant_teachers: $("textarea[name='significant_teachers']").val(),                
+                    facebook: $("input[name='facebook']").val(),
+                    website: $("input[name='website']").val(),
+                    profile_picture: $("input[name='profile_picture']").val()
+                },
+                type: 'POST',
+                success: function(res) {
+                    console.log("teacher created succesfully");
+                    $('.modalFrame').modal('hide');
+                },
+                error: function(error) {
+                    //$('.modalFrame').modal('hide');
+                    console.log(error);
+                }          
+            });
+        }
     });
+    
 @stop
 
 @section('content')
@@ -65,7 +83,7 @@
           'style' => 'alert-danger',
     ])
 
-    <form action="{{ route('teachers.storeFromModal') }}" method="POST" enctype="multipart/form-data">
+    <form id="teacherModalForm" action="{{ route('teachers.storeFromModal') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
          <div class="row">
