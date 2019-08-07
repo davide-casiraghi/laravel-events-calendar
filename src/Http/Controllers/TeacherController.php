@@ -299,10 +299,10 @@ class TeacherController extends Controller
         $teacher = new Teacher();
 
         // Validate form datas
-        $validator = $this->teachersValidator($request);
+        /*$validator = $this->teachersValidator($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
-        }
+        }*/
 
         $this->saveOnDb($request, $teacher);
 

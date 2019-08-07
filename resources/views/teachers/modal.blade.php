@@ -21,17 +21,27 @@
         alert("save_1"); 
         
         $.ajax({
-            url: '{{ route('teachers.storeFromModal') }}',
+            url: '/create-teacher/modal/',
             data: {
-                display: $('#myInput').val(),
+                "_token": "{{ csrf_token() }}",
+                name: $("input[name='name']").val(),
+                country_id: $("input[name='country_id']").val(),
+                bio: $("input[textarea='bio']").val(),
+                year_starting_practice: $("input[name='year_starting_practice']").val(),
+                year_starting_teach: $("input[name='year_starting_teach']").val(),
+                significant_teachers: $("input[textarea='significant_teachers']").val(),
+                facebook: $("input[name='facebook']").val(),
+                website: $("input[name='website']").val(),
+                profile_picture: $("input[name='profile_picture']").val()
             },
             type: 'POST',
             success: function(res) {
-                $('.modalFrame').modal('hide');
+                //console.log("teacher created succesfully");
+                //$('.modalFrame').modal('hide');
             },
             error: function(error) {
-                $('.modalFrame').modal('hide');
-                console.log(error);
+                //$('.modalFrame').modal('hide');
+                //console.log(error);
             }
         })
     });
@@ -123,7 +133,7 @@
             </div>
             <div class="col-12">
                 @include('laravel-form-partials::input', [
-                      'title' => __('laravel-events-calendar::teacher.website'),
+                      'title' => __('laravel-events-calendar::general.website'),
                       'name' => 'website',
                       'placeholder' => 'https://...',
                       'value' => '',
