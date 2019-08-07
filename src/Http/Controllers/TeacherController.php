@@ -270,7 +270,7 @@ class TeacherController extends Controller
         }
 
         $teacher->save();
-        
+
         return $teacher->id;
     }
 

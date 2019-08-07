@@ -33,5 +33,5 @@ return [
     'status' => 'Status',
     'published' => 'Published',
     'unpublished' => 'Unpublished',
-    
+
 ];
