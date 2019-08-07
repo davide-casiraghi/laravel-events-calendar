@@ -9,7 +9,7 @@
 @section('javascript-document-ready')
     @parent
     
-    $('#teacherModalForm').validate({
+    $('#organizerModalForm').validate({
         rules: {
             name: "required",
             email: {
@@ -28,27 +28,21 @@
                 data: {
                     "_token": "{{ csrf_token() }}",
                     name: $("input[name='name']").val(),
-                    country_id: $("select[name='country_id']").val(),
-                    bio: $("textarea[name='bio']").val(),
-                    year_starting_practice: $("input[name='year_starting_practice']").val(),
-                    year_starting_teach: $("input[name='year_starting_teach']").val(),
-                    significant_teachers: $("textarea[name='significant_teachers']").val(),                
-                    facebook: $("input[name='facebook']").val(),
+                    description: $("textarea[name='description']").val(),
                     website: $("input[name='website']").val(),
-                    profile_picture: $("input[name='profile_picture']").val()
+                    email: $("input[name='email']").val(),
+                    phone: $("input[name='phone']").val()
                 },
                 type: 'POST',
                 success: function(res) {
-                    console.log("teacher created succesfully");
-                    console.log(res.teacherId);
+                    console.log("organizer created succesfully");
+                    console.log(res.organizerId);
                     $('.modalFrame').modal('hide');
-                    //$("input[name='multiple_teachers']").addClass('ciao');
                     
-                    // maybe we don't need this line
-                    $("input[name='multiple_teachers']").val($("input[name='multiple_teachers']").val() + ", " + res.teacherId);
+                    $("select#organizer").append('<option value="'+res.organizerId+'" selected="">'+res.organizerName+'</option>');
+                    $("select#organizer").selectpicker("refresh");
                     
-                    $("select#teacher").append('<option value="'+res.teacherId+'" selected="">'+res.teacherName+'</option>');
-                    $("select#teacher").selectpicker("refresh");
+                    $("input[name='multiple_organizers']").val($("input[name='multiple_organizers']").val() + ", " + res.organizerId);
                 },
                 error: function(error) {
                     //$('.modalFrame').modal('hide');
@@ -77,7 +71,7 @@
           'style' => 'alert-danger',
     ])
 
-    <form action="{{ route('organizers.storeFromModal') }}" method="POST">
+    <form id="organizerModalForm" action="{{ route('organizers.storeFromModal') }}" method="POST">
         @csrf
 
         <div class="row">
