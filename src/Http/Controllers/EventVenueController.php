@@ -227,7 +227,7 @@ class EventVenueController extends Controller
         }
         $eventVenue->created_by = Auth::id();
         $eventVenue->save();
-        
+
         return $eventVenue->id;
     }
 
@@ -256,7 +256,7 @@ class EventVenueController extends Controller
     public function storeFromModal(Request $request)
     {
         $eventVenue = new EventVenue();
-        
+
         $eventVenueId = $this->saveOnDb($request, $eventVenue);
         $eventVenue = EventVenue::find($eventVenueId);
 
