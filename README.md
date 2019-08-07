@@ -41,9 +41,15 @@ and then run in console:
 ### Import the js files
 Run in the command line:   
 ```npm i jquery-validation```   
+```npm i bootstrap-select```   
+```npm i bootstrap-timepicker```   
 
 Add this line to your **resources/js/app.js** file:  
-```import 'jquery-validation';```
+```
+import 'jquery-validation';
+import 'bootstrap-select';
+import 'bootstrap-timepicker';
+```
 
 
 ## Usage
