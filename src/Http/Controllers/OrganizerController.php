@@ -215,14 +215,17 @@ class OrganizerController extends Controller
         $organizer = new Organizer();
 
         // Validate form datas
-        $validator = $this->organizersValidator($request);
+        /*$validator = $this->organizersValidator($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
-        }
+        }*/
 
-        $this->saveOnDb($request, $organizer);
+        //$this->saveOnDb($request, $organizer);
+        
+        $organizerId = $this->saveOnDb($request, $organizer);
 
-        return redirect()->back()->with('message', 'Organizer created');
+        return response()->json(['organizerId' => $organizerId]);
+        //return redirect()->back()->with('message', 'Organizer created');
     }
 
     /***************************************************************************/

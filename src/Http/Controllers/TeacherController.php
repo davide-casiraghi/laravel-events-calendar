@@ -306,9 +306,9 @@ class TeacherController extends Controller
             return back()->withErrors($validator)->withInput();
         }*/
 
-        $this->saveOnDb($request, $teacher);
+        $teacherId = $this->saveOnDb($request, $teacher);
 
-        return response()->json(['id'=>'ciao']);
+        return response()->json(['teacherId' => $teacherId]);
         //return redirect()->back()->with('message', __('laravel-events-calendar::messages.teacher_added_successfully'));
     }
 

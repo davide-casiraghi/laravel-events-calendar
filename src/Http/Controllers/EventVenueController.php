@@ -258,14 +258,18 @@ class EventVenueController extends Controller
         $eventVenue = new EventVenue();
 
         // Validate form datas
-        $validator = $this->eventsVenueValidator($request);
+        /*$validator = $this->eventsVenueValidator($request);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
-        }
+        }*/
 
-        $this->saveOnDb($request, $eventVenue);
+        //$this->saveOnDb($request, $eventVenue);
+        
+        $eventVenueId = $this->saveOnDb($request, $eventVenue);
 
-        return redirect()->back()->with('message', __('laravel-events-calendar::messages.venue_added_successfully'));
+        return response()->json(['eventVenueId' => $eventVenueId]);
+
+        //return redirect()->back()->with('message', __('laravel-events-calendar::messages.venue_added_successfully'));
     }
 
     /***************************************************************************/
