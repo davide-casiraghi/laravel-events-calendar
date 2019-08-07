@@ -186,7 +186,7 @@ class OrganizerController extends Controller
         }
 
         $organizer->save();
-        
+
         return $organizer->id;
     }
 
@@ -213,10 +213,10 @@ class OrganizerController extends Controller
     public function storeFromModal(Request $request)
     {
         $organizer = new Organizer();
-        
+
         $organizerId = $this->saveOnDb($request, $organizer);
         $organizer = Teacher::find($organizerId);
-        
+
         return response()->json([
                         'organizerId' => $organizerId,
                         'organizerName' => $organizer->name,
