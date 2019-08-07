@@ -138,7 +138,7 @@
                 @include('laravel-form-partials::textarea', [
                     'title' => __('laravel-events-calendar::general.description'),
                     'name' => 'description',
-                    'placeholder' => 'Event description',
+                    'placeholder' => '',
                     'required' => false,
                 ])
             </div>
