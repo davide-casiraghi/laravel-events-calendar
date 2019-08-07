@@ -57,7 +57,7 @@
                     $("select#teacher").append('<option value="'+res.teacherId+'" selected="">'+res.teacherName+'</option>');
                     $("select#teacher").selectpicker("refresh");
                     
-                    $("input[name='multiple_teachers']").val($("input[name='multiple_teachers']").val() + ", " + res.teacherId);
+                    $("input[name='multiple_teachers']").val($("input[name='multiple_teachers']").val() + "," + res.teacherId);
                 },
                 error: function(error) {
                     //$('.modalFrame').modal('hide');

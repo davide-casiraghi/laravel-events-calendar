@@ -42,7 +42,7 @@
                     $("select#organizer").append('<option value="'+res.organizerId+'" selected="">'+res.organizerName+'</option>');
                     $("select#organizer").selectpicker("refresh");
                     
-                    $("input[name='multiple_organizers']").val($("input[name='multiple_organizers']").val() + ", " + res.organizerId);
+                    $("input[name='multiple_organizers']").val($("input[name='multiple_organizers']").val() + "," + res.organizerId);
                 },
                 error: function(error) {
                     //$('.modalFrame').modal('hide');
