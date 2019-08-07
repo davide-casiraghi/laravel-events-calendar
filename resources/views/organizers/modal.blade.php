@@ -108,7 +108,7 @@
                ])
            </div>
            <div class="col-12">
-               @include('laravel-form-partials::textarea', [
+               @include('laravel-form-partials::textarea-plain', [
                      'title' => __('laravel-events-calendar::general.description'),
                      'name' => 'description',
                      'placeholder' => 'Organizer description',
