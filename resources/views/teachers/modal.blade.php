@@ -53,7 +53,14 @@
                 type: 'POST',
                 success: function(res) {
                     console.log("teacher created succesfully");
+                    console.log(res.teacherId);
                     $('.modalFrame').modal('hide');
+                    //$("input[name='multiple_teachers']").addClass('ciao');
+                    
+                    $("input[name='multiple_teachers']").val($("input[name='multiple_teachers']").val() + ", " + res.teacherId);
+                    
+                    $("select#teacher").append('<option value="'+res.teacherId+'" selected="">'+res.teacherId+'</option>');
+                    $("select#teacher").selectpicker("refresh");
                 },
                 error: function(error) {
                     //$('.modalFrame').modal('hide');
