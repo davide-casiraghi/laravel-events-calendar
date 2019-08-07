@@ -25,11 +25,11 @@
             data: {
                 "_token": "{{ csrf_token() }}",
                 name: $("input[name='name']").val(),
-                country_id: $("input[name='country_id']").val(),
-                bio: $("input[textarea='bio']").val(),
+                country_id: $("select[name='country_id']").val(),
+                bio: $("textarea[name='bio']").val(),
                 year_starting_practice: $("input[name='year_starting_practice']").val(),
                 year_starting_teach: $("input[name='year_starting_teach']").val(),
-                significant_teachers: $("input[textarea='significant_teachers']").val(),
+                significant_teachers: $("textarea[name='significant_teachers']").val(),                
                 facebook: $("input[name='facebook']").val(),
                 website: $("input[name='website']").val(),
                 profile_picture: $("input[name='profile_picture']").val()
