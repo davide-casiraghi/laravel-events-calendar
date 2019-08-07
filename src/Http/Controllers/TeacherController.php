@@ -300,16 +300,13 @@ class TeacherController extends Controller
     {
         $teacher = new Teacher();
 
-        // Validate form datas
-        /*$validator = $this->teachersValidator($request);
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }*/
-
         $teacherId = $this->saveOnDb($request, $teacher);
-
-        return response()->json(['teacherId' => $teacherId]);
-        //return redirect()->back()->with('message', __('laravel-events-calendar::messages.teacher_added_successfully'));
+        $teacher = Teacher::find($teacherId);
+        
+        return response()->json([
+                        'teacherId' => $teacherId,
+                        'teacherName' => $teacher->name,
+                    ]);
     }
 
     /***************************************************************************/

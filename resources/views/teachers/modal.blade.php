@@ -57,9 +57,10 @@
                     $('.modalFrame').modal('hide');
                     //$("input[name='multiple_teachers']").addClass('ciao');
                     
+                    // maybe we don't need this line
                     $("input[name='multiple_teachers']").val($("input[name='multiple_teachers']").val() + ", " + res.teacherId);
                     
-                    $("select#teacher").append('<option value="'+res.teacherId+'" selected="">'+res.teacherId+'</option>');
+                    $("select#teacher").append('<option value="'+res.teacherId+'" selected="">'+res.teacherName+'</option>');
                     $("select#teacher").selectpicker("refresh");
                 },
                 error: function(error) {
