@@ -186,6 +186,8 @@ class OrganizerController extends Controller
         }
 
         $organizer->save();
+        
+        return $organizer->id;
     }
 
     /***************************************************************************/

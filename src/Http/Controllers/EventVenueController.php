@@ -227,6 +227,8 @@ class EventVenueController extends Controller
         }
         $eventVenue->created_by = Auth::id();
         $eventVenue->save();
+        
+        return $eventVenue->id;
     }
 
     /***************************************************************************/

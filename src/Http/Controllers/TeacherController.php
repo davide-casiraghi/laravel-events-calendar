@@ -270,6 +270,8 @@ class TeacherController extends Controller
         }
 
         $teacher->save();
+        
+        return $teacher->id;
     }
 
     /***************************************************************************/
@@ -306,7 +308,8 @@ class TeacherController extends Controller
 
         $this->saveOnDb($request, $teacher);
 
-        return redirect()->back()->with('message', __('laravel-events-calendar::messages.teacher_added_successfully'));
+        return response()->json(['id'=>'ciao']);
+        //return redirect()->back()->with('message', __('laravel-events-calendar::messages.teacher_added_successfully'));
     }
 
     /***************************************************************************/
