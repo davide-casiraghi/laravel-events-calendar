@@ -302,7 +302,7 @@ class TeacherController extends Controller
 
         $teacherId = $this->saveOnDb($request, $teacher);
         $teacher = Teacher::find($teacherId);
-        
+
         return response()->json([
                         'teacherId' => $teacherId,
                         'teacherName' => $teacher->name,
