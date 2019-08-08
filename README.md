@@ -46,11 +46,13 @@ Run in the command line:
 
 Add this line to your **resources/js/app.js** file:  
 ```
+import 'bootstrap-datepicker';
+import 'tooltip.js';
+import '@fancyapps/fancybox';
 import 'jquery-validation';
 import 'bootstrap-select';
 import 'bootstrap-timepicker';
 ```
-
 
 ## Usage
 
