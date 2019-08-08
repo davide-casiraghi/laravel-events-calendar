@@ -38,6 +38,22 @@ Add this line to your **resources/sass/app.scss** file:
 and then run in console:  
 ```npm run dev```  
 
+### Import the js files
+Run in the command line:   
+```npm i jquery-validation```   
+```npm i bootstrap-select```   
+```npm i bootstrap-timepicker```   
+
+Add this line to your **resources/js/app.js** file:  
+```
+import 'bootstrap-datepicker';
+import 'tooltip.js';
+import '@fancyapps/fancybox';
+import 'jquery-validation';
+import 'bootstrap-select';
+import 'bootstrap-timepicker';
+```
+
 ## Usage
 
 ### Authorization
