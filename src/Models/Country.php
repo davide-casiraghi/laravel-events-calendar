@@ -74,16 +74,15 @@ class Country extends Model
      *
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
      */
-     public static function getCountriesWithTeachers()
-     {
-         $ret = self::join('teachers', 'countries.id', '=', 'teachers.country_id')
+    public static function getCountriesWithTeachers()
+    {
+        $ret = self::join('teachers', 'countries.id', '=', 'teachers.country_id')
                       ->orderBy('countries.name')->pluck('countries.name', 'countries.id');
 
-         return $ret;
-     }
+        return $ret;
+    }
 
     /***************************************************************************/
-
 
     /*
      * Return active Continent and Countries JSON Tree (for hp select filters, vue component).
