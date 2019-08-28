@@ -100,13 +100,13 @@ class EventController extends Controller
     {
         $authorUserId = $this->getLoggedAuthorId();
 
-        $eventCategories = EventCategory::listsTranslations('name')->pluck('name', 'id');
-        $users = User::pluck('name', 'id');
-        $teachers = Teacher::pluck('name', 'id');
-        $organizers = Organizer::pluck('name', 'id');
+        $eventCategories = EventCategory::listsTranslations('name')->orderBy('name')->pluck('name', 'id');
+        $users = User::orderBy('name')->pluck('name', 'id');
+        $teachers = Teacher::orderBy('name')->pluck('name', 'id');
+        $organizers = Organizer::orderBy('name')->pluck('name', 'id');
         //$venues = EventVenue::pluck('name', 'id');
         $venues = DB::table('event_venues')
-                ->select('id', 'name', 'city')->get();
+                ->select('id', 'name', 'city')->orderBy('name')->get();
 
         $dateTime = [];
         $dateTime['repeatUntil'] = null;
@@ -244,11 +244,11 @@ class EventController extends Controller
             //$eventCategories = EventCategory::pluck('name', 'id');  // removed because was braking the tests
             $eventCategories = EventCategory::listsTranslations('name')->orderBy('name')->pluck('name', 'id');
 
-            $users = User::pluck('name', 'id');
-            $teachers = Teacher::pluck('name', 'id');
-            $organizers = Organizer::pluck('name', 'id');
+            $users = User::orderBy('name')->pluck('name', 'id');
+            $teachers = Teacher::orderBy('name')->pluck('name', 'id');
+            $organizers = Organizer::orderBy('name')->pluck('name', 'id');
             $venues = DB::table('event_venues')
-                    ->select('id', 'name', 'address', 'city')->get();
+                    ->select('id', 'name', 'address', 'city')->orderBy('name')->get();
 
             $eventFirstRepetition = DB::table('event_repetitions')
                     ->select('id', 'start_repeat', 'end_repeat')
