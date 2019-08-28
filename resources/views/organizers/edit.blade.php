@@ -36,8 +36,7 @@
                               'name' => 'created_by',
                               'placeholder' => __('laravel-events-calendar::general.select_owner'),
                               'records' => $users,
-                              'selected
-' => $organizer->created_by,
+                              'selected' => $organizer->created_by,
                               'liveSearch' => 'true',
                               'mobileNativeMenu' => false,
                               'required' => false,
