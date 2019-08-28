@@ -103,7 +103,7 @@ class TeacherController extends Controller
         $countries = Country::getCountries();
         $users = User::pluck('name', 'id');
         $authorUserId = $this->getLoggedAuthorId();
-        
+
         return view('laravel-events-calendar::teachers.create')
             ->with('countries', $countries)
             ->with('users', $users)

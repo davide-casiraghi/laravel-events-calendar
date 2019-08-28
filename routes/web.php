@@ -50,7 +50,6 @@
 
         /* Homepage - Event Search */
         Route::get('/', 'EventController@index')->name('home');
-        
     });
 
     /*Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'auth'], function () {
