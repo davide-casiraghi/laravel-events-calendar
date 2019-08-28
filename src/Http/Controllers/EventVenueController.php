@@ -79,7 +79,7 @@ class EventVenueController extends Controller
      */
     public function create()
     {
-        $authorUserId = $this->getLoggedUser();
+        $authorUserId = $this->getLoggedAuthorId();
         $users = User::pluck('name', 'id');
         $countries = Country::getCountries();
 
@@ -225,7 +225,10 @@ class EventVenueController extends Controller
         if (! $eventVenue->slug) {
             $eventVenue->slug = Str::slug($eventVenue->name, '-').rand(10000, 100000);
         }
-        $eventVenue->created_by = Auth::id();
+        
+        //$eventVenue->created_by = Auth::id();
+        $eventVenue->created_by = $request->get('created_by');
+        
         $eventVenue->save();
 
         return $eventVenue->id;

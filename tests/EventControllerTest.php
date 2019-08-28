@@ -169,7 +169,7 @@ class EventControllerTest extends TestCase
         $this->authenticate();
         $attributes = factory(Event::class)->raw();
         $this->post('/events', $attributes);
-
+        //dd($attributes);
         //dd(app()->getLocale());
 
         $response = $this->get('/events/1/edit');

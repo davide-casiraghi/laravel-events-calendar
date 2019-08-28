@@ -49,9 +49,8 @@
         Route::resource('countries', 'CountryController');
 
         /* Homepage - Event Search */
-        Route::get('/', 'EventSearchController@index')->name('home');
-        Route::resource('eventSearch', 'EventSearchController');
-        Route::get('/eventSearch#dataarea', 'EventSearchController@index');
+        Route::get('/', 'EventController@index')->name('home');
+        
     });
 
     /*Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'auth'], function () {

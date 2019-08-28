@@ -64,7 +64,7 @@ class OrganizerController extends Controller
     public function create()
     {
         $users = User::pluck('name', 'id');
-        $authorUserId = $this->getLoggedUser();
+        $authorUserId = $this->getLoggedAuthorId();
 
         return view('laravel-events-calendar::organizers.create')
             ->with('users', $users)
@@ -180,7 +180,8 @@ class OrganizerController extends Controller
         $organizer->email = $request->get('email');
         $organizer->phone = $request->get('phone');
 
-        $organizer->created_by = Auth::id();
+        //$organizer->created_by = Auth::id();
+        $organizer->created_by = $request->get('created_by');
         if (! $organizer->slug) {
             $organizer->slug = Str::slug($organizer->name, '-').'-'.rand(10000, 100000);
         }

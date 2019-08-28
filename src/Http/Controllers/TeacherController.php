@@ -102,8 +102,8 @@ class TeacherController extends Controller
     {
         $countries = Country::getCountries();
         $users = User::pluck('name', 'id');
-        $authorUserId = $this->getLoggedUser();
-
+        $authorUserId = $this->getLoggedAuthorId();
+        
         return view('laravel-events-calendar::teachers.create')
             ->with('countries', $countries)
             ->with('users', $users)
@@ -265,7 +265,7 @@ class TeacherController extends Controller
         $teacher->facebook = $request->get('facebook');
 
         //$teacher->created_by = Auth::id();
-        $teacher->created_by = Auth::id();
+        $teacher->created_by = $request->get('created_by');
 
         if (! $teacher->slug) {
             $teacher->slug = Str::slug($teacher->name, '-').'-'.rand(10000, 100000);
