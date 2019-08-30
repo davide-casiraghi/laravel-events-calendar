@@ -40,12 +40,14 @@ class OrganizerController extends Controller
                 ->when($searchKeywords, function ($query, $searchKeywords) {
                     return $query->where('name', $searchKeywords)->orWhere('name', 'like', '%'.$searchKeywords.'%');
                 })
+                ->orderBy('name')
                 ->paginate(20);
         } else {
             $organizers = DB::table('organizers')
             ->when($authorUserId, function ($query, $authorUserId) {
                 return $query->where('created_by', $authorUserId);
             })
+            ->orderBy('name')
             ->paginate(20);
         }
 
