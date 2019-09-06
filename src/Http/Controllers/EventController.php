@@ -70,7 +70,7 @@ class EventController extends Controller
                 })
                 ->select('*', 'events.id as id', 'events.slug as slug', 'events.image as image') // To keep in the join the id of the Events table - https://stackoverflow.com/questions/28062308/laravel-eloquent-getting-id-field-of-joined-tables-in-eloquent
                 ->paginate(20);
-                
+
         //dd($events);
         } else {
             $events = Event::latest()
