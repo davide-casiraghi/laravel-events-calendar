@@ -1033,7 +1033,7 @@ class EventController extends Controller
 
         //$event->created_by = (isset(Auth::id())) ? Auth::id() : null;
         //$event->created_by = Auth::id();
-        if ($event->created_by) {
+        if ($request->get('created_by')) {
             $event->created_by = $request->get('created_by');
         }
 
