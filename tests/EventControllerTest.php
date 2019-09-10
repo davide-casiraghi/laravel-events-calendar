@@ -398,7 +398,7 @@ class EventControllerTest extends TestCase
     {
         $request = $this->call('GET', '/event/monthSelectOptions', ['day' => '10/09/2010'])
             ->assertStatus(200)
-            ->assertSee("<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='Select repeat monthly kind'><option value='0|10'>the 10th day of the month</option><option value='1|2|5'>the 2nd Friday of the month</option><option value='2|19'>the 20th to last day of the month</option><option value='3|2|5'>the 3rd to last Friday of the month</option></select>");
+            ->assertSee("<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='Select repeat monthly kind'><option value='0|10'>the 10th day of the month</option><option value='1|2|5'>the 2nd Friday of the month</option><option value='2|20'>the 20th to last day of the month</option><option value='3|2|5'>the 3rd to last Friday of the month</option></select>");
     }
 
     /** @test */

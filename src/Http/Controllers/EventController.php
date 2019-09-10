@@ -747,11 +747,11 @@ class EventController extends Controller
         $dayOfWeekString = date('l', $unixTimestamp); // Monday | Tuesday | Wednesday | ..
 
         // Same day number - eg. "the 28th day of the month"
-        $dateArray = explode('/', $request->day);
-        $dayNumber = ltrim($dateArray[0], '0'); // remove the 0 in front of a day number eg. 02/10/2018
-        $ordinalIndicator = $this->getOrdinalIndicator($dayNumber);
+            $dateArray = explode('/', $request->day);
+            $dayNumber = ltrim($dateArray[0], '0'); // remove the 0 in front of a day number eg. 02/10/2018
+            $ordinalIndicator = $this->getOrdinalIndicator($dayNumber);
 
-        array_push($monthlySelectOptions, [
+            array_push($monthlySelectOptions, [
                 'value' => '0|'.$dayNumber,
                 'text' => 'the '.$dayNumber.$ordinalIndicator.' day of the month',
             ]);
@@ -770,44 +770,40 @@ class EventController extends Controller
             $dayOfMonthFromTheEnd = $this->dayOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
             $ordinalIndicator = $this->getOrdinalIndicator($dayOfMonthFromTheEnd);
 
-        if ($dayOfMonthFromTheEnd == 1) {
-            $dayText = 'last';
-            $dayValue = 0;
-        } else {
-            $dayText = $dayOfMonthFromTheEnd.$ordinalIndicator.' to last';
-            $dayValue = $dayOfMonthFromTheEnd - 1;
-        }
+            if ($dayOfMonthFromTheEnd == 0) {
+                $dayText = 'last';
+            } else {
+                $dayText = $dayOfMonthFromTheEnd.$ordinalIndicator.' to last';
+            }
 
-        array_push($monthlySelectOptions, [
-            'value' => '2|'.$dayValue,
-            'text' => 'the '.$dayText.' day of the month',
-        ]);
+            array_push($monthlySelectOptions, [
+                'value' => '2|'.$dayOfMonthFromTheEnd,
+                'text' => 'the '.$dayText.' day of the month',
+            ]);
 
         // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
+            $weekOfMonthFromTheEnd = $this->weekOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
+            $ordinalIndicator = $this->getOrdinalIndicator($weekOfMonthFromTheEnd);
 
-        // Get the date parameters
-                $weekOfMonthFromTheEnd = $this->weekOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
-                $ordinalIndicator = $this->getOrdinalIndicator($weekOfMonthFromTheEnd);
+            if ($weekOfMonthFromTheEnd == 1) {
+                $weekText = 'last ';
+                $weekValue = 0;
+            } else {
+                $weekText = $weekOfMonthFromTheEnd.$ordinalIndicator.' to last ';
+                $weekValue = $weekOfMonthFromTheEnd - 1;
+            }
 
-        if ($weekOfMonthFromTheEnd == 1) {
-            $weekText = 'last ';
-            $weekValue = 0;
-        } else {
-            $weekText = $weekOfMonthFromTheEnd.$ordinalIndicator.' to last ';
-            $weekValue = $weekOfMonthFromTheEnd - 1;
-        }
-
-        array_push($monthlySelectOptions, [
+            array_push($monthlySelectOptions, [
                 'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
                 'text' => 'the '.$weekText.$dayOfWeekString.' of the month',
             ]);
 
         // GENERATE the HTML to return
-        $onMonthlyKindSelect = "<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='Select repeat monthly kind'>";
-        foreach ($monthlySelectOptions as $key => $monthlySelectOption) {
-            $onMonthlyKindSelect .= "<option value='".$monthlySelectOption['value']."'>".$monthlySelectOption['text'].'</option>';
-        }
-        $onMonthlyKindSelect .= '</select>';
+            $onMonthlyKindSelect = "<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='Select repeat monthly kind'>";
+            foreach ($monthlySelectOptions as $key => $monthlySelectOption) {
+                $onMonthlyKindSelect .= "<option value='".$monthlySelectOption['value']."'>".$monthlySelectOption['text'].'</option>';
+            }
+            $onMonthlyKindSelect .= '</select>';
 
         return $onMonthlyKindSelect;
     }
