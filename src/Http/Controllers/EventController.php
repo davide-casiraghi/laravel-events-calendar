@@ -488,7 +488,9 @@ class EventController extends Controller
         switch ($monthRepeatDatas[0]) {
             case '0':  // Same day number - eg. "the 28th day of the month"
                 while ($month < $end) {
+                    
                     $day = $month->format('Y-m-d');
+                    
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
@@ -501,7 +503,6 @@ class EventController extends Controller
                     $month_number = Carbon::parse($month)->isoFormat('M');
                     $year_number = Carbon::parse($month)->isoFormat('YYYY');
 
-                    // The day to pick
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->nthOfMonth($numberOfTheWeek, $weekday);  // eg. Carbon::create(2014, 5, 30, 0, 0, 0)->nthOfQuarter(2, Carbon::SATURDAY);
                    	
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
@@ -515,12 +516,12 @@ class EventController extends Controller
                     $year_number = Carbon::parse($month)->isoFormat('YYYY');
 
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth()->subDays($dayFromTheEnd);
+                    
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
                 break;
             case '3':  // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
-                $numberOfTheWeek = $numberOfTheWeekArray[$monthRepeatDatas[1] - 1]; //eg. first | second | third | fourth | fifth
                 $weekday = $weekdayArray[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
                 $weeksFromTheEnd = $monthRepeatDatas[1];
     
@@ -528,7 +529,6 @@ class EventController extends Controller
                     $month_number = Carbon::parse($month)->isoFormat('M');
                     $year_number = Carbon::parse($month)->isoFormat('YYYY');
 
-                    // The day to pick
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth($weekday)->subWeeks($weeksFromTheEnd);
                    
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
