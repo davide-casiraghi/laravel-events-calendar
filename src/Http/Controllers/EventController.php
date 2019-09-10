@@ -524,28 +524,6 @@ class EventController extends Controller
                 }
                 break;
             case '3':  // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
-                /*$numberOfTheWeekFromTheEnd = $monthRepeatDatas[1]; //eg. 0(last) | 1 | 2 | 3 | 4
-                $weekday = $weekdayArray[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
-                while ($month < $end) {
-                    $monthString = date('Y-m', $month);  //eg. 2015-12
-                    $timestamp = strtotime(date('Y-m-d', strtotime('last '.$weekday.' of '.$monthString))); // get the last weekday of a month eg. strtotime("last wednesday 2015-12")
-                    //dd(date("Y-m-d", strtotime("last ".$weekday." of ".$monthString)));
-                    switch ($numberOfTheWeekFromTheEnd) {
-                        case '0':
-                            $day = date('Y-m-d', $timestamp);
-                            break;
-                        case '1':
-                            $day = date('Y-m-d', strtotime('-1 week', $timestamp));
-                            break;
-                        default:
-                            $day = date('Y-m-d', strtotime('-'.$numberOfTheWeekFromTheEnd.' weeks', $timestamp));
-                            break;
-                    }
-
-                    $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
-                    $month = strtotime('+1 month', $month);
-                }*/
-                
                 $numberOfTheWeek = $numberOfTheWeekArray[$monthRepeatDatas[1] - 1]; //eg. first | second | third | fourth | fifth
                 $weekday = $weekdayArrayCarbon[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
                 $weeksFromTheEnd = $monthRepeatDatas[1];
