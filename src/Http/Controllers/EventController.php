@@ -513,12 +513,6 @@ class EventController extends Controller
                 }
                 break;
             case '2':  // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, 2 if 3rd to last day)
-                /*while ($month < $end) {
-                    $monthString = date('Y-m', $month);  //eg. 2015-12
-                    $day = date('Y-m-d', strtotime('last day of '.$monthString));  // get the last day of a month eg. strtotime("last day of 2015-12")
-                    $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
-                    $month = strtotime('+1 month', $month);
-                }*/
                 $dayFromTheEnd = $monthRepeatDatas[1];
                 while ($monthCarbon < $endCarbon) {
                     $month_number = Carbon::parse($monthCarbon)->isoFormat('M');
