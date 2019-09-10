@@ -513,11 +513,20 @@ class EventController extends Controller
                 }
                 break;
             case '2':  // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, 2 if 3rd to last day)
-                while ($month < $end) {
+                /*while ($month < $end) {
                     $monthString = date('Y-m', $month);  //eg. 2015-12
                     $day = date('Y-m-d', strtotime('last day of '.$monthString));  // get the last day of a month eg. strtotime("last day of 2015-12")
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $month = strtotime('+1 month', $month);
+                }*/
+                $dayFromTheEnd = $monthRepeatDatas[1];
+                while ($monthCarbon < $endCarbon) {
+                    $month_number = Carbon::parse($monthCarbon)->isoFormat('M');
+                    $year_number = Carbon::parse($monthCarbon)->isoFormat('YYYY');
+
+                    $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth()->subDays($dayFromTheEnd);
+                    $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
+                    $monthCarbon = $monthCarbon->addMonth();
                 }
                 break;
             case '3':  // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
