@@ -6,6 +6,7 @@ use DateTime;
 use Validator;
 use DatePeriod;
 use DateInterval;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -23,8 +24,6 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
-
-use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -478,19 +477,18 @@ class EventController extends Controller
      * @return void
      */
     public function saveMonthlyRepeatDates($event, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd)
-    {        
+    {
         $start = $month = Carbon::create($startDate);
         $end = Carbon::create($repeatUntilDate);
 
         $numberOfTheWeekArray = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth'];
         $weekdayArray = [Carbon::MONDAY, Carbon::TUESDAY, Carbon::WEDNESDAY, Carbon::THURSDAY, Carbon::FRIDAY, Carbon::SATURDAY, Carbon::SUNDAY];
-        
+
         switch ($monthRepeatDatas[0]) {
             case '0':  // Same day number - eg. "the 28th day of the month"
                 while ($month < $end) {
-                    
                     $day = $month->format('Y-m-d');
-                    
+
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
@@ -504,7 +502,7 @@ class EventController extends Controller
                     $year_number = Carbon::parse($month)->isoFormat('YYYY');
 
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->nthOfMonth($numberOfTheWeek, $weekday);  // eg. Carbon::create(2014, 5, 30, 0, 0, 0)->nthOfQuarter(2, Carbon::SATURDAY);
-                   	
+
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
@@ -516,7 +514,7 @@ class EventController extends Controller
                     $year_number = Carbon::parse($month)->isoFormat('YYYY');
 
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth()->subDays($dayFromTheEnd);
-                    
+
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
@@ -524,13 +522,13 @@ class EventController extends Controller
             case '3':  // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
                 $weekday = $weekdayArray[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
                 $weeksFromTheEnd = $monthRepeatDatas[1];
-    
+
                 while ($month < $end) {
                     $month_number = Carbon::parse($month)->isoFormat('M');
                     $year_number = Carbon::parse($month)->isoFormat('YYYY');
 
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth($weekday)->subWeeks($weeksFromTheEnd);
-                   
+
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
