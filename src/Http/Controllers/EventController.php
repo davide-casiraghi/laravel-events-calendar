@@ -768,12 +768,12 @@ class EventController extends Controller
             $dayOfMonthFromTheEnd = $this->dayOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
             $ordinalIndicator = $this->getOrdinalIndicator($dayOfMonthFromTheEnd);
 
-            if ($dayOfMonthFromTheEnd == 0) {
-                $dayText = 'last';
-            } else {
-                $numberOfTheDay = $dayOfMonthFromTheEnd + 1;
-                $dayText = $numberOfTheDay.$ordinalIndicator.' to last';
-            }
+        if ($dayOfMonthFromTheEnd == 0) {
+            $dayText = 'last';
+        } else {
+            $numberOfTheDay = $dayOfMonthFromTheEnd + 1;
+            $dayText = $numberOfTheDay.$ordinalIndicator.' to last';
+        }
 
         array_push($monthlySelectOptions, [
                 'value' => '2|'.$dayOfMonthFromTheEnd,
