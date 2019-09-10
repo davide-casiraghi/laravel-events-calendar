@@ -24,6 +24,8 @@ use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 
+use Carbon\Carbon;
+
 class EventController extends Controller
 {
     /***************************************************************************/
