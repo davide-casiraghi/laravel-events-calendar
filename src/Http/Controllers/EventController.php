@@ -524,7 +524,7 @@ class EventController extends Controller
                 }
                 break;
             case '3':  // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
-                $numberOfTheWeekFromTheEnd = $monthRepeatDatas[1]; //eg. 0(last) | 1 | 2 | 3 | 4
+                /*$numberOfTheWeekFromTheEnd = $monthRepeatDatas[1]; //eg. 0(last) | 1 | 2 | 3 | 4
                 $weekday = $weekdayArray[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
                 while ($month < $end) {
                     $monthString = date('Y-m', $month);  //eg. 2015-12
@@ -544,7 +544,24 @@ class EventController extends Controller
 
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $month = strtotime('+1 month', $month);
+                }*/
+                
+                $numberOfTheWeek = $numberOfTheWeekArray[$monthRepeatDatas[1] - 1]; //eg. first | second | third | fourth | fifth
+                $weekday = $weekdayArrayCarbon[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
+                $weeksFromTheEnd = $monthRepeatDatas[1];
+    
+                while ($monthCarbon < $endCarbon) {
+                    $month_number = Carbon::parse($monthCarbon)->isoFormat('M');
+                    $year_number = Carbon::parse($monthCarbon)->isoFormat('YYYY');
+
+                    // The day to pick
+                    $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth($weekday)->subWeeks($weeksFromTheEnd);
+                   
+                    $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
+                    $monthCarbon = $monthCarbon->addMonth();
                 }
+    
+                
                 break;
         }
     }
