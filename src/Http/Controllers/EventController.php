@@ -481,10 +481,14 @@ class EventController extends Controller
     {
         $start = $month = strtotime($startDate);
         $end = strtotime($repeatUntilDate);
+        
+        $startCarbon = $monthCarbon = Carbon::create($startDate);
+        $endCarbon = Carbon::create($repeatUntilDate);
 
         $numberOfTheWeekArray = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth'];
         $weekdayArray = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-
+        $weekdayArrayCarbon = [Carbon::MONDAY, Carbon::TUESDAY, Carbon::WEDNESDAY, Carbon::THURSDAY, Carbon::FRIDAY, Carbon::SATURDAY, Carbon::SUNDAY];
+        
         switch ($monthRepeatDatas[0]) {
             case '0':  // Same day number - eg. "the 28th day of the month"
                 while ($month < $end) {
@@ -494,17 +498,18 @@ class EventController extends Controller
                 }
                 break;
             case '1':  // Same weekday/week of the month - eg. the "1st Monday"
-                $numberOfTheWeek = $numberOfTheWeekArray[$monthRepeatDatas[1] - 1]; //eg. first | second | third | fourth | fifth
-                $weekday = $weekdayArray[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
+                $numberOfTheWeek = $monthRepeatDatas[1]; // eg. 1(first) | 2(second) | 3(third) | 4(fourth) | 5(fifth)
+                $weekday = $weekdayArrayCarbon[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
 
-                while ($month < $end) {
-                    $monthString = date('Y-m', $month);  //eg. 2015-12
+                while ($monthCarbon < $endCarbon) {
+                    $month_number = Carbon::parse($monthCarbon)->isoFormat('M');
+                    $year_number = Carbon::parse($monthCarbon)->isoFormat('YYYY');
 
                     // The day to pick
-                        //dd($numberOfTheWeek." ".$weekday." ".$monthString);
-                    $day = date('Y-m-d', strtotime($numberOfTheWeek.' '.$weekday.' '.$monthString));  // get the first weekday of a month eg. strtotime("first wednesday 2015-12")
+                    $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->nthOfMonth($numberOfTheWeek, $weekday);  // eg. Carbon::create(2014, 5, 30, 0, 0, 0)->nthOfQuarter(2, Carbon::SATURDAY);
+                   	
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
-                    $month = strtotime('+1 month', $month);
+                    $monthCarbon = $monthCarbon->addMonth();
                 }
                 break;
             case '2':  // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, 2 if 3rd to last day)
