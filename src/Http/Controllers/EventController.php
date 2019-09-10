@@ -492,10 +492,6 @@ class EventController extends Controller
         switch ($monthRepeatDatas[0]) {
             case '0':  // Same day number - eg. "the 28th day of the month"
                 while ($monthCarbon < $endCarbon) {
-                    /*$day = date('Y-m-d', $month);
-                    $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
-                    $month = strtotime('+1 month', $month);*/
-                    
                     $day = $monthCarbon->format('Y-m-d');
                     $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
                     $monthCarbon = $monthCarbon->addMonth();
