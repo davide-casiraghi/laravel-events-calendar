@@ -771,7 +771,8 @@ class EventController extends Controller
             if ($dayOfMonthFromTheEnd == 0) {
                 $dayText = 'last';
             } else {
-                $dayText = $dayOfMonthFromTheEnd.$ordinalIndicator.' to last';
+                $numberOfTheDay = $dayOfMonthFromTheEnd + 1;
+                $dayText = $numberOfTheDay.$ordinalIndicator.' to last';
             }
 
             array_push($monthlySelectOptions, [
