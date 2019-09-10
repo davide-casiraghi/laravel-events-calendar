@@ -1,6 +1,10 @@
 <?php
 
-    Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'web'], function () {
+    Route::group([
+        'namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 
+        'middleware' => 'web',
+        'prefix' => LaravelLocalization::setLocale(),
+    ], function () {
 
         /* Event Categories */
         Route::resource('eventCategories', 'EventCategoryController');
