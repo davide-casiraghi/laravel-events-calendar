@@ -109,8 +109,7 @@ class LaravelEventsCalendarTest extends TestCase
 
         $this->assertEquals($testString, 'first, second, third');
     }
-    
-    
+
     /** @test */
     public function it_check_is_weekday()
     {
@@ -124,7 +123,7 @@ class LaravelEventsCalendarTest extends TestCase
         $weekdayNumberOfMonth = LaravelEventsCalendar::isWeekDay($date, $dayOfWeekValue);
         $this->assertEquals($weekdayNumberOfMonth, false);
     }
-    
+
     /** @test */
     public function it_gets_number_of_the_specified_weekday_in_this_month()
     {
@@ -133,7 +132,7 @@ class LaravelEventsCalendarTest extends TestCase
         $weekdayNumberOfMonth = LaravelEventsCalendar::weekdayNumberOfMonth($timestramp, $dayOfWeekValue);
         $this->assertEquals($weekdayNumberOfMonth, 1);
     }
-    
+
     /** @test */
     public function it_gets_week_of_month_from_the_end()
     {
@@ -141,15 +140,15 @@ class LaravelEventsCalendarTest extends TestCase
         $weekOfTheMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($timestramp);
         $this->assertEquals($weekOfTheMonthFromTheEnd, '4');
     }
-    
+
     /** @test */
     public function it_gets_the_day_of_the_month_from_the_end()
     {
         $timestramp = '1286582400'; // timestamp of 10/09/2010
-            $dayOfMonthFromTheEnd = LaravelEventsCalendar::dayOfMonthFromTheEnd($timestramp);
+        $dayOfMonthFromTheEnd = LaravelEventsCalendar::dayOfMonthFromTheEnd($timestramp);
         $this->assertEquals($dayOfMonthFromTheEnd, 22);
     }
-    
+
     /** @test */
     public function it_gets_ordinal_indicator()
     {
@@ -161,7 +160,7 @@ class LaravelEventsCalendarTest extends TestCase
         $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayOfTheMonthNumber);
         $this->assertEquals($ordinalIndicator, 'st');
     }
-    
+
     /** @test */
     public function it_decode_decode_repeat_weekly_on()
     {
@@ -169,7 +168,7 @@ class LaravelEventsCalendarTest extends TestCase
         $repeatWeeklyDecoded = LaravelEventsCalendar::decodeRepeatWeeklyOn($repeatWeeklyOn);
         $this->assertEquals($repeatWeeklyDecoded, 'Monday');
     }
-    
+
     /** @test */
     public function it_decode_on_monthly_kind_string()
     {

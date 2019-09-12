@@ -7,7 +7,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
-use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventController;
 
 class EventControllerTest extends TestCase
 {
