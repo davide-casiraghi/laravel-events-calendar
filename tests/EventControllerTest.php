@@ -166,7 +166,7 @@ class EventControllerTest extends TestCase
     /** @test */
     public function it_displays_the_event_edit_page()
     {
-        $this->authenticate();
+        $this->authenticateAsAdmin();
         $attributes = factory(Event::class)->raw();
         $this->post('/events', $attributes);
         //dd($attributes);
