@@ -743,7 +743,7 @@ class EventController extends Controller
             ]);
 
         // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, , 2 if 3rd to last day)
-            $dayOfMonthFromTheEnd = $this->dayOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
+            $dayOfMonthFromTheEnd = LaravelEventsCalendar::dayOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
             $ordinalIndicator = $this->getOrdinalIndicator($dayOfMonthFromTheEnd);
 
         if ($dayOfMonthFromTheEnd == 0) {
@@ -783,27 +783,6 @@ class EventController extends Controller
         $onMonthlyKindSelect .= '</select>';
 
         return $onMonthlyKindSelect;
-    }
-
-    
-
-    /***************************************************************************/
-
-    /**
-     * GET number of day from the end of the month.
-     * $when - unix timestramp of the date specified
-     * Return the number of day of the month from end.
-     *
-     * @param  string $when
-     * @return int
-     */
-    public function dayOfMonthFromTheEnd($when = null)
-    {
-        $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
-        $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
-        $dayDifference = $lastDayOfMonth - $numberOfDayOfTheMonth;
-
-        return $dayDifference;
     }
 
     /***************************************************************************/

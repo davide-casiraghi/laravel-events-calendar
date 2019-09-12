@@ -347,16 +347,6 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_gets_the_day_of_the_month_from_the_end()
-    {
-        $eventController = new EventController();
-
-        $timestramp = '1286582400'; // timestamp of 10/09/2010
-        $dayOfMonthFromTheEnd = $eventController->dayOfMonthFromTheEnd($timestramp);
-        $this->assertEquals($dayOfMonthFromTheEnd, 22);
-    }
-
-    /** @test */
     public function it_generate_monthly_select_options_html()
     {
         $request = $this->call('GET', '/event/monthSelectOptions', ['day' => '10/09/2010'])

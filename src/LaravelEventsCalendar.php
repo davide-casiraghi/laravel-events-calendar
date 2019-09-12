@@ -156,6 +156,25 @@ class LaravelEventsCalendar
         return $weekFromTheEnd;
     }
     
+    /***************************************************************************/
+
+    /**
+     * GET number of day from the end of the month.
+     * $when - unix timestramp of the date specified
+     * Return the number of day of the month from end.
+     *
+     * @param  string $when
+     * @return int
+     */
+    public function dayOfMonthFromTheEnd($when = null)
+    {
+        $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
+        $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
+        $dayDifference = $lastDayOfMonth - $numberOfDayOfTheMonth;
+
+        return $dayDifference;
+    }
+    
     
     
 }

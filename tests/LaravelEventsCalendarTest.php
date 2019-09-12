@@ -141,4 +141,12 @@ class LaravelEventsCalendarTest extends TestCase
         $weekOfTheMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($timestramp);
         $this->assertEquals($weekOfTheMonthFromTheEnd, '4');
     }
+    
+    /** @test */
+    public function it_gets_the_day_of_the_month_from_the_end()
+    {
+        $timestramp = '1286582400'; // timestamp of 10/09/2010
+        $dayOfMonthFromTheEnd = LaravelEventsCalendar::dayOfMonthFromTheEnd($timestramp);
+        $this->assertEquals($dayOfMonthFromTheEnd, 22);
+    }
 }
