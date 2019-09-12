@@ -52,6 +52,7 @@ class LaravelEventsCalendarTest extends TestCase
     {
         return [
             LaravelEventsCalendarServiceProvider::class,
+            \Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         ];
     }
 
@@ -59,6 +60,7 @@ class LaravelEventsCalendarTest extends TestCase
     {
         return [
             'LaravelEventsCalendar' => LaravelEventsCalendar::class, // facade called PhpResponsiveQuote and the name of the facade class
+            'LaravelLocalization' => \Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         ];
     }
 
