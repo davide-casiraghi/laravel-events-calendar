@@ -357,17 +357,6 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_gets_number_of_the_specified_weekday_in_this_month()
-    {
-        $eventController = new EventController();
-
-        $timestramp = '1286582400'; // timestamp of10/09/2010
-        $dayOfWeekValue = '3';
-        $weekdayNumberOfMonth = $eventController->weekdayNumberOfMonth($timestramp, $dayOfWeekValue);
-        $this->assertEquals($weekdayNumberOfMonth, 1);
-    }
-
-    /** @test */
     public function it_gets_the_day_of_the_month_from_the_end()
     {
         $eventController = new EventController();

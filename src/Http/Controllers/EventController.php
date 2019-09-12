@@ -734,7 +734,7 @@ class EventController extends Controller
 
         // Same weekday/week of the month - eg. the "1st Monday" 1|1|1 (first week, monday)
             $dayOfWeekValue = date('N', $unixTimestamp); // 1 (for Monday) through 7 (for Sunday)
-            $weekOfTheMonth = $this->weekdayNumberOfMonth($date, $dayOfWeekValue); // 1 | 2 | 3 | 4 | 5
+            $weekOfTheMonth = LaravelEventsCalendar::weekdayNumberOfMonth($date, $dayOfWeekValue); // 1 | 2 | 3 | 4 | 5
             $ordinalIndicator = $this->getOrdinalIndicator($weekOfTheMonth); //st, nd, rd, th
 
             array_push($monthlySelectOptions, [
@@ -783,41 +783,6 @@ class EventController extends Controller
         $onMonthlyKindSelect .= '</select>';
 
         return $onMonthlyKindSelect;
-    }
-
-    /***************************************************************************/
-
-    /**
-     * GET number of the specified weekday in this month (1 for the first).
-     * $dateTimestamp - unix timestramp of the date specified
-     * $dayOfWeekValue -  1 (for Monday) through 7 (for Sunday)
-     * Return the number of the week in the month of the weekday specified.
-     * @param  string $dateTimestamp
-     * @param  string $dayOfWeekValue
-     * @return int
-     */
-    public function weekdayNumberOfMonth($dateTimestamp, $dayOfWeekValue)
-    {
-        $cut = substr($dateTimestamp, 0, 8);
-        $daylen = 86400;
-        $timestamp = strtotime($dateTimestamp);
-        $first = strtotime($cut.'01');
-        $elapsed = (($timestamp - $first) / $daylen) + 1;
-        $i = 1;
-        $weeks = 0;
-        for ($i == 1; $i <= $elapsed; $i++) {
-            $dayfind = $cut.(strlen($i) < 2 ? '0'.$i : $i);
-            $daytimestamp = strtotime($dayfind);
-            $day = strtolower(date('N', $daytimestamp));
-            if ($day == strtolower($dayOfWeekValue)) {
-                $weeks++;
-            }
-        }
-        if ($weeks == 0) {
-            $weeks++;
-        }
-
-        return $weeks;
     }
 
     /***************************************************************************/
