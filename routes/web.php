@@ -1,7 +1,7 @@
 <?php
 
     Route::group([
-        'namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 
+        'namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers',
         'middleware' => 'web',
         'prefix' => LaravelLocalization::setLocale(),
     ], function () {
