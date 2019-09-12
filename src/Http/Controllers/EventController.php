@@ -408,28 +408,6 @@ class EventController extends Controller
     /***************************************************************************/
 
     /**
-     * Check the date and return true if the weekday is the one specified in $dayOfTheWeek. eg. if $dayOfTheWeek = 3, is true if the date is a Wednesday
-     * $dayOfTheWeek: 1|2|3|4|5|6|7 (MONDAY-SUNDAY)
-     * https://stackoverflow.com/questions/2045736/getting-all-dates-for-mondays-and-tuesdays-for-the-next-year.
-     *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @param  string $date
-     * @param  int $dayOfTheWeek
-     * @return void
-     */
-    public function isWeekDay($date, $dayOfTheWeek)
-    {
-        // Fix the bug that was avoiding to save Sunday. Date 'w' identify sunday as 0 and not 7.
-        if ($dayOfTheWeek == 7) {
-            $dayOfTheWeek = 0;
-        }
-
-        return date('w', strtotime($date)) == $dayOfTheWeek;
-    }
-
-    /***************************************************************************/
-
-    /**
      * Save all the weekly repetitions in the event_repetitions table.
      * $dateStart and $dateEnd are in the format Y-m-d
      * $timeStart and $timeEnd are in the format H:i:s.
@@ -451,7 +429,7 @@ class EventController extends Controller
 
         foreach ($period as $day) {  // Iterate for each day of the period
             foreach ($weekDays as $weekDayNumber) { // Iterate for every day of the week (1:Monday, 2:Tuesday, 3:Wednesday ...)
-                if ($this->isWeekDay($day->format('Y-m-d'), $weekDayNumber)) {
+                if (LaravelEventsCalendar::isWeekDay($day->format('Y-m-d'), $weekDayNumber)) {
                     $this->saveEventRepetitionOnDB($event->id, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
                 }
             }

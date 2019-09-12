@@ -109,4 +109,19 @@ class LaravelEventsCalendarTest extends TestCase
 
         $this->assertEquals($testString, 'first, second, third');
     }
+    
+    
+    /** @test */
+    public function it_check_is_weekday()
+    {
+        $date = '2019-05-03';
+        $dayOfWeekValue = '5';
+        $weekdayNumberOfMonth = LaravelEventsCalendar::isWeekDay($date, $dayOfWeekValue);
+        $this->assertEquals($weekdayNumberOfMonth, true);
+
+        $date = '2019-05-03';
+        $dayOfWeekValue = '7';
+        $weekdayNumberOfMonth = LaravelEventsCalendar::isWeekDay($date, $dayOfWeekValue);
+        $this->assertEquals($weekdayNumberOfMonth, false);
+    }
 }
