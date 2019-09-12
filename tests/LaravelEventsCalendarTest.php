@@ -182,7 +182,7 @@ class LaravelEventsCalendarTest extends TestCase
 
         $onMonthlyKindString = '2|20';
         $onMonthlyKindDecoded = LaravelEventsCalendar::decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, 'the 21th to last day of the month');
+        $this->assertEquals($onMonthlyKindDecoded, 'the 21st to last day of the month');
 
         $onMonthlyKindString = '3|3|4';
         $onMonthlyKindDecoded = LaravelEventsCalendar::decodeOnMonthlyKind($onMonthlyKindString);

@@ -186,12 +186,16 @@ class LaravelEventsCalendar
     {
         switch ($number) {
             case  1:
+            case 21:
+            case 31:
                 $ret = 'st';
                 break;
             case  2:
+            case 22:
                 $ret = 'nd';
                 break;
             case  3:
+            case 23:
                 $ret = 'rd';
                 break;
             default:
@@ -252,7 +256,7 @@ class LaravelEventsCalendar
                 $format = 'the %s %s of the month';
                 $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
                 break;
-            case '2': // 2|20 eg. the 21th to last day of the month
+            case '2': // 2|20 eg. the 21st to last day of the month
                 $dayNumber = $onMonthlyKindCodeArray[1] + 1;
                 $ordinalIndicator = self::getOrdinalIndicator($dayNumber);
 
