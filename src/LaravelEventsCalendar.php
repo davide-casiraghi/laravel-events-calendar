@@ -175,6 +175,32 @@ class LaravelEventsCalendar
         return $dayDifference;
     }
     
-    
+    /***************************************************************************/
+
+    /**
+     * GET the ordinal indicator - for the day of the month.
+     * Return the ordinal indicator (st, nd, rd, th).
+     * @param  int $number
+     * @return string
+     */
+    public function getOrdinalIndicator($number)
+    {
+        switch ($number) {
+            case  1:
+                $ret = 'st';
+                break;
+            case  2:
+                $ret = 'nd';
+                break;
+            case  3:
+                $ret = 'rd';
+                break;
+            default:
+                $ret = 'th';
+                break;
+        }
+
+        return $ret;
+    }
     
 }

@@ -333,20 +333,6 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_gets_ordinal_indicator()
-    {
-        $eventController = new EventController();
-
-        $dayOfTheMonthNumber = '15';
-        $ordinalIndicator = $eventController->getOrdinalIndicator($dayOfTheMonthNumber);
-        $this->assertEquals($ordinalIndicator, 'th');
-
-        $dayOfTheMonthNumber = '1';
-        $ordinalIndicator = $eventController->getOrdinalIndicator($dayOfTheMonthNumber);
-        $this->assertEquals($ordinalIndicator, 'st');
-    }
-
-    /** @test */
     public function it_generate_monthly_select_options_html()
     {
         $request = $this->call('GET', '/event/monthSelectOptions', ['day' => '10/09/2010'])

@@ -149,4 +149,16 @@ class LaravelEventsCalendarTest extends TestCase
             $dayOfMonthFromTheEnd = LaravelEventsCalendar::dayOfMonthFromTheEnd($timestramp);
         $this->assertEquals($dayOfMonthFromTheEnd, 22);
     }
+    
+    /** @test */
+    public function it_gets_ordinal_indicator()
+    {
+        $dayOfTheMonthNumber = '15';
+        $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayOfTheMonthNumber);
+        $this->assertEquals($ordinalIndicator, 'th');
+
+        $dayOfTheMonthNumber = '1';
+        $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayOfTheMonthNumber);
+        $this->assertEquals($ordinalIndicator, 'st');
+    }
 }

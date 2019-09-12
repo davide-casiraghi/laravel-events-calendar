@@ -725,7 +725,7 @@ class EventController extends Controller
         // Same day number - eg. "the 28th day of the month"
         $dateArray = explode('/', $request->day);
         $dayNumber = ltrim($dateArray[0], '0'); // remove the 0 in front of a day number eg. 02/10/2018
-        $ordinalIndicator = $this->getOrdinalIndicator($dayNumber);
+        $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
 
         array_push($monthlySelectOptions, [
                 'value' => '0|'.$dayNumber,
@@ -735,7 +735,7 @@ class EventController extends Controller
         // Same weekday/week of the month - eg. the "1st Monday" 1|1|1 (first week, monday)
             $dayOfWeekValue = date('N', $unixTimestamp); // 1 (for Monday) through 7 (for Sunday)
             $weekOfTheMonth = LaravelEventsCalendar::weekdayNumberOfMonth($date, $dayOfWeekValue); // 1 | 2 | 3 | 4 | 5
-            $ordinalIndicator = $this->getOrdinalIndicator($weekOfTheMonth); //st, nd, rd, th
+            $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($weekOfTheMonth); //st, nd, rd, th
 
             array_push($monthlySelectOptions, [
                 'value' => '1|'.$weekOfTheMonth.'|'.$dayOfWeekValue,
@@ -744,7 +744,7 @@ class EventController extends Controller
 
         // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, , 2 if 3rd to last day)
             $dayOfMonthFromTheEnd = LaravelEventsCalendar::dayOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
-            $ordinalIndicator = $this->getOrdinalIndicator($dayOfMonthFromTheEnd);
+            $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayOfMonthFromTheEnd);
 
         if ($dayOfMonthFromTheEnd == 0) {
             $dayText = 'last';
@@ -760,7 +760,7 @@ class EventController extends Controller
 
         // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
             $weekOfMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
-            $ordinalIndicator = $this->getOrdinalIndicator($weekOfMonthFromTheEnd);
+            $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($weekOfMonthFromTheEnd);
 
         if ($weekOfMonthFromTheEnd == 1) {
             $weekText = 'last ';
@@ -783,34 +783,6 @@ class EventController extends Controller
         $onMonthlyKindSelect .= '</select>';
 
         return $onMonthlyKindSelect;
-    }
-
-    /***************************************************************************/
-
-    /**
-     * GET the ordinal indicator - for the day of the month.
-     * Return the ordinal indicator (st, nd, rd, th).
-     * @param  int $number
-     * @return string
-     */
-    public function getOrdinalIndicator($number)
-    {
-        switch ($number) {
-            case  1:
-                $ret = 'st';
-                break;
-            case  2:
-                $ret = 'nd';
-                break;
-            case  3:
-                $ret = 'rd';
-                break;
-            default:
-                $ret = 'th';
-                break;
-        }
-
-        return $ret;
     }
 
     /***************************************************************************/
@@ -848,7 +820,7 @@ class EventController extends Controller
         switch ($onMonthlyKindCodeArray[0]) {
             case '0':  // 0|7 eg. the 7th day of the month
                 $dayNumber = $onMonthlyKindCodeArray[1];
-                $ordinalIndicator = $this->getOrdinalIndicator($dayNumber);
+                $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
 
                 $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
                 $format = 'the %s day of the month';
@@ -856,7 +828,7 @@ class EventController extends Controller
                 break;
             case '1':  // 1|2|4 eg. the 2nd Thursday of the month
                 $dayNumber = $onMonthlyKindCodeArray[1];
-                $ordinalIndicator = $this->getOrdinalIndicator($dayNumber);
+                $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
 
                 $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
                 $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
@@ -865,7 +837,7 @@ class EventController extends Controller
                 break;
             case '2': // 2|20 eg. the 21th to last day of the month
                 $dayNumber = $onMonthlyKindCodeArray[1] + 1;
-                $ordinalIndicator = $this->getOrdinalIndicator($dayNumber);
+                $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
 
                 $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
                 $format = 'the %s to last day of the month';
@@ -873,7 +845,7 @@ class EventController extends Controller
                 break;
             case '3': // 3|3|4 eg. the 4th to last Thursday of the month
                 $dayNumber = $onMonthlyKindCodeArray[1] + 1;
-                $ordinalIndicator = $this->getOrdinalIndicator($dayNumber);
+                $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
 
                 $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
                 $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
