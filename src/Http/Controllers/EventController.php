@@ -15,9 +15,9 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
@@ -169,16 +169,15 @@ class EventController extends Controller
                 ->where('id', $event->venue_id)
                 ->first();
 
-        $country = Country::find($venue->country_id); 
+        $country = Country::find($venue->country_id);
 
         /*$country = DB::table('countries')
                 ->select('id', 'name', 'continent_id')
                 ->where('id', $venue->country_id)
                 ->first();*/
-                
-        
+
         $continent = Continent::find($country->continent_id);
-        
+
         /*DB::table('continents')
                 ->select('id', 'name')
                 ->where('id', $country->continent_id)
@@ -758,7 +757,7 @@ class EventController extends Controller
             $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($numberOfTheDay);
             $dayText = $numberOfTheDay.$ordinalIndicator.' to last';
         }
-        
+
         array_push($monthlySelectOptions, [
                 'value' => '2|'.$dayOfMonthFromTheEnd,
                 'text' => 'the '.$dayText.' day of the month',
@@ -766,7 +765,7 @@ class EventController extends Controller
 
         // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
             $weekOfMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
-            
+
         if ($weekOfMonthFromTheEnd == 1) {
             $weekText = 'last ';
             $weekValue = 0;
