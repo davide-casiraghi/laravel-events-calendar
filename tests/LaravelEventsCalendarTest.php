@@ -161,4 +161,32 @@ class LaravelEventsCalendarTest extends TestCase
         $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayOfTheMonthNumber);
         $this->assertEquals($ordinalIndicator, 'st');
     }
+    
+    /** @test */
+    public function it_decode_decode_repeat_weekly_on()
+    {
+        $repeatWeeklyOn = '1';
+        $repeatWeeklyDecoded = LaravelEventsCalendar::decodeRepeatWeeklyOn($repeatWeeklyOn);
+        $this->assertEquals($repeatWeeklyDecoded, 'Monday');
+    }
+    
+    /** @test */
+    public function it_decode_on_monthly_kind_string()
+    {
+        $onMonthlyKindString = '0|7';
+        $onMonthlyKindDecoded = LaravelEventsCalendar::decodeOnMonthlyKind($onMonthlyKindString);
+        $this->assertEquals($onMonthlyKindDecoded, 'the 7th day of the month');
+
+        $onMonthlyKindString = '1|2|4';
+        $onMonthlyKindDecoded = LaravelEventsCalendar::decodeOnMonthlyKind($onMonthlyKindString);
+        $this->assertEquals($onMonthlyKindDecoded, 'the 2nd Thursday of the month');
+
+        $onMonthlyKindString = '2|20';
+        $onMonthlyKindDecoded = LaravelEventsCalendar::decodeOnMonthlyKind($onMonthlyKindString);
+        $this->assertEquals($onMonthlyKindDecoded, 'the 21th to last day of the month');
+
+        $onMonthlyKindString = '3|3|4';
+        $onMonthlyKindDecoded = LaravelEventsCalendar::decodeOnMonthlyKind($onMonthlyKindString);
+        $this->assertEquals($onMonthlyKindDecoded, 'the 4th to last Thursday of the month');
+    }
 }

@@ -301,38 +301,6 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_decode_on_monthly_kind_string()
-    {
-        $eventController = new EventController();
-
-        $onMonthlyKindString = '0|7';
-        $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, 'the 7th day of the month');
-
-        $onMonthlyKindString = '1|2|4';
-        $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, 'the 2nd Thursday of the month');
-
-        $onMonthlyKindString = '2|20';
-        $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, 'the 21th to last day of the month');
-
-        $onMonthlyKindString = '3|3|4';
-        $onMonthlyKindDecoded = $eventController->decodeOnMonthlyKind($onMonthlyKindString);
-        $this->assertEquals($onMonthlyKindDecoded, 'the 4th to last Thursday of the month');
-    }
-
-    /** @test */
-    public function it_decode_decode_repeat_weekly_on()
-    {
-        $eventController = new EventController();
-
-        $repeatWeeklyOn = '1';
-        $repeatWeeklyDecoded = $eventController->decodeRepeatWeeklyOn($repeatWeeklyOn);
-        $this->assertEquals($repeatWeeklyDecoded, 'Monday');
-    }
-
-    /** @test */
     public function it_generate_monthly_select_options_html()
     {
         $request = $this->call('GET', '/event/monthSelectOptions', ['day' => '10/09/2010'])

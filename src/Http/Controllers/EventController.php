@@ -190,7 +190,7 @@ class EventController extends Controller
                         $repetitonWeekdayNumbersArray = explode(',', $event->repeat_weekly_on);
                         $repetitonWeekdayNamesArray = [];
                         foreach ($repetitonWeekdayNumbersArray as $key => $repetitonWeekdayNumber) {
-                            $repetitonWeekdayNamesArray[] = $this->decodeRepeatWeeklyOn($repetitonWeekdayNumber);
+                            $repetitonWeekdayNamesArray[] = LaravelEventsCalendar::decodeRepeatWeeklyOn($repetitonWeekdayNumber);
                         }
                         // create from an array a string with all the values divided by " and "
                         $nameOfTheRepetitionWeekDays = implode(' and ', $repetitonWeekdayNamesArray);
@@ -199,7 +199,7 @@ class EventController extends Controller
                     break;
                 case '3': //repeatMonthly
                     $repeatUntil = new DateTime($event->repeat_until);
-                    $repetitionFrequency = $this->decodeOnMonthlyKind($event->on_monthly_kind);
+                    $repetitionFrequency = LaravelEventsCalendar::decodeOnMonthlyKind($event->on_monthly_kind);
                     $repetition_text = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
                     break;
 
@@ -783,78 +783,6 @@ class EventController extends Controller
         $onMonthlyKindSelect .= '</select>';
 
         return $onMonthlyKindSelect;
-    }
-
-    /***************************************************************************/
-
-    /**
-     * Decode the event repeat_weekly_on field - used in event.show.
-     * Return a string like "Monday".
-     *
-     * @param  string $repeatWeeklyOn
-     * @return string
-     */
-    public function decodeRepeatWeeklyOn($repeatWeeklyOn)
-    {
-        $weekdayArray = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-        $ret = $weekdayArray[$repeatWeeklyOn];
-
-        return $ret;
-    }
-
-    /***************************************************************************/
-
-    /**
-     * Decode the event on_monthly_kind field - used in event.show.
-     * Return a string like "the 4th to last Thursday of the month".
-     *
-     * @param  string $onMonthlyKindCode
-     * @return string
-     */
-    public function decodeOnMonthlyKind($onMonthlyKindCode)
-    {
-        $onMonthlyKindCodeArray = explode('|', $onMonthlyKindCode);
-        $weekDays = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
-        //dd($onMonthlyKindCodeArray);
-        switch ($onMonthlyKindCodeArray[0]) {
-            case '0':  // 0|7 eg. the 7th day of the month
-                $dayNumber = $onMonthlyKindCodeArray[1];
-                $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
-
-                $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
-                $format = 'the %s day of the month';
-                $ret = sprintf($format, $dayNumberOrdinal);
-                break;
-            case '1':  // 1|2|4 eg. the 2nd Thursday of the month
-                $dayNumber = $onMonthlyKindCodeArray[1];
-                $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
-
-                $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
-                $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
-                $format = 'the %s %s of the month';
-                $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
-                break;
-            case '2': // 2|20 eg. the 21th to last day of the month
-                $dayNumber = $onMonthlyKindCodeArray[1] + 1;
-                $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
-
-                $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
-                $format = 'the %s to last day of the month';
-                $ret = sprintf($format, $dayNumberOrdinal);
-                break;
-            case '3': // 3|3|4 eg. the 4th to last Thursday of the month
-                $dayNumber = $onMonthlyKindCodeArray[1] + 1;
-                $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
-
-                $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
-                $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
-                $format = 'the %s to last %s of the month';
-                $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
-                break;
-        }
-
-        return $ret;
     }
 
     // **********************************************************************
