@@ -347,16 +347,6 @@ class EventControllerTest extends TestCase
     }
 
     /** @test */
-    public function it_gets_week_of_month_from_the_end()
-    {
-        $eventController = new EventController();
-
-        $timestramp = '1286582400'; // timestamp of10/09/2010
-        $weekOfTheMonthFromTheEnd = $eventController->weekOfMonthFromTheEnd($timestramp);
-        $this->assertEquals($weekOfTheMonthFromTheEnd, '4');
-    }
-
-    /** @test */
     public function it_gets_the_day_of_the_month_from_the_end()
     {
         $eventController = new EventController();

@@ -114,4 +114,48 @@ class LaravelEventsCalendar
         return $weeks;
     }
     
+    /***************************************************************************/
+
+    /**
+     * GET number of week from the end of the month - https://stackoverflow.com/questions/5853380/php-get-number-of-week-for-month
+     * Week of the month = Week of the year - Week of the year of first day of month + 1.
+     * Return the number of the week in the month of the day specified
+     * $when - unix timestramp of the date specified.
+     *
+     * @param  string $when
+     * @return int
+     */
+    public function weekOfMonthFromTheEnd($when = null)
+    {
+        $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
+        $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
+        $dayDifference = $lastDayOfMonth - $numberOfDayOfTheMonth;
+
+        switch (true) {
+            case $dayDifference < 7:
+                $weekFromTheEnd = 1;
+                break;
+
+            case $dayDifference < 14:
+                $weekFromTheEnd = 2;
+                break;
+
+            case $dayDifference < 21:
+                $weekFromTheEnd = 3;
+                break;
+
+            case $dayDifference < 28:
+                $weekFromTheEnd = 4;
+                break;
+
+            default:
+                $weekFromTheEnd = 5;
+                break;
+        }
+
+        return $weekFromTheEnd;
+    }
+    
+    
+    
 }
