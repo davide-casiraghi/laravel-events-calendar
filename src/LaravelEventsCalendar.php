@@ -185,17 +185,13 @@ class LaravelEventsCalendar
     public function getOrdinalIndicator($number)
     {
         switch ($number) {
-            case  1:
-            case 21:
-            case 31:
+            case  ($number == 1 || $number == 21  || $number == 31):
                 $ret = 'st';
                 break;
-            case  2:
-            case 22:
+            case  ($number == 2 || $number == 22 ):
                 $ret = 'nd';
                 break;
-            case  3:
-            case 23:
+            case  ($number == 3 || $number == 23 ):
                 $ret = 'rd';
                 break;
             default:
