@@ -13,6 +13,7 @@ class CreateCountriesTable extends Migration
             $table->string('name');
             $table->string('code')->unique();
             $table->integer('continent_id');
+            $table->string('timezone');
             $table->timestamps();
         });
     }

@@ -79,6 +79,7 @@ class CountryController extends Controller
         $country->name = $request->get('name');
         $country->code = $request->get('code');
         $country->continent_id = $request->get('continent_id');
+        $country->timezone = $request->get('timezone');
 
         $country->save();
 

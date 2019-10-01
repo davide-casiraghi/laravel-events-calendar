@@ -56,6 +56,7 @@ class EventVenueControllerTest extends TestCase
             'name' => 'Italy',
             'code' => 'IT',
             'continent_id' => 1,
+            'timezone'=> '+2:00',
         ]);
 
         $response = $this->post('/eventVenues', $attributes);
@@ -86,6 +87,7 @@ class EventVenueControllerTest extends TestCase
             'name' => 'Italy',
             'code' => 'IT',
             'continent_id' => 1,
+            'timezone'=> '+2:00',
         ]);
 
         $eventVenue = factory(EventVenue::class)->create();
@@ -109,6 +111,7 @@ class EventVenueControllerTest extends TestCase
             'name' => 'Italy',
             'code' => 'IT',
             'continent_id' => 1,
+            'timezone'=> '+2:00',
         ]);
 
         $eventVenue = factory(EventVenue::class)->create();
@@ -130,6 +133,7 @@ class EventVenueControllerTest extends TestCase
             'name' => 'Italy',
             'code' => 'IT',
             'continent_id' => 1,
+            'timezone'=> '+2:00',
         ]);
 
         $eventVenue = factory(EventVenue::class)->create();
@@ -172,6 +176,7 @@ class EventVenueControllerTest extends TestCase
             'name' => 'Italy',
             'code' => 'IT',
             'continent_id' => 1,
+            'timezone'=> '+2:00',
         ]);
 
         $request = new \Illuminate\Http\Request();
@@ -211,6 +216,7 @@ class EventVenueControllerTest extends TestCase
             'name' => 'Italy',
             'code' => 'IT',
             'continent_id' => 1,
+            'timezone'=> '+2:00',
         ]);
 
         $eventVenue = factory(EventVenue::class)->create();

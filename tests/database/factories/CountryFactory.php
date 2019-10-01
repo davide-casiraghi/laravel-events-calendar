@@ -19,5 +19,6 @@ $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Country::class, fu
         'name' => $country_name,
         'code' => $faker->countryCode,
         'continent_id' => 1,
+        'timezone' => '+2:00',
     ];
 });

@@ -9,4 +9,5 @@ return [
     'country_code' =>  'Código de país',
     'continent_code' => 'Código de continente',
     'search_by_country_name' => 'Buscar por nombre del país',
+    'timezone' => 'Timezone',
 ];

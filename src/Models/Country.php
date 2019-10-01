@@ -18,7 +18,7 @@ class Country extends Model
     /***************************************************************************/
 
     protected $fillable = [
-        'name', 'code', 'continent_id',
+        'name', 'code', 'continent_id', 'timezone',
     ];
 
     /***************************************************************************/

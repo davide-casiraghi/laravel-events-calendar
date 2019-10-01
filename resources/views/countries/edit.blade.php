@@ -50,6 +50,16 @@
                       'required' => true,
                 ])
             </div>
+            
+            <div class="col-12">
+                @include('laravel-form-partials::input', [
+                      'title' => __('laravel-events-calendar::country.timezone'),
+                      'name' => 'timezone',
+                      'placeholder' => 'Please specify as +2:00 or -5:00 or just Z if the time is in UTC',
+                      'value' => $country->timezone,
+                      'required' => true,
+                ])
+            </div>
         </div>
 
         @include('laravel-form-partials::buttons-back-submit', [
