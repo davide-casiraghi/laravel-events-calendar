@@ -25,6 +25,7 @@ class RegionController extends Controller
      */
     public function index(Request $request)
     {
+        $countries = Country::getCountries();
         $regions = Region::latest()->paginate(20);
         
         $searchKeywords = $request->input('keywords');
@@ -43,7 +44,8 @@ class RegionController extends Controller
         return view('laravel-events-calendar::regions.index', compact('regions'))
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('countriesAvailableForTranslations', $countriesAvailableForTranslations)
-            ->with('searchKeywords', $searchKeywords);
+            ->with('searchKeywords', $searchKeywords)
+            ->with('countries', $countries);
     }
 
     /**
