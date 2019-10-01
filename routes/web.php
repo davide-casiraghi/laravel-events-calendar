@@ -51,7 +51,7 @@
         /* Continents and Countries */
         Route::resource('continents', 'ContinentController');
         Route::resource('countries', 'CountryController');
-        
+
         /* Regions */
         Route::resource('regions', 'RegionController');
 
