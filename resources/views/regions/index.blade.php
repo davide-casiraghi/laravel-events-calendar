@@ -56,7 +56,9 @@
                         {{ $region->code }} 
                         
                         <i data-toggle="tooltip" data-placement="top" title="" class="far fa-globe-americas mr-1 ml-4 dark-gray" data-original-title="@lang('laravel-events-calendar::general.country')"></i>
-                        @if($region->country_id){{ $countries[$region->country_id] }}@endif
+                        @if(!$countries->isEmpty())
+                            @if($region->country_id){{ $countries[$region->country_id] }}@endif
+                        @endif
                     </div>
                     
                     <div class="col-12 pb-2 action">

@@ -60,7 +60,7 @@ class RegionControllerTest extends TestCase
 
         $response = $this
             ->followingRedirects()
-            ->post('/regions', $data)->dump();
+            ->post('/regions', $data);
 
         $this->assertDatabaseHas('region_translations', ['locale' => 'en']);
         $response->assertViewIs('laravel-events-calendar::regions.index');
