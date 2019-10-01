@@ -51,6 +51,16 @@
         /* Continents and Countries */
         Route::resource('continents', 'ContinentController');
         Route::resource('countries', 'CountryController');
+        
+        /* Regions */
+        Route::resource('regions', 'RegionController');
+
+        /* Regions Translations */
+        Route::get('/regionTranslations/{regionId}/{languageCode}/create', 'RegionTranslationController@create');
+        Route::get('/regionTranslations/{regionId}/{languageCode}/edit', 'RegionTranslationController@edit');
+        Route::post('/regionTranslations/store', 'RegionTranslationController@store')->name('regionTranslations.store');
+        Route::put('/regionTranslations/update', 'RegionTranslationController@update')->name('regionTranslations.update');
+        Route::delete('/regionTranslations/destroy/{eventCategoryTranslationId}', 'RegionTranslationController@destroy')->name('regionTranslations.destroy');
 
         /* Homepage - Event Search */
         Route::get('/', 'EventController@index')->name('home');
