@@ -20,7 +20,7 @@ class Region extends Model
     use Translatable;
 
     public $translatedAttributes = ['name', 'slug'];
-    protected $fillable = ['country_id','timezone'];
+    protected $fillable = ['country_id', 'timezone'];
     public $useTranslationFallback = true;
 
     /***************************************************************************/
@@ -37,6 +37,4 @@ class Region extends Model
 
         return $ret;
     }
-    
-
 }
