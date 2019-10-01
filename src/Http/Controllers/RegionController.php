@@ -70,6 +70,7 @@ class RegionController extends Controller
         // Validate form datas
         $validator = Validator::make($request->all(), [
                 'name' => 'required',
+                'country_id' => 'required',
                 'timezone' => 'required',
             ]);
         if ($validator->fails()) {
@@ -120,6 +121,7 @@ class RegionController extends Controller
     {
         request()->validate([
             'name' => 'required',
+            'country_id' => 'required',
             'timezone' => 'required',
         ]);
 
@@ -171,7 +173,6 @@ class RegionController extends Controller
     public function saveOnDb($request, $region)
     {
         $region->name = $request->get('name');
-        $region->code = $request->get('code');
         $region->country_id = $request->get('country_id');
         $region->timezone = $request->get('timezone');
         $region->slug = Str::slug($region->name, '-');

@@ -54,12 +54,13 @@ class RegionControllerTest extends TestCase
         $data = [
             'name' => 'test title',
             'slug' => 'test body',
+            'country_id' => 1,
             'timezone' => '+2:00',
         ];
 
         $response = $this
             ->followingRedirects()
-            ->post('/regions', $data);
+            ->post('/regions', $data)->dump();
 
         $this->assertDatabaseHas('region_translations', ['locale' => 'en']);
         $response->assertViewIs('laravel-events-calendar::regions.index');
@@ -105,6 +106,7 @@ class RegionControllerTest extends TestCase
         $attributes = ([
             'name' => 'test name updated',
             'slug' => 'test slug updated',
+            'country_id' => 1,
             'timezone' => '+2:00',
           ]);
 
