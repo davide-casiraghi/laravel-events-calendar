@@ -52,8 +52,8 @@ class RegionControllerTest extends TestCase
         $this->authenticateAsAdmin();
 
         $data = [
-            'name' => 'test title',
-            'slug' => 'test body',
+            'name' => 'Lombardia',
+            'slug' => 'lombardia',
             'country_id' => 1,
             'timezone' => '+2:00',
         ];
