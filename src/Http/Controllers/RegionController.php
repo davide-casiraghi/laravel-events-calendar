@@ -26,7 +26,6 @@ class RegionController extends Controller
     public function index(Request $request)
     {
         $countries = Country::getCountries();
-        $regions = Region::latest()->paginate(20);
         
         $searchKeywords = $request->input('keywords');
         if ($searchKeywords) {
