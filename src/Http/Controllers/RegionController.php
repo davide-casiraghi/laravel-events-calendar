@@ -7,9 +7,9 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 
-class EventCategoryController extends Controller
+class RegionController extends Controller
 {
     /* Restrict the access to this resource just to logged in users except show view */
     public function __construct()
@@ -24,12 +24,12 @@ class EventCategoryController extends Controller
      */
     public function index()
     {
-        $eventCategories = EventCategory::latest()->paginate(20);
+        $regions = Region::latest()->paginate(20);
 
         // Countries available for translations
         $countriesAvailableForTranslations = LaravelLocalization::getSupportedLocales();
 
-        return view('laravel-events-calendar::eventCategories.index', compact('eventCategories'))
+        return view('laravel-events-calendar::regions.index', compact('regions'))
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('countriesAvailableForTranslations', $countriesAvailableForTranslations);
     }
@@ -41,7 +41,7 @@ class EventCategoryController extends Controller
      */
     public function create()
     {
-        return view('laravel-events-calendar::eventCategories.create');
+        return view('laravel-events-calendar::regions.create');
     }
 
     /**
@@ -52,89 +52,90 @@ class EventCategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         // Validate form datas
         $validator = Validator::make($request->all(), [
                 'name' => 'required',
+                'timezone' => 'required',
             ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        $eventCategory = new EventCategory();
+        $region = new Region();
 
-        $this->saveOnDb($request, $eventCategory);
+        $this->saveOnDb($request, $region);
 
-        return redirect()->route('eventCategories.index')
-                        ->with('success', __('laravel-events-calendar::messages.category_added_successfully'));
+        return redirect()->route('regions.index')
+                        ->with('success', __('laravel-events-calendar::messages.region_added_successfully'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function show(EventCategory $eventCategory)
+    public function show(Region $region)
     {
-        return view('laravel-events-calendar::eventCategories.show', compact('eventCategory'));
+        return view('laravel-events-calendar::regions.show', compact('region'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function edit(EventCategory $eventCategory)
+    public function edit(Region $region)
     {
-        return view('laravel-events-calendar::eventCategories.edit', compact('eventCategory'));
+        return view('laravel-events-calendar::regions.edit', compact('region'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EventCategory $eventCategory)
+    public function update(Request $request, Region $region)
     {
         request()->validate([
             'name' => 'required',
+            'timezone' => 'required',
         ]);
 
-        $this->saveOnDb($request, $eventCategory);
+        $this->saveOnDb($request, $region);
 
-        return redirect()->route('eventCategories.index')
-                        ->with('success', __('laravel-events-calendar::messages.category_updated_successfully'));
+        return redirect()->route('regions.index')
+                        ->with('success', __('laravel-events-calendar::messages.region_updated_successfully'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EventCategory $eventCategory)
+    public function destroy(Region $region)
     {
-        $eventCategory->delete();
+        $region->delete();
 
-        return redirect()->route('eventCategories.index')
-                        ->with('success', __('laravel-events-calendar::messages.category_deleted_successfully'));
+        return redirect()->route('regions.index')
+                        ->with('success', __('laravel-events-calendar::messages.region_deleted_successfully'));
     }
 
     // **********************************************************************
 
     /**
-     * Return the single event category datas by cat id.
+     * Return the single event region datas by cat id.
      *
      * @param  int $cat_id
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Region
      */
-    /*public function eventcategorydata($cat_id)
+    /*public function eventregiondata($cat_id)
     {
-        $ret = DB::table('event_categories')->where('id', $cat_id)->first();
+        $ret = DB::table('regions')->where('id', $cat_id)->first();
         //dump($ret);
 
         return $ret;
@@ -146,14 +147,17 @@ class EventCategoryController extends Controller
      * Save/Update the record on DB.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory $eventCategory
+     * @param \DavideCasiraghi\LaravelEventsCalendar\Models\Region $region
      * @return void
      */
-    public function saveOnDb($request, $eventCategory)
+    public function saveOnDb($request, $region)
     {
-        $eventCategory->name = $request->get('name');
-        $eventCategory->slug = Str::slug($eventCategory->name, '-');
+        $region->name = $request->get('name');
+        $region->code = $request->get('code');
+        $region->country_id = $request->get('country_id');
+        $region->timezone = $request->get('timezone');
+        $region->slug = Str::slug($region->name, '-');
 
-        $eventCategory->save();
+        $region->save();
     }
 }
