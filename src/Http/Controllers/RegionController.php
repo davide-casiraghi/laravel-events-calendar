@@ -22,16 +22,27 @@ class RegionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $regions = Region::latest()->paginate(20);
+        
+        $searchKeywords = $request->input('keywords');
+        if ($searchKeywords) {
+            $regions = Region::orderBy('name')
+                                ->where('name', 'like', '%'.$request->input('keywords').'%')
+                                ->paginate(20);
+        } else {
+            $regions = Region::orderBy('name')
+                                ->paginate(20);
+        }
 
         // Countries available for translations
         $countriesAvailableForTranslations = LaravelLocalization::getSupportedLocales();
 
         return view('laravel-events-calendar::regions.index', compact('regions'))
             ->with('i', (request()->input('page', 1) - 1) * 20)
-            ->with('countriesAvailableForTranslations', $countriesAvailableForTranslations);
+            ->with('countriesAvailableForTranslations', $countriesAvailableForTranslations)
+            ->with('searchKeywords', $searchKeywords);
     }
 
     /**
