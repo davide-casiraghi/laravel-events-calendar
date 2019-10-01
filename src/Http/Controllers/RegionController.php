@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 
 class RegionController extends Controller
 {
@@ -52,7 +53,10 @@ class RegionController extends Controller
      */
     public function create()
     {
-        return view('laravel-events-calendar::regions.create');
+        $countries = Country::getCountries();
+        
+        return view('laravel-events-calendar::regions.create')
+                ->with('countries', $countries);
     }
 
     /**
@@ -99,7 +103,10 @@ class RegionController extends Controller
      */
     public function edit(Region $region)
     {
-        return view('laravel-events-calendar::regions.edit', compact('region'));
+        $countries = Country::getCountries();
+        
+        return view('laravel-events-calendar::regions.edit', compact('region'))
+                    ->with('countries', $countries);
     }
 
     /**

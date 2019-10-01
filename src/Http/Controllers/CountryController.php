@@ -53,7 +53,8 @@ class CountryController extends Controller
     {
         $continents = Continent::getContinents();
 
-        return view('laravel-events-calendar::countries.create')->with('continents', $continents);
+        return view('laravel-events-calendar::countries.create')
+                    ->with('continents', $continents);
     }
 
     /***************************************************************************/

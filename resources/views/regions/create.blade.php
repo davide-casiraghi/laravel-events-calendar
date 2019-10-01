@@ -41,7 +41,7 @@
                       'title' => __('laravel-events-calendar::general.country'),
                       'name' => 'country_id',
                       'placeholder' => __('laravel-events-calendar::general.select_country'),
-                      'records' => $regions,
+                      'records' => $countries,
                       'liveSearch' => 'false',
                       'mobileNativeMenu' => true,
                       'selected' => old('country_id'),
