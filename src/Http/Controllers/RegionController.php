@@ -30,7 +30,7 @@ class RegionController extends Controller
         $searchKeywords = $request->input('keywords');
         if ($searchKeywords) {
             $regions = Region::
-                        select('region_translations.region_id AS id', 'name', 'timezone', 'locale')
+                        select('region_translations.region_id AS id', 'name', 'timezone', 'locale', 'country_id')
                         ->join('region_translations', 'regions.id', '=', 'region_translations.region_id')
                         ->orderBy('name')
                         ->where('name', 'like', '%'.$searchKeywords.'%')
@@ -38,7 +38,7 @@ class RegionController extends Controller
                         ->paginate(20);
         } else {
             $regions = Region::
-                        select('region_translations.region_id AS id', 'name', 'timezone', 'locale')
+                        select('region_translations.region_id AS id', 'name', 'timezone', 'locale', 'country_id')
                         ->join('region_translations', 'regions.id', '=', 'region_translations.region_id')
                         ->orderBy('name')
                         ->paginate(20);
