@@ -31,14 +31,6 @@
                 ])
             </div>
             <div class="col-12">
-                @include('laravel-form-partials::input', [
-                      'title' => __('laravel-events-calendar::general.code'),
-                      'name' => 'code',
-                      'value' => $region->code,
-                      'required' => true,
-                ])
-            </div>
-            <div class="col-12">
                 @include('laravel-form-partials::select', [
                       'title' => __('laravel-events-calendar::general.country'),
                       'name' => 'country_id',
