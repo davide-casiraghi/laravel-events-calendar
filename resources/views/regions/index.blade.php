@@ -52,8 +52,8 @@
                         <h5 class="darkest-gray">{{ $region->name }}</h5>
                     </div>
                     <div class="col-12 mb-4">        
-                        <i data-toggle="tooltip" data-placement="top" title="" class="far fa-barcode-alt mr-1 dark-gray" data-original-title="@lang('laravel-events-calendar::general.code')"></i>
-                        {{ $region->code }} 
+                        <i data-toggle="tooltip" data-placement="top" title="" class="far fa-history mr-1 dark-gray" data-original-title="@lang('laravel-events-calendar::region.timezone')"></i>
+                        {{ $region->timezone }} 
                         
                         <i data-toggle="tooltip" data-placement="top" title="" class="far fa-globe-americas mr-1 ml-4 dark-gray" data-original-title="@lang('laravel-events-calendar::general.country')"></i>
                         @if(!$countries->isEmpty())
