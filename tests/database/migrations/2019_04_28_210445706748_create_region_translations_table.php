@@ -17,7 +17,7 @@ class CreateRegionTranslationsTable extends Migration
 
             $table->unique(['region_id', 'locale']);
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade');
-        
+
             $table->timestamps();
         });
     }
