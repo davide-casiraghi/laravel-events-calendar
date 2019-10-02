@@ -48,9 +48,24 @@
         <div class="regionsList my-4">
             @foreach ($regions as $region)
                 <div class="row bg-white shadow-1 rounded mb-3 pb-2 pt-3 mx-1">
+                    
+                    {{-- Title --}}
                     <div class="col-12 py-1 title">
                         <h5 class="darkest-gray">{{ $region->name }}</h5>
                     </div>
+                    
+                    {{-- Translations --}}
+                    <div class="col-12 mb-4 mt-4">
+                        @foreach ($countriesAvailableForTranslations as $key => $countryAvTrans)
+                            @if($region->hasTranslation($key))
+                                <a href="/regionTranslations/{{ $region->id }}/{{ $key }}/edit" class="bg-success text-white px-2 py-1 mb-1 mb-lg-0 d-inline-block rounded">{{$key}}</a>
+                            @else
+                                <a href="/regionTranslations/{{ $region->id }}/{{ $key }}/create" class="bg-secondary text-white px-2 py-1 mb-1 mb-lg-0 d-inline-block rounded">{{$key}}</a>
+                            @endif
+                        @endforeach
+                    </div>
+                    
+                    {{-- Labels --}}
                     <div class="col-12 mb-4">        
                         <i data-toggle="tooltip" data-placement="top" title="" class="far fa-history mr-1 dark-gray" data-original-title="@lang('laravel-events-calendar::region.timezone')"></i>
                         {{ $region->timezone }} 
@@ -61,6 +76,7 @@
                         @endif
                     </div>
                     
+                    {{-- Buttons --}}
                     <div class="col-12 pb-2 action">
                         <form action="{{ route('regions.destroy',$region->id) }}" method="POST">
                             <a class="btn btn-primary float-right" href="{{ route('regions.edit',$region->id) }}">@lang('laravel-events-calendar::general.edit')</a>

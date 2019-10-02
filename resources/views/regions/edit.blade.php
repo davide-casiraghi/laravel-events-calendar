@@ -16,7 +16,7 @@
     ])
 
 
-    <form action="{{ route('countries.update',$region->id) }}" method="POST">
+    <form action="{{ route('regions.update',$region->id) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -54,7 +54,7 @@
         </div>
 
         @include('laravel-form-partials::buttons-back-submit', [
-            'route' => 'countries.index'  
+            'route' => 'regions.index'  
         ])
         
     </form>
