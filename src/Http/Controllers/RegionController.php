@@ -6,9 +6,9 @@ use Validator;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class RegionController extends Controller
 {
@@ -26,15 +26,23 @@ class RegionController extends Controller
     public function index(Request $request)
     {
         $countries = Country::getCountries();
-
+        
         $searchKeywords = $request->input('keywords');
         if ($searchKeywords) {
-            $regions = Region::orderBy('name')
-                                ->where('name', 'like', '%'.$request->input('keywords').'%')
-                                ->paginate(20);
+            $regions = Region::
+                        select('region_translations.region_id AS id', 'name', 'timezone', 'locale')
+                        ->join('region_translations', 'regions.id', '=', 'region_translations.region_id')
+                        ->orderBy('name')
+                        ->where('name', 'like', '%'.$searchKeywords.'%')
+                        ->where('locale', 'en')
+                        ->paginate(20);
+            
         } else {
-            $regions = Region::orderBy('name')
-                                ->paginate(20);
+            $regions = Region::
+                        select('region_translations.region_id AS id', 'name', 'timezone', 'locale')
+                        ->join('region_translations', 'regions.id', '=', 'region_translations.region_id')
+                        ->orderBy('name')
+                        ->paginate(20);
         }
 
         // Countries available for translations
@@ -55,7 +63,7 @@ class RegionController extends Controller
     public function create()
     {
         $countries = Country::getCountries();
-
+        
         return view('laravel-events-calendar::regions.create')
                 ->with('countries', $countries);
     }
@@ -106,7 +114,7 @@ class RegionController extends Controller
     public function edit(Region $region)
     {
         $countries = Country::getCountries();
-
+        
         return view('laravel-events-calendar::regions.edit', compact('region'))
                     ->with('countries', $countries);
     }
