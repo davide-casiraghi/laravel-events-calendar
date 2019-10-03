@@ -32,14 +32,15 @@ class RegionController extends Controller
             $regions = Region::
                         select('region_translations.region_id AS id', 'name', 'timezone', 'locale', 'country_id')
                         ->join('region_translations', 'regions.id', '=', 'region_translations.region_id')
-                        ->orderBy('name')
                         ->where('name', 'like', '%'.$searchKeywords.'%')
                         ->where('locale', 'en')
+                        ->orderBy('name')
                         ->paginate(20);
         } else {
             $regions = Region::
                         select('region_translations.region_id AS id', 'name', 'timezone', 'locale', 'country_id')
                         ->join('region_translations', 'regions.id', '=', 'region_translations.region_id')
+                        ->where('locale', 'en')
                         ->orderBy('name')
                         ->paginate(20);
         }
