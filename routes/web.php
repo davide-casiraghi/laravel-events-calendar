@@ -66,8 +66,6 @@
         //Route::get('/', 'EventController@index')->name('home');
     });
 
-    
-
     /*Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'auth'], function () {
         // Teachers
         Route::resource('teachers', 'TeacherController');
