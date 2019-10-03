@@ -63,8 +63,10 @@
         Route::delete('/regionTranslations/destroy/{eventCategoryTranslationId}', 'RegionTranslationController@destroy')->name('regionTranslations.destroy');
 
         /* Homepage - Event Search */
-        Route::get('/', 'EventController@index')->name('home');
+        //Route::get('/', 'EventController@index')->name('home');
     });
+
+    
 
     /*Route::group(['namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers', 'middleware' => 'auth'], function () {
         // Teachers
