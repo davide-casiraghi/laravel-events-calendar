@@ -39,7 +39,8 @@ class Continent extends Model
         }
         // The contient of a specified country
         else {
-            $ret = self::firstWhere('id', $country_id);
+            $ret = self::where('id', $country_id)->first();
+            //firstWhere('id', $country_id);
                         //where('id', $country_id)->first();
                         //->pluck('name', 'id');
         }
