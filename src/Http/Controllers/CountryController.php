@@ -24,7 +24,7 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-        $continents = Continent::getContinents();
+        $continents = Continent::getContinents(null);
 
         $searchKeywords = $request->input('keywords');
         if ($searchKeywords) {
@@ -51,7 +51,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        $continents = Continent::getContinents();
+        $continents = Continent::getContinents(null);
 
         return view('laravel-events-calendar::countries.create')
                     ->with('continents', $continents);
@@ -112,7 +112,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        $continents = Continent::getContinents();
+        $continents = Continent::getContinents(null);
 
         return view('laravel-events-calendar::countries.edit', compact('country'))->with('continents', $continents);
     }

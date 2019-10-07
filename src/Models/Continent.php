@@ -28,13 +28,22 @@ class Continent extends Model
      *
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Continent
      */
-    public static function getContinents()
+    public static function getContinents($country_id)
     {
-        $minutes = 15;
-        $ret = Cache::remember('continents_list', $minutes, function () {
-            return self::orderBy('name')->pluck('name', 'id');
-        });
-
+        // All the contients
+        if ($country_id == null){
+            $minutes = 15;
+            $ret = Cache::remember('continents_list', $minutes, function () {
+                return self::orderBy('name')->pluck('name', 'id');
+            });
+        }
+        // The contient of a specified country
+        else {
+            $ret = self::firstWhere('id', $country_id);
+                        //where('id', $country_id)->first();
+                        //->pluck('name', 'id');
+        }
+            
         return $ret;
     }
 }

@@ -100,7 +100,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        $countries = Country::getCountries();
+        $countries = Country::getCountries(null);
         $users = User::pluck('name', 'id');
         $authorUserId = $this->getLoggedAuthorId();
 
@@ -181,7 +181,7 @@ class TeacherController extends Controller
     {
         $authorUserId = $this->getLoggedAuthorId();
         $users = User::pluck('name', 'id');
-        $countries = Country::getCountries();
+        $countries = Country::getCountries(null);
 
         return view('laravel-events-calendar::teachers.edit', compact('teacher'))
             ->with('countries', $countries)
@@ -285,7 +285,7 @@ class TeacherController extends Controller
      */
     public function modal()
     {
-        $countries = Country::getCountries();
+        $countries = Country::getCountries(null);
 
         return view('laravel-events-calendar::teachers.modal')->with('countries', $countries);
     }
