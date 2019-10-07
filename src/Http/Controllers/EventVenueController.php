@@ -81,7 +81,7 @@ class EventVenueController extends Controller
     {
         $authorUserId = $this->getLoggedAuthorId();
         $users = User::pluck('name', 'id');
-        $countries = Country::getCountries(null);
+        $countries = Country::getCountries();
 
         return view('laravel-events-calendar::eventVenues.create')
                 ->with('countries', $countries)
@@ -145,7 +145,7 @@ class EventVenueController extends Controller
         if (Auth::user()->id == $eventVenue->created_by || Auth::user()->group == 1 || Auth::user()->group == 2) {
             $authorUserId = $this->getLoggedAuthorId();
             $users = User::pluck('name', 'id');
-            $countries = Country::getCountries(null);
+            $countries = Country::getCountries();
 
             return view('laravel-events-calendar::eventVenues.edit', compact('eventVenue'))
                 ->with('countries', $countries)
@@ -243,7 +243,7 @@ class EventVenueController extends Controller
      */
     public function modal()
     {
-        $countries = Country::getCountries(null);
+        $countries = Country::getCountries();
 
         return view('laravel-events-calendar::eventVenues.modal')->with('countries', $countries);
     }

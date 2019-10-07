@@ -30,20 +30,10 @@ class Country extends Model
      */
     public static function getCountries($continent_id)
     {
-        // All the countries
-        if ($continent_id == null){
-            $minutes = 15;
-            $ret = Cache::remember('countries_list', $minutes, function () {
-                return self::orderBy('name')->pluck('name', 'id');
-            });
-        }
-        // The countries of a specified continent
-        else {
-            $ret = self::where('continent_id', $continent_id)
-                        ->pluck('name', 'id')
-                        ->orderBy('name');
-        }
-
+        $minutes = 15;
+        $ret = Cache::remember('countries_list', $minutes, function () {
+            return self::orderBy('name')->pluck('name', 'id');
+        });
         return $ret;
     }
 

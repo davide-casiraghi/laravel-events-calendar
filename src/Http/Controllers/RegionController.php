@@ -25,7 +25,7 @@ class RegionController extends Controller
      */
     public function index(Request $request)
     {
-        $countries = Country::getCountries(null);
+        $countries = Country::getCountries();
 
         $searchKeywords = $request->input('keywords');
         if ($searchKeywords) {
@@ -62,7 +62,7 @@ class RegionController extends Controller
      */
     public function create()
     {
-        $countries = Country::getCountries(null);
+        $countries = Country::getCountries();
 
         return view('laravel-events-calendar::regions.create')
                 ->with('countries', $countries);
@@ -113,7 +113,7 @@ class RegionController extends Controller
      */
     public function edit(Region $region)
     {
-        $countries = Country::getCountries(null);
+        $countries = Country::getCountries();
 
         return view('laravel-events-calendar::regions.edit', compact('region'))
                     ->with('countries', $countries);
