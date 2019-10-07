@@ -31,7 +31,7 @@ class Continent extends Model
     public static function getContinents($country_id)
     {
         // All the contients
-        if ($country_id == null){
+        if ($country_id == null) {
             $minutes = 15;
             $ret = Cache::remember('continents_list', $minutes, function () {
                 return self::orderBy('name')->pluck('name', 'id');
@@ -40,10 +40,10 @@ class Continent extends Model
         // The contient of a specified country
         else {
             $ret = self::firstWhere('id', $country_id);
-                        //where('id', $country_id)->first();
+            //where('id', $country_id)->first();
                         //->pluck('name', 'id');
         }
-            
+
         return $ret;
     }
 }
