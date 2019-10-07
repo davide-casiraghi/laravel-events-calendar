@@ -28,7 +28,7 @@ class Country extends Model
      *
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
      */
-    public static function getCountries($continent_id)
+    public static function getCountries()
     {
         $minutes = 15;
         $ret = Cache::remember('countries_list', $minutes, function () {
@@ -61,6 +61,7 @@ class Country extends Model
                 ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
                     $join->on('events.id', '=', 'event_repetitions.event_id');
                 })
+                ->orderBy('countries.name')
                 ->get();
         });
         
@@ -77,7 +78,7 @@ class Country extends Model
     public static function getActiveCountriesByContinent($continent_id)
     {
         $activeCountries = $this->getActiveCountries();
-        $ret = $activeCountries->where('continent_id', $continent_id)->get();
+        $ret = $activeCountries->where('continent_id', $continent_id)->orderBy('name')->get();
         
         return $ret;
     }
