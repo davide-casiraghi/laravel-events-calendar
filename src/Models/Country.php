@@ -57,7 +57,8 @@ class Country extends Model
     public static function getActiveCountries()
     {
         $cacheExpireMinutes = 15; // Set the duration time of the cache
-
+        
+        // All the countries
         $ret = Cache::remember('active_countries', $cacheExpireMinutes, function () {
             date_default_timezone_set('Europe/Rome');
             $searchStartDate = date('Y-m-d', time());
@@ -72,7 +73,22 @@ class Country extends Model
                 })
                 ->get();
         });
+        
+        return $ret;
+    }
+    
+    /***************************************************************************/
 
+    /**
+     * Return the all active countries by continent 
+     *
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
+     */
+    public static function getActiveCountriesByContinent($continent_id)
+    {
+        $activeCountries = $this->getActiveCountries();
+        $ret = $activeCountries->where('continent_id', $continent_id)->get();
+        
         return $ret;
     }
 
