@@ -34,6 +34,7 @@ class Continent extends Model
         $ret = Cache::remember('continents_list', $minutes, function () {
             return self::orderBy('name')->pluck('name', 'id');
         });
+
         return $ret;
     }
 }
