@@ -80,7 +80,7 @@ class Country extends Model
     {
         $activeCountries = self::getActiveCountries()->unique('name')->sortBy('name');
         $ret = $activeCountries->where('continent_id', $continent_id);
-        
+
         return $ret;
     }
 
