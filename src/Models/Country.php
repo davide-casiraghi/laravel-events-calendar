@@ -78,9 +78,9 @@ class Country extends Model
      */
     public static function getActiveCountriesByContinent($continent_id)
     {
-        $activeCountries = self::getActiveCountries();
-        $ret = $activeCountries->where('continent_id', $continent_id)->orderBy('name')->get();
-
+        $activeCountries = self::getActiveCountries()->unique('name')->sortBy('name');
+        $ret = $activeCountries->where('continent_id', $continent_id);
+        
         return $ret;
     }
 
