@@ -30,7 +30,7 @@ class RegionController extends Controller
 
         $searchKeywords = $request->input('keywords');
         $searchCountry = $request->input('country_id');
-        
+
         if ($searchKeywords || $searchCountry) {
             //$regions = DB::table('regions')
             $regions = Region::
