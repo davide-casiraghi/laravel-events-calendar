@@ -26,14 +26,23 @@ class RegionController extends Controller
     public function index(Request $request)
     {
         $countries = Country::getCountries();
+        //$countries = Country::getActiveCountries();
 
         $searchKeywords = $request->input('keywords');
-        if ($searchKeywords) {
+        $searchCountry = $request->input('country_id');
+        
+        if ($searchKeywords || $searchCountry) {
+            //$regions = DB::table('regions')
             $regions = Region::
                         select('region_translations.region_id AS id', 'name', 'timezone', 'locale', 'country_id')
                         ->join('region_translations', 'regions.id', '=', 'region_translations.region_id')
-                        ->where('name', 'like', '%'.$searchKeywords.'%')
                         ->where('locale', 'en')
+                        ->when($searchKeywords, function ($query, $searchKeywords) {
+                            return $query->where('name', $searchKeywords)->orWhere('name', 'like', '%'.$searchKeywords.'%');
+                        })
+                        ->when($searchCountry, function ($query, $searchCountry) {
+                            return $query->where('country_id', '=', $searchCountry);
+                        })
                         ->orderBy('name')
                         ->paginate(20);
         } else {
@@ -52,6 +61,7 @@ class RegionController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * 20)
             ->with('countriesAvailableForTranslations', $countriesAvailableForTranslations)
             ->with('searchKeywords', $searchKeywords)
+            ->with('searchCountry', $searchCountry)
             ->with('countries', $countries);
     }
 
