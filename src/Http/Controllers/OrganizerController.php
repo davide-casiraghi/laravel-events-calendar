@@ -202,7 +202,10 @@ class OrganizerController extends Controller
      */
     public function modal()
     {
-        return view('laravel-events-calendar::organizers.modal');
+        $users = User::pluck('name', 'id');
+        
+        return view('laravel-events-calendar::organizers.modal')
+                    ->with('users', $users);
     }
 
     /***************************************************************************/

@@ -286,8 +286,11 @@ class TeacherController extends Controller
     public function modal()
     {
         $countries = Country::getCountries();
+        $users = User::pluck('name', 'id');
 
-        return view('laravel-events-calendar::teachers.modal')->with('countries', $countries);
+        return view('laravel-events-calendar::teachers.modal')
+                ->with('countries', $countries)
+                ->with('users', $users);
     }
 
     /***************************************************************************/
