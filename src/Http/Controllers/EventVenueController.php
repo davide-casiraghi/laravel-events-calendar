@@ -244,14 +244,17 @@ class EventVenueController extends Controller
     public function modal()
     {
         $countries = Country::getCountries();
+        $users = User::pluck('name', 'id');
 
-        return view('laravel-events-calendar::eventVenues.modal')->with('countries', $countries);
+        return view('laravel-events-calendar::eventVenues.modal')
+                    ->with('countries', $countries)
+                    ->with('users', $users);
     }
 
     /***************************************************************************/
 
     /**
-     * Store a newly created teacher from the create event view modal in storage.
+     * Store a newly created VENUE from the create event view modal in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
