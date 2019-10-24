@@ -3,6 +3,11 @@
 @section('title'){{ $organizer->name }}@endsection
 @section('description')Organizer profile @ Global CI calendar @endsection
 
+@section('fb-tags')
+    <meta property="og:title" content="{{ $organizer->name }}" />
+    <meta property="og:image" content="/storage/logo/fb_logo_cigc_red.jpg" />
+@endsection    
+
 @section('content')
 
     <div class="row">
