@@ -11,31 +11,27 @@
 @section('content')
 
     <div class="row">
-        <div class="teacherName col-12 mb-5">
-            <h2>{{ $organizer->name }}</h2>
+        <div class="container max-w-md px-0">
+            <div class="row m-0 p-4 white-bg rounded">
+                <div class="teacherName col-12 mt-3">
+                    <h4>{{ $organizer->name }}</h4>
+                </div>
+
+                @if(!empty($organizer->website))
+                    <div class="col-12 mt-4">
+                        <i class="fas fa-globe mr-1 dark-gray"></i>
+                        <a href="{{ $organizer->website }}" target="_blank">@lang('laravel-events-calendar::general.website')</a>
+                    </div>
+                @endif
+
+                @if(!empty($organizer->description))
+                    <div class="col-12 mt-5">
+                        <h4 class="mb-4">Description</h4>
+                        {!! $organizer->description !!}
+                    </div>
+                @endif
+            </div>
         </div>
-
-        @if(!empty($organizer->facebook))
-            <div class="col-12 mt-4">
-                <h3>Facebook profile</h3>
-                <a href="{{ $organizer->facebook }}" target="_blank">{{ $organizer->facebook }}</a>
-            </div>
-        @endif
-
-        @if(!empty($organizer->website))
-            <div class="col-12 mt-4">
-                <h3>Website</h3>
-                <a href="{{ $organizer->website }}" target="_blank">{{ $organizer->website }}</a>
-            </div>
-        @endif
-
-        @if(!empty($organizer->description))
-            <div class="col-12 mt-4">
-                <h3>Description</h3>
-                {!! $organizer->description !!}
-            </div>
-        @endif
-
     </div>
 
 @endsection
