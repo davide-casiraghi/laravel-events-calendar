@@ -152,6 +152,34 @@ class EventControllerTest extends TestCase
         $this->assertDatabaseHas('event_repetitions', ['id' => 1]);
         $this->assertDatabaseHas('event_repetitions', ['id' => 2]);
     }
+    
+    /** @test */
+    /*
+    public function it_stores_a_valid_event_with_multiple_days_repetitions()
+    {
+        $this->authenticate();
+        $attributes = factory(Event::class)->raw([
+                        'title' => 'test title',
+                        'repeat_type' => '3',
+                        'startDate' => '10/01/2020',
+                        'endDate' => '10/01/2020',
+                        'time_start' => '10:00',
+                        'time_end' => '12:00',
+                        'repeat_until' => '10/10/2020',
+                        'multiple_dates' => '.13/04/2020,14/04/2020,15/04/2020,16/04/2020,17/04/2020,18/04/2020,21/05/2020,22/05/2020,23/05/2020,24/05/2020,27/06/2020,28/06/2020,29/02/2020,01/03/2020',
+                    ]);
+        
+                    $response = $this->post('/events', $attributes);
+                    $response->assertRedirect('/events/');
+        
+        
+        
+        
+        //$this->assertDatabaseHas('events', ['title' => 'test title']);
+        //$this->assertDatabaseHas('event_repetitions', ['id' => 1]);
+        //$this->assertDatabaseHas('event_repetitions', ['id' => 2]);
+    }
+    */
 
     /** @test */
     public function it_does_not_store_invalid_event()

@@ -211,7 +211,15 @@ class EventController extends Controller
                 case '4': //repeatMultipleDays
                     $dateStart = date('d/m/Y', strtotime($firstRpDates->start_repeat));
                     $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
-                    //$repetition_text = 'The event happens on this dates: '.$event->multiple_dates;
+                    
+                    // Sort the datas  
+                       usort($singleDaysRepeatDatas, function($a, $b) {
+                           $a = Carbon::createFromFormat('d/m/Y', $a);
+                           $b = Carbon::createFromFormat('d/m/Y', $b);
+          
+                           return strtotime($a) - strtotime($b);
+                       });
+                    
                     $repetition_text = 'The event happens on this dates: ';
                     $repetition_text .= $dateStart.', ';
                     $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
