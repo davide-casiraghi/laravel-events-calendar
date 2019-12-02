@@ -1,11 +1,11 @@
 <?php
 
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use Faker\Generator as Faker;
 use Illuminate\Foundation\Auth\User;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 
 /*
 |--------------------------------------------------------------------------

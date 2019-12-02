@@ -2,8 +2,8 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use Faker\Generator as Faker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use Faker\Generator as Faker;
 
 $factory->define(EventCategory::class, function (Faker $faker) {
     $event_category_name = $faker->name;

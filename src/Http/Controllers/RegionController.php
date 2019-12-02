@@ -2,13 +2,13 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use Validator;
-use Illuminate\Support\Str;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Validator;
 
 class RegionController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use Illuminate\Foundation\Testing\WithFaker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class CountryControllerTest extends TestCase
 {

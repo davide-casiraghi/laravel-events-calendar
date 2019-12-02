@@ -2,10 +2,10 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use Validator;
-use Illuminate\Http\Request;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use Illuminate\Http\Request;
+use Validator;
 
 class CountryController extends Controller
 {

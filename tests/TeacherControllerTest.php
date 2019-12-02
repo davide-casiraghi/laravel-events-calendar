@@ -2,12 +2,12 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Testing\WithFaker;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\TeacherController;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Storage;
 
 class TeacherControllerTest extends TestCase
 {

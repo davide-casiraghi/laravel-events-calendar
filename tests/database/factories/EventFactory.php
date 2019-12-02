@@ -1,9 +1,9 @@
 <?php
 
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use Faker\Generator as Faker;
 use Illuminate\Foundation\Auth\User;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 
 /*
 |--------------------------------------------------------------------------

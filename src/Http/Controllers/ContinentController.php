@@ -2,9 +2,9 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use Validator;
-use Illuminate\Http\Request;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use Illuminate\Http\Request;
+use Validator;
 
 class ContinentController extends Controller
 {

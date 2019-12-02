@@ -2,12 +2,12 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use Validator;
-use Illuminate\Support\Str;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use Validator;
 
 class EventCategoryController extends Controller
 {
