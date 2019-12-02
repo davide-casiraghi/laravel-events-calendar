@@ -2,9 +2,9 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 
 class RegionControllerTest extends TestCase
 {

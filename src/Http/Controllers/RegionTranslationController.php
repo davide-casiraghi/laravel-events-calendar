@@ -2,10 +2,10 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use Validator;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use DavideCasiraghi\LaravelEventsCalendar\Models\RegionTranslation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Validator;
 
 class RegionTranslationController extends Controller
 {

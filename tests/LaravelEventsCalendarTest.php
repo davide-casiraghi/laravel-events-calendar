@@ -4,10 +4,10 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Carbon\Carbon;
 //use Orchestra\Testbench\TestCase;
-use Illuminate\Support\Facades\DB;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use Illuminate\Support\Facades\DB;
 
 class LaravelEventsCalendarTest extends TestCase
 {

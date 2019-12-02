@@ -2,13 +2,13 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventVenueController;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-use DavideCasiraghi\LaravelEventsCalendar\Http\Controllers\EventVenueController;
 
 class EventVenueControllerTest extends TestCase
 {

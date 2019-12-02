@@ -2,8 +2,8 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Model;
 
 class EventCategory extends Model
 {

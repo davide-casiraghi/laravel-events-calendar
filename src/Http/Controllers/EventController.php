@@ -2,29 +2,29 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use DateTime;
-use Validator;
-use DatePeriod;
-use DateInterval;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Foundation\Auth\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
-use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
-use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
+use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class EventController extends Controller
 {
@@ -211,15 +211,15 @@ class EventController extends Controller
                 case '4': //repeatMultipleDays
                     $dateStart = date('d/m/Y', strtotime($firstRpDates->start_repeat));
                     $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
-                    
-                    // Sort the datas  
-                       usort($singleDaysRepeatDatas, function($a, $b) {
+
+                    // Sort the datas
+                       usort($singleDaysRepeatDatas, function ($a, $b) {
                            $a = Carbon::createFromFormat('d/m/Y', $a);
                            $b = Carbon::createFromFormat('d/m/Y', $b);
-          
+
                            return strtotime($a) - strtotime($b);
                        });
-                    
+
                     $repetition_text = 'The event happens on this dates: ';
                     $repetition_text .= $dateStart.', ';
                     $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);

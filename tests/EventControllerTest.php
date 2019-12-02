@@ -2,11 +2,11 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 
 class EventControllerTest extends TestCase
 {
@@ -152,7 +152,7 @@ class EventControllerTest extends TestCase
         $this->assertDatabaseHas('event_repetitions', ['id' => 1]);
         $this->assertDatabaseHas('event_repetitions', ['id' => 2]);
     }
-    
+
     /** @test */
     /*
     public function it_stores_a_valid_event_with_multiple_days_repetitions()
@@ -168,13 +168,13 @@ class EventControllerTest extends TestCase
                         'repeat_until' => '10/10/2020',
                         'multiple_dates' => '.13/04/2020,14/04/2020,15/04/2020,16/04/2020,17/04/2020,18/04/2020,21/05/2020,22/05/2020,23/05/2020,24/05/2020,27/06/2020,28/06/2020,29/02/2020,01/03/2020',
                     ]);
-        
+
                     $response = $this->post('/events', $attributes);
                     $response->assertRedirect('/events/');
-        
-        
-        
-        
+
+
+
+
         //$this->assertDatabaseHas('events', ['title' => 'test title']);
         //$this->assertDatabaseHas('event_repetitions', ['id' => 1]);
         //$this->assertDatabaseHas('event_repetitions', ['id' => 2]);
