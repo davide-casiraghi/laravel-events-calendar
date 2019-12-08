@@ -266,8 +266,16 @@ class LaravelEventsCalendar
 
                 $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
                 $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
-                $format = 'the %s to last %s of the month';
-                $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
+                
+                if ($dayNumber == 1){
+                    $format = 'the last %s of the month';  // eg. the last Friday of the month until 17/06/2020
+                    $ret = sprintf($format, $weekDay);
+                }
+                else{
+                    $format = 'the %s to last %s of the month'; // eg. the 2nd to last Friday of the month until 17/06/2020
+                    $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
+                }
+                
                 break;
         }
 
