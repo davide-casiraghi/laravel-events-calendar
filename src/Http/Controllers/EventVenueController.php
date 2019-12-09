@@ -82,9 +82,11 @@ class EventVenueController extends Controller
         $authorUserId = $this->getLoggedAuthorId();
         $users = User::pluck('name', 'id');
         $countries = Country::getCountries();
+        $regions = [];
 
         return view('laravel-events-calendar::eventVenues.create')
                 ->with('countries', $countries)
+                ->with('regions', $regions)
                 ->with('users', $users)
                 ->with('authorUserId', $authorUserId);
     }
@@ -146,9 +148,11 @@ class EventVenueController extends Controller
             $authorUserId = $this->getLoggedAuthorId();
             $users = User::pluck('name', 'id');
             $countries = Country::getCountries();
+            $regions = [];
 
             return view('laravel-events-calendar::eventVenues.edit', compact('eventVenue'))
                 ->with('countries', $countries)
+                ->with('regions', $regions)
                 ->with('users', $users)
                 ->with('authorUserId', $authorUserId);
         } else {
