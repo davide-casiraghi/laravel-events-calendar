@@ -37,4 +37,21 @@ class Region extends Model
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Return all the countries ordered by name.
+     *
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
+     */
+    public static function getRegionsByCountry($countryId)
+    {
+        $ret = self::join('region_translations', 'regions.id', '=', 'region_translations.region_id')
+                    ->where('locale', 'en')
+                    ->where('country_id', $countryId)
+                    ->orderBy('name')
+                    ->pluck('name','region_translations.region_id AS id');  
+        return $ret;
+    }
 }
