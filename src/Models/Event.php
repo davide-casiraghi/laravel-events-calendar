@@ -165,7 +165,8 @@ class Event extends Model
 
         // Retrieve the events that correspond to the selected filters
         if ($filters['keywords'] || $filters['category'] || $filters['city'] || $filters['country']|| $filters['region'] || $filters['continent'] || $filters['teacher'] || $filters['venue'] || $filters['endDate']) {
-
+        
+        //$start = microtime(true);
             //DB::enableQueryLog();
             $ret = self::
                     when($filters['keywords'], function ($query, $keywords) {
@@ -178,26 +179,36 @@ class Event extends Model
                         return $query->whereRaw('json_contains(sc_teachers_id, \'["'.$teacher.'"]\')');
                     })
                     ->when($filters['country'], function ($query, $country) {
-                        return $query->where('sc_country_id', '=', $country);
+                        return $query->where('event_venues.country_id', '=', $country);
                     })
                     ->when($filters['region'], function ($query, $region) {
-                        return $query->where('sc_region_id', '=', $region);
+                        return $query->where('event_venues.region_id', '=', $region);
                     })
                     ->when($filters['continent'], function ($query, $continent) {
-                        return $query->where('sc_continent_id', '=', $continent);
+                        return $query->where('event_venues.continent_id', '=', $continent);  //sc_continent_id
                     })
                     ->when($filters['city'], function ($query, $city) {
-                        return $query->where('sc_city_name', 'like', '%'.$city.'%');
+                        return $query->where('event_venues.city', 'like', '%'.$city.'%');
                     })
                     ->when($filters['venue'], function ($query, $venue) {
-                        return $query->where('sc_venue_name', 'like', '%'.$venue.'%');
+                        return $query->where('event_venues.name', 'like', '%'.$venue.'%');
                     })
                     ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
                         $join->on('events.id', '=', 'event_repetitions.event_id');
                     })
+                    
+                    ->leftJoin('event_venues', 'events.venue_id', '=', 'event_venues.id')
+                    ->leftJoin('continents', 'event_venues.continent_id', '=', 'continents.id')
+                    ->leftJoin('countries', 'event_venues.country_id', '=', 'countries.id')
+                    ->leftJoin('regions', 'event_venues.region_id', '=', 'regions.id')
+                    ->leftJoin('region_translations', 'regions.id', '=', 'region_translations.region_id')
+
                     ->orderBy('event_repetitions.start_repeat', 'asc')
                     ->paginate($itemPerPage);
         //dd(DB::getQueryLog());
+        
+        //$time = microtime(true) - $start;
+        //dd($time);
         }
         // If no filter selected retrieve all the events
         else {
