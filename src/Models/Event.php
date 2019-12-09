@@ -164,7 +164,7 @@ class Event extends Model
         $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($filters['startDate'], $filters['endDate']);
 
         // Retrieve the events that correspond to the selected filters
-        if ($filters['keywords'] || $filters['category'] || $filters['city'] || $filters['country'] || $filters['continent'] || $filters['teacher'] || $filters['venue'] || $filters['endDate']) {
+        if ($filters['keywords'] || $filters['category'] || $filters['city'] || $filters['country']|| $filters['region'] || $filters['continent'] || $filters['teacher'] || $filters['venue'] || $filters['endDate']) {
 
             //DB::enableQueryLog();
             $ret = self::
@@ -179,6 +179,9 @@ class Event extends Model
                     })
                     ->when($filters['country'], function ($query, $country) {
                         return $query->where('sc_country_id', '=', $country);
+                    })
+                    ->when($filters['region'], function ($query, $region) {
+                        return $query->where('sc_region_id', '=', $region);
                     })
                     ->when($filters['continent'], function ($query, $continent) {
                         return $query->where('sc_continent_id', '=', $continent);

@@ -856,6 +856,7 @@ class EventController extends Controller
 
         // Support columns for homepage search (we need this to show events in HP with less use of resources)
         $event->sc_country_id = $venue->country_id;
+        $event->sc_region_id = $venue->region_id;
         $event->sc_country_name = $countries[$venue->country_id];
         $event->sc_city_name = $venue->city;
         $event->sc_venue_name = $venue->venue_name;

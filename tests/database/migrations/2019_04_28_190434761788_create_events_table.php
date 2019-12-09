@@ -31,6 +31,7 @@ class CreateEventsTable extends Migration
             $table->string('multiple_dates')->nullable();
 
             $table->integer('sc_country_id')->nullable();
+            $table->integer('sc_region_id')->nullable();
             $table->string('sc_country_name')->nullable();
             $table->string('sc_city_name')->nullable();
             $table->string('sc_venue_name')->nullable();
