@@ -169,7 +169,8 @@ class Event extends Model
         //$start = microtime(true);
             //DB::enableQueryLog();
             $ret = self::
-                    when($filters['keywords'], function ($query, $keywords) {
+                    select('events.title','events.category_id','events.slug','event_venues.name as venue_name','event_venues.city as city_name','countries.name as country_name' ,'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
+                    ->when($filters['keywords'], function ($query, $keywords) {
                         return $query->where('title', 'like', '%'.$keywords.'%');
                     })
                     ->when($filters['category'], function ($query, $category) {
@@ -213,9 +214,16 @@ class Event extends Model
         // If no filter selected retrieve all the events
         else {
             $ret = self::
-                        joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
+                        select('events.title','events.category_id','events.slug','event_venues.name as venue_name','event_venues.city as city_name','countries.name as country_name' ,'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
+                        ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
                             $join->on('events.id', '=', 'event_repetitions.event_id');
                         })
+                        ->leftJoin('event_venues', 'events.venue_id', '=', 'event_venues.id')
+                        ->leftJoin('continents', 'event_venues.continent_id', '=', 'continents.id')
+                        ->leftJoin('countries', 'event_venues.country_id', '=', 'countries.id')
+                        ->leftJoin('regions', 'event_venues.region_id', '=', 'regions.id')
+                        ->leftJoin('region_translations', 'regions.id', '=', 'region_translations.region_id')
+
                         ->orderBy('event_repetitions.start_repeat', 'asc')
                         ->paginate($itemPerPage);
 
