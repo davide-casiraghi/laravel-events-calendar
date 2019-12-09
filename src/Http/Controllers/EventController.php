@@ -860,7 +860,7 @@ class EventController extends Controller
         $event->sc_country_name = $countries[$venue->country_id];
         $event->sc_city_name = $venue->city;
         $event->sc_venue_name = $venue->venue_name;
-        $event->sc_teachers_id = json_encode(explode(',', $request->get('multiple_teachers')));
+        $event->sc_teachers_id = json_encode(explode(',', $request->get('multiple_teachers'))); // keep just this SC
         $event->sc_continent_id = $venue->continent_id;
 
         // Multiple teachers - populate support column field
