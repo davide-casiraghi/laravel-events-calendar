@@ -3,6 +3,7 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -148,7 +149,7 @@ class EventVenueController extends Controller
             $authorUserId = $this->getLoggedAuthorId();
             $users = User::pluck('name', 'id');
             $countries = Country::getCountries();
-            $regions = [];
+            $regions = Region::getRegionsByCountry($eventVenue->country_id);
 
             return view('laravel-events-calendar::eventVenues.edit', compact('eventVenue'))
                 ->with('countries', $countries)
