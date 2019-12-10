@@ -19,7 +19,7 @@ class CreateEventVenuesTable extends Migration
             $table->integer('continent_id');
             $table->integer('country_id');
             $table->integer('region_id')->nullable();
-            $table->string('state_province')->nullable();
+            //$table->string('state_province')->nullable();
             $table->string('city');
             $table->string('address')->nullable();
             $table->string('zip_code')->nullable();

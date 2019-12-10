@@ -28,6 +28,6 @@ $factory->define(EventVenue::class, function (Faker $faker) {
         'city' => $faker->city,
         'address' => $faker->streetAddress,
         'zip_code' => $faker->postcode,
-        'state_province' => $faker->state,
+        //'state_province' => $faker->state,
     ];
 });

@@ -223,7 +223,7 @@ class EventVenueController extends Controller
         $eventVenue->country_id = $request->get('country_id');
         $eventVenue->region_id = $request->get('region_id');
         $eventVenue->city = $request->get('city');
-        $eventVenue->state_province = $request->get('state_province');
+        //$eventVenue->state_province = $request->get('state_province');
         $eventVenue->address = $request->get('address');
         $eventVenue->zip_code = $request->get('zip_code');
         $eventVenue->website = $request->get('website');

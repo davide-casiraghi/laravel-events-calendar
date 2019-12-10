@@ -187,7 +187,7 @@ class EventVenueControllerTest extends TestCase
             'city' => $this->faker->city,
             'address' => $this->faker->streetAddress,
             'zip_code' => $this->faker->postcode,
-            'state_province' => $this->faker->state,
+            //'state_province' => $this->faker->state,
         ];
 
         $request->replace($data);
