@@ -164,12 +164,12 @@ class Event extends Model
         $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($filters['startDate'], $filters['endDate']);
 
         // Retrieve the events that correspond to the selected filters
-        if ($filters['keywords'] || $filters['category'] || $filters['city'] || $filters['country']|| $filters['region'] || $filters['continent'] || $filters['teacher'] || $filters['venue'] || $filters['endDate']) {
-        
+        if ($filters['keywords'] || $filters['category'] || $filters['city'] || $filters['country'] || $filters['region'] || $filters['continent'] || $filters['teacher'] || $filters['venue'] || $filters['endDate']) {
+
         //$start = microtime(true);
             //DB::enableQueryLog();
             $ret = self::
-                    select('events.title','events.category_id','events.slug','event_venues.name as venue_name','event_venues.city as city_name','countries.name as country_name' ,'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
+                    select('events.title', 'events.category_id', 'events.slug', 'event_venues.name as venue_name', 'event_venues.city as city_name', 'countries.name as country_name', 'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
                     ->when($filters['keywords'], function ($query, $keywords) {
                         return $query->where('title', 'like', '%'.$keywords.'%');
                     })
@@ -197,7 +197,7 @@ class Event extends Model
                     ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
                         $join->on('events.id', '=', 'event_repetitions.event_id');
                     })
-                    
+
                     ->leftJoin('event_venues', 'events.venue_id', '=', 'event_venues.id')
                     ->leftJoin('continents', 'event_venues.continent_id', '=', 'continents.id')
                     ->leftJoin('countries', 'event_venues.country_id', '=', 'countries.id')
@@ -207,14 +207,14 @@ class Event extends Model
                     ->orderBy('event_repetitions.start_repeat', 'asc')
                     ->paginate($itemPerPage);
         //dd(DB::getQueryLog());
-        
+
         //$time = microtime(true) - $start;
         //dd($time);
         }
         // If no filter selected retrieve all the events
         else {
             $ret = self::
-                        select('events.title','events.category_id','events.slug','event_venues.name as venue_name','event_venues.city as city_name','countries.name as country_name' ,'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
+                        select('events.title', 'events.category_id', 'events.slug', 'event_venues.name as venue_name', 'event_venues.city as city_name', 'countries.name as country_name', 'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
                         ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
                             $join->on('events.id', '=', 'event_repetitions.event_id');
                         })

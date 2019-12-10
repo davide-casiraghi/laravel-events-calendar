@@ -423,7 +423,7 @@ class EventControllerTest extends TestCase
             'multiple_teachers' => $teacher->id,
         ]);
         $response = $this->post('/events', $eventAttributes);
-        
+
         $eventCreated = Event::first();
 
         $filters = [
