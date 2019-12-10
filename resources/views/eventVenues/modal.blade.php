@@ -29,6 +29,7 @@
                     created_by: $("select[name='created_by']").val(),
                     city: $("input[name='city']").val(),
                     country_id: $("select[name='country_id']").val(),
+                    region_id: $("select[name='region_id']").val(),
                     website: $("input[name='website']").val()
                 },
                 type: 'POST',
