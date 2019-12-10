@@ -196,7 +196,7 @@ class OrganizerController extends Controller
     /***************************************************************************/
 
     /**
-     * Open a modal in the event view when create organizer is clicked.
+     * Open a modal in the event view when 'create new organizer' button is clicked.
      *
      * @return \Illuminate\Http\Response
      */

@@ -279,7 +279,7 @@ class TeacherController extends Controller
     /***************************************************************************/
 
     /**
-     * Open a modal in the event view when create teachers is clicked.
+     * Open a modal in the event view when 'create new teacher' button is clicked.
      *
      * @return \Illuminate\Http\Response
      */

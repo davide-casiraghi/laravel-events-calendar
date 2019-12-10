@@ -243,17 +243,19 @@ class EventVenueController extends Controller
     /***************************************************************************/
 
     /**
-     * Open a modal in the event view when create teachers is clicked.
+     * Open a modal in the event view when 'create new venue' button is clicked.
      *
      * @return \Illuminate\Http\Response
      */
     public function modal()
-    {
+    {  //aaaaaa
         $countries = Country::getCountries();
+        $regions = [];
         $users = User::pluck('name', 'id');
 
         return view('laravel-events-calendar::eventVenues.modal')
                     ->with('countries', $countries)
+                    ->with('regions', $regions)
                     ->with('users', $users);
     }
 
