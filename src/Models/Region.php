@@ -37,7 +37,7 @@ class Region extends Model
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -51,7 +51,8 @@ class Region extends Model
                     ->where('locale', 'en')
                     ->where('country_id', $countryId)
                     ->orderBy('name')
-                    ->pluck('name','region_translations.region_id AS id');  
+                    ->pluck('name', 'region_translations.region_id AS id');
+
         return $ret;
     }
 }

@@ -3,8 +3,8 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
