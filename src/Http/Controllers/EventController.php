@@ -855,13 +855,13 @@ class EventController extends Controller
         }
 
         // Support columns for homepage search (we need this to show events in HP with less use of resources)
-        $event->sc_country_id = $venue->country_id;
+        /*$event->sc_country_id = $venue->country_id;
         $event->sc_region_id = $venue->region_id;
         $event->sc_country_name = $countries[$venue->country_id];
         $event->sc_city_name = $venue->city;
-        $event->sc_venue_name = $venue->venue_name;
+        $event->sc_venue_name = $venue->venue_name;*/
         $event->sc_teachers_id = json_encode(explode(',', $request->get('multiple_teachers'))); // keep just this SC
-        $event->sc_continent_id = $venue->continent_id;
+        /*$event->sc_continent_id = $venue->continent_id;*/
 
         // Multiple teachers - populate support column field
         $event->sc_teachers_names = '';
