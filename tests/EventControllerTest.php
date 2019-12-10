@@ -422,8 +422,8 @@ class EventControllerTest extends TestCase
             'title'=>'test title',
             'multiple_teachers' => $teacher->id,
         ]);
-        $this->post('/events', $eventAttributes);
-
+        $response = $this->post('/events', $eventAttributes);
+        
         $eventCreated = Event::first();
 
         $filters = [
@@ -433,6 +433,7 @@ class EventControllerTest extends TestCase
             'teacher' => null,  //use just integer 1,  no such function: json_contains
             'country' => '1',
             'continent' => '1',
+            'region' => null,
             'city' => $eventCreated->sc_city_name,
             'venue' => $eventCreated->sc_venue_name,
         ];
