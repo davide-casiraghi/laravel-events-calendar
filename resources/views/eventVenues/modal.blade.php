@@ -161,7 +161,7 @@
                       'records' => $regions,
                       'liveSearch' => 'true',
                       'mobileNativeMenu' => false,
-                      'required' => true,
+                      'required' => false,
                 ])
             </div>
             <div class="col-12">
