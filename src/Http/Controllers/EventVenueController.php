@@ -248,7 +248,7 @@ class EventVenueController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function modal()
-    {  
+    {
         $countries = Country::getCountries();
         $regions = [];
         $users = User::pluck('name', 'id');
