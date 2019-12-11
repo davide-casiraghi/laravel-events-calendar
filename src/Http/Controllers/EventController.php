@@ -11,6 +11,7 @@ use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
@@ -165,12 +166,13 @@ class EventController extends Controller
         $organizers = $event->organizers()->get();
 
         $venue = DB::table('event_venues')
-                ->select('id', 'name', 'city', 'address', 'zip_code', 'country_id', 'description', 'website')
+                ->select('id', 'name', 'city', 'address', 'zip_code', 'country_id', 'region_id', 'description', 'website')
                 ->where('id', $event->venue_id)
                 ->first();
 
         $country = Country::find($venue->country_id);
-
+        $region  = Region::listsTranslations('name')->find($venue->region_id);
+        // aaaaa
         /*$country = DB::table('countries')
                 ->select('id', 'name', 'continent_id')
                 ->where('id', $venue->country_id)
@@ -236,6 +238,7 @@ class EventController extends Controller
                 ->with('organizers', $organizers)
                 ->with('venue', $venue)
                 ->with('country', $country)
+                ->with('region', $region)
                 ->with('continent', $continent)
                 ->with('datesTimes', $firstRpDates)
                 ->with('repetition_text', $repetition_text)
