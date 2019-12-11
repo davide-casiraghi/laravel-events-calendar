@@ -34,6 +34,7 @@ class EventVenueController extends Controller
         $countries = Cache::remember('countries', $cacheExpireTime, function () {
             return Country::orderBy('name')->pluck('name', 'id');
         });
+        $regions = Region::listsTranslations('name')->pluck('name', 'id');
 
         $searchKeywords = $request->input('keywords');
         $searchCountry = $request->input('country_id');
@@ -67,6 +68,7 @@ class EventVenueController extends Controller
         return view('laravel-events-calendar::eventVenues.index', compact('eventVenues'))
                 ->with('i', (request()->input('page', 1) - 1) * 20)
                 ->with('countries', $countries)
+                ->with('regions', $regions)
                 ->with('searchKeywords', $searchKeywords)
                 ->with('searchCountry', $searchCountry);
     }
