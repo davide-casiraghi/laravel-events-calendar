@@ -11,12 +11,12 @@ use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
@@ -171,7 +171,7 @@ class EventController extends Controller
                 ->first();
 
         $country = Country::find($venue->country_id);
-        $region  = Region::listsTranslations('name')->find($venue->region_id);
+        $region = Region::listsTranslations('name')->find($venue->region_id);
         // aaaaa
         /*$country = DB::table('countries')
                 ->select('id', 'name', 'continent_id')
