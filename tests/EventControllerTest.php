@@ -305,7 +305,7 @@ class EventControllerTest extends TestCase
 
     /** @test */
     public function it_gets_a_monthy_event_by_slug_and_repetition()
-    {              
+    {
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
             'title' => 'test title',
