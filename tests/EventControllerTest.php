@@ -305,12 +305,7 @@ class EventControllerTest extends TestCase
 
     /** @test */
     public function it_gets_a_monthy_event_by_slug_and_repetition()
-    {
-        // Prevent validation error on captcha
-        /*\NoCaptcha::shouldReceive('verifyResponse')
-                ->once()
-                ->andReturn(true);*/
-                
+    {              
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
             'title' => 'test title',
@@ -321,7 +316,6 @@ class EventControllerTest extends TestCase
             'time_end' => '12:00',
             'repeat_until' => '10/10/2020',
             'on_monthly_kind' => '0|7',
-            //'g-recaptcha-response' => '1', // Simulates Captcha clicked
         ]);
         $this->post('/events', $attributes);
 
