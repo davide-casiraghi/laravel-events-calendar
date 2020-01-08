@@ -16,14 +16,14 @@ class EventCategoryControllerTest extends TestCase
     public function it_runs_the_test_factory()
     {
         $eventCategory = factory(EventCategory::class)->create([
-                            'name' => 'Regular Jams',
-                            'slug' => 'regular-jams',
-                        ]);
+            'name' => 'Regular Jams',
+            'slug' => 'regular-jams',
+        ]);
         $this->assertDatabaseHas('event_category_translations', [
-                                'locale' => 'en',
-                                'name' => 'Regular Jams',
-                                'slug' => 'regular-jams',
-                ]);
+            'locale' => 'en',
+            'name' => 'Regular Jams',
+            'slug' => 'regular-jams',
+        ]);
     }
 
     /** @test */
@@ -104,7 +104,7 @@ class EventCategoryControllerTest extends TestCase
         $attributes = ([
             'name' => 'test name updated',
             'slug' => 'test slug updated',
-          ]);
+        ]);
 
         $response = $this->followingRedirects()
                          ->put('/eventCategories/'.$eventCategory->id, $attributes);

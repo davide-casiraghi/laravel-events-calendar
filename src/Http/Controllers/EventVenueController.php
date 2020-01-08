@@ -277,9 +277,9 @@ class EventVenueController extends Controller
         $eventVenue = EventVenue::find($eventVenueId);
 
         return response()->json([
-                        'eventVenueId' => $eventVenueId,
-                        'eventVenueName' => $eventVenue->name,
-                    ]);
+            'eventVenueId' => $eventVenueId,
+            'eventVenueName' => $eventVenue->name,
+        ]);
     }
 
     /***************************************************************************/

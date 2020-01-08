@@ -88,10 +88,10 @@ class RegionController extends Controller
     {
         // Validate form datas
         $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'country_id' => 'required',
-                'timezone' => 'required',
-            ]);
+            'name' => 'required',
+            'country_id' => 'required',
+            'timezone' => 'required',
+        ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }

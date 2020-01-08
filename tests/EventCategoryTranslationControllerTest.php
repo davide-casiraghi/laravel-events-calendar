@@ -29,9 +29,9 @@ class EventCategoryTranslationControllerTest extends TestCase
     {
         $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create([
-                            'name' => 'Regular Jams',
-                            'slug' => 'regular-jams',
-                        ]);
+            'name' => 'Regular Jams',
+            'slug' => 'regular-jams',
+        ]);
 
         $data = [
             'event_category_id' => $eventCategory->id,
@@ -63,9 +63,9 @@ class EventCategoryTranslationControllerTest extends TestCase
     {
         $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create([
-                            'name' => 'Regular Jams',
-                            'slug' => 'regular-jams',
-                        ]);
+            'name' => 'Regular Jams',
+            'slug' => 'regular-jams',
+        ]);
 
         $data = [
             'event_category_id' => $eventCategory->id,
@@ -85,9 +85,9 @@ class EventCategoryTranslationControllerTest extends TestCase
     {
         $this->authenticateAsAdmin();
         $eventCategory = factory(EventCategory::class)->create([
-                            'name' => 'Regular Jams',
-                            'slug' => 'regular-jams',
-                        ]);
+            'name' => 'Regular Jams',
+            'slug' => 'regular-jams',
+        ]);
 
         $data = [
             'event_category_id' => $eventCategory->id,
@@ -102,7 +102,7 @@ class EventCategoryTranslationControllerTest extends TestCase
             'event_category_translation_id' => 2,
             'language_code' => 'es',
             'name' => 'Spanish category name updated',
-          ]);
+        ]);
         $response = $this->followingRedirects()
                          ->put('/eventCategoryTranslations/update', $attributes);
         $response->assertViewIs('laravel-events-calendar::eventCategories.index')

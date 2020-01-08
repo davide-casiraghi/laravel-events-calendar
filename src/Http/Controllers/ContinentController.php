@@ -48,9 +48,9 @@ class ContinentController extends Controller
 
         // Validate form datas
         $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'code' => 'required',
-            ]);
+            'name' => 'required',
+            'code' => 'required',
+        ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }

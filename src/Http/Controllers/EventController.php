@@ -744,9 +744,9 @@ class EventController extends Controller
         $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
 
         array_push($monthlySelectOptions, [
-                'value' => '0|'.$dayNumber,
-                'text' => 'the '.$dayNumber.$ordinalIndicator.' day of the month',
-            ]);
+            'value' => '0|'.$dayNumber,
+            'text' => 'the '.$dayNumber.$ordinalIndicator.' day of the month',
+        ]);
 
         // Same weekday/week of the month - eg. the "1st Monday" 1|1|1 (first week, monday)
             $dayOfWeekValue = date('N', $unixTimestamp); // 1 (for Monday) through 7 (for Sunday)
@@ -770,9 +770,9 @@ class EventController extends Controller
         }
 
         array_push($monthlySelectOptions, [
-                'value' => '2|'.$dayOfMonthFromTheEnd,
-                'text' => 'the '.$dayText.' day of the month',
-            ]);
+            'value' => '2|'.$dayOfMonthFromTheEnd,
+            'text' => 'the '.$dayText.' day of the month',
+        ]);
 
         // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
             $weekOfMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
@@ -787,9 +787,9 @@ class EventController extends Controller
         }
 
         array_push($monthlySelectOptions, [
-                'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
-                'text' => 'the '.$weekText.$dayOfWeekString.' of the month',
-            ]);
+            'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
+            'text' => 'the '.$weekText.$dayOfWeekString.' of the month',
+        ]);
 
         // GENERATE the HTML to return
         $onMonthlyKindSelect = "<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='Select repeat monthly kind'>";

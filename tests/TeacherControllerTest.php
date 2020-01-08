@@ -145,7 +145,7 @@ class TeacherControllerTest extends TestCase
             'website' => $this->faker->url,
             'facebook' => 'https://www.facebook.com/'.$this->faker->word,
             'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
-          ];
+        ];
 
         $request->replace($data);
 
@@ -153,7 +153,7 @@ class TeacherControllerTest extends TestCase
         $teacherController->storeFromModal($request);
 
         $this->assertDatabaseHas('teachers', [
-           'name' => $name,
+            'name' => $name,
         ]);
     }
 

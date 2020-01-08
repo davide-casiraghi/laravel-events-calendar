@@ -224,9 +224,9 @@ class OrganizerController extends Controller
         $organizer = Organizer::find($organizerId);
 
         return response()->json([
-                        'organizerId' => $organizerId,
-                        'organizerName' => $organizer->name,
-                    ]);
+            'organizerId' => $organizerId,
+            'organizerName' => $organizer->name,
+        ]);
     }
 
     /***************************************************************************/
