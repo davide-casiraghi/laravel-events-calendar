@@ -16,14 +16,14 @@ class RegionControllerTest extends TestCase
     public function it_runs_the_test_factory()
     {
         $region = factory(Region::class)->create([
-                            'name' => 'Lombardia',
-                            'slug' => 'lombardia',
-                        ]);
+            'name' => 'Lombardia',
+            'slug' => 'lombardia',
+        ]);
         $this->assertDatabaseHas('region_translations', [
-                                'locale' => 'en',
-                                'name' => 'Lombardia',
-                                'slug' => 'lombardia',
-                ]);
+            'locale' => 'en',
+            'name' => 'Lombardia',
+            'slug' => 'lombardia',
+        ]);
     }
 
     /** @test */
@@ -108,7 +108,7 @@ class RegionControllerTest extends TestCase
             'slug' => 'test slug updated',
             'country_id' => 1,
             'timezone' => '+2:00',
-          ]);
+        ]);
 
         $response = $this->followingRedirects()
                          ->put('/regions/'.$region->id, $attributes);

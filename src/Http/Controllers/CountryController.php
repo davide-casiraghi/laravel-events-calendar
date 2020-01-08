@@ -70,10 +70,10 @@ class CountryController extends Controller
 
         // Validate form datas
         $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'code' => 'required',
-                'continent_id' => 'required',
-            ]);
+            'name' => 'required',
+            'code' => 'required',
+            'continent_id' => 'required',
+        ]);
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }

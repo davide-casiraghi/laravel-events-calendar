@@ -309,9 +309,9 @@ class TeacherController extends Controller
         $teacher = Teacher::find($teacherId);
 
         return response()->json([
-                        'teacherId' => $teacherId,
-                        'teacherName' => $teacher->name,
-                    ]);
+            'teacherId' => $teacherId,
+            'teacherName' => $teacher->name,
+        ]);
     }
 
     /***************************************************************************/

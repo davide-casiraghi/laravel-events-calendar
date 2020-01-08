@@ -196,7 +196,7 @@ class EventVenueControllerTest extends TestCase
         $eventVenueController->storeFromModal($request);
 
         $this->assertDatabaseHas('event_venues', [
-           'name' => $name,
+            'name' => $name,
         ]);
     }
 

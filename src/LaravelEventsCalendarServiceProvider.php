@@ -44,7 +44,7 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
             ], 'js');
 
             $this->publishes([
-            __DIR__.'/../resources/assets/images' => public_path('vendor/laravel-events-calendar/images/'),
+                __DIR__.'/../resources/assets/images' => public_path('vendor/laravel-events-calendar/images/'),
             ], 'images');
 
             // Publishing assets.
@@ -65,24 +65,24 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                create_continents_table.php.stub --->  2019_04_28_190434761474_create_continents_table.php
             */
             $migrations = [
-                     'CreateQuotesTable' => 'create_continents_table',
-                     'CreateCountriesTable' => 'create_countries_table',
-                     'CreateEventHasOrganizersTable' => 'create_event_has_organizers_table',
-                     'CreateEventHasTeachersTable' => 'create_event_has_teachers_table',
-                     'CreateEventsTable' => 'create_events_table',
-                     'CreateOrganizersTable' => 'create_organizers_table',
-                     'CreateEventCategoriesTable' => 'create_event_categories_table',
-                     'CreateEventCategoryTranslationsTable' => 'create_event_category_translations_table',
-                     'CreateEventRepetitionsTable' => 'create_event_repetitions_table',
-                     'CreateEventVenuesTable' => 'create_event_venues_table',
-                     'CreateTeachersTable' => 'create_teachers_table',
-                 ];
+                'CreateQuotesTable' => 'create_continents_table',
+                'CreateCountriesTable' => 'create_countries_table',
+                'CreateEventHasOrganizersTable' => 'create_event_has_organizers_table',
+                'CreateEventHasTeachersTable' => 'create_event_has_teachers_table',
+                'CreateEventsTable' => 'create_events_table',
+                'CreateOrganizersTable' => 'create_organizers_table',
+                'CreateEventCategoriesTable' => 'create_event_categories_table',
+                'CreateEventCategoryTranslationsTable' => 'create_event_category_translations_table',
+                'CreateEventRepetitionsTable' => 'create_event_repetitions_table',
+                'CreateEventVenuesTable' => 'create_event_venues_table',
+                'CreateTeachersTable' => 'create_teachers_table',
+            ];
 
             foreach ($migrations as $migrationFunctionName => $migrationFileName) {
                 if (! class_exists($migrationFunctionName)) {
                     $this->publishes([
-                            __DIR__.'/../database/migrations/'.$migrationFileName.'.php.stub' => database_path('migrations/'.Carbon::now()->format('Y_m_d_Hmsu').'_'.$migrationFileName.'.php'),
-                        ], 'migrations');
+                        __DIR__.'/../database/migrations/'.$migrationFileName.'.php.stub' => database_path('migrations/'.Carbon::now()->format('Y_m_d_Hmsu').'_'.$migrationFileName.'.php'),
+                    ], 'migrations');
                 }
             }
 

@@ -48,15 +48,15 @@ class EventControllerTest extends TestCase
     {
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
-                        'title' => 'test title',
-                        'repeat_type' => '2',
-                        'startDate' => '10/01/2020',
-                        'endDate' => '10/01/2020',
-                        'time_start' => '10:00',
-                        'time_end' => '12:00',
-                        'repeat_until' => '10/10/2020',
-                        'repeat_weekly_on_day' => ['3', '6'],
-                    ]);
+            'title' => 'test title',
+            'repeat_type' => '2',
+            'startDate' => '10/01/2020',
+            'endDate' => '10/01/2020',
+            'time_start' => '10:00',
+            'time_end' => '12:00',
+            'repeat_until' => '10/10/2020',
+            'repeat_weekly_on_day' => ['3', '6'],
+        ]);
 
         $response = $this->post('/events', $attributes);
         $response->assertRedirect('/events/');
@@ -70,15 +70,15 @@ class EventControllerTest extends TestCase
     {
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
-                        'title' => 'test title',
-                        'repeat_type' => '3',
-                        'startDate' => '10/01/2020',
-                        'endDate' => '10/01/2020',
-                        'time_start' => '10:00',
-                        'time_end' => '12:00',
-                        'repeat_until' => '10/10/2020',
-                        'on_monthly_kind' => '0|7',
-                    ]);
+            'title' => 'test title',
+            'repeat_type' => '3',
+            'startDate' => '10/01/2020',
+            'endDate' => '10/01/2020',
+            'time_start' => '10:00',
+            'time_end' => '12:00',
+            'repeat_until' => '10/10/2020',
+            'on_monthly_kind' => '0|7',
+        ]);
 
         $response = $this->post('/events', $attributes);
         $response->assertRedirect('/events/');
@@ -92,15 +92,15 @@ class EventControllerTest extends TestCase
     {
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
-                        'title' => 'test title',
-                        'repeat_type' => '3',
-                        'startDate' => '10/01/2020',
-                        'endDate' => '10/01/2020',
-                        'time_start' => '10:00',
-                        'time_end' => '12:00',
-                        'repeat_until' => '10/10/2020',
-                        'on_monthly_kind' => '1|2|4',
-                    ]);
+            'title' => 'test title',
+            'repeat_type' => '3',
+            'startDate' => '10/01/2020',
+            'endDate' => '10/01/2020',
+            'time_start' => '10:00',
+            'time_end' => '12:00',
+            'repeat_until' => '10/10/2020',
+            'on_monthly_kind' => '1|2|4',
+        ]);
 
         $response = $this->post('/events', $attributes);
         $response->assertRedirect('/events/');
@@ -114,15 +114,15 @@ class EventControllerTest extends TestCase
     {
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
-                        'title' => 'test title',
-                        'repeat_type' => '3',
-                        'startDate' => '10/01/2020',
-                        'endDate' => '10/01/2020',
-                        'time_start' => '10:00',
-                        'time_end' => '12:00',
-                        'repeat_until' => '10/10/2020',
-                        'on_monthly_kind' => '2|17',
-                    ]);
+            'title' => 'test title',
+            'repeat_type' => '3',
+            'startDate' => '10/01/2020',
+            'endDate' => '10/01/2020',
+            'time_start' => '10:00',
+            'time_end' => '12:00',
+            'repeat_until' => '10/10/2020',
+            'on_monthly_kind' => '2|17',
+        ]);
 
         $response = $this->post('/events', $attributes);
         $response->assertRedirect('/events/');
@@ -136,15 +136,15 @@ class EventControllerTest extends TestCase
     {
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
-                        'title' => 'test title',
-                        'repeat_type' => '3',
-                        'startDate' => '10/01/2020',
-                        'endDate' => '10/01/2020',
-                        'time_start' => '10:00',
-                        'time_end' => '12:00',
-                        'repeat_until' => '10/10/2020',
-                        'on_monthly_kind' => '3|1|3',
-                    ]);
+            'title' => 'test title',
+            'repeat_type' => '3',
+            'startDate' => '10/01/2020',
+            'endDate' => '10/01/2020',
+            'time_start' => '10:00',
+            'time_end' => '12:00',
+            'repeat_until' => '10/10/2020',
+            'on_monthly_kind' => '3|1|3',
+        ]);
 
         $response = $this->post('/events', $attributes);
         $response->assertRedirect('/events/');
@@ -284,15 +284,15 @@ class EventControllerTest extends TestCase
     {
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
-                        'title' => 'test title',
-                        'repeat_type' => '2',
-                        'startDate' => '10/01/2020',
-                        'endDate' => '10/01/2020',
-                        'time_start' => '10:00',
-                        'time_end' => '12:00',
-                        'repeat_until' => '10/10/2020',
-                        'repeat_weekly_on_day' => ['3', '6'],
-                    ]);
+            'title' => 'test title',
+            'repeat_type' => '2',
+            'startDate' => '10/01/2020',
+            'endDate' => '10/01/2020',
+            'time_start' => '10:00',
+            'time_end' => '12:00',
+            'repeat_until' => '10/10/2020',
+            'repeat_weekly_on_day' => ['3', '6'],
+        ]);
         $this->post('/events', $attributes);
 
         $eventSaved = Event::first();
@@ -308,15 +308,15 @@ class EventControllerTest extends TestCase
     {
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
-                        'title' => 'test title',
-                        'repeat_type' => '3',
-                        'startDate' => '10/01/2020',
-                        'endDate' => '10/01/2020',
-                        'time_start' => '10:00',
-                        'time_end' => '12:00',
-                        'repeat_until' => '10/10/2020',
-                        'on_monthly_kind' => '0|7',
-                    ]);
+            'title' => 'test title',
+            'repeat_type' => '3',
+            'startDate' => '10/01/2020',
+            'endDate' => '10/01/2020',
+            'time_start' => '10:00',
+            'time_end' => '12:00',
+            'repeat_until' => '10/10/2020',
+            'on_monthly_kind' => '0|7',
+        ]);
         $this->post('/events', $attributes);
 
         $eventSaved = Event::first();
