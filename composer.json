@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
+        "anhskohbo/no-captcha": "^3.1",
         "astrotomic/laravel-translatable": "^11.1",
         "davide-casiraghi/laravel-form-partials": "^1.0",
         "fzaninotto/faker": "^1.8",

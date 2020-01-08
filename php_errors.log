@@ -1,0 +1,1 @@
+[08-Jan-2020 15:31:29 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /Users/davidecasiraghi/Documents/Sync/www/myJob/@github/@phpPackageDevelopment/laravel-events-calendar/tests/EventControllerTest.php on line 337

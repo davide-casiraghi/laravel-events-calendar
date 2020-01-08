@@ -58,6 +58,7 @@ abstract class TestCase extends BaseTestCase
             \Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
             \Astrotomic\Translatable\TranslatableServiceProvider::class,
             \DavideCasiraghi\LaravelFormPartials\LaravelFormPartialsServiceProvider::class,
+            \Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         ];
     }
 
@@ -68,6 +69,7 @@ abstract class TestCase extends BaseTestCase
             'Purifier' => \Mews\Purifier\Facades\Purifier::class,
             'LaravelLocalization' => \Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
             'LaravelFormPartials' => \DavideCasiraghi\LaravelFormPartials\Facades\LaravelFormPartials::class,
+            'NoCaptcha' => \Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         ];
     }
 
