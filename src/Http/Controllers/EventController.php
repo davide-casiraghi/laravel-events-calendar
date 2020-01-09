@@ -592,7 +592,8 @@ class EventController extends Controller
     {
         $report = [];
 
-        $report['senderEmail'] = 'noreply@globalcicalendar.com';
+        //$report['senderEmail'] = 'noreply@globalcicalendar.com';
+        $report['senderEmail'] = $request->user_email;
         $report['senderName'] = 'Anonymus User';
         $report['subject'] = 'Report misuse form';
         //$report['adminEmail'] = env('ADMIN_MAIL');
