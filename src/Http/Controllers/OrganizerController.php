@@ -237,14 +237,14 @@ class OrganizerController extends Controller
      * @param  string $slug
      * @return \Illuminate\Http\Response
      */
-    /*public function organizerBySlug($slug)
+    public function organizerBySlug($slug)
     {
         $organizer = Organizer::
                 where('slug', $slug)
                 ->first();
 
         return $this->show($organizer);
-    }*/
+    }
 
     /***************************************************************************/
 
