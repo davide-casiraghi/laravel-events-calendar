@@ -42,8 +42,8 @@ class ReportMisuse extends Mailable
 
                 return $this->markdown('laravel-events-calendar::emails.misuse.organizer-event-not-english')
                  ->to($this->report['creatorEmail'])
-                 ->from('noreply@globalcalendar.com', 'Global CI Calendar')
-                 ->replyTo('noreply@globalcalendar.com', 'Global CI Calendar')
+                 ->from($this->report['senderEmail'], 'Global CI Calendar')
+                 ->replyTo($this->report['senderEmail'], 'Global CI Calendar')
                  ->subject($this->report['subject'])
                  ->with([
                      'event_title' => $this->report['event_title'],
