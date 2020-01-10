@@ -550,9 +550,7 @@ class EventController extends Controller
         $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
 
         foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
-            $dateTime = strtotime($singleDayRepeatDatas);
-            $day = date('Y-m-d', $dateTime);
-
+            $day = Carbon::createFromFormat('d/m/Y', $singleDayRepeatDatas);
             $this->saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
         }
     }
