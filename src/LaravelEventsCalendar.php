@@ -293,7 +293,7 @@ class LaravelEventsCalendar
     public static function getVenueGpsCoordinates($address)
     {
         $key = "Ad5KVnAISxX6aHyj6fAnHcKeh30n4W60";
-        $response = file_get_contents("http://open.mapquestapi.com/geocoding/v1/address?key=".$key."&location=Washington,DC");
+        $response = file_get_contents("http://open.mapquestapi.com/geocoding/v1/address?key=".$key."&location=".$address);
         $response = json_decode($response, true);
         
         $ret = array();

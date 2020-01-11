@@ -200,7 +200,7 @@ class LaravelEventsCalendarTest extends TestCase
         $address = "Italy, Milano, via Dante, 15";    
         $venuesCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
         
-        $this->assertSame($venuesCoordinates['lat'], 38.894955);
-        $this->assertSame($venuesCoordinates['lng'], -77.036646);
+        $this->assertSame($venuesCoordinates['lat'], 45.467293);
+        $this->assertSame($venuesCoordinates['lng'], 9.183276);
     }
 }
