@@ -280,4 +280,21 @@ class LaravelEventsCalendar
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Return the GPS coordinates of the venue
+     *
+      * @param  array $address
+     * @return array $ret
+     */
+    public static function getVenueGpsCoordinates($address)
+    {
+        $ret = array();
+        $ret['lat'] = "2132322";
+        $ret['lon'] = "3123122";
+
+        return $ret;
+    }
 }
