@@ -193,7 +193,6 @@ class LaravelEventsCalendarTest extends TestCase
         $this->assertEquals($onMonthlyKindDecoded, 'the last Friday of the month');
     }
     
-    
     /** @test */
     public function it_gets_venue_gps_coordinates()
     {
@@ -203,4 +202,5 @@ class LaravelEventsCalendarTest extends TestCase
         $this->assertSame($venuesCoordinates['lat'], 45.467293);
         $this->assertSame($venuesCoordinates['lng'], 9.183276);
     }
+    
 }

@@ -23,8 +23,8 @@ class CreateEventVenuesTable extends Migration
             $table->string('city');
             $table->string('address')->nullable();
             $table->string('zip_code')->nullable();
-            $table->float('lng', 9, 6)->nullable();
             $table->float('lat', 8, 6)->nullable();
+            $table->float('lng', 9, 6)->nullable();
             $table->timestamps();
         });
     }
