@@ -17,7 +17,7 @@ class EventVenue extends Model
     /***************************************************************************/
 
     protected $fillable = [
-        'name', 'slug', 'continent_id', 'country_id', 'region_id', 'city', 'state_province', 'address', 'zip_code', 'description', 'website', 'created_by', 'created_at', 'updated_at',
+        'name', 'slug', 'continent_id', 'country_id', 'region_id', 'city', 'state_province', 'address', 'zip_code', 'lat', 'lng', 'description', 'website', 'created_by', 'created_at', 'updated_at',
     ];
 
     /***************************************************************************/
