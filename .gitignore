@@ -4,3 +4,4 @@ docs
 vendor
 html
 .phpunit.result.cache
+php_errors.log
