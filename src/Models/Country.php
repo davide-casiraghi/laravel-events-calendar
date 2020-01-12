@@ -115,11 +115,11 @@ class Country extends Model
 
         return $ret;
     }*/
-    
+
     /***************************************************************************/
 
     /**
-     * Return the country name
+     * Return the country name.
      * @param int $countryId
      * @return string
      */

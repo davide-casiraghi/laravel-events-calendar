@@ -192,15 +192,14 @@ class LaravelEventsCalendarTest extends TestCase
         $onMonthlyKindDecoded = LaravelEventsCalendar::decodeOnMonthlyKind($onMonthlyKindString);
         $this->assertEquals($onMonthlyKindDecoded, 'the last Friday of the month');
     }
-    
+
     /** @test */
     public function it_gets_venue_gps_coordinates()
     {
-        $address = "Italy, Milano, via Dante, 15";    
+        $address = 'Italy, Milano, via Dante, 15';
         $venuesCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
-        
+
         $this->assertSame($venuesCoordinates['lat'], 45.467293);
         $this->assertSame($venuesCoordinates['lng'], 9.183276);
     }
-    
 }

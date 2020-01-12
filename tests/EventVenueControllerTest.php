@@ -246,6 +246,4 @@ class EventVenueControllerTest extends TestCase
         $response = $this->followingRedirects()->delete('/eventVenues/'.$attributes['venue_id']);
         $response->assertSee('The venue contains one or more events and cannot be deleted');
     }
-    
-
 }

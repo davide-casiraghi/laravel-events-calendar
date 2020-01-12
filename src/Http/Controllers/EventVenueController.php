@@ -2,10 +2,10 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -232,7 +232,7 @@ class EventVenueController extends Controller
         $eventVenue->website = $request->get('website');
 
         // Get GPS coordinates
-        $address = Country::getCountryName($eventVenue->country_id).$eventVenue->city.', '.$eventVenue->address.', '.$eventVenue->zip_code;
+        $address = Country::getCountryName($eventVenue->country_id).', '.$eventVenue->city.', '.$eventVenue->address.', '.$eventVenue->zip_code;
         $gpsCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
         $eventVenue->lat = $gpsCoordinates['lat'];
         $eventVenue->lng = $gpsCoordinates['lng'];
