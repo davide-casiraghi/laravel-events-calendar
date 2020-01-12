@@ -125,8 +125,8 @@ class Country extends Model
      */
     public static function getCountryName($countryId)
     {
-        $ret = self::select('name')->where('id', $countryId)->get();
-
+        $country = self::select('name')->where('id', $countryId)->get();
+        $ret = $country[0]['name'];
         return $ret;
     }
 }

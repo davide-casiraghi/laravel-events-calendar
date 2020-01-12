@@ -232,7 +232,7 @@ class EventVenueController extends Controller
         $eventVenue->website = $request->get('website');
 
         // Get GPS coordinates
-        $address = Country::getCountryName($eventVenue->country_id).$eventVenue->city.", ".$eventVenue->zip_code;
+        $address = Country::getCountryName($eventVenue->country_id).$eventVenue->city.', '.$eventVenue->address.', '.$eventVenue->zip_code;
         $gpsCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
         $eventVenue->lat = $gpsCoordinates['lat'];
         $eventVenue->lng = $gpsCoordinates['lng'];
