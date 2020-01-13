@@ -233,13 +233,13 @@ class LaravelEventsCalendar
         $onMonthlyKindCodeArray = explode('|', $onMonthlyKindCode);
         $weekDays = [
             '', 
-            'Monday', 
-            'Tuesday', 
-            'Wednesday', 
-            'Thursday', 
-            'Friday', 
-            'Saturday', 
-            'Sunday'
+            __('laravel-events-calendar::general.monday'),
+            __('laravel-events-calendar::general.tuesday'),
+            __('laravel-events-calendar::general.wednesday'),
+            __('laravel-events-calendar::general.thursday'),
+            __('laravel-events-calendar::general.friday'),
+            __('laravel-events-calendar::general.saturday'),
+            __('laravel-events-calendar::general.sunday'),
         ];
 
         //dd($onMonthlyKindCodeArray);

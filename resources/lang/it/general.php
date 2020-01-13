@@ -33,4 +33,11 @@ return [
     'status' => 'Stato',
     'published' => 'Pubblicato',
     'unpublished' => 'Non pubblicato',
+    'monday' => 'Lunedì',
+    'tuesday' => 'Martedì',
+    'wednesday' => 'Mercoledì',
+    'thursday' => 'Giovedì',
+    'friday' => 'Venerdì',
+    'saturday' => 'Sabato',
+    'sunday' => 'Domenica',
 ];
