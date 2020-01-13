@@ -806,7 +806,8 @@ class EventController extends Controller
         ]);
 
         // GENERATE the HTML to return
-        $onMonthlyKindSelect = "<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='Select repeat monthly kind'>";
+        $selectTitle = __('laravel-events-calendar::general.select_repeat_monthly_kind');
+        $onMonthlyKindSelect = "<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='".$selectTitle."'>";
         foreach ($monthlySelectOptions as $key => $monthlySelectOption) {
             $onMonthlyKindSelect .= "<option value='".$monthlySelectOption['value']."'>".$monthlySelectOption['text'].'</option>';
         }
