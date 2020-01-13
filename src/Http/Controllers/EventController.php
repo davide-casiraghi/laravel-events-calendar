@@ -775,9 +775,17 @@ class EventController extends Controller
             $dayText = $numberOfTheDay.$ordinalIndicator.' to last';
         }
 
-        array_push($monthlySelectOptions, [
+        /*array_push($monthlySelectOptions, [
             'value' => '2|'.$dayOfMonthFromTheEnd,
             'text' => 'the '.$dayText.' day of the month',
+        ]);*/
+        
+        $format = __('laravel-events-calendar::event.the_x_day_of_the_month');
+        $repeatText = sprintf($format, $dayText);
+        
+        array_push($monthlySelectOptions, [
+            'value' => '2|'.$dayOfMonthFromTheEnd,
+            'text' => $repeatText,
         ]);
 
         // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
