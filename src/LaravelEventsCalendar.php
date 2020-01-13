@@ -231,7 +231,16 @@ class LaravelEventsCalendar
     public function decodeOnMonthlyKind($onMonthlyKindCode)
     {
         $onMonthlyKindCodeArray = explode('|', $onMonthlyKindCode);
-        $weekDays = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        $weekDays = [
+            '', 
+            'Monday', 
+            'Tuesday', 
+            'Wednesday', 
+            'Thursday', 
+            'Friday', 
+            'Saturday', 
+            'Sunday'
+        ];
 
         //dd($onMonthlyKindCodeArray);
         switch ($onMonthlyKindCodeArray[0]) {
@@ -240,7 +249,8 @@ class LaravelEventsCalendar
                 $ordinalIndicator = self::getOrdinalIndicator($dayNumber);
 
                 $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
-                $format = 'the %s day of the month';
+                //$format = 'the %s day of the month';
+                $format = __('laravel-events-calendar::event.the_x_day_of_the_month');
                 $ret = sprintf($format, $dayNumberOrdinal);
                 break;
             case '1':  // 1|2|4 eg. the 2nd Thursday of the month
@@ -249,7 +259,9 @@ class LaravelEventsCalendar
 
                 $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
                 $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
-                $format = 'the %s %s of the month';
+                //$format = 'the %s %s of the month';
+                $format = __('laravel-events-calendar::event.the_x_x_of_the_month');
+                
                 $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
                 break;
             case '2': // 2|20 eg. the 21st to last day of the month
@@ -257,7 +269,9 @@ class LaravelEventsCalendar
                 $ordinalIndicator = self::getOrdinalIndicator($dayNumber);
 
                 $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
-                $format = 'the %s to last day of the month';
+                //$format = 'the %s to last day of the month';
+                $format = __('laravel-events-calendar::event.the_x_to_last_day_of_the_month');
+                
                 $ret = sprintf($format, $dayNumberOrdinal);
                 break;
             case '3': // 3|3|4 eg. the 4th to last Thursday of the month
@@ -268,10 +282,14 @@ class LaravelEventsCalendar
                 $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
 
                 if ($dayNumber == 1) {
-                    $format = 'the last %s of the month';  // eg. the last Friday of the month until 17/06/2020
+                    //$format = 'the last %s of the month';  // eg. the last Friday of the month until 17/06/2020
+                    $format = __('laravel-events-calendar::event.the_last_x_of_the_month');
+                    
                     $ret = sprintf($format, $weekDay);
                 } else {
-                    $format = 'the %s to last %s of the month'; // eg. the 2nd to last Friday of the month until 17/06/2020
+                    //$format = 'the %s to last %s of the month'; // eg. the 2nd to last Friday of the month until 17/06/2020
+                    $format = __('laravel-events-calendar::event.the_x_to_last_x_of_the_month');
+                    
                     $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
                 }
 
