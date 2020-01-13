@@ -166,7 +166,7 @@ class EventController extends Controller
         $organizers = $event->organizers()->get();
 
         $venue = DB::table('event_venues')
-                ->select('id', 'name', 'city', 'address', 'zip_code', 'country_id', 'region_id', 'description', 'website')
+                ->select('id', 'name', 'city', 'address', 'zip_code', 'country_id', 'region_id', 'description', 'website', 'extra_info')
                 ->where('id', $event->venue_id)
                 ->first();
 
