@@ -213,7 +213,16 @@ class LaravelEventsCalendar
      */
     public function decodeRepeatWeeklyOn($repeatWeeklyOn)
     {
-        $weekdayArray = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        $weekdayArray = [
+            '', 
+            __('laravel-events-calendar::general.monday'),
+            __('laravel-events-calendar::general.tuesday'),
+            __('laravel-events-calendar::general.wednesday'),
+            __('laravel-events-calendar::general.thursday'),
+            __('laravel-events-calendar::general.friday'),
+            __('laravel-events-calendar::general.saturday'),
+            __('laravel-events-calendar::general.sunday'),
+        ];
         $ret = $weekdayArray[$repeatWeeklyOn];
 
         return $ret;
