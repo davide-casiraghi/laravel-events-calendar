@@ -749,9 +749,17 @@ class EventController extends Controller
         $dayNumber = ltrim($dateArray[0], '0'); // remove the 0 in front of a day number eg. 02/10/2018
         $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
 
-        array_push($monthlySelectOptions, [
+        /*array_push($monthlySelectOptions, [
             'value' => '0|'.$dayNumber,
             'text' => 'the '.$dayNumber.$ordinalIndicator.' day of the month',
+        ]);*/
+        
+        $format = __('laravel-events-calendar::event.the_x_day_of_the_month');
+        $repeatText = sprintf($format, $dayNumber.$ordinalIndicator);
+        
+        array_push($monthlySelectOptions, [
+            'value' => '0|'.$dayNumber,
+            'text' => $repeatText,
         ]);
 
         // Same weekday/week of the month - eg. the "1st Monday" 1|1|1 (first week, monday)
