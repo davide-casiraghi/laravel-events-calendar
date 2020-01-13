@@ -23,6 +23,7 @@ return [
     'select_owner' => 'Seleziona proprietario',
     'select_country' => 'Seleziona una nazione',
     'select_date' =>  'Scegliere una data',
+    'select_repeat_monthly_kind' => 'Seleziona tipo ripetizione mensile',
     'email_address' => 'Email',
     'teachers' => 'Insegnanti',
     'organizers' => 'Organizzatori',
