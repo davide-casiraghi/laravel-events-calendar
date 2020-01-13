@@ -759,9 +759,17 @@ class EventController extends Controller
             $weekOfTheMonth = LaravelEventsCalendar::weekdayNumberOfMonth($date, $dayOfWeekValue); // 1 | 2 | 3 | 4 | 5
             $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($weekOfTheMonth); //st, nd, rd, th
 
-            array_push($monthlySelectOptions, [
+            /*array_push($monthlySelectOptions, [
                 'value' => '1|'.$weekOfTheMonth.'|'.$dayOfWeekValue,
                 'text' => 'the '.$weekOfTheMonth.$ordinalIndicator.' '.$dayOfWeekString.' of the month',
+            ]);*/
+            
+            $format = __('laravel-events-calendar::event.the_x_x_of_the_month');
+            $repeatText = sprintf($format, $weekOfTheMonth.$ordinalIndicator, $dayOfWeekString);
+            
+            array_push($monthlySelectOptions, [
+                'value' => '1|'.$weekOfTheMonth.'|'.$dayOfWeekValue,
+                'text' => $repeatText,
             ]);
 
         // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, , 2 if 3rd to last day)
