@@ -45,4 +45,8 @@ return [
     'the_x_to_last_day_of_the_month'  => 'no %s dia do mês',
     'the_last_x_of_the_month'  => 'na última %s do mês',
     'the_x_to_last_x_of_the_month'  => 'na %s %s do mês',
+    'the_2_to_last_x_of_the_month'  => 'el penúltimo %s del mes',
+    'the_3_to_last_x_of_the_month'  => 'del tercero al último %s del mes',
+    'the_4_to_last_x_of_the_month'  => 'del cuarto al último %s del mes',
+    'the_5_to_last_x_of_the_month'  => 'el quinto al último% s del mes',
 ];

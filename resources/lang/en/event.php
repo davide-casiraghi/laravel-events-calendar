@@ -45,4 +45,8 @@ return [
     'the_x_to_last_day_of_the_month'  => 'the %s to last day of the month',
     'the_last_x_of_the_month'  => 'the last %s of the month',
     'the_x_to_last_x_of_the_month'  => 'the %s to last %s of the month',
+    'the_2_to_last_x_of_the_month'  => 'the 2nd to last %s of the month',
+    'the_3_to_last_x_of_the_month'  => 'the 3rd to last %s of the month',
+    'the_4_to_last_x_of_the_month'  => 'the 4th to last %s of the month',
+    'the_5_to_last_x_of_the_month'  => 'the 5th to last %s of the month',
 ];
