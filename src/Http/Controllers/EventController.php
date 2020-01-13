@@ -796,13 +796,21 @@ class EventController extends Controller
             $weekValue = 0;
         } else {
             $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($weekOfMonthFromTheEnd);
-            $weekText = $weekOfMonthFromTheEnd.$ordinalIndicator.' to last ';
+            $weekText = $weekOfMonthFromTheEnd.$ordinalIndicator.' to last';
             $weekValue = $weekOfMonthFromTheEnd - 1;
         }
 
-        array_push($monthlySelectOptions, [
+        /*array_push($monthlySelectOptions, [
             'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
             'text' => 'the '.$weekText.$dayOfWeekString.' of the month',
+        ]);*/
+        
+        $format = __('laravel-events-calendar::event.the_x_x_of_the_month');
+        $repeatText = sprintf($format, $weekText, $dayOfWeekString);
+
+        array_push($monthlySelectOptions, [
+            'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
+            'text' => $repeatText,
         ]);
 
         // GENERATE the HTML to return
