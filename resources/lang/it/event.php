@@ -39,7 +39,7 @@ return [
     'start_end_duration' => 'Inizio, Fine, Durata',
     'the_event_happens_on_this_dates'  => 'L\'evento si svolge in queste date:',
     'the_event_happens_x_until_x'  => 'L\'evento si verifica %s fino a %s',
-    'the_event_happens_every_x_until'  => 'L\'evento si verifica ogni %s fino al',
+    'the_event_happens_every_x_until'  => 'L\'evento si verifica ogni %s fino al ',
     'the_x_day_of_the_month'  => 'il %s giorno del mese',
     'the_x_x_of_the_month'  => 'il %s %s del mese',
     'the_x_to_last_day_of_the_month'  => 'il %s ultimo giorno del mese',
