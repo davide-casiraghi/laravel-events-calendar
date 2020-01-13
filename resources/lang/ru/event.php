@@ -37,4 +37,12 @@ return [
     'filter_by_category' => 'Сортировать по категориям',
     'delete_event' => 'Удалить событие',
     'start_end_duration' => 'Начало, завершение, Продолжительность',
+    'the_event_happens_on_this_dates'  => 'Событие происходит в эти даты:',
+    'the_event_happens_x_until_x'  => 'Событие происходит %s до %s',
+    'the_event_happens_every_x_until'  => 'Событие происходит каждые %s до',
+    'the_x_day_of_the_month'  => '%s день месяца',
+    'the_x_x_of_the_month'  => '%s %s месяца',
+    'the_x_to_last_day_of_the_month'  => '% s до последнего дня месяца',
+    'the_last_x_of_the_month'  => 'последний %s месяца',
+    'the_x_to_last_x_of_the_month'  => '%s до последнего %s месяца',
 ];
