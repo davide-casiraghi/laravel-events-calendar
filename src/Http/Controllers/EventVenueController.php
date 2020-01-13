@@ -229,6 +229,7 @@ class EventVenueController extends Controller
         //$eventVenue->state_province = $request->get('state_province');
         $eventVenue->address = $request->get('address');
         $eventVenue->zip_code = $request->get('zip_code');
+        $eventVenue->extra_info = $request->get('extra_info');
         $eventVenue->website = $request->get('website');
 
         // Get GPS coordinates
