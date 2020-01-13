@@ -205,12 +205,14 @@ class EventController extends Controller
                     //$repetition_text = 'The event happens every '.$nameOfTheRepetitionWeekDays.' until '.$repeatUntil->format('d/m/Y');
                     $format = __('laravel-events-calendar::event.the_event_happens_every_x_until');
                     $repetition_text = sprintf($format, $nameOfTheRepetitionWeekDays, $repeatUntil->format('d/m/Y'));
-                    
                     break;
                 case '3': //repeatMonthly
                     $repeatUntil = new DateTime($event->repeat_until);
                     $repetitionFrequency = LaravelEventsCalendar::decodeOnMonthlyKind($event->on_monthly_kind);
-                    $repetition_text = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
+                    
+                    //$repetition_text = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
+                    $format = __('laravel-events-calendar::event.the_event_happens_x_until_x');
+                    $repetition_text = sprintf($format, $repetitionFrequency, $repeatUntil->format('d/m/Y'));
                     break;
 
                 case '4': //repeatMultipleDays
@@ -225,7 +227,9 @@ class EventController extends Controller
                            return strtotime($a) - strtotime($b);
                        });
 
-                    $repetition_text = 'The event happens on this dates: ';
+                    //$repetition_text = 'The event happens on this dates: ';
+                    $repetition_text = __('laravel-events-calendar::event.the_event_happens_on_this_dates');
+                    
                     $repetition_text .= $dateStart.', ';
                     $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
 

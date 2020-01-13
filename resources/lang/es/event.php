@@ -37,7 +37,7 @@ return [
     'filter_by_category' => 'Filtrar por categoría',
     'delete_event' => 'Delete event',
     'start_end_duration' => 'Inicio, Fin, Duración',
-    'the_event_happens_on_this_dates'  => 'El evento tiene lugar en estas fechas:',
+    'the_event_happens_on_this_dates'  => 'El evento tiene lugar en estas fechas: ',
     'the_event_happens_x_until_x'  => 'El evento ocurre %s hasta %s',
     'the_event_happens_every_x_until'  => 'El evento ocurre cada %s hasta que ',
     'the_x_day_of_the_month'  => 'el %s día del mes',
