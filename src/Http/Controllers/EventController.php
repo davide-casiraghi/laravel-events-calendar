@@ -745,33 +745,30 @@ class EventController extends Controller
         $dayOfWeekString = date('l', $unixTimestamp); // Monday | Tuesday | Wednesday | ..
 
         // Same day number - eg. "the 28th day of the month"
-        $dateArray = explode('/', $request->day);
-        $dayNumber = ltrim($dateArray[0], '0'); // remove the 0 in front of a day number eg. 02/10/2018
-        $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
+            $dateArray = explode('/', $request->day);
+            $dayNumber = ltrim($dateArray[0], '0'); // remove the 0 in front of a day number eg. 02/10/2018
+            //$ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayNumber);
 
-        /*array_push($monthlySelectOptions, [
-            'value' => '0|'.$dayNumber,
-            'text' => 'the '.$dayNumber.$ordinalIndicator.' day of the month',
-        ]);*/
-        
-        $format = __('laravel-events-calendar::event.the_x_day_of_the_month');
-        $repeatText = sprintf($format, $dayNumber.$ordinalIndicator);
-        
-        array_push($monthlySelectOptions, [
-            'value' => '0|'.$dayNumber,
-            'text' => $repeatText,
-        ]);
+            /*array_push($monthlySelectOptions, [
+                'value' => '0|'.$dayNumber,
+                'text' => 'the '.$dayNumber.$ordinalIndicator.' day of the month',
+            ]);*/
+            
+            /*$format = __('laravel-events-calendar::event.the_x_day_of_the_month');
+            $repeatText = sprintf($format, $dayNumber.$ordinalIndicator);*/
+            
+            $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_x_of_the_month');
+            $repeatText = sprintf($format, "day");
+            
+            
+            array_push($monthlySelectOptions, [
+                'value' => '0|'.$dayNumber,
+                'text' => $repeatText,
+            ]);
 
         // Same weekday/week of the month - eg. the "1st Monday" 1|1|1 (first week, monday)
             $dayOfWeekValue = date('N', $unixTimestamp); // 1 (for Monday) through 7 (for Sunday)
             $weekOfTheMonth = LaravelEventsCalendar::weekdayNumberOfMonth($date, $dayOfWeekValue); // 1 | 2 | 3 | 4 | 5
-            //$ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($weekOfTheMonth); //st, nd, rd, th
-
-            
-            
-            /*$format = __('laravel-events-calendar::event.the_x_x_of_the_month');
-            $repeatText = sprintf($format, $weekOfTheMonth.$ordinalIndicator, $dayOfWeekString);
-            */
             
             $format = __('laravel-events-calendar::ordinalDays.the_'.($weekOfTheMonth).'_x_of_the_month');
             $repeatText = sprintf($format, $dayOfWeekString);
