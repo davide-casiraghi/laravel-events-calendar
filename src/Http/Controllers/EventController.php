@@ -787,10 +787,6 @@ class EventController extends Controller
             } else {
                 $weekValue = $weekOfMonthFromTheEnd - 1;
             }
-        /*
-            $format = __('laravel-events-calendar::event.the_x_x_of_the_month');
-            $repeatText = sprintf($format, $weekText, $dayOfWeekString);*/
-            
             
             $format = __('laravel-events-calendar::ordinalDays.the_'.($weekOfMonthFromTheEnd).'_to_last_x_of_the_month');
             $repeatText = sprintf($format, $dayOfWeekString);
