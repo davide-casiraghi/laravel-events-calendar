@@ -254,7 +254,7 @@ class LaravelEventsCalendar
         //dd($onMonthlyKindCodeArray);
         switch ($onMonthlyKindCodeArray[0]) {
             case '0':  // 0|7 eg. the 7th day of the month
-                $dayNumber = $onMonthlyKindCodeArray[1];    
+                $dayNumber = $onMonthlyKindCodeArray[1];
                 $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_x_of_the_month');
                 $ret = sprintf($format, __('laravel-events-calendar::general.day'));
                 break;
