@@ -254,9 +254,9 @@ class LaravelEventsCalendar
         //dd($onMonthlyKindCodeArray);
         switch ($onMonthlyKindCodeArray[0]) {
             case '0':  // 0|7 eg. the 7th day of the month
-                $dayNumber = $onMonthlyKindCodeArray[1];    
+                $dayNumber = $onMonthlyKindCodeArray[1];
                 $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_x_of_the_month');
-                $ret = sprintf($format, "day");
+                $ret = sprintf($format, 'day');
                 break;
             case '1':  // 1|2|4 eg. the 2nd Thursday of the month
                 $dayNumber = $onMonthlyKindCodeArray[1];
@@ -267,7 +267,7 @@ class LaravelEventsCalendar
             case '2': // 2|20 eg. the 21st to last day of the month
                 $dayNumber = $onMonthlyKindCodeArray[1] + 1;
                 $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_to_last_x_of_the_month');
-                $ret = sprintf($format, "day");
+                $ret = sprintf($format, 'day');
                 break;
             case '3': // 3|3|4 eg. the 4th to last Thursday of the month
                 $dayNumber = $onMonthlyKindCodeArray[1] + 1;
@@ -288,7 +288,7 @@ class LaravelEventsCalendar
 
                     $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
                 }*/
-                
+
                 $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_to_last_x_of_the_month');
                 $ret = sprintf($format, $weekDay);
 
