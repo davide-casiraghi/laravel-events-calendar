@@ -39,7 +39,9 @@ class Teacher extends Model
     public static function eventsByTeacher($teacher, $lastestEventsRepetitionsQuery)
     {
         $ret = $teacher->events()
-                         ->select('events.title', 'events.category_id', 'events.slug', 'events.sc_venue_name', 'events.sc_country_name', 'events.sc_city_name', 'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
+                         ->select('events.title', 'events.category_id', 'events.slug', 'event_venues.name AS venue_name', 'countries.name AS country', 'event_venues.city AS city', 'events.sc_teachers_names', 'event_repetitions.start_repeat', 'event_repetitions.end_repeat')
+                         ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
+                         ->join('countries', 'countries.id', '=', 'event_venues.country_id')
                          ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
                              $join->on('events.id', '=', 'event_repetitions.event_id');
                          })
