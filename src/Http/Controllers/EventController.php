@@ -783,21 +783,25 @@ class EventController extends Controller
         // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, , 2 if 3rd to last day)
             $dayOfMonthFromTheEnd = LaravelEventsCalendar::dayOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
 
-        if ($dayOfMonthFromTheEnd == 0) {
+            //$dayOfMonthFromTheEnd = $dayOfMonthFromTheEnd+1;
+        /*if ($dayOfMonthFromTheEnd == 0) {
             $dayText = 'last';
         } else {
             $numberOfTheDay = $dayOfMonthFromTheEnd + 1;
             $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($numberOfTheDay);
             $dayText = $numberOfTheDay.$ordinalIndicator.' to last';
-        }
+        }*/
+        
+        
 
         /*array_push($monthlySelectOptions, [
             'value' => '2|'.$dayOfMonthFromTheEnd,
             'text' => 'the '.$dayText.' day of the month',
         ]);*/
         
-        $format = __('laravel-events-calendar::event.the_x_day_of_the_month');
-        $repeatText = sprintf($format, $dayText);
+        $format = __('laravel-events-calendar::ordinalDays.the_'.($dayOfMonthFromTheEnd+1).'_to_last_x_of_the_month');
+        
+        $repeatText = sprintf($format, "day");
         
         array_push($monthlySelectOptions, [
             'value' => '2|'.$dayOfMonthFromTheEnd,
