@@ -782,27 +782,23 @@ class EventController extends Controller
         // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
             $weekOfMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
 
-        if ($weekOfMonthFromTheEnd == 1) {
-            $weekText = 'last ';
-            $weekValue = 0;
-        } else {
-            $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($weekOfMonthFromTheEnd);
-            $weekText = $weekOfMonthFromTheEnd.$ordinalIndicator.' to last';
-            $weekValue = $weekOfMonthFromTheEnd - 1;
-        }
+            if ($weekOfMonthFromTheEnd == 1) {
+                $weekValue = 0;
+            } else {
+                $weekValue = $weekOfMonthFromTheEnd - 1;
+            }
+        /*
+            $format = __('laravel-events-calendar::event.the_x_x_of_the_month');
+            $repeatText = sprintf($format, $weekText, $dayOfWeekString);*/
+            
+            
+            $format = __('laravel-events-calendar::ordinalDays.the_'.($weekOfMonthFromTheEnd).'_to_last_x_of_the_month');
+            $repeatText = sprintf($format, $dayOfWeekString);
 
-        /*array_push($monthlySelectOptions, [
-            'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
-            'text' => 'the '.$weekText.$dayOfWeekString.' of the month',
-        ]);*/
-        
-        $format = __('laravel-events-calendar::event.the_x_x_of_the_month');
-        $repeatText = sprintf($format, $weekText, $dayOfWeekString);
-
-        array_push($monthlySelectOptions, [
-            'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
-            'text' => $repeatText,
-        ]);
+            array_push($monthlySelectOptions, [
+                'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
+                'text' => $repeatText,
+            ]);
 
         // GENERATE the HTML to return
         $selectTitle = __('laravel-events-calendar::general.select_repeat_monthly_kind');
