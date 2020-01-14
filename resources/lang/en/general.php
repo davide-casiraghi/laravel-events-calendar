@@ -43,5 +43,5 @@ return [
     'friday' => 'Friday',
     'saturday' => 'Saturday',
     'sunday' => 'Sunday',
-    'day' => 'Tag',
+    'day' => 'day',
 ];
