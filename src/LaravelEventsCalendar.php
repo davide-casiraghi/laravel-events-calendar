@@ -254,31 +254,24 @@ class LaravelEventsCalendar
         //dd($onMonthlyKindCodeArray);
         switch ($onMonthlyKindCodeArray[0]) {
             case '0':  // 0|7 eg. the 7th day of the month
+                $dayNumber = $onMonthlyKindCodeArray[1];    
+                $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_x_of_the_month');
+                $ret = sprintf($format, "day");
+                break;
+            case '1':  // 1|2|4 eg. the 2nd Thursday of the month
                 $dayNumber = $onMonthlyKindCodeArray[1];
                 //$ordinalIndicator = self::getOrdinalIndicator($dayNumber);
 
                 //$dayNumberOrdinal = $dayNumber.$ordinalIndicator;
-                //$format = 'the %s day of the month';
-                
-                
-                //$format = __('laravel-events-calendar::event.the_x_day_of_the_month');
-                //$ret = sprintf($format, $dayNumberOrdinal);
-                
-                
-                $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_x_of_the_month');
-                $ret = sprintf($format, "day");
-                
-                break;
-            case '1':  // 1|2|4 eg. the 2nd Thursday of the month
-                $dayNumber = $onMonthlyKindCodeArray[1];
-                $ordinalIndicator = self::getOrdinalIndicator($dayNumber);
-
-                $dayNumberOrdinal = $dayNumber.$ordinalIndicator;
                 $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
                 //$format = 'the %s %s of the month';
-                $format = __('laravel-events-calendar::event.the_x_x_of_the_month');
+                //$format = __('laravel-events-calendar::event.the_x_x_of_the_month');
 
-                $ret = sprintf($format, $dayNumberOrdinal, $weekDay);
+                //$ret = sprintf($format, $dayNumberOrdinal, $weekDay);
+                
+                $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_x_of_the_month');
+                $ret = sprintf($format, $weekDay);
+                
                 break;
             case '2': // 2|20 eg. the 21st to last day of the month
                 $dayNumber = $onMonthlyKindCodeArray[1] + 1;
