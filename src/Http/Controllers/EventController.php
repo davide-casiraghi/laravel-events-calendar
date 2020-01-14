@@ -765,15 +765,16 @@ class EventController extends Controller
         // Same weekday/week of the month - eg. the "1st Monday" 1|1|1 (first week, monday)
             $dayOfWeekValue = date('N', $unixTimestamp); // 1 (for Monday) through 7 (for Sunday)
             $weekOfTheMonth = LaravelEventsCalendar::weekdayNumberOfMonth($date, $dayOfWeekValue); // 1 | 2 | 3 | 4 | 5
-            $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($weekOfTheMonth); //st, nd, rd, th
+            //$ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($weekOfTheMonth); //st, nd, rd, th
 
-            /*array_push($monthlySelectOptions, [
-                'value' => '1|'.$weekOfTheMonth.'|'.$dayOfWeekValue,
-                'text' => 'the '.$weekOfTheMonth.$ordinalIndicator.' '.$dayOfWeekString.' of the month',
-            ]);*/
             
-            $format = __('laravel-events-calendar::event.the_x_x_of_the_month');
+            
+            /*$format = __('laravel-events-calendar::event.the_x_x_of_the_month');
             $repeatText = sprintf($format, $weekOfTheMonth.$ordinalIndicator, $dayOfWeekString);
+            */
+            
+            $format = __('laravel-events-calendar::ordinalDays.the_'.($weekOfTheMonth).'_x_of_the_month');
+            $repeatText = sprintf($format, $dayOfWeekString);
             
             array_push($monthlySelectOptions, [
                 'value' => '1|'.$weekOfTheMonth.'|'.$dayOfWeekValue,
