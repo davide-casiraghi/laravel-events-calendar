@@ -41,4 +41,5 @@ return [
     'friday' => 'Piątek',
     'saturday' => 'Sobota',
     'sunday' => 'Niedziela',
+    'day' => 'dnia',
 ];

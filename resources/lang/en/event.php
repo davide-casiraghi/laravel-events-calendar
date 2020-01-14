@@ -40,9 +40,4 @@ return [
     'the_event_happens_on_this_dates'  => 'The event happens on this dates: ',
     'the_event_happens_x_until_x'  => 'The event happens %s until %s',
     'the_event_happens_every_x_until'  => 'The event happens every %s until ',
-    /*'the_x_day_of_the_month'  => 'the %s day of the month',
-    'the_x_x_of_the_month'  => 'the %s %s of the month',
-    'the_x_to_last_day_of_the_month'  => 'the %s to last day of the month',
-    'the_last_x_of_the_month'  => 'the last %s of the month',
-    'the_x_to_last_x_of_the_month'  => 'the %s to last %s of the month',*/
 ];
