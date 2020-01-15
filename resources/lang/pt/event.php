@@ -39,5 +39,5 @@ return [
     'start_end_duration' => 'Começo, Fim, Duração',
     'the_event_happens_on_this_dates'  => 'O evento ocorre nessas datas: ',
     'the_event_happens_x_until_x'  => 'O evento ocorre de %s até %s',
-    'the_event_happens_every_x_until'  => 'O evento ocorre toda %s até ',
+    'the_event_happens_every_x_until_x'  => 'O evento ocorre toda %s até %s',
 ];

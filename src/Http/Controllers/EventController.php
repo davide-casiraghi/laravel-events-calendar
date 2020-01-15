@@ -203,7 +203,7 @@ class EventController extends Controller
                         $nameOfTheRepetitionWeekDays = implode(' and ', $repetitonWeekdayNamesArray);
 
                     //$repetition_text = 'The event happens every '.$nameOfTheRepetitionWeekDays.' until '.$repeatUntil->format('d/m/Y');
-                    $format = __('laravel-events-calendar::event.the_event_happens_every_x_until');
+                    $format = __('laravel-events-calendar::event.the_event_happens_every_x_until_x');
                     $repetition_text = sprintf($format, $nameOfTheRepetitionWeekDays, $repeatUntil->format('d/m/Y'));
                     break;
                 case '3': //repeatMonthly
