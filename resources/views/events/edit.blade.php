@@ -107,7 +107,9 @@
                     <div class="col main">
                         <div class="row">
                             <div class="col-12">
-                                @include('laravel-events-calendar::partials.event.select-event-venue')
+                                @include('laravel-events-calendar::partials.event.select-event-venue', [
+                                      'selected' => $event->venue_id,
+                                ]) 
                             </div>
                         </div>
                     </div>
