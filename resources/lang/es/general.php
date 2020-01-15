@@ -29,6 +29,7 @@ return [
     'teachers' => 'Profesor@s',
     'organizers' => 'Organizador@s',
     'venues' => 'Lugar',
+    'venue' => 'Lugar',
     'choose' => 'Escoger...',
     'select_one' => 'Seleccione uno',
     'filter_by_country' => 'Filtrar por país',

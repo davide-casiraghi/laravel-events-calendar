@@ -110,7 +110,7 @@
             {{-- Venue --}}
                 <div class="row">
                     <div class="col form-sidebar">
-                        <h5 class="text-xl">Venue</h5>
+                        <h5 class="text-xl">@lang('laravel-events-calendar::general.venue')</h5>
                         <span class="dark-gray">@lang('laravel-events-calendar::event.select_venue')</span>
                     </div>
                     <div class="col main">

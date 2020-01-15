@@ -29,6 +29,7 @@ return [
     'teachers' => 'Lehrer*innen',
     'organizers' => 'Organisator*innen',
     'venues' => 'Veranstaltungsort',
+    'venue' => 'Veranstaltungsort',
     'choose' => 'Wähle...',
     'select_one' => 'Wähle ein/es aus',
     'filter_by_country' => 'Nach Land filtern',

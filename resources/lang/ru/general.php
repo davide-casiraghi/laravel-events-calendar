@@ -29,6 +29,7 @@ return [
     'teachers' => 'Учителя',
     'organizers' => 'Организаторы',
     'venues' => 'Место',
+    'venue' => 'Место',
     'choose' => 'выберите...',
     'select_one' => 'Выберите один',
     'filter_by_country' => 'Сортировать по странам',
