@@ -30,7 +30,7 @@
             {{-- Basics --}}
                 <div class="row">
                     <div class="col-12 col-md form-sidebar">
-                        <h5 class="text-xl">Notice</h5>
+                        <h5 class="text-xl">@lang('laravel-events-calendar::event.notice')</h5>
                         <span class="dark-gray">@lang('laravel-events-calendar::event.first_country_event_notice')</span>
                     </div>
                     <div class="col-12 col-md main">

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'notice' => 'Beachte',
     'add_new_event' => 'Neuen Event hinzufügen',
     'create_new_event' => 'Neuen Event erstellen',
     'edit_event' => 'Event bearbeiten',

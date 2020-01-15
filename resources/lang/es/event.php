@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'notice' => 'Notar',
     'add_new_event' => 'Agregar un nuevo evento',
     'create_new_event' => 'Crear un nuevo evento',
     'edit_event' =>'Editar el evento',
