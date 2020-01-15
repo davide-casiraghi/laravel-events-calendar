@@ -255,7 +255,7 @@
             {{-- Event teaser image --}}
                 <div class="row">
                     <div class="col form-sidebar">
-                        <h5 class="text-xl">Event teaser image</h5>
+                        <h5 class="text-xl">@lang('laravel-events-calendar::event.event_teaser_image')</h5>
                         
                     </div>
                     <div class="col main">

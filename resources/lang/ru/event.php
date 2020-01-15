@@ -41,4 +41,5 @@ return [
     'the_event_happens_on_this_dates'  => 'Событие происходит в эти даты: ',
     'the_event_happens_x_until_x'  => 'Событие происходит %s до %s',
     'the_event_happens_every_x_until_x'  => 'Событие происходит каждые %s до %s',
+    'event_teaser_image' => 'Образ',
 ];

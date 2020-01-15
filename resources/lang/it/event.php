@@ -41,4 +41,5 @@ return [
     'the_event_happens_on_this_dates'  => 'L\'evento si svolge in queste date: ',
     'the_event_happens_x_until_x'  => 'L\'evento si verifica %s fino al %s',
     'the_event_happens_every_x_until_x'  => 'L\'evento si verifica ogni %s fino al  %s',
+    'event_teaser_image' => 'Immagine',
 ];
