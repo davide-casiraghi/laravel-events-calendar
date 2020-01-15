@@ -22,6 +22,7 @@ return [
     'delete_translation' => 'Elimina traduzione',
     'select_owner' => 'Seleziona proprietario',
     'select_country' => 'Seleziona una nazione',
+    'select_region' => 'Seleziona stato / regione',
     'select_date' =>  'Scegliere una data',
     'select_repeat_monthly_kind' => 'Seleziona tipo ripetizione mensile',
     'email_address' => 'Email',

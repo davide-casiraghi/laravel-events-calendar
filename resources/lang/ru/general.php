@@ -22,6 +22,7 @@ return [
     'delete_translation' => 'Удалить перевод',
     'select_owner' => 'Выбрать владельца',
     'select_country' => 'Выбрать страну',
+    'select_region' => 'выберите штат / регион',
     'select_date' => 'Выбрать дату',
     'select_repeat_monthly_kind' => 'Выберите один',
     'email_address' => 'Адрес электронной почты',

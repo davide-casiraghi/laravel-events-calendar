@@ -22,6 +22,7 @@ return [
     'delete_translation' => 'Supprimer la traduction',
     'select_owner' => 'Sélectionner le/la propriétaire-trice',
     'select_country' => 'Sélectionner le pays',
+    'select_region' => 'Sélectionner Région/ Département',
     'select_date' => 'Choisir une date',
     'select_repeat_monthly_kind' => 'Sélectionnez une',
     'email_address' => 'Courriel',
