@@ -32,7 +32,6 @@ return [
     'the_29_x_of_the_month'  => 'der 29. %s des Monats',
     'the_30_x_of_the_month'  => 'der 30. %s des Monats',
     'the_31_x_of_the_month'  => 'der 31. %s des Monats',
-
     'the_1_to_last_x_of_the_month'  => 'der letzte %s des Monats',
     'the_2_to_last_x_of_the_month'  => 'der vorletzte %s des Monats',
     'the_3_to_last_x_of_the_month'  => 'der 3. bis letzte %s des Monats',
