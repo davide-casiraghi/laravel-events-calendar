@@ -181,6 +181,20 @@ class OrganizerController extends Controller
         $organizer->website = $request->get('website');
         $organizer->email = $request->get('email');
         $organizer->phone = $request->get('phone');
+        
+        // Organizer profile picture upload
+        if ($request->file('profile_picture')) {
+            $imageFile = $request->file('profile_picture');
+            $imageName = $imageFile->hashName();
+            $imageSubdir = 'organizers_profile';
+            $imageWidth = '968';
+            $thumbWidth = '300';
+
+            $this->uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
+            $organizer->profile_picture = $imageName;
+        } else {
+            $organizer->profile_picture = $request->profile_picture;
+        }
 
         //$organizer->created_by = Auth::id();
         $organizer->created_by = $request->get('created_by');
