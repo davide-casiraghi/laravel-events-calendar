@@ -20,6 +20,7 @@ class CreateOrganizersTable extends Migration
             $table->string('website')->nullable();
             $table->string('facebook')->nullable();
             $table->string('phone')->nullable();
+            $table->string('profile_picture')->nullable();
 
             $table->string('slug');
             $table->timestamps();
