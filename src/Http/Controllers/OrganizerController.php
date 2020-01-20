@@ -181,7 +181,7 @@ class OrganizerController extends Controller
         $organizer->website = $request->get('website');
         $organizer->email = $request->get('email');
         $organizer->phone = $request->get('phone');
-        
+
         // Organizer profile picture upload
         if ($request->file('profile_picture')) {
             $imageFile = $request->file('profile_picture');
