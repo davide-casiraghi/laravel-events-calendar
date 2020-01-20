@@ -202,7 +202,7 @@ class Event extends Model
                     ->leftJoin('continents', 'event_venues.continent_id', '=', 'continents.id')
                     ->leftJoin('countries', 'event_venues.country_id', '=', 'countries.id')
                     ->leftJoin('regions', 'event_venues.region_id', '=', 'regions.id')
-                    ->leftJoin('region_translations', 'regions.id', '=', 'region_translations.region_id')
+                    //->leftJoin('region_translations', 'regions.id', '=', 'region_translations.region_id')
 
                     ->orderBy('event_repetitions.start_repeat', 'asc')
                     ->paginate($itemPerPage);
