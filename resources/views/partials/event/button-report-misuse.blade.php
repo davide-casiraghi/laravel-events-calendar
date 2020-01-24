@@ -63,15 +63,15 @@
                              </div>
 
                              @include('laravel-form-partials::input', [
-                                   'title' => 'Your email',
+                                   'title' => __('laravel-events-calendar::general.your_email'),
                                    'name' => 'user_email',
                                    'required' => true,
                              ])
                              
                              @include('laravel-form-partials::textarea-plain', [
-                                   'title' => __('misuse.message'),
+                                   'title' => __('laravel-events-calendar::misuse.message'),
                                    'name' => 'message_misuse',
-                                   'placeholder' => __('misuse.include_all_details'),
+                                   'placeholder' => __('laravel-events-calendar::misuse.include_all_details'),
                                    'required' => false,
                              ])
                              
