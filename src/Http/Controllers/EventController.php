@@ -604,7 +604,7 @@ class EventController extends Controller
         //$report['adminEmail'] = env('ADMIN_MAIL');
         $report['creatorEmail'] = $this->getCreatorEmail($request->created_by);
 
-        $report['message'] = $request->message;
+        $report['message_misuse'] = $request->message_misuse;
         $report['event_title'] = $request->event_title;
         $report['event_id'] = $request->event_id;
         $report['event_slug'] = $request->slug;
