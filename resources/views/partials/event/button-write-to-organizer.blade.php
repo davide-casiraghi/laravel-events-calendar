@@ -68,7 +68,16 @@
                                    'required' => true,
                              ])
                              
-                             @include('laravel-form-partials::recaptcha')
+                             {{--@include('laravel-form-partials::recaptcha')--}}
+                             
+                             @php 
+                                 $random_number1 = rand(1, 8);
+                                 $random_number2 = rand(1, 8);
+                             @endphp
+                             @include('laravel-form-partials::recaptcha-sum', [
+                                'randomNumber1' => $random_number1,
+                                'randomNumber2' => $random_number2,
+                             ])
 
                              @include('laravel-form-partials::input-hidden', [
                                    'name' => 'event_title',
