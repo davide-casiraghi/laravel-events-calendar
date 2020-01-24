@@ -67,7 +67,7 @@ class ReportMisuse extends Mailable
                         'event_id' => $this->report['event_id'],
                         'event_slug' => $this->report['event_slug'],
                         'reason' => $this->report['reason'],
-                        'msg' => $this->report['message'],
+                        'msg' => $this->report['message_misuse'],
                     ]);
 
                  break;
