@@ -234,10 +234,11 @@ class TeacherController extends Controller
     /**
      * Save the record on DB.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function saveOnDb($request, $teacher)
+    public function saveOnDb(Request $request, Teacher $teacher)
     {
         $teacher->name = $request->get('name');
         //$teacher->bio = $request->get('bio');
@@ -319,7 +320,7 @@ class TeacherController extends Controller
     /**
      * Return the teacher by SLUG. (eg. http://websitename.com/teacher/xxxx).
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $post
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
     public function teacherBySlug($slug)
@@ -339,7 +340,7 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Validation\Validator
      */
-    public function teachersValidator($request)
+    public function teachersValidator(Request $request)
     {
         $maxYear = Carbon::now()->year;
 

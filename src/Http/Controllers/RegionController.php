@@ -189,7 +189,7 @@ class RegionController extends Controller
      * @param \DavideCasiraghi\LaravelEventsCalendar\Models\Region $region
      * @return void
      */
-    public function saveOnDb($request, $region)
+    public function saveOnDb(Request $request, Region $region)
     {
         $region->name = $request->get('name');
         $region->country_id = $request->get('country_id');

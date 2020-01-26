@@ -268,7 +268,7 @@ class OrganizerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Validation\Validator
      */
-    public function organizersValidator($request)
+    public function organizersValidator(Request $request)
     {
         $rules = [
             'name' => 'required',

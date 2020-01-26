@@ -132,7 +132,7 @@ class RegionTranslationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\RegionTranslation  $regionTranslation
+     * @param  int  $regionTranslationId
      * @return \Illuminate\Http\Response
      */
     public function destroy($regionTranslationId)

@@ -132,7 +132,7 @@ class EventCategoryTranslationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategoryTranslation  $eventCategoryTranslation
+     * @param  int  $eventCategoryTranslationId
      * @return \Illuminate\Http\Response
      */
     public function destroy($eventCategoryTranslationId)
