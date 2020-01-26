@@ -172,18 +172,8 @@ class EventController extends Controller
 
         $country = Country::find($venue->country_id);
         $region = Region::listsTranslations('name')->find($venue->region_id);
-        // aaaaa
-        /*$country = DB::table('countries')
-                ->select('id', 'name', 'continent_id')
-                ->where('id', $venue->country_id)
-                ->first();*/
 
         $continent = Continent::find($country->continent_id);
-
-        /*DB::table('continents')
-                ->select('id', 'name')
-                ->where('id', $country->continent_id)
-                ->first();*/
 
         // Repetition text to show
         switch ($event->repeat_type) {
