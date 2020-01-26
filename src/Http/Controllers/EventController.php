@@ -159,7 +159,7 @@ class EventController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition $firstRpDates
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event, $firstRpDates)
+    public function show(Event $event, EventRepetition $firstRpDates)
     {
         $category = EventCategory::find($event->category_id);
         $teachers = $event->teachers()->get();
@@ -361,7 +361,7 @@ class EventController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return void
      */
-    public function saveEventRepetitions($request, $event)
+    public function saveEventRepetitions(Request $request, Event $event)
     {
         Event::deletePreviousRepetitions($event->id);
 
@@ -433,7 +433,7 @@ class EventController extends Controller
      * @param  string  $timeEnd
      * @return void
      */
-    public function saveWeeklyRepeatDates($event, $weekDays, $startDate, $repeatUntilDate, $timeStart, $timeEnd)
+    public function saveWeeklyRepeatDates(Event $event, $weekDays, $startDate, $repeatUntilDate, $timeStart, $timeEnd)
     {
         $beginPeriod = new DateTime($startDate);
         $endPeriod = new DateTime($repeatUntilDate);
@@ -467,7 +467,7 @@ class EventController extends Controller
      * @param  string  $timeEnd (H:i:s)
      * @return void
      */
-    public function saveMonthlyRepeatDates($event, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd)
+    public function saveMonthlyRepeatDates(Event $event, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd)
     {
         $start = $month = Carbon::create($startDate);
         $end = Carbon::create($repeatUntilDate);
@@ -540,7 +540,7 @@ class EventController extends Controller
      * @param  string  $timeEnd (H:i:s)
      * @return void
      */
-    public function saveMultipleRepeatDates($event, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd)
+    public function saveMultipleRepeatDates(Event $event, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd)
     {
         $dateTime = strtotime($startDate);
         $day = date('Y-m-d', $dateTime);
@@ -657,7 +657,6 @@ class EventController extends Controller
     /**
      * Display the thank you view after the mail to the organizer is sent (called by /mailToOrganizer/sent route).
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function mailToOrganizerSent()
@@ -669,6 +668,7 @@ class EventController extends Controller
 
     /**
      * Display the thank you view after the misuse report mail is sent (called by /misuse/thankyou route).
+     *
      * @return \Illuminate\Http\Response
      */
     public function reportMisuseThankyou()
@@ -685,7 +685,7 @@ class EventController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      */
-    public function setEventRepeatFields($request, $event)
+    public function setEventRepeatFields(Request $request, Event $event)
     {
         // Set Repeat Until
         $event->repeat_type = $request->get('repeat_type');
@@ -806,7 +806,7 @@ class EventController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event $event
      * @return string $ret - the ordinal indicator (st, nd, rd, th)
      */
-    public function saveOnDb($request, $event)
+    public function saveOnDb(Request $request, Event $event)
     {
         $countries = Country::getCountries();
         $teachers = Teacher::pluck('name', 'id');
@@ -961,7 +961,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function eventsValidator($request)
+    public function eventsValidator(Request $request)
     {
         $rules = [
             'title' => 'required',
