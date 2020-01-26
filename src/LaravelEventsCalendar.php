@@ -63,10 +63,9 @@ class LaravelEventsCalendar
      * $dayOfTheWeek: 1|2|3|4|5|6|7 (MONDAY-SUNDAY)
      * https://stackoverflow.com/questions/2045736/getting-all-dates-for-mondays-and-tuesdays-for-the-next-year.
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @param  string $date
      * @param  int $dayOfTheWeek
-     * @return void
+     * @return boolean
      */
     public function isWeekDay($date, $dayOfTheWeek)
     {
