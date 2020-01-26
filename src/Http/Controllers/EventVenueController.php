@@ -214,10 +214,11 @@ class EventVenueController extends Controller
     /**
      * Save the record on DB.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
      * @return \Illuminate\Http\Response
      */
-    public function saveOnDb($request, $eventVenue)
+    public function saveOnDb(Request $request, EventVenue $eventVenue)
     {
         $eventVenue->name = $request->get('name');
         //$eventVenue->description = $request->get('description');
@@ -295,9 +296,10 @@ class EventVenueController extends Controller
     /**
      * Return the Venue validator with all the defined constraint.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Validation\Validator
      */
-    public function eventsVenueValidator($request)
+    public function eventsVenueValidator(Request $request)
     {
         $rules = [
             'name' => 'required',
