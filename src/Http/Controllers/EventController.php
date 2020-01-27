@@ -540,7 +540,7 @@ class EventController extends Controller
      * @param  string  $timeEnd (H:i:s)
      * @return void
      */
-    public function saveMultipleRepeatDates(Event $event, array $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd)
+    public function saveMultipleRepeatDates(Event $event, array $singleDaysRepeatDatas, string $startDate, string $timeStart, string $timeEnd)
     {
         $dateTime = strtotime($startDate);
         $day = date('Y-m-d', $dateTime);
