@@ -905,7 +905,7 @@ class EventController extends Controller
      * @param  int $created_by
      * @return \Illuminate\Foundation\Auth\User
      */
-    public function getCreatorEmail($created_by)
+    public function getCreatorEmail(int $created_by)
     {
         $creatorEmail = DB::table('users')  // Used to send the Report misuse (not in english)
                 ->select('email')
@@ -941,7 +941,7 @@ class EventController extends Controller
      * @param  int $repetitionId
      * @return \Illuminate\Http\Response
      */
-    public function eventBySlugAndRepetition(string $slug, $repetitionId)
+    public function eventBySlugAndRepetition(string $slug, int $repetitionId)
     {
         $event = Event::where('slug', $slug)->first();
         $firstRpDates = Event::getFirstEventRpDatesByRepetitionId($repetitionId);
