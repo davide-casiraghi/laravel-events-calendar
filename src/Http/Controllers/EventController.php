@@ -426,14 +426,14 @@ class EventController extends Controller
      * $timeStart and $timeEnd are in the format H:i:s.
      * $weekDays - $request->get('repeat_weekly_on_day').
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @param  string  $weekDays
+     * @param  array  $weekDays
      * @param  string  $startDate
      * @param  string  $repeatUntilDate
      * @param  string  $timeStart
      * @param  string  $timeEnd
      * @return void
      */
-    public function saveWeeklyRepeatDates(Event $event, $weekDays, $startDate, $repeatUntilDate, $timeStart, $timeEnd)
+    public function saveWeeklyRepeatDates(Event $event, array $weekDays, string $startDate, string $repeatUntilDate, string $timeStart, string $timeEnd)
     {
         $beginPeriod = new DateTime($startDate);
         $endPeriod = new DateTime($repeatUntilDate);
