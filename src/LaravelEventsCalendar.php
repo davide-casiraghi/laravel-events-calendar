@@ -67,7 +67,7 @@ class LaravelEventsCalendar
      * @param  int $dayOfTheWeek
      * @return boolean
      */
-    public function isWeekDay(string $date, $dayOfTheWeek)
+    public function isWeekDay(string $date, int $dayOfTheWeek)
     {
         // Fix the bug that was avoiding to save Sunday. Date 'w' identify sunday as 0 and not 7.
         if ($dayOfTheWeek == 7) {
