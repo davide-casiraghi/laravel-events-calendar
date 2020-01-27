@@ -925,7 +925,7 @@ class EventController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function eventBySlug($slug)
+    public function eventBySlug(string $slug)
     {
         $event = Event::where('slug', $slug)->first();
         $firstRpDates = Event::getFirstEventRpDatesByEventId($event->id);
@@ -941,7 +941,7 @@ class EventController extends Controller
      * @param  int $repetitionId
      * @return \Illuminate\Http\Response
      */
-    public function eventBySlugAndRepetition($slug, $repetitionId)
+    public function eventBySlugAndRepetition(string $slug, $repetitionId)
     {
         $event = Event::where('slug', $slug)->first();
         $firstRpDates = Event::getFirstEventRpDatesByRepetitionId($repetitionId);
