@@ -28,10 +28,10 @@ class RegionTranslationController extends Controller
     /**
      * Show the form for creating a new resource.
      * @param int $regionId
-     * @param int $languageCode
+     * @param string $languageCode
      * @return \Illuminate\Http\Response
      */
-    public function create($regionId, $languageCode)
+    public function create(int $regionId, string $languageCode)
     {
         $selectedLocaleName = $this->getSelectedLocaleName($languageCode);
 
@@ -84,10 +84,10 @@ class RegionTranslationController extends Controller
     /**
      * Show the form for editing the specified resource.
      * @param int $regionId
-     * @param int $languageCode
+     * @param string $languageCode
      * @return \Illuminate\Http\Response
      */
-    public function edit($regionId, $languageCode)
+    public function edit(int $regionId, string $languageCode)
     {
         $regionTranslation = RegionTranslation::where('region_id', $regionId)
                         ->where('locale', $languageCode)
@@ -135,7 +135,7 @@ class RegionTranslationController extends Controller
      * @param  int  $regionTranslationId
      * @return \Illuminate\Http\Response
      */
-    public function destroy($regionTranslationId)
+    public function destroy(int $regionTranslationId)
     {
         $regionTranslation = RegionTranslation::find($regionTranslationId);
         $regionTranslation->delete();

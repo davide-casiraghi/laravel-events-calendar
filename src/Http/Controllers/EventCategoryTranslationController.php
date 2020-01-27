@@ -84,10 +84,10 @@ class EventCategoryTranslationController extends Controller
     /**
      * Show the form for editing the specified resource.
      * @param int $eventCategoryId
-     * @param int $languageCode
+     * @param string $languageCode
      * @return \Illuminate\Http\Response
      */
-    public function edit($eventCategoryId, $languageCode)
+    public function edit(int $eventCategoryId, string $languageCode)
     {
         $eventCategoryTranslation = EventCategoryTranslation::where('event_category_id', $eventCategoryId)
                         ->where('locale', $languageCode)
@@ -135,7 +135,7 @@ class EventCategoryTranslationController extends Controller
      * @param  int  $eventCategoryTranslationId
      * @return \Illuminate\Http\Response
      */
-    public function destroy($eventCategoryTranslationId)
+    public function destroy(int $eventCategoryTranslationId)
     {
         $eventCategoryTranslation = EventCategoryTranslation::find($eventCategoryTranslationId);
         $eventCategoryTranslation->delete();
