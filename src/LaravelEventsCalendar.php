@@ -16,7 +16,7 @@ class LaravelEventsCalendar
      * @param  bool  $todaysDateIfNull
      * @return string  $ret
      */
-    public static function formatDatePickerDateForMysql($DatePickerDate, $todaysDateIfNull = 0)
+    public static function formatDatePickerDateForMysql(string $DatePickerDate, $todaysDateIfNull = 0)
     {
         if ($DatePickerDate) {
             [$tid, $tim, $tiy] = explode('/', $DatePickerDate);
@@ -25,7 +25,7 @@ class LaravelEventsCalendar
             date_default_timezone_set('Europe/Rome');
             $ret = date('Y-m-d', time());
         } else {
-            $ret = null;
+            $ret = "";
         }
 
         return $ret;
@@ -67,7 +67,7 @@ class LaravelEventsCalendar
      * @param  int $dayOfTheWeek
      * @return boolean
      */
-    public function isWeekDay($date, $dayOfTheWeek)
+    public function isWeekDay(string $date, $dayOfTheWeek)
     {
         // Fix the bug that was avoiding to save Sunday. Date 'w' identify sunday as 0 and not 7.
         if ($dayOfTheWeek == 7) {
@@ -210,7 +210,7 @@ class LaravelEventsCalendar
      * @param  string $repeatWeeklyOn
      * @return string
      */
-    public function decodeRepeatWeeklyOn($repeatWeeklyOn)
+    public function decodeRepeatWeeklyOn(string $repeatWeeklyOn)
     {
         $weekdayArray = [
             '',
@@ -236,7 +236,7 @@ class LaravelEventsCalendar
      * @param  string $onMonthlyKindCode
      * @return string
      */
-    public function decodeOnMonthlyKind($onMonthlyKindCode)
+    public function decodeOnMonthlyKind(string $onMonthlyKindCode)
     {
         $onMonthlyKindCodeArray = explode('|', $onMonthlyKindCode);
         $weekDays = [
@@ -288,7 +288,7 @@ class LaravelEventsCalendar
      * @param  string $address
      * @return array $ret
      */
-    public static function getVenueGpsCoordinates($address)
+    public static function getVenueGpsCoordinates(string $address)
     {
         $key = 'Ad5KVnAISxX6aHyj6fAnHcKeh30n4W60';
         $response = @file_get_contents('http://open.mapquestapi.com/geocoding/v1/address?key='.$key.'&location='.$address);
