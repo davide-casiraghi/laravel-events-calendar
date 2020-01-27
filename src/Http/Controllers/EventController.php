@@ -467,7 +467,7 @@ class EventController extends Controller
      * @param  string  $timeEnd (H:i:s)
      * @return void
      */
-    public function saveMonthlyRepeatDates(Event $event, array $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd)
+    public function saveMonthlyRepeatDates(Event $event, array $monthRepeatDatas, string $startDate, string $repeatUntilDate, string $timeStart, string $timeEnd)
     {
         $start = $month = Carbon::create($startDate);
         $end = Carbon::create($repeatUntilDate);
