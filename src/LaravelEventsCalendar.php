@@ -39,7 +39,7 @@ class LaravelEventsCalendar
      * @param  array  $array
      * @return string  $ret
      */
-    public function getStringFromArraySeparatedByComma($array)
+    public function getStringFromArraySeparatedByComma(array $array)
     {
         $ret = '';
         $i = 0;
@@ -285,7 +285,7 @@ class LaravelEventsCalendar
      * Return the GPS coordinates of the venue
      * https://developer.mapquest.com/.
      *
-     * @param  array $address
+     * @param  string $address
      * @return array $ret
      */
     public static function getVenueGpsCoordinates($address)

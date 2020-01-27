@@ -154,7 +154,7 @@ class Event extends Model
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Event
      */
     //$keywords, $category, $city, $country, $continent, $teacher, $venue, $startDate, $endDate,
-    public static function getEvents($filters, $itemPerPage)
+    public static function getEvents(array $filters, $itemPerPage)
     {
         if (! array_key_exists('startDate', $filters) || ! $filters['startDate']) {
             $filters['startDate'] = Carbon::now()->format('Y-m-d');
