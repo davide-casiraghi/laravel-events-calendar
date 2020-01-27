@@ -25,7 +25,7 @@ class LaravelEventsCalendar
             date_default_timezone_set('Europe/Rome');
             $ret = date('Y-m-d', time());
         } else {
-            $ret = "";
+            $ret = '';
         }
 
         return $ret;
@@ -65,7 +65,7 @@ class LaravelEventsCalendar
      *
      * @param  string $date
      * @param  int $dayOfTheWeek
-     * @return boolean
+     * @return bool
      */
     public function isWeekDay(string $date, int $dayOfTheWeek)
     {

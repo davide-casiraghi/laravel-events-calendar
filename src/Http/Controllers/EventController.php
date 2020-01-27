@@ -735,39 +735,39 @@ class EventController extends Controller
         $dayOfWeekString = date('l', $unixTimestamp); // Monday | Tuesday | Wednesday | ..
 
         // Same day number - eg. "the 28th day of the month"
-            $dateArray = explode('/', $request->day);
-            $dayNumber = ltrim($dateArray[0], '0'); // remove the 0 in front of a day number eg. 02/10/2018
+        $dateArray = explode('/', $request->day);
+        $dayNumber = ltrim($dateArray[0], '0'); // remove the 0 in front of a day number eg. 02/10/2018
 
-            $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_x_of_the_month');
-            $repeatText = sprintf($format, 'day');
+        $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_x_of_the_month');
+        $repeatText = sprintf($format, 'day');
 
-            array_push($monthlySelectOptions, [
-                'value' => '0|'.$dayNumber,
-                'text' => $repeatText,
-            ]);
+        array_push($monthlySelectOptions, [
+            'value' => '0|'.$dayNumber,
+            'text' => $repeatText,
+        ]);
 
         // Same weekday/week of the month - eg. the "1st Monday" 1|1|1 (first week, monday)
             $dayOfWeekValue = date('N', $unixTimestamp); // 1 (for Monday) through 7 (for Sunday)
             $weekOfTheMonth = LaravelEventsCalendar::weekdayNumberOfMonth($date, $dayOfWeekValue); // 1 | 2 | 3 | 4 | 5
 
             $format = __('laravel-events-calendar::ordinalDays.the_'.($weekOfTheMonth).'_x_of_the_month');
-            $repeatText = sprintf($format, $dayOfWeekString);
+        $repeatText = sprintf($format, $dayOfWeekString);
 
-            array_push($monthlySelectOptions, [
-                'value' => '1|'.$weekOfTheMonth.'|'.$dayOfWeekValue,
-                'text' => $repeatText,
-            ]);
+        array_push($monthlySelectOptions, [
+            'value' => '1|'.$weekOfTheMonth.'|'.$dayOfWeekValue,
+            'text' => $repeatText,
+        ]);
 
         // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, , 2 if 3rd to last day)
             $dayOfMonthFromTheEnd = LaravelEventsCalendar::dayOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
 
             $format = __('laravel-events-calendar::ordinalDays.the_'.($dayOfMonthFromTheEnd + 1).'_to_last_x_of_the_month');
-            $repeatText = sprintf($format, 'day');
+        $repeatText = sprintf($format, 'day');
 
-            array_push($monthlySelectOptions, [
-                'value' => '2|'.$dayOfMonthFromTheEnd,
-                'text' => $repeatText,
-            ]);
+        array_push($monthlySelectOptions, [
+            'value' => '2|'.$dayOfMonthFromTheEnd,
+            'text' => $repeatText,
+        ]);
 
         // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
             $weekOfMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($unixTimestamp); // 1 | 2 | 3 | 4 | 5
@@ -778,21 +778,21 @@ class EventController extends Controller
                 $weekValue = $weekOfMonthFromTheEnd - 1;
             }
 
-            $format = __('laravel-events-calendar::ordinalDays.the_'.($weekOfMonthFromTheEnd).'_to_last_x_of_the_month');
-            $repeatText = sprintf($format, $dayOfWeekString);
+        $format = __('laravel-events-calendar::ordinalDays.the_'.($weekOfMonthFromTheEnd).'_to_last_x_of_the_month');
+        $repeatText = sprintf($format, $dayOfWeekString);
 
-            array_push($monthlySelectOptions, [
-                'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
-                'text' => $repeatText,
-            ]);
+        array_push($monthlySelectOptions, [
+            'value' => '3|'.$weekValue.'|'.$dayOfWeekValue,
+            'text' => $repeatText,
+        ]);
 
         // GENERATE the HTML to return
-            $selectTitle = __('laravel-events-calendar::general.select_repeat_monthly_kind');
-            $onMonthlyKindSelect = "<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='".$selectTitle."'>";
-            foreach ($monthlySelectOptions as $key => $monthlySelectOption) {
-                $onMonthlyKindSelect .= "<option value='".$monthlySelectOption['value']."'>".$monthlySelectOption['text'].'</option>';
-            }
-            $onMonthlyKindSelect .= '</select>';
+        $selectTitle = __('laravel-events-calendar::general.select_repeat_monthly_kind');
+        $onMonthlyKindSelect = "<select name='on_monthly_kind' id='on_monthly_kind' class='selectpicker' title='".$selectTitle."'>";
+        foreach ($monthlySelectOptions as $key => $monthlySelectOption) {
+            $onMonthlyKindSelect .= "<option value='".$monthlySelectOption['value']."'>".$monthlySelectOption['text'].'</option>';
+        }
+        $onMonthlyKindSelect .= '</select>';
 
         return $onMonthlyKindSelect;
     }
