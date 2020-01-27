@@ -88,7 +88,7 @@ class LaravelEventsCalendar
      * @param  string $dayOfWeekValue
      * @return int
      */
-    public function weekdayNumberOfMonth($dateTimestamp, $dayOfWeekValue)
+    public function weekdayNumberOfMonth(string $dateTimestamp, string $dayOfWeekValue)
     {
         $cut = substr($dateTimestamp, 0, 8);
         $daylen = 86400;
