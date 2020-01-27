@@ -565,7 +565,7 @@ class EventController extends Controller
      * @param  string $timeEnd
      * @return void
      */
-    public function saveEventRepetitionOnDB($eventId, $dateStart, $dateEnd, $timeStart, $timeEnd)
+    public function saveEventRepetitionOnDB(int $eventId, $dateStart, $dateEnd, $timeStart, $timeEnd)
     {
         $eventRepetition = new EventRepetition();
         $eventRepetition->event_id = $eventId;
