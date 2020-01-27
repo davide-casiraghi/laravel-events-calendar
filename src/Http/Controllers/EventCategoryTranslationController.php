@@ -28,10 +28,10 @@ class EventCategoryTranslationController extends Controller
     /**
      * Show the form for creating a new resource.
      * @param int $eventCategoryId
-     * @param int $languageCode
+     * @param string $languageCode
      * @return \Illuminate\Http\Response
      */
-    public function create($eventCategoryId, $languageCode)
+    public function create(int $eventCategoryId, string $languageCode)
     {
         $selectedLocaleName = $this->getSelectedLocaleName($languageCode);
 
