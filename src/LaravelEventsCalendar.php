@@ -16,7 +16,7 @@ class LaravelEventsCalendar
      * @param  bool  $todaysDateIfNull
      * @return string  $ret
      */
-    public static function formatDatePickerDateForMysql(string $DatePickerDate, $todaysDateIfNull = 0)
+    public static function formatDatePickerDateForMysql(string $DatePickerDate, bool $todaysDateIfNull = null)
     {
         if ($DatePickerDate) {
             [$tid, $tim, $tiy] = explode('/', $DatePickerDate);
