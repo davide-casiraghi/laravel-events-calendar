@@ -5,7 +5,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 
@@ -458,31 +457,25 @@ class EventControllerTest extends TestCase
 
         $this->assertEquals($eventRepetition->first()->event_id, 1);
     }
-    
+
     /** @test */
     public function it_saves_monthly_repeat_datas()
-    {    
+    {
         $this->authenticate();
         $attributes = factory(Event::class)->raw();
         $this->post('/events', $attributes);
         $eventCreated = Event::first();
 
-        $monthRepeatDatas = [1,2,2]; // 1|2|2 the 2nd Tuesday of the month
-        
-        $startDate = "2019-12-18";
-        $repeatUntilDate = "2020-2-16";
-        $timeStart = "10:00";
-        $timeEnd = "11:00";
+        $monthRepeatDatas = [1, 2, 2]; // 1|2|2 the 2nd Tuesday of the month
+
+        $startDate = '2019-12-18';
+        $repeatUntilDate = '2020-2-16';
+        $timeStart = '10:00';
+        $timeEnd = '11:00';
 
         $testString = $eventCreated->saveMonthlyRepeatDates($eventCreated->id, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
 
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventCreated->id, 'start_repeat' => '2019-12-10 10:00:00', 'end_repeat' => '2019-12-10 11:00:00']);
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventCreated->id, 'start_repeat' => '2020-01-14 10:00:00', 'end_repeat' => '2020-01-14 11:00:00']);
     }
-    
-    
-    
-    
-    
-    
 }
