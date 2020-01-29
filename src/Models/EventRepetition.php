@@ -3,6 +3,10 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
+use Carbon\CarbonPeriod;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 
 class EventRepetition extends Model
 {
@@ -49,4 +53,67 @@ class EventRepetition extends Model
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Save event repetition in the DB.
+     * $dateStart and $dateEnd are in the format Y-m-d
+     * $timeStart and $timeEnd are in the format H:i:s.
+     * @param  int $eventId
+     * @param  string $dateStart
+     * @param  string $dateEnd
+     * @param  string $timeStart
+     * @param  string $timeEnd
+     * @return void
+     */
+    public static function saveEventRepetitionOnDB(int $eventId, string $dateStart, string $dateEnd, string $timeStart, string $timeEnd)
+    {
+        $eventRepetition = new EventRepetition();
+        $eventRepetition->event_id = $eventId;
+        
+        //$eventRepetition->start_repeat = $dateStart.' '.$timeStart.':00';
+        //$eventRepetition->end_repeat = $dateEnd.' '.$timeEnd.':00';
+        
+        //create($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $tz = null
+        
+        //$eventRepetition->start_repeat = Carbon::createFromFormat('Y-m-d H:i:s', $dateStart." ".$timeStart);
+        //$eventRepetition->end_repeat = Carbon::createFromFormat('Y-m-d H:i:s', $dateEnd." ".$timeEnd);
+        //dump($timeStart);
+        $eventRepetition->start_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateStart." ".$timeStart);
+        $eventRepetition->end_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateEnd." ".$timeEnd);
+        
+        $eventRepetition->save();
+    }
+    
+    /***************************************************************************/
+
+    /**
+     * Save all the weekly repetitions in the event_repetitions table.
+     * $dateStart and $dateEnd are in the format Y-m-d
+     * $timeStart and $timeEnd are in the format H:i:s.
+     * $weekDays - $request->get('repeat_weekly_on_day').
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @param  array  $weekDays
+     * @param  string  $startDate
+     * @param  string  $repeatUntilDate
+     * @param  string  $timeStart
+     * @param  string  $timeEnd
+     * @return void
+     */
+    public static function saveWeeklyRepeatDates(int $eventId, array $weekDays, string $startDate, string $repeatUntilDate, string $timeStart, string $timeEnd)
+    {
+        $beginPeriod = Carbon::createFromFormat('Y-m-d', $startDate);
+        $endPeriod = Carbon::createFromFormat('Y-m-d', $repeatUntilDate);
+        $interval = CarbonInterval::days(1);
+        $period = CarbonPeriod::create($beginPeriod, $interval, $endPeriod);
+        foreach ($period as $day) {  // Iterate for each day of the period
+            foreach ($weekDays as $weekDayNumber) { // Iterate for every day of the week (1:Monday, 2:Tuesday, 3:Wednesday ...)
+                if (LaravelEventsCalendar::isWeekDay($day->format('Y-m-d'), $weekDayNumber)) {
+                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+                }
+            }
+        }
+    }
+
 }
