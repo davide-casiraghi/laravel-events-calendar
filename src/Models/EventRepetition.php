@@ -2,11 +2,11 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Carbon\CarbonPeriod;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use Illuminate\Database\Eloquent\Model;
 
 class EventRepetition extends Model
 {
@@ -53,7 +53,7 @@ class EventRepetition extends Model
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -69,7 +69,7 @@ class EventRepetition extends Model
      */
     public static function saveEventRepetitionOnDB(int $eventId, string $dateStart, string $dateEnd, string $timeStart, string $timeEnd)
     {
-        $eventRepetition = new EventRepetition();
+        $eventRepetition = new self();
         $eventRepetition->event_id = $eventId;
         
         $eventRepetition->start_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateStart." ".$timeStart);
@@ -77,7 +77,7 @@ class EventRepetition extends Model
         
         $eventRepetition->save();
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -102,10 +102,9 @@ class EventRepetition extends Model
         foreach ($period as $day) {  // Iterate for each day of the period
             foreach ($weekDays as $weekDayNumber) { // Iterate for every day of the week (1:Monday, 2:Tuesday, 3:Wednesday ...)
                 if (LaravelEventsCalendar::isWeekDay($day->format('Y-m-d'), $weekDayNumber)) {
-                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+                    self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
                 }
             }
         }
     }
-
 }

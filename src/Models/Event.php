@@ -6,8 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
-
 class Event extends Model
 {
     /***************************************************************************/
@@ -306,10 +304,10 @@ class Event extends Model
         $end = Carbon::createFromFormat('Y-m-d', $repeatUntilDate);
         $numberOfTheWeekArray = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth'];
         $weekdayArray = [Carbon::MONDAY, Carbon::TUESDAY, Carbon::WEDNESDAY, Carbon::THURSDAY, Carbon::FRIDAY, Carbon::SATURDAY, Carbon::SUNDAY];
-        
+
         //$timeStart = $timeStart.":00";
         //$timeEnd = $timeEnd.":00";
-        
+
         switch ($monthRepeatDatas[0]) {
             case '0':  // Same day number - eg. "the 28th day of the month"
                 while ($month < $end) {
@@ -331,7 +329,7 @@ class Event extends Model
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->nthOfMonth($numberOfTheWeek, $weekday);  // eg. Carbon::create(2014, 5, 30, 0, 0, 0)->nthOfQuarter(2, Carbon::SATURDAY);
                     //dump("ee_4");
                     EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
-                    
+
                     $month = $month->addMonth();
                 }
                 break;
@@ -363,5 +361,4 @@ class Event extends Model
                 break;
         }
     }
-    
 }

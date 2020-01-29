@@ -3,8 +3,6 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 use Carbon\Carbon;
-use DateInterval;
-use DatePeriod;
 use DateTime;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
@@ -175,7 +173,7 @@ class EventController extends Controller
         $region = Region::listsTranslations('name')->find($venue->region_id);
 
         $continent = Continent::find($country->continent_id);
-        
+
         // Repetition text to show
         switch ($event->repeat_type) {
                 case '1': // noRepeat
@@ -371,7 +369,7 @@ class EventController extends Controller
         //$timeEnd = date('H:i:s', strtotime($request->get('time_end')));
         $timeStart = $request->get('time_start');
         $timeEnd = $request->get('time_end');
-        
+
         switch ($request->get('repeat_type')) {
                 case '1':  // noRepeat
                     $eventRepetition = new EventRepetition();
@@ -438,9 +436,9 @@ class EventController extends Controller
     {
         $dateTime = strtotime($startDate);
         $day = date('Y-m-d', $dateTime);
-        
+
         EventRepetition::saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
-        
+
         foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
             $day = Carbon::createFromFormat('d/m/Y', $singleDayRepeatDatas);
             EventRepetition::saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
