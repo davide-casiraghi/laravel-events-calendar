@@ -72,14 +72,6 @@ class EventRepetition extends Model
         $eventRepetition = new EventRepetition();
         $eventRepetition->event_id = $eventId;
         
-        //$eventRepetition->start_repeat = $dateStart.' '.$timeStart.':00';
-        //$eventRepetition->end_repeat = $dateEnd.' '.$timeEnd.':00';
-        
-        //create($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $tz = null
-        
-        //$eventRepetition->start_repeat = Carbon::createFromFormat('Y-m-d H:i:s', $dateStart." ".$timeStart);
-        //$eventRepetition->end_repeat = Carbon::createFromFormat('Y-m-d H:i:s', $dateEnd." ".$timeEnd);
-        //dump($timeStart);
         $eventRepetition->start_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateStart." ".$timeStart);
         $eventRepetition->end_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateEnd." ".$timeEnd);
         
