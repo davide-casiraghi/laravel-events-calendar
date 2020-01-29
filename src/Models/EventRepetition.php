@@ -71,10 +71,10 @@ class EventRepetition extends Model
     {
         $eventRepetition = new self();
         $eventRepetition->event_id = $eventId;
-        
-        $eventRepetition->start_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateStart." ".$timeStart);
-        $eventRepetition->end_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateEnd." ".$timeEnd);
-        
+
+        $eventRepetition->start_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateStart.' '.$timeStart);
+        $eventRepetition->end_repeat = Carbon::createFromFormat('Y-m-d H:i', $dateEnd.' '.$timeEnd);
+
         $eventRepetition->save();
     }
 
