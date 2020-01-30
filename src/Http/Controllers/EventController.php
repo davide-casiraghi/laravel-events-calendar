@@ -684,13 +684,13 @@ class EventController extends Controller
      */
     public function saveOnDb(Request $request, Event $event)
     {
-        $countries = Country::getCountries();
+        //$countries = Country::getCountries();
         $teachers = Teacher::pluck('name', 'id');
 
-        $venue = DB::table('event_venues')
+        /*$venue = DB::table('event_venues')
                 ->select('event_venues.id AS venue_id', 'event_venues.name AS venue_name', 'event_venues.country_id AS country_id', 'event_venues.continent_id', 'event_venues.city')
                 ->where('event_venues.id', '=', $request->get('venue_id'))
-                ->first();
+                ->first();*/
 
         $event->title = $request->get('title');
         $event->description = clean($request->get('description'));
@@ -727,14 +727,8 @@ class EventController extends Controller
         }
 
         // Support columns for homepage search (we need this to show events in HP with less use of resources)
-        /*$event->sc_country_id = $venue->country_id;
-        $event->sc_region_id = $venue->region_id;
-        $event->sc_country_name = $countries[$venue->country_id];
-        $event->sc_city_name = $venue->city;
-        $event->sc_venue_name = $venue->venue_name;*/
         $event->sc_teachers_id = json_encode(explode(',', $request->get('multiple_teachers'))); // keep just this SC
-        /*$event->sc_continent_id = $venue->continent_id;*/
-
+        
         // Multiple teachers - populate support column field
         $event->sc_teachers_names = '';
         if ($request->get('multiple_teachers')) {
