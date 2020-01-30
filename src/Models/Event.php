@@ -321,11 +321,11 @@ class Event extends Model
             case '1':  // Same weekday/week of the month - eg. the "1st Monday"
                 $numberOfTheWeek = $monthRepeatDatas[1]; // eg. 1(first) | 2(second) | 3(third) | 4(fourth) | 5(fifth)
                 $weekday = $weekdayArray[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
-
+                
                 while ($month < $end) {
-                    $month_number = Carbon::parse($month)->isoFormat('M');
-                    $year_number = Carbon::parse($month)->isoFormat('YYYY');
-
+                    $month_number = (int)Carbon::parse($month)->isoFormat('M');
+                    $year_number = (int)Carbon::parse($month)->isoFormat('YYYY');
+                    
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->nthOfMonth($numberOfTheWeek, $weekday);  // eg. Carbon::create(2014, 5, 30, 0, 0, 0)->nthOfQuarter(2, Carbon::SATURDAY);
                     //dump("ee_4");
                     EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
@@ -336,11 +336,11 @@ class Event extends Model
             case '2':  // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, 2 if 3rd to last day)
                 $dayFromTheEnd = $monthRepeatDatas[1];
                 while ($month < $end) {
-                    $month_number = Carbon::parse($month)->isoFormat('M');
-                    $year_number = Carbon::parse($month)->isoFormat('YYYY');
+                    $month_number = (int)Carbon::parse($month)->isoFormat('M');
+                    $year_number = (int)Carbon::parse($month)->isoFormat('YYYY');
 
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth()->subDays($dayFromTheEnd);
-                    //dump("ee_1");
+                    
                     EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
@@ -350,8 +350,8 @@ class Event extends Model
                 $weeksFromTheEnd = $monthRepeatDatas[1];
 
                 while ($month < $end) {
-                    $month_number = Carbon::parse($month)->isoFormat('M');
-                    $year_number = Carbon::parse($month)->isoFormat('YYYY');
+                    $month_number = (int)Carbon::parse($month)->isoFormat('M');
+                    $year_number = (int)Carbon::parse($month)->isoFormat('YYYY');
 
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth($weekday)->subWeeks($weeksFromTheEnd);
                     //dump("ee_2");

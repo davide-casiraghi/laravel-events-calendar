@@ -120,10 +120,10 @@ class LaravelEventsCalendar
      * Return the number of the week in the month of the day specified
      * $when - unix timestramp of the date specified.
      *
-     * @param  string $when
+     * @param  int $when
      * @return int
      */
-    public function weekOfMonthFromTheEnd($when = null)
+    public function weekOfMonthFromTheEnd(int $when)
     {
         $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
         $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
@@ -161,10 +161,10 @@ class LaravelEventsCalendar
      * $when - unix timestramp of the date specified
      * Return the number of day of the month from end.
      *
-     * @param  string $when
+     * @param  int $when
      * @return int
      */
-    public function dayOfMonthFromTheEnd($when = null)
+    public function dayOfMonthFromTheEnd(int $when)
     {
         $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
         $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
