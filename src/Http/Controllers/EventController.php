@@ -426,12 +426,16 @@ class EventController extends Controller
     /**
      * Save all the weekly repetitions inthe event_repetitions table
      * useful: http://thisinterestsme.com/php-get-first-monday-of-month/.
+     * $singleDaysRepeatDatas - explode of $request->get('multiple_dates')
+     * $startDate (Y-m-d)
+     * $timeStart (H:i:s)
+     * $timeEnd (H:i:s)
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @param  array   $singleDaysRepeatDatas - explode of $request->get('multiple_dates')
-     * @param  string  $startDate (Y-m-d)
-     * @param  string  $timeStart (H:i:s)
-     * @param  string  $timeEnd (H:i:s)
+     * @param  array   $singleDaysRepeatDatas
+     * @param  string  $startDate
+     * @param  string  $timeStart
+     * @param  string  $timeEnd
      * @return void
      */
     public function saveMultipleRepeatDates(Event $event, array $singleDaysRepeatDatas, string $startDate, string $timeStart, string $timeEnd)
