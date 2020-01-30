@@ -253,8 +253,8 @@ class TeacherController extends Controller
             $imageFile = $request->file('profile_picture');
             $imageName = $imageFile->hashName();
             $imageSubdir = 'teachers_profile';
-            $imageWidth = '968';
-            $thumbWidth = '300';
+            $imageWidth = 968;
+            $thumbWidth = 300;
 
             $this->uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
             $teacher->profile_picture = $imageName;

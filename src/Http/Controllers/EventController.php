@@ -711,8 +711,8 @@ class EventController extends Controller
             $imageFile = $request->file('image');
             $imageName = time().'.'.'jpg';  //$imageName = $teaserImageFile->hashName();
             $imageSubdir = 'events_teaser';
-            $imageWidth = '968';
-            $thumbWidth = '310';
+            $imageWidth = 968;
+            $thumbWidth = 310;
 
             $this->uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
             $event->image = $imageName;

@@ -190,8 +190,8 @@ class TeacherControllerTest extends TestCase
         $imageFile = $uploadedFile;
         $imageName = $imageFile->hashName();
         $imageSubdir = 'teachers_profile';
-        $imageWidth = '968';
-        $thumbWidth = '300';
+        $imageWidth = 968;
+        $thumbWidth = 300;
 
         TeacherController::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
 

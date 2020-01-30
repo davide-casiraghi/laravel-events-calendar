@@ -187,8 +187,8 @@ class OrganizerController extends Controller
             $imageFile = $request->file('profile_picture');
             $imageName = $imageFile->hashName();
             $imageSubdir = 'organizers_profile';
-            $imageWidth = '968';
-            $thumbWidth = '300';
+            $imageWidth = 968;
+            $thumbWidth = 300;
 
             $this->uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
             $organizer->profile_picture = $imageName;

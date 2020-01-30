@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
+use \Illuminate\Http\UploadedFile;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -82,14 +84,14 @@ class Controller extends BaseController
      * $imageFile - the file to upload
      * $imageSubdir is the subdir in /storage/app/public/images/..
      *
-     * @param  array $imageFile
+     * @param  \Illuminate\Http\UploadedFile $imageFile
      * @param  string $imageName
      * @param  string $imageSubdir
-     * @param  string $imageWidth
-     * @param  string $thumbWidth
+     * @param  int $imageWidth
+     * @param  int $thumbWidth
      * @return void
      */
-    public static function uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth)
+    public static function uploadImageOnServer(UploadedFile $imageFile, string $imageName, string $imageSubdir, int $imageWidth, int $thumbWidth)
     {
 
         // Create dir if not exist (in /storage/app/public/images/..)
