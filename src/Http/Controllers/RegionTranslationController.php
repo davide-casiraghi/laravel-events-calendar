@@ -120,7 +120,7 @@ class RegionTranslationController extends Controller
 
         $regionTranslation = RegionTranslation::where('id', $request->get('region_translation_id'));
 
-        $region_t = array();
+        $region_t = [];
         $region_t['name'] = $request->get('name');
         $region_t['slug'] = Str::slug($request->get('name'), '-');
 
