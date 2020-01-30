@@ -367,8 +367,10 @@ class EventController extends Controller
         // Saving repetitions - If it's a single event will be stored with just one repetition
         //$timeStart = date('H:i:s', strtotime($request->get('time_start')));
         //$timeEnd = date('H:i:s', strtotime($request->get('time_end')));
-        $timeStart = $request->get('time_start');
-        $timeEnd = $request->get('time_end');
+        //$timeStart = $request->get('time_start');
+        //$timeEnd = $request->get('time_end');
+        $timeStart = date('H:i', strtotime($request->get('time_start')));
+        $timeEnd = date('H:i', strtotime($request->get('time_end')));
 
         switch ($request->get('repeat_type')) {
                 case '1':  // noRepeat
