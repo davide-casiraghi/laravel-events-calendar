@@ -698,7 +698,7 @@ class EventController extends Controller
 
         // Support columns for homepage search (we need this to show events in HP with less use of resources)
         $event->sc_teachers_id = json_encode(explode(',', $request->get('multiple_teachers'))); // keep just this SC
-        
+
         // Multiple teachers - populate support column field
         $event->sc_teachers_names = '';
         if ($request->get('multiple_teachers')) {
