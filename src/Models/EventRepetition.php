@@ -97,7 +97,8 @@ class EventRepetition extends Model
     {
         $beginPeriod = Carbon::createFromFormat('Y-m-d', $startDate);
         $endPeriod = Carbon::createFromFormat('Y-m-d', $repeatUntilDate);
-        $interval = CarbonInterval::days(1);
+        //$interval = CarbonInterval::days(1);
+        $interval = CarbonInterval::make('1day');
         $period = CarbonPeriod::create($beginPeriod, $interval, $endPeriod);
         foreach ($period as $day) {  // Iterate for each day of the period
             foreach ($weekDays as $weekDayNumber) { // Iterate for every day of the week (1:Monday, 2:Tuesday, 3:Wednesday ...)
