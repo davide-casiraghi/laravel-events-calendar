@@ -4,7 +4,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-
 use Illuminate\Foundation\Testing\WithFaker;
 
 class EventModelTest extends TestCase
@@ -23,9 +22,9 @@ class EventModelTest extends TestCase
         $activeEvents = Event::getActiveEvents();
         $this->assertEquals($activeEvents[0]->title, 'test title');
     }
-    
+
     /***************************************************************/
-    
+
     /** @test */
     public function it_gets_filtered_events()
     {
