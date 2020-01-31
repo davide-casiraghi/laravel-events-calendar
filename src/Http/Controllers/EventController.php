@@ -415,40 +415,10 @@ class EventController extends Controller
                     // Get the array with single day repeat details
                         $singleDaysRepeatDatas = explode(',', $request->get('multiple_dates'));
 
-                        $this->saveMultipleRepeatDates($event->id, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd);
+                        EventRepetition::saveMultipleRepeatDates($event->id, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd);
 
                     break;
             }
-    }
-
-    /***************************************************************************/
-
-    /**
-     * Save all the weekly repetitions inthe event_repetitions table
-     * useful: http://thisinterestsme.com/php-get-first-monday-of-month/.
-     * $singleDaysRepeatDatas - explode of $request->get('multiple_dates')
-     * $startDate (Y-m-d)
-     * $timeStart (H:i:s)
-     * $timeEnd (H:i:s)
-     *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @param  array   $singleDaysRepeatDatas
-     * @param  string  $startDate
-     * @param  string  $timeStart
-     * @param  string  $timeEnd
-     * @return void
-     */
-    public function saveMultipleRepeatDates(Event $event, array $singleDaysRepeatDatas, string $startDate, string $timeStart, string $timeEnd)
-    {
-        $dateTime = strtotime($startDate);
-        $day = date('Y-m-d', $dateTime);
-
-        EventRepetition::saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
-
-        foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
-            $day = Carbon::createFromFormat('d/m/Y', $singleDayRepeatDatas);
-            EventRepetition::saveEventRepetitionOnDB($event->id, $day, $day, $timeStart, $timeEnd);
-        }
     }
 
     /***************************************************************************/
