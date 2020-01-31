@@ -360,9 +360,9 @@ class EventController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return void
      */
-    public function saveEventRepetitions(Request $request, Event $event)
+    public function saveEventRepetitions(Request $request, int $eventId)
     {
-        EventRepetition::deletePreviousRepetitions($event->id);
+        EventRepetition::deletePreviousRepetitions($eventId);
 
         // Saving repetitions - If it's a single event will be stored with just one repetition
         //$timeStart = date('H:i:s', strtotime($request->get('time_start')));
@@ -375,7 +375,7 @@ class EventController extends Controller
         switch ($request->get('repeat_type')) {
                 case '1':  // noRepeat
                     $eventRepetition = new EventRepetition();
-                    $eventRepetition->event_id = $event->id;
+                    $eventRepetition->event_id = $eventId;
 
                     $dateStart = implode('-', array_reverse(explode('/', $request->get('startDate'))));
                     $dateEnd = implode('-', array_reverse(explode('/', $request->get('endDate'))));
@@ -392,7 +392,7 @@ class EventController extends Controller
 
                     // Calculate repeat until day
                         $repeatUntilDate = implode('-', array_reverse(explode('/', $request->get('repeat_until'))));
-                        EventRepetition::saveWeeklyRepeatDates($event->id, $request->get('repeat_weekly_on_day'), $startDate, $repeatUntilDate, $timeStart, $timeEnd);
+                        EventRepetition::saveWeeklyRepeatDates($eventId, $request->get('repeat_weekly_on_day'), $startDate, $repeatUntilDate, $timeStart, $timeEnd);
 
                     break;
 
@@ -404,7 +404,7 @@ class EventController extends Controller
                     // Get the array with month repeat details
                         $monthRepeatDatas = explode('|', $request->get('on_monthly_kind'));
                         //dump("pp_1");
-                        EventRepetition::saveMonthlyRepeatDates($event->id, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
+                        EventRepetition::saveMonthlyRepeatDates($eventId, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
 
                     break;
 
@@ -415,7 +415,7 @@ class EventController extends Controller
                     // Get the array with single day repeat details
                         $singleDaysRepeatDatas = explode(',', $request->get('multiple_dates'));
 
-                        EventRepetition::saveMultipleRepeatDates($event->id, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd);
+                        EventRepetition::saveMultipleRepeatDates($eventId, $singleDaysRepeatDatas, $startDate, $timeStart, $timeEnd);
 
                     break;
             }
@@ -717,7 +717,7 @@ class EventController extends Controller
 
         // Save event and repetitions
         $event->save();
-        $this->saveEventRepetitions($request, $event);
+        $this->saveEventRepetitions($request, $event->id);
 
         // Update multi relationships with teachers and organizers tables.
         if ($request->get('multiple_teachers')) {
