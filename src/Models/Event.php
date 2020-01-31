@@ -187,5 +187,4 @@ class Event extends Model
 
         return $ret;
     }
-
 }

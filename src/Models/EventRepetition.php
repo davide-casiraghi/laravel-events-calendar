@@ -107,7 +107,7 @@ class EventRepetition extends Model
             }
         }
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -142,7 +142,7 @@ class EventRepetition extends Model
                     $day = $month;
                     //dump("ee_3");
                     //dump($timeStart);
-                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+                    self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
                 break;
@@ -156,7 +156,7 @@ class EventRepetition extends Model
 
                     $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->nthOfMonth($numberOfTheWeek, $weekday);  // eg. Carbon::create(2014, 5, 30, 0, 0, 0)->nthOfQuarter(2, Carbon::SATURDAY);
                     //dump("ee_4");
-                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+                    self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
 
                     $month = $month->addMonth();
                 }
@@ -168,8 +168,8 @@ class EventRepetition extends Model
                     $year_number = (int) Carbon::parse($month)->isoFormat('YYYY');
 
                     $day = Carbon::create($year_number, $month_number, 1, 0, 0, 0)->lastOfMonth()->subDays($dayFromTheEnd);
-                    
-                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+
+                    self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
                 break;
@@ -183,7 +183,7 @@ class EventRepetition extends Model
 
                     $day = Carbon::create($year_number, $month_number, 1, 0, 0, 0)->lastOfMonth($weekday)->subWeeks($weeksFromTheEnd);
                     //dump("ee_2");
-                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+                    self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
                 break;
@@ -219,7 +219,7 @@ class EventRepetition extends Model
             self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
         }
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -230,9 +230,9 @@ class EventRepetition extends Model
      */
     public static function deletePreviousRepetitions($eventId)
     {
-        EventRepetition::where('event_id', $eventId)->delete();
+        self::where('event_id', $eventId)->delete();
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -243,14 +243,14 @@ class EventRepetition extends Model
      */
     public static function getFirstEventRpDatesByEventId($eventId)
     {
-        $ret = EventRepetition::
+        $ret = self::
                 select('start_repeat', 'end_repeat')
                 ->where('event_id', $eventId)
                 ->first();
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -261,7 +261,7 @@ class EventRepetition extends Model
      */
     public static function getFirstEventRpDatesByRepetitionId($repetitionId)
     {
-        $ret = EventRepetition::
+        $ret = self::
                 select('start_repeat', 'end_repeat')
                 ->where('id', $repetitionId)
                 ->first();

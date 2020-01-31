@@ -4,7 +4,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 
@@ -414,5 +413,4 @@ class EventControllerTest extends TestCase
 
         $this->assertEquals($eventRepetition->first()->event_id, 1);
     }
-
 }
