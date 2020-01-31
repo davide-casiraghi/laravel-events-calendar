@@ -286,7 +286,7 @@ class Event extends Model
      * Save all the weekly repetitions in the event_repetitions table
      * useful: http://thisinterestsme.com/php-get-first-monday-of-month/.
      *
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @param  int  $eventId
      * @param  array   $monthRepeatDatas - explode of $request->get('on_monthly_kind')
      *                      0|28 the 28th day of the month
      *                      1|2|2 the 2nd Tuesday of the month
