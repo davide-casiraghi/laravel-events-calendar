@@ -284,7 +284,7 @@ class EventControllerTest extends TestCase
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
             'title' => 'test title',
-            'repeat_type' => '2',
+            'repeat_type' => '2',   // weekly
             'startDate' => '10/01/2020',
             'endDate' => '10/01/2020',
             'time_start' => '10:00',
@@ -308,7 +308,7 @@ class EventControllerTest extends TestCase
         $this->authenticate();
         $attributes = factory(Event::class)->raw([
             'title' => 'test title',
-            'repeat_type' => '3',
+            'repeat_type' => '3',   // monthy
             'startDate' => '10/01/2020',
             'endDate' => '10/01/2020',
             'time_start' => '10:00',
@@ -321,6 +321,30 @@ class EventControllerTest extends TestCase
         $eventSaved = Event::first();
         $eventRepetitionSaved = EventRepetition::first();
         //dd($eventRepetitionSaved);
+        $response = $this->get('/event/'.$eventSaved->slug.'/'.$eventRepetitionSaved->id);
+        $response->assertViewIs('laravel-events-calendar::events.show')
+                 ->assertStatus(200);
+    }
+    
+    /** @test */
+    public function it_gets_a_multiple_days_event_by_slug_and_repetition()
+    {
+        $this->authenticate();
+        $attributes = factory(Event::class)->raw([
+            'title' => 'test title',
+            'repeat_type' => '4',   // multiple days
+            'startDate' => '10/01/2020',
+            'endDate' => '10/01/2020',
+            'time_start' => '10:00',
+            'time_end' => '12:00',
+            'multiple_dates' => '11/03/2020,26/03/2020,21/03/2020',
+        ]);
+        $this->post('/events', $attributes);
+
+        $eventSaved = Event::first();
+
+        $eventRepetitionSaved = EventRepetition::first();
+        
         $response = $this->get('/event/'.$eventSaved->slug.'/'.$eventRepetitionSaved->id);
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
