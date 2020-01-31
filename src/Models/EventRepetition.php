@@ -107,7 +107,7 @@ class EventRepetition extends Model
             }
         }
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -116,7 +116,7 @@ class EventRepetition extends Model
      * $singleDaysRepeatDatas - explode of $request->get('multiple_dates') - eg. ["19/03/2020","20/05/2020","29/05/2020"]
      * $startDate (Y-m-d)
      * $timeStart (H:i:s)
-     * $timeEnd (H:i:s)
+     * $timeEnd (H:i:s).
      *
      * @param  int  $eventId
      * @param  array   $singleDaysRepeatDatas
@@ -128,13 +128,13 @@ class EventRepetition extends Model
     public static function saveMultipleRepeatDates(int $eventId, array $singleDaysRepeatDatas, string $startDate, string $timeStart, string $timeEnd)
     {
         $day = Carbon::createFromFormat('Y-m-d', $startDate);
-        
-        EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
-        
+
+        self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+
         foreach ($singleDaysRepeatDatas as $key => $singleDayRepeatDatas) {
             $day = Carbon::createFromFormat('d/m/Y', $singleDayRepeatDatas);
-        
-            EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+
+            self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
         }
     }
 }
