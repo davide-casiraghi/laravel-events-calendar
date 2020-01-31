@@ -97,7 +97,7 @@ class EventRepetitionModelTest extends TestCase
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-03-14 10:00:00', 'end_repeat' => '2020-03-14 11:00:00']);
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-04-13 10:00:00', 'end_repeat' => '2020-04-13 11:00:00']);
     }
-    
+
     /***************************************************************/
 
     /** @test */
