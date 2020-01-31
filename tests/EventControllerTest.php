@@ -403,49 +403,6 @@ class EventControllerTest extends TestCase
     }*/
 
     /** @test */
-    public function it_gets_active_events()
-    {
-        $this->authenticate();
-        $attributes = factory(Event::class)->raw(['title'=>'test title']);
-        $this->post('/events', $attributes);
-
-        $activeEvents = Event::getActiveEvents();
-        $this->assertEquals($activeEvents[0]->title, 'test title');
-    }
-
-    /** @test */
-    public function it_gets_filtered_events()
-    {
-        $this->authenticate();
-        $teacher = factory(Teacher::class)->create();
-        $eventAttributes = factory(Event::class)->raw([
-            'title'=>'test title',
-            'multiple_teachers' => $teacher->id,
-        ]);
-        $response = $this->post('/events', $eventAttributes);
-
-        $eventCreated = Event::first();
-
-        $filters = [
-            'keywords' => 'test title',
-            'endDate' => '2030-02-02',
-            'category' => '1',
-            'teacher' => null,  //use just integer 1,  no such function: json_contains
-            'country' => '1',
-            'continent' => '1',
-            'region' => null,
-            'city' => $eventCreated->sc_city_name,
-            'venue' => $eventCreated->sc_venue_name,
-        ];
-
-        $itemPerPage = 20;
-
-        $events = Event::getEvents($filters, $itemPerPage);
-        //dd($events[0]);
-        $this->assertEquals($events[0]->title, 'test title');
-    }
-
-    /** @test */
     public function it_gets_the_event_repetitions()
     {
         $this->authenticate();
@@ -458,24 +415,4 @@ class EventControllerTest extends TestCase
         $this->assertEquals($eventRepetition->first()->event_id, 1);
     }
 
-    /** @test */
-    public function it_saves_monthly_repeat_datas()
-    {
-        $this->authenticate();
-        $attributes = factory(Event::class)->raw();
-        $this->post('/events', $attributes);
-        $eventCreated = Event::first();
-
-        $monthRepeatDatas = [1, 2, 2]; // 1|2|2 the 2nd Tuesday of the month
-
-        $startDate = '2019-12-18';
-        $repeatUntilDate = '2020-2-16';
-        $timeStart = '10:00';
-        $timeEnd = '11:00';
-
-        $testString = $eventCreated->saveMonthlyRepeatDates($eventCreated->id, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
-
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventCreated->id, 'start_repeat' => '2019-12-10 10:00:00', 'end_repeat' => '2019-12-10 11:00:00']);
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventCreated->id, 'start_repeat' => '2020-01-14 10:00:00', 'end_repeat' => '2020-01-14 11:00:00']);
-    }
 }

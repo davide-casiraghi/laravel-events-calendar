@@ -107,6 +107,88 @@ class EventRepetition extends Model
             }
         }
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Save all the weekly repetitions in the event_repetitions table
+     * useful: http://thisinterestsme.com/php-get-first-monday-of-month/.
+     *
+     * @param  int  $eventId
+     * @param  array   $monthRepeatDatas - explode of $request->get('on_monthly_kind')
+     *                      0|28 the 28th day of the month
+     *                      1|2|2 the 2nd Tuesday of the month
+     *                      2|17 the 18th to last day of the month
+     *                      3|1|3 the 2nd to last Wednesday of the month
+     * @param  string  $startDate (Y-m-d)
+     * @param  string  $repeatUntilDate (Y-m-d)
+     * @param  string  $timeStart (H:i:s)
+     * @param  string  $timeEnd (H:i:s)
+     * @return void
+     */
+    public static function saveMonthlyRepeatDates(int $eventId, array $monthRepeatDatas, string $startDate, string $repeatUntilDate, string $timeStart, string $timeEnd)
+    {
+        $start = $month = Carbon::createFromFormat('Y-m-d', $startDate);
+        $end = Carbon::createFromFormat('Y-m-d', $repeatUntilDate);
+        $numberOfTheWeekArray = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth'];
+        $weekdayArray = [Carbon::MONDAY, Carbon::TUESDAY, Carbon::WEDNESDAY, Carbon::THURSDAY, Carbon::FRIDAY, Carbon::SATURDAY, Carbon::SUNDAY];
+
+        //$timeStart = $timeStart.":00";
+        //$timeEnd = $timeEnd.":00";
+
+        switch ($monthRepeatDatas[0]) {
+            case '0':  // Same day number - eg. "the 28th day of the month"
+                while ($month < $end) {
+                    $day = $month;
+                    //dump("ee_3");
+                    //dump($timeStart);
+                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+                    $month = $month->addMonth();
+                }
+                break;
+            case '1':  // Same weekday/week of the month - eg. the "1st Monday"
+                $numberOfTheWeek = $monthRepeatDatas[1]; // eg. 1(first) | 2(second) | 3(third) | 4(fourth) | 5(fifth)
+                $weekday = $weekdayArray[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
+
+                while ($month < $end) {
+                    $month_number = (int) Carbon::parse($month)->isoFormat('M');
+                    $year_number = (int) Carbon::parse($month)->isoFormat('YYYY');
+
+                    $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->nthOfMonth($numberOfTheWeek, $weekday);  // eg. Carbon::create(2014, 5, 30, 0, 0, 0)->nthOfQuarter(2, Carbon::SATURDAY);
+                    //dump("ee_4");
+                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+
+                    $month = $month->addMonth();
+                }
+                break;
+            case '2':  // Same day of the month (from the end) - the 3rd to last day (0 if last day, 1 if 2nd to last day, 2 if 3rd to last day)
+                $dayFromTheEnd = $monthRepeatDatas[1];
+                while ($month < $end) {
+                    $month_number = (int) Carbon::parse($month)->isoFormat('M');
+                    $year_number = (int) Carbon::parse($month)->isoFormat('YYYY');
+
+                    $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth()->subDays($dayFromTheEnd);
+
+                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+                    $month = $month->addMonth();
+                }
+                break;
+            case '3':  // Same weekday/week of the month (from the end) - the last Friday - (0 if last Friday, 1 if the 2nd to last Friday, 2 if the 3nd to last Friday)
+                $weekday = $weekdayArray[$monthRepeatDatas[2] - 1]; // eg. monday | tuesday | wednesday
+                $weeksFromTheEnd = $monthRepeatDatas[1];
+
+                while ($month < $end) {
+                    $month_number = (int) Carbon::parse($month)->isoFormat('M');
+                    $year_number = (int) Carbon::parse($month)->isoFormat('YYYY');
+
+                    $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth($weekday)->subWeeks($weeksFromTheEnd);
+                    //dump("ee_2");
+                    EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
+                    $month = $month->addMonth();
+                }
+                break;
+        }
+    }
 
     /***************************************************************************/
 
@@ -136,5 +218,54 @@ class EventRepetition extends Model
 
             self::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
         }
+    }
+    
+    /***************************************************************************/
+
+    /**
+     * Delete all the previous repetitions from the event_repetitions table.
+     *
+     * @param int $eventId
+     * @return void
+     */
+    public static function deletePreviousRepetitions($eventId)
+    {
+        EventRepetition::where('event_id', $eventId)->delete();
+    }
+    
+    /***************************************************************************/
+
+    /**
+     * Return Start and End dates of the first repetition of an event - By Event ID.
+     *
+     * @param int $eventId
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition
+     */
+    public static function getFirstEventRpDatesByEventId($eventId)
+    {
+        $ret = EventRepetition::
+                select('start_repeat', 'end_repeat')
+                ->where('event_id', $eventId)
+                ->first();
+
+        return $ret;
+    }
+    
+    /***************************************************************************/
+
+    /**
+     * Return Start and End dates of the first repetition of an event - By Repetition ID.
+     *
+     * @param int $repetitionId
+     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition
+     */
+    public static function getFirstEventRpDatesByRepetitionId($repetitionId)
+    {
+        $ret = EventRepetition::
+                select('start_repeat', 'end_repeat')
+                ->where('id', $repetitionId)
+                ->first();
+
+        return $ret;
     }
 }

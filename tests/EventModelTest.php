@@ -3,6 +3,8 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+
 use Illuminate\Foundation\Testing\WithFaker;
 
 class EventModelTest extends TestCase
@@ -12,68 +14,47 @@ class EventModelTest extends TestCase
     /***************************************************************/
 
     /** @test */
-    public function it_saves_monthly_repeat_same_day_number()
+    public function it_gets_active_events()
     {
-        $eventId = 1;
-        $monthRepeatDatas = [0, 25]; //the 28th day of the month
-        $startDate = '2019-12-25';
-        $repeatUntilDate = '2020-2-1';
-        $timeStart = '10:00';
-        $timeEnd = '11:00';
+        $this->authenticate();
+        $attributes = factory(Event::class)->raw(['title'=>'test title']);
+        $this->post('/events', $attributes);
 
-        Event::saveMonthlyRepeatDates($eventId, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
-
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2019-12-25 10:00:00', 'end_repeat' => '2019-12-25 11:00:00']);
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-01-25 10:00:00', 'end_repeat' => '2020-01-25 11:00:00']);
+        $activeEvents = Event::getActiveEvents();
+        $this->assertEquals($activeEvents[0]->title, 'test title');
     }
-
+    
+    /***************************************************************/
+    
     /** @test */
-    public function it_saves_monthly_same_weekday_week_of_the_month()
+    public function it_gets_filtered_events()
     {
-        $eventId = 1;
-        $monthRepeatDatas = [1, 2, 2]; // the 2nd Tuesday of the month
-        $startDate = '2019-12-18';
-        $repeatUntilDate = '2020-2-16';
-        $timeStart = '10:00';
-        $timeEnd = '11:00';
+        $this->authenticate();
+        $teacher = factory(Teacher::class)->create();
+        $eventAttributes = factory(Event::class)->raw([
+            'title'=>'test title',
+            'multiple_teachers' => $teacher->id,
+        ]);
+        $response = $this->post('/events', $eventAttributes);
 
-        Event::saveMonthlyRepeatDates($eventId, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
+        $eventCreated = Event::first();
 
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2019-12-10 10:00:00', 'end_repeat' => '2019-12-10 11:00:00']);
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-01-14 10:00:00', 'end_repeat' => '2020-01-14 11:00:00']);
-    }
+        $filters = [
+            'keywords' => 'test title',
+            'endDate' => '2030-02-02',
+            'category' => '1',
+            'teacher' => null,  //use just integer 1,  no such function: json_contains
+            'country' => '1',
+            'continent' => '1',
+            'region' => null,
+            'city' => $eventCreated->sc_city_name,
+            'venue' => $eventCreated->sc_venue_name,
+        ];
 
-    /** @test */
-    public function it_saves_monthly_same_day_of_the_month_from_the_end()
-    {
-        $eventId = 1;
-        $monthRepeatDatas = [2, 17]; // the 18th to last day of the month
-        $startDate = '2020-02-12';
-        $repeatUntilDate = '2020-04-28';
-        $timeStart = '10:00';
-        $timeEnd = '11:00';
+        $itemPerPage = 20;
 
-        Event::saveMonthlyRepeatDates($eventId, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
-
-        //$this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-02-12 10:00:00', 'end_repeat' => '2020-02-12 11:00:00']);
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-03-14 10:00:00', 'end_repeat' => '2020-03-14 11:00:00']);
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-04-13 10:00:00', 'end_repeat' => '2020-04-13 11:00:00']);
-    }
-
-    /** @test */
-    public function it_saves_monthly_same_weekday_week_of_the_month_from_the_end()
-    {
-        $eventId = 1;
-        $monthRepeatDatas = [3, 1, 3]; // 3|1|3 the 2nd to last Wednesday of the month
-        $startDate = '2020-02-19';
-        $repeatUntilDate = '2020-04-28';
-        $timeStart = '10:00';
-        $timeEnd = '11:00';
-
-        Event::saveMonthlyRepeatDates($eventId, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
-
-        //$this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-02-19 10:00:00', 'end_repeat' => '2020-02-19 11:00:00']);
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-03-18 10:00:00', 'end_repeat' => '2020-03-18 11:00:00']);
-        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-04-22 10:00:00', 'end_repeat' => '2020-04-22 11:00:00']);
+        $events = Event::getEvents($filters, $itemPerPage);
+        //dd($events[0]);
+        $this->assertEquals($events[0]->title, 'test title');
     }
 }

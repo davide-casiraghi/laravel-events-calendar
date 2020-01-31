@@ -362,7 +362,7 @@ class EventController extends Controller
      */
     public function saveEventRepetitions(Request $request, Event $event)
     {
-        Event::deletePreviousRepetitions($event->id);
+        EventRepetition::deletePreviousRepetitions($event->id);
 
         // Saving repetitions - If it's a single event will be stored with just one repetition
         //$timeStart = date('H:i:s', strtotime($request->get('time_start')));
@@ -404,7 +404,7 @@ class EventController extends Controller
                     // Get the array with month repeat details
                         $monthRepeatDatas = explode('|', $request->get('on_monthly_kind'));
                         //dump("pp_1");
-                        Event::saveMonthlyRepeatDates($event->id, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
+                        EventRepetition::saveMonthlyRepeatDates($event->id, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
 
                     break;
 
@@ -765,7 +765,7 @@ class EventController extends Controller
     public function eventBySlug(string $slug)
     {
         $event = Event::where('slug', $slug)->first();
-        $firstRpDates = Event::getFirstEventRpDatesByEventId($event->id);
+        $firstRpDates = EventRepetition::getFirstEventRpDatesByEventId($event->id);
 
         return $this->show($event, $firstRpDates);
     }
@@ -781,11 +781,11 @@ class EventController extends Controller
     public function eventBySlugAndRepetition(string $slug, int $repetitionId)
     {
         $event = Event::where('slug', $slug)->first();
-        $firstRpDates = Event::getFirstEventRpDatesByRepetitionId($repetitionId);
+        $firstRpDates = EventRepetition::getFirstEventRpDatesByRepetitionId($repetitionId);
 
         // If not found get the first repetion of the event in the future.
         if (! $firstRpDates) {
-            $firstRpDates = Event::getFirstEventRpDatesByEventId($event->id);
+            $firstRpDates = EventRepetition::getFirstEventRpDatesByEventId($event->id);
         }
 
         return $this->show($event, $firstRpDates);
