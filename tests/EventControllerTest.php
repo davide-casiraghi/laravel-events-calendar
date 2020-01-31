@@ -325,7 +325,7 @@ class EventControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_gets_a_multiple_days_event_by_slug_and_repetition()
     {
@@ -344,7 +344,7 @@ class EventControllerTest extends TestCase
         $eventSaved = Event::first();
 
         $eventRepetitionSaved = EventRepetition::first();
-        
+
         $response = $this->get('/event/'.$eventSaved->slug.'/'.$eventRepetitionSaved->id);
         $response->assertViewIs('laravel-events-calendar::events.show')
                  ->assertStatus(200);
