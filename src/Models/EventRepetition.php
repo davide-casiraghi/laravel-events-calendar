@@ -167,8 +167,8 @@ class EventRepetition extends Model
                     $month_number = (int) Carbon::parse($month)->isoFormat('M');
                     $year_number = (int) Carbon::parse($month)->isoFormat('YYYY');
 
-                    $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth()->subDays($dayFromTheEnd);
-
+                    $day = Carbon::create($year_number, $month_number, 1, 0, 0, 0)->lastOfMonth()->subDays($dayFromTheEnd);
+                    
                     EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
                     $month = $month->addMonth();
                 }
@@ -181,7 +181,7 @@ class EventRepetition extends Model
                     $month_number = (int) Carbon::parse($month)->isoFormat('M');
                     $year_number = (int) Carbon::parse($month)->isoFormat('YYYY');
 
-                    $day = Carbon::create($year_number, $month_number, 30, 0, 0, 0)->lastOfMonth($weekday)->subWeeks($weeksFromTheEnd);
+                    $day = Carbon::create($year_number, $month_number, 1, 0, 0, 0)->lastOfMonth($weekday)->subWeeks($weeksFromTheEnd);
                     //dump("ee_2");
                     EventRepetition::saveEventRepetitionOnDB($eventId, $day->format('Y-m-d'), $day->format('Y-m-d'), $timeStart, $timeEnd);
                     $month = $month->addMonth();

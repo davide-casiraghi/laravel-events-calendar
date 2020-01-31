@@ -93,7 +93,7 @@ class EventRepetitionModelTest extends TestCase
 
         EventRepetition::saveMonthlyRepeatDates($eventId, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
 
-        //$this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-02-12 10:00:00', 'end_repeat' => '2020-02-12 11:00:00']);
+        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-02-12 10:00:00', 'end_repeat' => '2020-02-12 11:00:00']);
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-03-14 10:00:00', 'end_repeat' => '2020-03-14 11:00:00']);
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-04-13 10:00:00', 'end_repeat' => '2020-04-13 11:00:00']);
     }
@@ -112,7 +112,7 @@ class EventRepetitionModelTest extends TestCase
 
         EventRepetition::saveMonthlyRepeatDates($eventId, $monthRepeatDatas, $startDate, $repeatUntilDate, $timeStart, $timeEnd);
 
-        //$this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-02-19 10:00:00', 'end_repeat' => '2020-02-19 11:00:00']);
+        $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-02-19 10:00:00', 'end_repeat' => '2020-02-19 11:00:00']);
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-03-18 10:00:00', 'end_repeat' => '2020-03-18 11:00:00']);
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-04-22 10:00:00', 'end_repeat' => '2020-04-22 11:00:00']);
     }
