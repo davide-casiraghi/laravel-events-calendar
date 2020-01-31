@@ -128,9 +128,8 @@ class EventRepetition extends Model
      */
     public static function saveMonthlyRepeatDates(int $eventId, array $monthRepeatDatas, string $startDate, string $repeatUntilDate, string $timeStart, string $timeEnd)
     {
-        $start = $month = Carbon::createFromFormat('Y-m-d', $startDate);
+        $month = Carbon::createFromFormat('Y-m-d', $startDate);
         $end = Carbon::createFromFormat('Y-m-d', $repeatUntilDate);
-        $numberOfTheWeekArray = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth'];
         $weekdayArray = [Carbon::MONDAY, Carbon::TUESDAY, Carbon::WEDNESDAY, Carbon::THURSDAY, Carbon::FRIDAY, Carbon::SATURDAY, Carbon::SUNDAY];
 
         //$timeStart = $timeStart.":00";

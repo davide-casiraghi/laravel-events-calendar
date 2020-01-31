@@ -784,7 +784,7 @@ class EventController extends Controller
         $firstRpDates = EventRepetition::getFirstEventRpDatesByRepetitionId($repetitionId);
 
         // If not found get the first repetion of the event in the future.
-        if (! $firstRpDates) {
+        if (empty($firstRpDates)) {
             $firstRpDates = EventRepetition::getFirstEventRpDatesByEventId($event->id);
         }
 
