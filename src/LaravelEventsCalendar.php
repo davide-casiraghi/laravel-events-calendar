@@ -300,4 +300,24 @@ class LaravelEventsCalendar
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Return a string with the list of the collection id separated by comma, without any space. eg. "354,320,310"
+     * https://developer.mapquest.com/.
+     *
+     * @param  iterable $items
+     * @return string $ret
+     */
+    public static function getCollectionIdsSeparatedByComma(iterable $items)
+    {
+        $itemsIds = [];
+        foreach ($items as $item) {
+            array_push($itemsIds, $item->id);
+        }
+        $ret = implode(',', $itemsIds);
+        return $ret;
+    }
+    
 }
