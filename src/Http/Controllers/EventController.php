@@ -25,7 +25,6 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Validator;
 
-
 /**
  * @method string getReportMisuseReasonDescription(integer $request->reason)
  */
