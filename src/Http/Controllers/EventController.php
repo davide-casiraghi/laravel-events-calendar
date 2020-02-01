@@ -432,6 +432,9 @@ class EventController extends Controller
         $report['event_id'] = $request->event_id;
         $report['event_slug'] = $request->slug;
 
+        $report['reason'] = LaravelEventsCalendar::getReportMisuseReasonDescription($request->reason);
+
+/*
         switch ($request->reason) {
             case '1':
                 $report['reason'] = 'Not about Contact Improvisation';
@@ -446,6 +449,7 @@ class EventController extends Controller
                 $report['reason'] = 'Other (specify in the message)';
                 break;
         }
+*/
 
         //Mail::to($request->user())->send(new ReportMisuse($report));
         Mail::to(env('ADMIN_MAIL'))->send(new ReportMisuse($report));

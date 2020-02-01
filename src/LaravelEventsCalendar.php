@@ -304,8 +304,8 @@ class LaravelEventsCalendar
     /***************************************************************************/
 
     /**
-     * Return a string with the list of the collection id separated by comma, without any space. eg. "354,320,310"
-     * https://developer.mapquest.com/.
+     * Return a string with the list of the collection id separated by comma, 
+     * without any space. eg. "354,320,310"
      *
      * @param  iterable $items
      * @return string $ret
@@ -317,6 +317,33 @@ class LaravelEventsCalendar
             array_push($itemsIds, $item->id);
         }
         $ret = implode(',', $itemsIds);
+        return $ret;
+    }
+    
+    /***************************************************************************/
+
+    /**
+     * Return a string that describe the report misuse reason
+     *
+     * @param  int $reason
+     * @return string $ret
+     */
+    public static function getReportMisuseReasonDescription(int $reason)
+    {
+        switch ($reason) {
+            case '1':
+                $ret = 'Not about Contact Improvisation';
+                break;
+            case '2':
+                $ret = 'Contains wrong informations';
+                break;
+            case '3':
+                $ret = 'It is not translated in english';
+                break;
+            case '4':
+                $ret = 'Other (specify in the message)';
+                break;
+        }
         return $ret;
     }
     
