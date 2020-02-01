@@ -304,8 +304,8 @@ class LaravelEventsCalendar
     /***************************************************************************/
 
     /**
-     * Return a string with the list of the collection id separated by comma, 
-     * without any space. eg. "354,320,310"
+     * Return a string with the list of the collection id separated by comma,
+     * without any space. eg. "354,320,310".
      *
      * @param  iterable $items
      * @return string $ret
@@ -320,11 +320,11 @@ class LaravelEventsCalendar
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
-     * Return a string that describe the report misuse reason
+     * Return a string that describe the report misuse reason.
      *
      * @param  int $reason
      * @return string $ret
@@ -345,7 +345,7 @@ class LaravelEventsCalendar
                 $ret = 'Other (specify in the message)';
                 break;
         }
+
         return $ret;
     }
-    
 }
