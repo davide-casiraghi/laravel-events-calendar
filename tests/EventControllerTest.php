@@ -202,6 +202,16 @@ class EventControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::events.edit')
                  ->assertStatus(200);
     }
+    
+    /** @test */
+    public function it_doesnt_displays_the_event_edit_page_to_not_authenticated_user()
+    {
+        $attributes = factory(Event::class)->raw();
+        $this->post('/events', $attributes);
+
+        $response = $this->get('/events/1/edit');
+        $response->assertStatus(500);
+    }
 
     /** @test */
     public function it_updates_valid_event()
