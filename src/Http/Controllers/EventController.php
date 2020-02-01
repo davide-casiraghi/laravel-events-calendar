@@ -27,7 +27,7 @@ use Validator;
 
 
 /**
- * @method string getReportMisuseReasonDescription(integer $request->reason)
+ * @method static string getReportMisuseReasonDescription(integer $request->reason)  Return a string that describe the report misuse reason
  */
 class EventController extends Controller
 {
