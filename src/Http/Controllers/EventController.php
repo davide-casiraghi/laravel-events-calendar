@@ -2,8 +2,6 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use Carbon\Carbon;
-use DateTime;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ContactOrganizer;
 use DavideCasiraghi\LaravelEventsCalendar\Mail\ReportMisuse;
@@ -177,7 +175,7 @@ class EventController extends Controller
         $continent = Continent::find($country->continent_id);
 
         $repetition_text = LaravelEventsCalendar::getRepetitionTextString($event, $firstRpDates);
-        
+
         // True if the repetition start and end on the same day
         $sameDateStartEnd = ((date('Y-m-d', strtotime($firstRpDates->start_repeat))) == (date('Y-m-d', strtotime($firstRpDates->end_repeat)))) ? 1 : 0;
 
