@@ -320,7 +320,6 @@ class LaravelEventsCalendar
 
         return $ret;
     }
-<<<<<<< HEAD
     
     /***************************************************************************/
 
@@ -349,6 +348,4 @@ class LaravelEventsCalendar
         return $ret;
     }
     
-=======
->>>>>>> 6fa527b7882a04bd7c0189ed6083cbcabaf74a16
 }
