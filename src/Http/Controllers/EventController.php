@@ -25,6 +25,9 @@ use Validator;
 
 /**
  * @method static string getReportMisuseReasonDescription(integer $request->reason)  Return a string that describe the report misuse reason
+ * @method static string getRepetitionTextString(collection $event, collection $firstRpDates)  Return a string that describe repetition kind in the event show view.
+ * @method static string getCollectionIdsSeparatedByComma(iterable $event->teachers)  Return a string with the list of the collection id separated by comma.
+ * @method static string weekdayNumberOfMonth(string $date, string $dayOfWeekValue)  GET number of the specified weekday in this month (1 for the first).
  */
 class EventController extends Controller
 {

@@ -281,7 +281,7 @@ class LaravelEventsCalendar
     /***************************************************************************/
 
     /**
-     * Return a string with the list of the collection id separated by comma,
+     * Return a string with the list of the collection id separated by comma.
      * without any space. eg. "354,320,310".
      *
      * @param  iterable $items
@@ -337,9 +337,10 @@ class LaravelEventsCalendar
      */
     public static function getRepetitionTextString(Event $event, EventRepetition $firstRpDates)
     {
+        $ret = '';
+        
         switch ($event->repeat_type) {
                 case '1': // noRepeat
-                    $ret = null;
                     break;
                 case '2': // repeatWeekly
                     $repeatUntil = new DateTime($event->repeat_until);
@@ -355,7 +356,7 @@ class LaravelEventsCalendar
 
                     //$ret = 'The event happens every '.$nameOfTheRepetitionWeekDays.' until '.$repeatUntil->format('d/m/Y');
                     $format = __('laravel-events-calendar::event.the_event_happens_every_x_until_x');
-                    $ret = sprintf($format, $nameOfTheRepetitionWeekDays, $repeatUntil->format('d/m/Y'));
+                    $ret .= sprintf($format, $nameOfTheRepetitionWeekDays, $repeatUntil->format('d/m/Y'));
                     break;
                 case '3': //repeatMonthly
                     $repeatUntil = new DateTime($event->repeat_until);
@@ -363,9 +364,8 @@ class LaravelEventsCalendar
 
                     //$ret = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
                     $format = __('laravel-events-calendar::event.the_event_happens_x_until_x');
-                    $ret = sprintf($format, $repetitionFrequency, $repeatUntil->format('d/m/Y'));
+                    $ret .= sprintf($format, $repetitionFrequency, $repeatUntil->format('d/m/Y'));
                     break;
-
                 case '4': //repeatMultipleDays
                     $dateStart = date('d/m/Y', strtotime($firstRpDates->start_repeat));
                     $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
@@ -378,12 +378,9 @@ class LaravelEventsCalendar
                            return strtotime($a) - strtotime($b);
                        });
 
-                    //$ret = 'The event happens on this dates: ';
-                    $ret = __('laravel-events-calendar::event.the_event_happens_on_this_dates');
-
+                    $ret .= __('laravel-events-calendar::event.the_event_happens_on_this_dates');
                     $ret .= $dateStart.', ';
                     $ret .= self::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
-
                     break;
             }
 
