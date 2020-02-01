@@ -2,6 +2,12 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar;
 
+use DateTime;
+use Carbon\Carbon;
+
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+
 class LaravelEventsCalendar
 {
     /***************************************************************************/
@@ -39,7 +45,7 @@ class LaravelEventsCalendar
      * @param  iterable  $items
      * @return string  $ret
      */
-    public function getStringFromArraySeparatedByComma(iterable $items)
+    public static function getStringFromArraySeparatedByComma(iterable $items)
     {
         $ret = '';
         $i = 0;
@@ -67,7 +73,7 @@ class LaravelEventsCalendar
      * @param  int $dayOfTheWeek
      * @return bool
      */
-    public function isWeekDay(string $date, int $dayOfTheWeek)
+    public static function isWeekDay(string $date, int $dayOfTheWeek)
     {
         // Fix the bug that was avoiding to save Sunday. Date 'w' identify sunday as 0 and not 7.
         if ($dayOfTheWeek == 7) {
@@ -88,7 +94,7 @@ class LaravelEventsCalendar
      * @param  string $dayOfWeekValue
      * @return int
      */
-    public function weekdayNumberOfMonth(string $dateTimestamp, string $dayOfWeekValue)
+    public static function weekdayNumberOfMonth(string $dateTimestamp, string $dayOfWeekValue)
     {
         $cut = substr($dateTimestamp, 0, 8);
         $daylen = 86400;
@@ -123,7 +129,7 @@ class LaravelEventsCalendar
      * @param  int $when
      * @return int
      */
-    public function weekOfMonthFromTheEnd(int $when)
+    public static function weekOfMonthFromTheEnd(int $when)
     {
         $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
         $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
@@ -164,7 +170,7 @@ class LaravelEventsCalendar
      * @param  int $when
      * @return int
      */
-    public function dayOfMonthFromTheEnd(int $when)
+    public static function dayOfMonthFromTheEnd(int $when)
     {
         $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
         $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
@@ -181,7 +187,7 @@ class LaravelEventsCalendar
      * @param  int $number
      * @return string
      */
-    public function getOrdinalIndicator($number)
+    public static function getOrdinalIndicator($number)
     {
         switch ($number) {
             case  $number == 1 || $number == 21 || $number == 31:
@@ -210,7 +216,7 @@ class LaravelEventsCalendar
      * @param  string $repeatWeeklyOn
      * @return string
      */
-    public function decodeRepeatWeeklyOn(string $repeatWeeklyOn)
+    public static function decodeRepeatWeeklyOn(string $repeatWeeklyOn)
     {
         $weekdayArray = [
             '',
@@ -236,7 +242,7 @@ class LaravelEventsCalendar
      * @param  string $onMonthlyKindCode
      * @return string
      */
-    public function decodeOnMonthlyKind(string $onMonthlyKindCode)
+    public static function decodeOnMonthlyKind(string $onMonthlyKindCode)
     {
         $onMonthlyKindCodeArray = explode('|', $onMonthlyKindCode);
         $weekDays = [
@@ -348,4 +354,70 @@ class LaravelEventsCalendar
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Return a string that describe repetition kind in the event show view
+     *
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition $firstRpDates
+     * @return string $ret
+     */
+    public static function getRepetitionTextString(Event $event, EventRepetition $firstRpDates)
+    {
+        switch ($event->repeat_type) {
+                case '1': // noRepeat
+                    $ret = null;
+                    break;
+                case '2': // repeatWeekly
+                    $repeatUntil = new DateTime($event->repeat_until);
+
+                    // Get the name of the weekly day when the event repeat, if two days, return like "Thursday and Sunday"
+                        $repetitonWeekdayNumbersArray = explode(',', $event->repeat_weekly_on);
+                        $repetitonWeekdayNamesArray = [];
+                        foreach ($repetitonWeekdayNumbersArray as $key => $repetitonWeekdayNumber) {
+                            $repetitonWeekdayNamesArray[] = LaravelEventsCalendar::decodeRepeatWeeklyOn($repetitonWeekdayNumber);
+                        }
+                        // create from an array a string with all the values divided by " and "
+                        $nameOfTheRepetitionWeekDays = implode(' and ', $repetitonWeekdayNamesArray);
+
+                    //$ret = 'The event happens every '.$nameOfTheRepetitionWeekDays.' until '.$repeatUntil->format('d/m/Y');
+                    $format = __('laravel-events-calendar::event.the_event_happens_every_x_until_x');
+                    $ret = sprintf($format, $nameOfTheRepetitionWeekDays, $repeatUntil->format('d/m/Y'));
+                    break;
+                case '3': //repeatMonthly
+                    $repeatUntil = new DateTime($event->repeat_until);
+                    $repetitionFrequency = LaravelEventsCalendar::decodeOnMonthlyKind($event->on_monthly_kind);
+
+                    //$ret = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
+                    $format = __('laravel-events-calendar::event.the_event_happens_x_until_x');
+                    $ret = sprintf($format, $repetitionFrequency, $repeatUntil->format('d/m/Y'));
+                    break;
+
+                case '4': //repeatMultipleDays
+                    $dateStart = date('d/m/Y', strtotime($firstRpDates->start_repeat));
+                    $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
+
+                    // Sort the datas
+                       usort($singleDaysRepeatDatas, function ($a, $b) {
+                           $a = Carbon::createFromFormat('d/m/Y', $a);
+                           $b = Carbon::createFromFormat('d/m/Y', $b);
+
+                           return strtotime($a) - strtotime($b);
+                       });
+
+                    //$ret = 'The event happens on this dates: ';
+                    $ret = __('laravel-events-calendar::event.the_event_happens_on_this_dates');
+
+                    $ret .= $dateStart.', ';
+                    $ret .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
+
+                    break;
+            }
+            
+        return $ret;
+    }    
+    
+    
 }

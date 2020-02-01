@@ -174,60 +174,10 @@ class EventController extends Controller
 
         $country = Country::find($venue->country_id);
         $region = Region::listsTranslations('name')->find($venue->region_id);
-
         $continent = Continent::find($country->continent_id);
 
-        // Repetition text to show
-        switch ($event->repeat_type) {
-                case '1': // noRepeat
-                    $repetition_text = null;
-                    break;
-                case '2': // repeatWeekly
-                    $repeatUntil = new DateTime($event->repeat_until);
-
-                    // Get the name of the weekly day when the event repeat, if two days, return like "Thursday and Sunday"
-                        $repetitonWeekdayNumbersArray = explode(',', $event->repeat_weekly_on);
-                        $repetitonWeekdayNamesArray = [];
-                        foreach ($repetitonWeekdayNumbersArray as $key => $repetitonWeekdayNumber) {
-                            $repetitonWeekdayNamesArray[] = LaravelEventsCalendar::decodeRepeatWeeklyOn($repetitonWeekdayNumber);
-                        }
-                        // create from an array a string with all the values divided by " and "
-                        $nameOfTheRepetitionWeekDays = implode(' and ', $repetitonWeekdayNamesArray);
-
-                    //$repetition_text = 'The event happens every '.$nameOfTheRepetitionWeekDays.' until '.$repeatUntil->format('d/m/Y');
-                    $format = __('laravel-events-calendar::event.the_event_happens_every_x_until_x');
-                    $repetition_text = sprintf($format, $nameOfTheRepetitionWeekDays, $repeatUntil->format('d/m/Y'));
-                    break;
-                case '3': //repeatMonthly
-                    $repeatUntil = new DateTime($event->repeat_until);
-                    $repetitionFrequency = LaravelEventsCalendar::decodeOnMonthlyKind($event->on_monthly_kind);
-
-                    //$repetition_text = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
-                    $format = __('laravel-events-calendar::event.the_event_happens_x_until_x');
-                    $repetition_text = sprintf($format, $repetitionFrequency, $repeatUntil->format('d/m/Y'));
-                    break;
-
-                case '4': //repeatMultipleDays
-                    $dateStart = date('d/m/Y', strtotime($firstRpDates->start_repeat));
-                    $singleDaysRepeatDatas = explode(',', $event->multiple_dates);
-
-                    // Sort the datas
-                       usort($singleDaysRepeatDatas, function ($a, $b) {
-                           $a = Carbon::createFromFormat('d/m/Y', $a);
-                           $b = Carbon::createFromFormat('d/m/Y', $b);
-
-                           return strtotime($a) - strtotime($b);
-                       });
-
-                    //$repetition_text = 'The event happens on this dates: ';
-                    $repetition_text = __('laravel-events-calendar::event.the_event_happens_on_this_dates');
-
-                    $repetition_text .= $dateStart.', ';
-                    $repetition_text .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
-
-                    break;
-            }
-
+        $repetition_text = LaravelEventsCalendar::getRepetitionTextString($event, $firstRpDates);
+        
         // True if the repetition start and end on the same day
         $sameDateStartEnd = ((date('Y-m-d', strtotime($firstRpDates->start_repeat))) == (date('Y-m-d', strtotime($firstRpDates->end_repeat)))) ? 1 : 0;
 
