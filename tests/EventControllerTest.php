@@ -447,4 +447,18 @@ class EventControllerTest extends TestCase
 
         $this->assertEquals($eventRepetition->first()->event_id, 1);
     }
+    
+    /** @test */
+    /*public function it_gets_creator_email()
+    {
+        $this->authenticate();
+        $attributes = factory(Event::class)->raw();
+        $this->post('/events', $attributes);
+
+        $eventCreated = Event::first();
+        $eventRepetition = $eventCreated->eventRepetitions();
+
+        $this->assertEquals($eventRepetition->first()->event_id, 1);
+    }*/
+    
 }

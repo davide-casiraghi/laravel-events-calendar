@@ -78,6 +78,15 @@ class CountryControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::countries.edit')
                  ->assertStatus(200);
     }
+    
+    /** @test */
+    public function it_doesnt_displays_the_country_edit_page_to_not_authenticated_user()
+    {
+        $country = factory(Country::class)->create();
+        $response = $this->get("/countries/{$country->id}/edit");
+        $response->assertStatus(302)
+                 ->assertRedirect('/');
+    }
 
     /** @test */
     public function it_updates_valid_country()

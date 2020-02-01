@@ -96,6 +96,14 @@ class TeacherControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::teachers.edit')
                  ->assertStatus(200);
     }
+    
+    /** @test */
+    public function it_doesnt_displays_the_teacher_edit_page_to_not_authenticated_user()
+    {
+        $teacher = factory(Teacher::class)->create();
+        $response = $this->get("/teachers/{$teacher->id}/edit");
+        $response->assertStatus(500);
+    }
 
     /** @test */
     public function it_updates_valid_teacher()

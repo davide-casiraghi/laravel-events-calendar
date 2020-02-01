@@ -96,6 +96,15 @@ class RegionControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::regions.edit')
                  ->assertStatus(200);
     }
+    
+    /** @test */
+    public function it_doesnt_displays_the_region_edit_page_to_not_authenticated_user()
+    {
+        $region = factory(Region::class)->create();
+        $response = $this->get("/regions/{$region->id}/edit");
+        $response->assertStatus(302)
+                 ->assertRedirect('/');
+    }
 
     /** @test */
     public function it_updates_valid_region()

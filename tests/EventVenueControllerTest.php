@@ -98,8 +98,6 @@ class EventVenueControllerTest extends TestCase
     public function it_displays_the_event_venue_edit_page()
     {
         $this->authenticateAsAdmin();
-        //$user = User::first();
-        //auth()->login($user);
 
         Continent::insert([
             'name' => 'Europe',
@@ -115,6 +113,25 @@ class EventVenueControllerTest extends TestCase
         $response = $this->get("/eventVenues/{$eventVenue->id}/edit");
         $response->assertViewIs('laravel-events-calendar::eventVenues.edit')
                  ->assertStatus(200);
+    }
+    
+    /** @test */
+    public function it_doesnt_displays_the_event_venue_edit_page_to_not_authenticated_user()
+    {
+        Continent::insert([
+            'name' => 'Europe',
+            'code' => 'EU',
+        ]);
+        Country::insert([
+            'name' => 'Italy',
+            'code' => 'IT',
+            'continent_id' => 1,
+        ]);
+
+        $eventVenue = factory(EventVenue::class)->create();
+
+        $response = $this->get('/eventVenues/1/edit');
+        $response->assertStatus(500);
     }
 
     /** @test */

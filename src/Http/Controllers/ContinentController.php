@@ -13,6 +13,8 @@ class ContinentController extends Controller
     {
         $this->middleware('admin');
     }
+    
+    /***************************************************************************/
 
     /**
      * Display a listing of the resource.
