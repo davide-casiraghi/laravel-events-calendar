@@ -338,7 +338,7 @@ class LaravelEventsCalendar
     public static function getRepetitionTextString(Event $event, EventRepetition $firstRpDates)
     {
         $ret = '';
-        
+
         switch ($event->repeat_type) {
                 case '1': // noRepeat
                     break;
