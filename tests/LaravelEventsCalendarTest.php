@@ -151,18 +151,6 @@ class LaravelEventsCalendarTest extends TestCase
     }
 
     /** @test */
-    public function it_gets_ordinal_indicator()
-    {
-        $dayOfTheMonthNumber = '15';
-        $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayOfTheMonthNumber);
-        $this->assertEquals($ordinalIndicator, 'th');
-
-        $dayOfTheMonthNumber = '1';
-        $ordinalIndicator = LaravelEventsCalendar::getOrdinalIndicator($dayOfTheMonthNumber);
-        $this->assertEquals($ordinalIndicator, 'st');
-    }
-
-    /** @test */
     public function it_decode_decode_repeat_weekly_on()
     {
         $repeatWeeklyOn = '1';
@@ -203,4 +191,16 @@ class LaravelEventsCalendarTest extends TestCase
         $this->assertSame($venuesCoordinates['lat'], 45.467293);
         $this->assertSame($venuesCoordinates['lng'], 9.183276);
     }
+    
+    /** @test */
+    public function it_gets_report_misuse_reason_description()
+    {
+        $description = LaravelEventsCalendar::getReportMisuseReasonDescription(1);
+        $this->assertSame($description, 'Not about Contact Improvisation');
+    }
+    
+
+
+    
+    
 }

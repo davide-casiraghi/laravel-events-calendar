@@ -182,34 +182,6 @@ class LaravelEventsCalendar
     /***************************************************************************/
 
     /**
-     * GET the ordinal indicator - for the day of the month.
-     * Return the ordinal indicator (st, nd, rd, th).
-     * @param  int $number
-     * @return string
-     */
-    public static function getOrdinalIndicator($number)
-    {
-        switch ($number) {
-            case  $number == 1 || $number == 21 || $number == 31:
-                $ret = 'st';
-                break;
-            case  $number == 2 || $number == 22:
-                $ret = 'nd';
-                break;
-            case  $number == 3 || $number == 23:
-                $ret = 'rd';
-                break;
-            default:
-                $ret = 'th';
-                break;
-        }
-
-        return $ret;
-    }
-
-    /***************************************************************************/
-
-    /**
      * Decode the event repeat_weekly_on field - used in event.show.
      * Return a string like "Monday".
      *
