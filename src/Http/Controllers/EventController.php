@@ -277,28 +277,9 @@ class EventController extends Controller
             $dateTime['repeatUntil'] = date('d/m/Y', strtotime($event->repeat_until));
             $dateTime['multipleDates'] = $event->multiple_dates;
 
-            // GET Multiple teachers
-            /*$teachersDatas = $event->teachers;
-            $teachersSelected = [];
-            foreach ($teachersDatas as $teacherDatas) {
-                array_push($teachersSelected, $teacherDatas->id);
-            }
-            $multiple_teachers = implode(',', $teachersSelected);*/
             $multiple_teachers = LaravelEventsCalendar::getCollectionIdsSeparatedByComma($event->teachers);
-            
-            
-
-            // GET Multiple Organizers
-            /*$organizersDatas = $event->organizers;
-            $organizersSelected = [];
-            foreach ($organizersDatas as $organizerDatas) {
-                array_push($organizersSelected, $organizerDatas->id);
-            }
-            $multiple_organizers = implode(',', $organizersSelected);*/
             $multiple_organizers = LaravelEventsCalendar::getCollectionIdsSeparatedByComma($event->organizers);
             
-            
-
             return view('laravel-events-calendar::events.edit', compact('event'))
                         ->with('eventCategories', $eventCategories)
                         ->with('users', $users)
