@@ -137,9 +137,25 @@ class LaravelEventsCalendarTest extends TestCase
     /** @test */
     public function it_gets_week_of_month_from_the_end()
     {
-        $timestramp = '1286582400'; // timestamp of10/09/2010
+        $timestramp = '1569974400'; // timestamp of 2/10/2019
+        $weekOfTheMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($timestramp);
+        $this->assertEquals($weekOfTheMonthFromTheEnd, '5');
+        
+        $timestramp = '1570579200'; // timestamp of 9/10/2019
         $weekOfTheMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($timestramp);
         $this->assertEquals($weekOfTheMonthFromTheEnd, '4');
+        
+        $timestramp = '1571184000'; // timestamp of 16/10/2019
+        $weekOfTheMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($timestramp);
+        $this->assertEquals($weekOfTheMonthFromTheEnd, '3');
+        
+        $timestramp = '1571788800'; // timestamp of 23/10/2019
+        $weekOfTheMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($timestramp);
+        $this->assertEquals($weekOfTheMonthFromTheEnd, '2');
+        
+        $timestramp = '1572397200'; // timestamp of 30/10/2019
+        $weekOfTheMonthFromTheEnd = LaravelEventsCalendar::weekOfMonthFromTheEnd($timestramp);
+        $this->assertEquals($weekOfTheMonthFromTheEnd, '1');
     }
 
     /** @test */
@@ -197,9 +213,27 @@ class LaravelEventsCalendarTest extends TestCase
     {
         $description = LaravelEventsCalendar::getReportMisuseReasonDescription(1);
         $this->assertSame($description, 'Not about Contact Improvisation');
+        
+        $description = LaravelEventsCalendar::getReportMisuseReasonDescription(2);
+        $this->assertSame($description, 'Contains wrong informations');
+        
+        $description = LaravelEventsCalendar::getReportMisuseReasonDescription(3);
+        $this->assertSame($description, 'It is not translated in english');
+        
+        $description = LaravelEventsCalendar::getReportMisuseReasonDescription(4);
+        $this->assertSame($description, 'Other (specify in the message)');
     }
     
-
+    /** @test */
+    public function it_gets_collection_ids_separated_by_comma()
+    {
+        $teachers = collect();
+        $teachers->add(factory(Teacher::class)->create());
+        $teachers->add(factory(Teacher::class)->create());
+        
+        $stringWithIds = LaravelEventsCalendar::getCollectionIdsSeparatedByComma($teachers);
+        $this->assertSame($stringWithIds, '1,2');
+    }
 
     
     

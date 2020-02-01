@@ -83,14 +83,14 @@ class Controller extends BaseController
      * $imageFile - the file to upload
      * $imageSubdir is the subdir in /storage/app/public/images/..
      *
-     * @param  \Illuminate\Http\UploadedFile $imageFile
+     * @param  mixed $imageFile
      * @param  string $imageName
      * @param  string $imageSubdir
      * @param  int $imageWidth
      * @param  int $thumbWidth
      * @return void
      */
-    public static function uploadImageOnServer(UploadedFile $imageFile, string $imageName, string $imageSubdir, int $imageWidth, int $thumbWidth)
+    public static function uploadImageOnServer($imageFile, string $imageName, string $imageSubdir, int $imageWidth, int $thumbWidth)
     {
 
         // Create dir if not exist (in /storage/app/public/images/..)
