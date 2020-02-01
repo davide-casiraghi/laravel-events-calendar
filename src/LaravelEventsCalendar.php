@@ -2,9 +2,8 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar;
 
-use DateTime;
 use Carbon\Carbon;
-
+use DateTime;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 
@@ -326,11 +325,11 @@ class LaravelEventsCalendar
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
-     * Return a string that describe repetition kind in the event show view
+     * Return a string that describe repetition kind in the event show view.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition $firstRpDates
@@ -349,7 +348,7 @@ class LaravelEventsCalendar
                         $repetitonWeekdayNumbersArray = explode(',', $event->repeat_weekly_on);
                         $repetitonWeekdayNamesArray = [];
                         foreach ($repetitonWeekdayNumbersArray as $key => $repetitonWeekdayNumber) {
-                            $repetitonWeekdayNamesArray[] = LaravelEventsCalendar::decodeRepeatWeeklyOn($repetitonWeekdayNumber);
+                            $repetitonWeekdayNamesArray[] = self::decodeRepeatWeeklyOn($repetitonWeekdayNumber);
                         }
                         // create from an array a string with all the values divided by " and "
                         $nameOfTheRepetitionWeekDays = implode(' and ', $repetitonWeekdayNamesArray);
@@ -360,7 +359,7 @@ class LaravelEventsCalendar
                     break;
                 case '3': //repeatMonthly
                     $repeatUntil = new DateTime($event->repeat_until);
-                    $repetitionFrequency = LaravelEventsCalendar::decodeOnMonthlyKind($event->on_monthly_kind);
+                    $repetitionFrequency = self::decodeOnMonthlyKind($event->on_monthly_kind);
 
                     //$ret = 'The event happens '.$repetitionFrequency.' until '.$repeatUntil->format('d/m/Y');
                     $format = __('laravel-events-calendar::event.the_event_happens_x_until_x');
@@ -383,13 +382,11 @@ class LaravelEventsCalendar
                     $ret = __('laravel-events-calendar::event.the_event_happens_on_this_dates');
 
                     $ret .= $dateStart.', ';
-                    $ret .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
+                    $ret .= self::getStringFromArraySeparatedByComma($singleDaysRepeatDatas);
 
                     break;
             }
-            
+
         return $ret;
-    }    
-    
-    
+    }
 }
