@@ -279,7 +279,7 @@ class EventController extends Controller
 
             $multiple_teachers = LaravelEventsCalendar::getCollectionIdsSeparatedByComma($event->teachers);
             $multiple_organizers = LaravelEventsCalendar::getCollectionIdsSeparatedByComma($event->organizers);
-            
+
             return view('laravel-events-calendar::events.edit', compact('event'))
                         ->with('eventCategories', $eventCategories)
                         ->with('users', $users)
@@ -434,22 +434,22 @@ class EventController extends Controller
 
         $report['reason'] = LaravelEventsCalendar::getReportMisuseReasonDescription($request->reason);
 
-/*
-        switch ($request->reason) {
-            case '1':
-                $report['reason'] = 'Not about Contact Improvisation';
-                break;
-            case '2':
-                $report['reason'] = 'Contains wrong informations';
-                break;
-            case '3':
-                $report['reason'] = 'It is not translated in english';
-                break;
-            case '4':
-                $report['reason'] = 'Other (specify in the message)';
-                break;
-        }
-*/
+        /*
+                switch ($request->reason) {
+                    case '1':
+                        $report['reason'] = 'Not about Contact Improvisation';
+                        break;
+                    case '2':
+                        $report['reason'] = 'Contains wrong informations';
+                        break;
+                    case '3':
+                        $report['reason'] = 'It is not translated in english';
+                        break;
+                    case '4':
+                        $report['reason'] = 'Other (specify in the message)';
+                        break;
+                }
+        */
 
         //Mail::to($request->user())->send(new ReportMisuse($report));
         Mail::to(env('ADMIN_MAIL'))->send(new ReportMisuse($report));
