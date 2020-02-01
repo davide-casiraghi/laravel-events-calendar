@@ -300,7 +300,7 @@ class LaravelEventsCalendar
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -317,7 +317,7 @@ class LaravelEventsCalendar
             array_push($itemsIds, $item->id);
         }
         $ret = implode(',', $itemsIds);
+
         return $ret;
     }
-    
 }

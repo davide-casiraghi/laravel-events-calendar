@@ -285,8 +285,6 @@ class EventController extends Controller
             }
             $multiple_teachers = implode(',', $teachersSelected);*/
             $multiple_teachers = LaravelEventsCalendar::getCollectionIdsSeparatedByComma($event->teachers);
-            
-            
 
             // GET Multiple Organizers
             /*$organizersDatas = $event->organizers;
@@ -296,8 +294,6 @@ class EventController extends Controller
             }
             $multiple_organizers = implode(',', $organizersSelected);*/
             $multiple_organizers = LaravelEventsCalendar::getCollectionIdsSeparatedByComma($event->organizers);
-            
-            
 
             return view('laravel-events-calendar::events.edit', compact('event'))
                         ->with('eventCategories', $eventCategories)
