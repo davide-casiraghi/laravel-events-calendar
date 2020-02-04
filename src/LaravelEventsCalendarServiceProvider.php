@@ -130,16 +130,15 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
         $this->app->singleton('laravel-events-calendar', function () {
             return new LaravelEventsCalendar;
         });
-        
+
         /*
      * Register the service provider for the dependency.
      */
-    $this->app->register('Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider');
-    /*
-     * Create aliases for the dependency.
-     */
-    $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-    $loader->alias('LaravelLocalization', 'Mcamara\LaravelLocalization\Facades\LaravelLocalization');
-    
+        $this->app->register('Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider');
+        /*
+         * Create aliases for the dependency.
+         */
+        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        $loader->alias('LaravelLocalization', 'Mcamara\LaravelLocalization\Facades\LaravelLocalization');
     }
 }

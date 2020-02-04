@@ -13,7 +13,7 @@ class ContinentController extends Controller
     {
         $this->middleware('admin');
     }
-    
+
     /***************************************************************************/
 
     /**
