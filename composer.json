@@ -28,6 +28,7 @@
         "nesbot/carbon": "^2.16"
     },
     "require-dev": {
+        "nunomaduro/larastan": "^0.5.0",
         "orchestra/testbench": "^4.0",
         "phpunit/phpunit": "^8.0"
     },
