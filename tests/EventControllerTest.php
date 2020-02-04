@@ -202,7 +202,7 @@ class EventControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::events.edit')
                  ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_doesnt_displays_the_event_edit_page_to_not_authenticated_user()
     {
@@ -447,7 +447,7 @@ class EventControllerTest extends TestCase
 
         $this->assertEquals($eventRepetition->first()->event_id, 1);
     }
-    
+
     /** @test */
     /*public function it_gets_creator_email()
     {
@@ -460,5 +460,4 @@ class EventControllerTest extends TestCase
 
         $this->assertEquals($eventRepetition->first()->event_id, 1);
     }*/
-    
 }
