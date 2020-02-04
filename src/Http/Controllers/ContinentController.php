@@ -19,7 +19,7 @@ class ContinentController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -32,7 +32,7 @@ class ContinentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -71,7 +71,7 @@ class ContinentController extends Controller
      * Display the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Continent  $continent
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Continent $continent)
     {
@@ -82,7 +82,7 @@ class ContinentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Continent  $continent
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Continent $continent)
     {

@@ -20,7 +20,7 @@ class CountryController extends Controller
     /**
      * Display a listing of the resource.
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -47,7 +47,7 @@ class CountryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -95,7 +95,7 @@ class CountryController extends Controller
      * Display the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Country $country)
     {
@@ -108,7 +108,7 @@ class CountryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Country  $country
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Country $country)
     {

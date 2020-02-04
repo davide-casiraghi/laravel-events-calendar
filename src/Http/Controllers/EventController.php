@@ -45,7 +45,7 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -102,7 +102,7 @@ class EventController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -161,7 +161,7 @@ class EventController extends Controller
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition $firstRpDates
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Event $event, EventRepetition $firstRpDates)
     {
@@ -203,7 +203,7 @@ class EventController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Event $event)
     {

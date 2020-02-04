@@ -20,7 +20,7 @@ class EventCategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -37,7 +37,7 @@ class EventCategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -73,7 +73,7 @@ class EventCategoryController extends Controller
      * Display the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(EventCategory $eventCategory)
     {
@@ -84,7 +84,7 @@ class EventCategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(EventCategory $eventCategory)
     {
