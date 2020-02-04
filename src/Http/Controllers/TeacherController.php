@@ -30,7 +30,7 @@ class TeacherController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -96,7 +96,7 @@ class TeacherController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -139,7 +139,7 @@ class TeacherController extends Controller
      * Display the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Teacher $teacher)
     {
@@ -175,7 +175,7 @@ class TeacherController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Teacher $teacher)
     {
@@ -282,7 +282,7 @@ class TeacherController extends Controller
     /**
      * Open a modal in the event view when 'create new teacher' button is clicked.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function modal()
     {

@@ -27,7 +27,7 @@ class EventVenueController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -79,7 +79,7 @@ class EventVenueController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -124,7 +124,7 @@ class EventVenueController extends Controller
      * Display the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(EventVenue $eventVenue)
     {
@@ -142,7 +142,7 @@ class EventVenueController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(EventVenue $eventVenue)
     {

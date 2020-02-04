@@ -29,7 +29,7 @@ class RegionTranslationController extends Controller
      * Show the form for creating a new resource.
      * @param int $regionId
      * @param string $languageCode
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create(int $regionId, string $languageCode)
     {
@@ -85,7 +85,7 @@ class RegionTranslationController extends Controller
      * Show the form for editing the specified resource.
      * @param int $regionId
      * @param string $languageCode
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(int $regionId, string $languageCode)
     {

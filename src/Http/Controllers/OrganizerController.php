@@ -23,7 +23,7 @@ class OrganizerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -61,7 +61,7 @@ class OrganizerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -102,7 +102,7 @@ class OrganizerController extends Controller
      * Display the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Organizer $organizer)
     {
@@ -115,7 +115,7 @@ class OrganizerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Organizer $organizer)
     {
@@ -212,7 +212,7 @@ class OrganizerController extends Controller
     /**
      * Open a modal in the event view when 'create new organizer' button is clicked.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function modal()
     {

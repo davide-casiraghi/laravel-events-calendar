@@ -21,7 +21,7 @@ class RegionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -68,7 +68,7 @@ class RegionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -108,7 +108,7 @@ class RegionController extends Controller
      * Display the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Region  $region
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Region $region)
     {
@@ -119,7 +119,7 @@ class RegionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Region  $region
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Region $region)
     {
