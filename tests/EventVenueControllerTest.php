@@ -7,7 +7,6 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 
 class EventVenueControllerTest extends TestCase
@@ -114,7 +113,7 @@ class EventVenueControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::eventVenues.edit')
                  ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_doesnt_displays_the_event_venue_edit_page_to_not_authenticated_user()
     {

@@ -73,7 +73,7 @@ class ContinentControllerTest extends TestCase
         $response->assertViewIs('laravel-events-calendar::continents.edit')
                  ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_doesnt_displays_the_continent_edit_page_to_not_authenticated_user()
     {
