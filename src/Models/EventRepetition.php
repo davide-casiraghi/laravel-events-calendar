@@ -85,7 +85,7 @@ class EventRepetition extends Model
      * $dateStart and $dateEnd are in the format Y-m-d
      * $timeStart and $timeEnd are in the format H:i:s.
      * $weekDays - $request->get('repeat_weekly_on_day').
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @param  int $eventId
      * @param  array|null  $weekDays
      * @param  string  $startDate
      * @param  string  $repeatUntilDate
