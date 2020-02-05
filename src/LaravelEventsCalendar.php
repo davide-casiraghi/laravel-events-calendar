@@ -132,7 +132,7 @@ class LaravelEventsCalendar
     {
         $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
         $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
-        $dayDifference = $lastDayOfMonth - $numberOfDayOfTheMonth;
+        $dayDifference = (int)$lastDayOfMonth - (int)$numberOfDayOfTheMonth;
 
         switch (true) {
             case $dayDifference < 7:
