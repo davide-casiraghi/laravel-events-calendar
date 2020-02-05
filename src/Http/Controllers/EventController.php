@@ -370,7 +370,7 @@ class EventController extends Controller
      * Send the Misuse mail.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function reportMisuse(Request $request)
     {
@@ -419,7 +419,7 @@ class EventController extends Controller
      * Send the mail to the Organizer (from the event modal in the event show view).
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function mailToOrganizer(Request $request)
     {
@@ -450,7 +450,7 @@ class EventController extends Controller
     /**
      * Display the thank you view after the mail to the organizer is sent (called by /mailToOrganizer/sent route).
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function mailToOrganizerSent()
     {
@@ -462,7 +462,7 @@ class EventController extends Controller
     /**
      * Display the thank you view after the misuse report mail is sent (called by /misuse/thankyou route).
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function reportMisuseThankyou()
     {

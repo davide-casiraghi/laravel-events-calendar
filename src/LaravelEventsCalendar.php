@@ -173,7 +173,7 @@ class LaravelEventsCalendar
     {
         $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
         $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
-        $dayDifference = $lastDayOfMonth - $numberOfDayOfTheMonth;
+        $dayDifference = (int)$lastDayOfMonth - (int)$numberOfDayOfTheMonth;
 
         return $dayDifference;
     }
@@ -242,12 +242,12 @@ class LaravelEventsCalendar
                 $ret = sprintf($format, $weekDay);
                 break;
             case '2': // 2|20 eg. the 21st to last day of the month
-                $dayNumber = $onMonthlyKindCodeArray[1] + 1;
+                $dayNumber = (int)$onMonthlyKindCodeArray[1] + 1;
                 $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_to_last_x_of_the_month');
                 $ret = sprintf($format, __('laravel-events-calendar::general.day'));
                 break;
             case '3': // 3|3|4 eg. the 4th to last Thursday of the month
-                $dayNumber = $onMonthlyKindCodeArray[1] + 1;
+                $dayNumber = (int)$onMonthlyKindCodeArray[1] + 1;
                 $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
                 $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_to_last_x_of_the_month');
                 $ret = sprintf($format, $weekDay);
