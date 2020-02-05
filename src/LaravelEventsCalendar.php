@@ -215,6 +215,7 @@ class LaravelEventsCalendar
      */
     public static function decodeOnMonthlyKind(string $onMonthlyKindCode)
     {
+        $ret = "";
         $onMonthlyKindCodeArray = explode('|', $onMonthlyKindCode);
         $weekDays = [
             '',
@@ -308,6 +309,7 @@ class LaravelEventsCalendar
      */
     public static function getReportMisuseReasonDescription(int $reason)
     {
+        $ret = "";
         switch ($reason) {
             case '1':
                 $ret = 'Not about Contact Improvisation';
