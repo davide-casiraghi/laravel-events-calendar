@@ -109,7 +109,6 @@ class RegionTranslationController extends Controller
      */
     public function update(Request $request)
     {
-
         // Validate form datas
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -134,7 +133,7 @@ class RegionTranslationController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $regionTranslationId
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(int $regionTranslationId)
     {
