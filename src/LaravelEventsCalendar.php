@@ -103,7 +103,7 @@ class LaravelEventsCalendar
         $i = 1;
         $weeks = 0;
         for ($i == 1; $i <= $elapsed; $i++) {
-            $dayfind = $cut.(strlen((string)$i) < 2 ? '0'.$i : $i);
+            $dayfind = $cut.(strlen((string) $i) < 2 ? '0'.$i : $i);
             $daytimestamp = strtotime($dayfind);
             $day = strtolower(date('N', $daytimestamp));
             if ($day == strtolower($dayOfWeekValue)) {
@@ -132,7 +132,7 @@ class LaravelEventsCalendar
     {
         $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
         $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
-        $dayDifference = (int)$lastDayOfMonth - (int)$numberOfDayOfTheMonth;
+        $dayDifference = (int) $lastDayOfMonth - (int) $numberOfDayOfTheMonth;
 
         switch (true) {
             case $dayDifference < 7:
@@ -173,7 +173,7 @@ class LaravelEventsCalendar
     {
         $numberOfDayOfTheMonth = strftime('%e', $when); // Day of the month 1-31
         $lastDayOfMonth = strftime('%e', strtotime(date('Y-m-t', $when))); // the last day of the month of the specified date
-        $dayDifference = (int)$lastDayOfMonth - (int)$numberOfDayOfTheMonth;
+        $dayDifference = (int) $lastDayOfMonth - (int) $numberOfDayOfTheMonth;
 
         return $dayDifference;
     }
@@ -215,7 +215,7 @@ class LaravelEventsCalendar
      */
     public static function decodeOnMonthlyKind(string $onMonthlyKindCode)
     {
-        $ret = "";
+        $ret = '';
         $onMonthlyKindCodeArray = explode('|', $onMonthlyKindCode);
         $weekDays = [
             '',
@@ -242,12 +242,12 @@ class LaravelEventsCalendar
                 $ret = sprintf($format, $weekDay);
                 break;
             case '2': // 2|20 eg. the 21st to last day of the month
-                $dayNumber = (int)$onMonthlyKindCodeArray[1] + 1;
+                $dayNumber = (int) $onMonthlyKindCodeArray[1] + 1;
                 $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_to_last_x_of_the_month');
                 $ret = sprintf($format, __('laravel-events-calendar::general.day'));
                 break;
             case '3': // 3|3|4 eg. the 4th to last Thursday of the month
-                $dayNumber = (int)$onMonthlyKindCodeArray[1] + 1;
+                $dayNumber = (int) $onMonthlyKindCodeArray[1] + 1;
                 $weekDay = $weekDays[$onMonthlyKindCodeArray[2]]; // Monday, Tuesday, Wednesday
                 $format = __('laravel-events-calendar::ordinalDays.the_'.($dayNumber).'_to_last_x_of_the_month');
                 $ret = sprintf($format, $weekDay);
@@ -309,7 +309,7 @@ class LaravelEventsCalendar
      */
     public static function getReportMisuseReasonDescription(int $reason)
     {
-        $ret = "";
+        $ret = '';
         switch ($reason) {
             case '1':
                 $ret = 'Not about Contact Improvisation';
