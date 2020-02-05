@@ -300,7 +300,7 @@ class EventController extends Controller
      * To save event repetitions for create and update methods.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @param  int  $eventId
      * @return void
      */
     public function saveEventRepetitions(Request $request, int $eventId)
