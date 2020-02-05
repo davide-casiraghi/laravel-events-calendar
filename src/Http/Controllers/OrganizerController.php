@@ -156,7 +156,7 @@ class OrganizerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Organizer $organizer)
     {
@@ -249,7 +249,7 @@ class OrganizerController extends Controller
      * Return the organizer by SLUG. (eg. http://websitename.com/organizer/xxxxx).
      *
      * @param  string $slug
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function organizerBySlug($slug)
     {

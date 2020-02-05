@@ -142,7 +142,7 @@ class EventVenueController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit(EventVenue $eventVenue)
     {
@@ -194,7 +194,7 @@ class EventVenueController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(EventVenue $eventVenue)
     {
@@ -256,7 +256,7 @@ class EventVenueController extends Controller
     /**
      * Open a modal in the event view when 'create new venue' button is clicked.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function modal()
     {

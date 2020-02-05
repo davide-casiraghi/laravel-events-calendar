@@ -219,7 +219,7 @@ class TeacherController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Teacher $teacher)
     {
@@ -321,7 +321,7 @@ class TeacherController extends Controller
      * Return the teacher by SLUG. (eg. http://websitename.com/teacher/xxxx).
      *
      * @param  string  $slug
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function teacherBySlug($slug)
     {
