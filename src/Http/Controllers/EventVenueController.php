@@ -142,7 +142,7 @@ class EventVenueController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse | \Illuminate\View\View
      */
     public function edit(EventVenue $eventVenue)
     {

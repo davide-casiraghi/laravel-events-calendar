@@ -203,7 +203,7 @@ class EventController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse | \Illuminate\View\View
      */
     public function edit(Event $event)
     {
@@ -597,7 +597,7 @@ class EventController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event $event
-     * @return string $ret - the ordinal indicator (st, nd, rd, th)
+     * @return void
      */
     public function saveOnDb(Request $request, Event $event)
     {
@@ -707,7 +707,7 @@ class EventController extends Controller
      * Return the event by SLUG. (eg. http://websitename.com/event/xxxx).
      *
      * @param  string  $slug
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function eventBySlug(string $slug)
     {
