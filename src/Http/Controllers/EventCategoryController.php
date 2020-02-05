@@ -96,7 +96,7 @@ class EventCategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, EventCategory $eventCategory)
     {
@@ -114,7 +114,7 @@ class EventCategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory  $eventCategory
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(EventCategory $eventCategory)
     {
