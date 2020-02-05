@@ -103,7 +103,7 @@ class LaravelEventsCalendar
         $i = 1;
         $weeks = 0;
         for ($i == 1; $i <= $elapsed; $i++) {
-            $dayfind = $cut.(strlen($i) < 2 ? '0'.$i : $i);
+            $dayfind = $cut.(strlen((string)$i) < 2 ? '0'.$i : $i);
             $daytimestamp = strtotime($dayfind);
             $day = strtolower(date('N', $daytimestamp));
             if ($day == strtolower($dayOfWeekValue)) {
