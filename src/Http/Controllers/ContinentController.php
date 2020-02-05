@@ -43,7 +43,7 @@ class ContinentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -94,7 +94,7 @@ class ContinentController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Continent  $continent
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Continent $continent)
     {
@@ -113,7 +113,7 @@ class ContinentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Continent  $continent
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Continent $continent)
     {

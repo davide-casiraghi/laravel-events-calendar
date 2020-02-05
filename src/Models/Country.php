@@ -89,7 +89,7 @@ class Country extends Model
     /**
      * Return the all countries with teachers.
      *
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
+     * @return \Illuminate\Support\Collection
      */
     public static function getCountriesWithTeachers()
     {

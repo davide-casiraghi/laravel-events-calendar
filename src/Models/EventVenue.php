@@ -41,7 +41,7 @@ class EventVenue extends Model
      * Return true if the Venue contains any event.
      *
      * @param int $venueId
-     * @return string
+     * @return bool
      */
     public static function venueContainsEvents($venueId)
     {

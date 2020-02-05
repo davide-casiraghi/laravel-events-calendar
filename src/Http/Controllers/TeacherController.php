@@ -116,7 +116,7 @@ class TeacherController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -196,7 +196,7 @@ class TeacherController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Teacher $teacher)
     {
@@ -300,7 +300,7 @@ class TeacherController extends Controller
      * Store a newly created teacher from the create event view modal in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function storeFromModal(Request $request)
     {

@@ -43,7 +43,7 @@ class Region extends Model
     /**
      * Return all the countries ordered by name.
      *
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
+     * @return \Illuminate\Support\Collection
      */
     public static function getRegionsByCountry($countryId)
     {

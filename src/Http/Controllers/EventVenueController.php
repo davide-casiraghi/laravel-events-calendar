@@ -101,7 +101,7 @@ class EventVenueController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -171,7 +171,7 @@ class EventVenueController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, EventVenue $eventVenue)
     {
@@ -276,7 +276,7 @@ class EventVenueController extends Controller
      * Store a newly created VENUE from the create event view modal in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function storeFromModal(Request $request)
     {
