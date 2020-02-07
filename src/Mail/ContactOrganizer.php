@@ -13,7 +13,7 @@ class ContactOrganizer extends Mailable
     /**
      * The message instance.
      *
-     * @var Report
+     * @var array
      */
     protected $message;
 
@@ -22,7 +22,7 @@ class ContactOrganizer extends Mailable
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct(array $message)
     {
         $this->message = $message;
     }

@@ -13,7 +13,7 @@ class ReportMisuse extends Mailable
     /**
      * The report instance.
      *
-     * @var Report
+     * @var array
      */
     protected $report;
 
@@ -22,7 +22,7 @@ class ReportMisuse extends Mailable
      *
      * @return void
      */
-    public function __construct($report)
+    public function __construct(array $report)
     {
         $this->report = $report;
     }

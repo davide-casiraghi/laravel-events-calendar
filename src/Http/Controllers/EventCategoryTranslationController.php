@@ -105,7 +105,7 @@ class EventCategoryTranslationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {
@@ -133,7 +133,7 @@ class EventCategoryTranslationController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $eventCategoryTranslationId
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(int $eventCategoryTranslationId)
     {

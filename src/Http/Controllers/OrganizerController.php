@@ -172,7 +172,7 @@ class OrganizerController extends Controller
      * Save the record on DB.
      * @param  \Illuminate\Http\Request  $request
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
-     * @return void
+     * @return int
      */
     public function saveOnDb(Request $request, Organizer $organizer)
     {

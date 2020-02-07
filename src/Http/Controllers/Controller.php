@@ -4,6 +4,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 //use DavideCasiraghi\LaravelEventsCalendar\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -32,7 +33,7 @@ class Controller extends BaseController
      * Get the current logged user ID.
      * If user is admin or super admin return 0.
      *
-     * @return int $ret
+     * @return \Illuminate\Foundation\Auth\User $ret
      */
     public function getLoggedUser()
     {
@@ -53,9 +54,10 @@ class Controller extends BaseController
     // **********************************************************************
 
     /**
-     * Get the current logged user id.
+     * Get the current logged user id. 
+     * (if admin or super admin 0)
      *
-     * @return bool $ret - the current logged user id, if admin or super admin 0
+     * @return int|null $ret 
      */
     public function getLoggedAuthorId()
     {
