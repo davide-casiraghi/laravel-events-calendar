@@ -5,7 +5,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
 
@@ -23,12 +22,12 @@ class EventControllerTest extends TestCase
             ->assertViewIs('laravel-events-calendar::events.index')
             ->assertStatus(200);
     }
-    
+
     /** @test */
     public function it_displays_the_events_index_page_with_filter_selected()
     {
         $this->authenticate();
-        
+
         $eventVenue = factory(EventVenue::class)->create();
         $eventAttributes = factory(Event::class)->raw([
             'title'=>'test title',
@@ -41,12 +40,12 @@ class EventControllerTest extends TestCase
             'category_id' => $eventAttributes['category_id'],
             'country_id' => $eventVenue->country_id,
         ]);
-        
+
         /*$this->get('events', $getAttributes)
             ->assertViewIs('laravel-events-calendar::events.index')
             ->assertStatus(200);*/
-            
-        $this->json('GET',  '/events',$getAttributes)
+
+        $this->json('GET', '/events', $getAttributes)
              ->assertViewIs('laravel-events-calendar::events.index')
              ->assertStatus(200);
     }
