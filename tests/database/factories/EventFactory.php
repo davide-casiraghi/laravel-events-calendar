@@ -2,6 +2,7 @@
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use Faker\Generator as Faker;
 use Illuminate\Foundation\Auth\User;
 
@@ -23,6 +24,10 @@ $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Event::class, func
     $country = Country::first();
     if ($country == null) {
         $country = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Country::class)->create();
+    }
+    $country = Region::first();
+    if ($country == null) {
+        $country = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Region::class)->create();
     }
     $eventCategory = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory::class)->create();
 
