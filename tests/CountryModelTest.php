@@ -2,6 +2,7 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
@@ -33,13 +34,48 @@ class CountryModelTest extends TestCase
             $response = $this->post('/events', $attributes);   
         
         $activeCountries = Country::getActiveCountries();
+            
+        $this->assertTrue($activeCountries->contains('id', 1)); // Slovenia
+        $this->assertFalse($activeCountries->contains('id', 2)); // Italy     
+    }
     
-        // Check if Italy and Slovenia are active countries 
-            $sloveniaPresent = $activeCountries->contains('id', 1);
-            $italiaPresent = $activeCountries->contains('id', 2);
+    
+    /** @test */
+    public function it_gets_active_countries_by_continent()
+    {
+        $this->authenticate();
         
-        $this->assertEquals($sloveniaPresent, true);
-        $this->assertEquals($italiaPresent, false);    
+        $continents = [];
+        $continents[] = factory(Continent::class)->create(['name' => 'Europe']);
+        $continents[] = factory(Continent::class)->create(['name' => 'Africa']);
+        
+        $countries = [];
+        $countries[] = factory(Country::class)->create(['name' => 'Slovenia', 'continent_id' => $continents[0]->id]);
+        $countries[] = factory(Country::class)->create(['name' => 'Italy', 'continent_id' => $continents[0]->id]);
+        $countries[] = factory(Country::class)->create(['name' => 'Morocco', 'continent_id' => $continents[1]->id]);
+        
+        $eventVenues = [];
+        $eventVenues[] = factory(EventVenue::class)->create(['country_id' => 1]);  //Venue in Slovenia
+        $eventVenues[] = factory(EventVenue::class)->create(['country_id' => 3]); // Venue in Morocco
+        
+        // Create an EVENT in the Slovenian Venue
+            $attributes = factory(Event::class)->raw([  
+                'venue_id'=> $eventVenues[0]->id,
+            ]);
+            $response = $this->post('/events', $attributes); 
+        
+        // Create an EVENT in the Moroccan Venue
+            $attributes = factory(Event::class)->raw([  
+                'venue_id'=> $eventVenues[1]->id,
+            ]);
+            $response = $this->post('/events', $attributes); 
+              
+        
+        $activeCountriesbyContinent = Country::getActiveCountriesByContinent($continents[0]->id);
+        
+        $this->assertTrue($activeCountriesbyContinent->contains('name', 'Slovenia'));
+        $this->assertFalse($activeCountriesbyContinent->contains('name', 'Italy')); 
+        $this->assertFalse($activeCountriesbyContinent->contains('name', 'Morocco'));
     }
     
 }
