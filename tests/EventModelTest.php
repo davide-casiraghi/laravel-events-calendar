@@ -3,9 +3,8 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Testing\WithFaker;
 
 class EventModelTest extends TestCase
@@ -33,7 +32,7 @@ class EventModelTest extends TestCase
         $this->authenticate();
         $teacher = factory(Teacher::class)->create();
         $eventVenue = factory(EventVenue::class)->create();
-        
+
         $eventAttributes = factory(Event::class)->raw([
             'title'=>'test title',
             'multiple_teachers' => $teacher->id,
@@ -61,14 +60,14 @@ class EventModelTest extends TestCase
         //dd($events[0]);
         $this->assertEquals($events[0]->title, 'test title');
     }
-    
+
     /***************************************************************/
 
     /** @test */
     public function it_gets_unfiltered_events()
     {
         $this->authenticate();
-        
+
         $eventAttributes = factory(Event::class)->raw([
             'title'=>'test title',
         ]);
@@ -80,7 +79,7 @@ class EventModelTest extends TestCase
             'keywords' => '',
             'endDate' => '',
             'category' => '',
-            'teacher' => '',  
+            'teacher' => '',
             'country' => '',
             'continent' => '',
             'region' => '',
