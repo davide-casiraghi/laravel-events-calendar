@@ -19,11 +19,10 @@ class RegionModelTest extends TestCase
         $region = factory(Region::class)->create([
             'name' => 'Tuscany',
         ]);
-        
+
         $regionName = Region::getRegionName($region->id);
         $this->assertEquals('Tuscany', $regionName);
     }
 
     /***************************************************************/
-
 }

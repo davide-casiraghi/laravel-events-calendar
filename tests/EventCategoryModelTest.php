@@ -20,11 +20,10 @@ class EventCategoryModelTest extends TestCase
             'name' => 'Regular Jam',
             'slug' => 'regular-jam',
         ]);
-        
+
         $categoryName = EventCategory::getCategoryName($eventCategory->id);
         $this->assertEquals('Regular Jam', $categoryName);
     }
 
     /***************************************************************/
-
 }
