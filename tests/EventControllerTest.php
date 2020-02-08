@@ -42,9 +42,13 @@ class EventControllerTest extends TestCase
             'country_id' => $eventVenue->country_id,
         ]);
         
-        $this->get('events', $getAttributes)
+        /*$this->get('events', $getAttributes)
             ->assertViewIs('laravel-events-calendar::events.index')
-            ->assertStatus(200);
+            ->assertStatus(200);*/
+            
+        $this->json('GET',  '/events',$getAttributes)
+             ->assertViewIs('laravel-events-calendar::events.index')
+             ->assertStatus(200);
     }
 
     /** @test */
