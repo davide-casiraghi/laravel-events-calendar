@@ -23,14 +23,6 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Validator;
 
-/**
- * @method static string getReportMisuseReasonDescription(integer $request->reason)  Return a string that describe the report misuse reason
- * @method static string getRepetitionTextString(collection $event, collection $firstRpDates)  Return a string that describe repetition kind in the event show view.
- * @method static string getCollectionIdsSeparatedByComma(iterable $event->teachers)  Return a string with the list of the collection id separated by comma.
- * @method static integer weekdayNumberOfMonth(string $date, string $dayOfWeekValue)  GET number of the specified weekday in this month (1 for the first).
- * @method static integer dayOfMonthFromTheEnd(integer $unixTimestamp) GET number of day from the end of the month.
- * @method static string getStringFromArraySeparatedByComma(iterable $items)  It returns a string that is composed by the array values separated by a comma.
- */
 class EventController extends Controller
 {
     /***************************************************************************/
