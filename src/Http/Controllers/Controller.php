@@ -54,10 +54,10 @@ class Controller extends BaseController
     // **********************************************************************
 
     /**
-     * Get the current logged user id. 
-     * (if admin or super admin 0)
+     * Get the current logged user id.
+     * (if admin or super admin 0).
      *
-     * @return int|null $ret 
+     * @return int|null $ret
      */
     public function getLoggedAuthorId()
     {

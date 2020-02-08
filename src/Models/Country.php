@@ -54,6 +54,7 @@ class Country extends Model
             date_default_timezone_set('Europe/Rome');
             $searchStartDate = date('Y-m-d', time());
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
+
             return self::
             select('countries.*')
                 ->join('event_venues', 'countries.id', '=', 'event_venues.country_id')
@@ -64,7 +65,7 @@ class Country extends Model
                 ->orderBy('countries.name')
                 ->get();
         });
-        
+
         return $ret;
     }
 
