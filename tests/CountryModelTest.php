@@ -39,6 +39,7 @@ class CountryModelTest extends TestCase
         $this->assertFalse($activeCountries->contains('id', 2)); // Italy     
     }
     
+    /***************************************************************/
     
     /** @test */
     public function it_gets_active_countries_by_continent()
