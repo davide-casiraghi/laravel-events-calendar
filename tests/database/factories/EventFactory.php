@@ -3,6 +3,12 @@
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
+
 use Faker\Generator as Faker;
 use Illuminate\Foundation\Auth\User;
 
@@ -16,28 +22,28 @@ use Illuminate\Foundation\Auth\User;
 |
 */
 
-$factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Event::class, function (Faker $faker) {
+$factory->define(Event::class, function (Faker $faker) {
     $continent = Continent::first();
     if ($continent == null) {
-        $continent = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Continent::class)->create();
+        $continent = factory(Continent::class)->create();
     }
     $country = Country::first();
     if ($country == null) {
-        $country = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Country::class)->create();
+        $country = factory(Country::class)->create();
     }
     $country = Region::first();
     if ($country == null) {
-        $country = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\Region::class)->create();
+        $country = factory(Region::class)->create();
     }
-    $eventCategory = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory::class)->create();
+    $eventCategory = factory(EventCategory::class)->create();
 
-    $venue = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue::class)->create();
+    $venue = factory(EventVenue::class)->create();
 
     //$user = factory(\DavideCasiraghi\LaravelEventsCalendar\Models\User::class)->create();
     $user = User::first();
 
     // Generate two teachers and get the IDs eg (3, 4, 5)
-    $teachers = factory(DavideCasiraghi\LaravelEventsCalendar\Models\Teacher::class, 2)->create();
+    $teachers = factory(Teacher::class, 2)->create();
     $teachers_id = '';
     $i = 0;
     $len = count($teachers);
@@ -50,7 +56,7 @@ $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Event::class, func
     }
 
     // Generate two organizers and get the IDs eg (3, 4, 5)
-    $organizers = factory(DavideCasiraghi\LaravelEventsCalendar\Models\Organizer::class, 2)->create();
+    $organizers = factory(Organizer::class, 2)->create();
     $organizers_id = '';
     $i = 0;
     $len = count($organizers);
