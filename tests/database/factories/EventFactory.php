@@ -2,13 +2,12 @@
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
-
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Faker\Generator as Faker;
 use Illuminate\Foundation\Auth\User;
 
