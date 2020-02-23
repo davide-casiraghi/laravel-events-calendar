@@ -266,7 +266,7 @@ class OrganizerController extends Controller
      * Return the validator with all the defined constraint.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     public function organizersValidator(Request $request)
     {

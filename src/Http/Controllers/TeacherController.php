@@ -338,7 +338,7 @@ class TeacherController extends Controller
      * Return the validator with all the defined constraint.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     public function teachersValidator(Request $request)
     {

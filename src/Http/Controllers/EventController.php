@@ -735,7 +735,7 @@ class EventController extends Controller
     /**
      * Return the Event validator with all the defined constraint.
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     public function eventsValidator(Request $request)
     {

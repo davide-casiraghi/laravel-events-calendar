@@ -222,7 +222,7 @@ class RegionController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @return string $ret
      */
-    public function updateRegionsDropdown(Request $request)
+    public static function updateRegionsDropdown(Request $request)
     {
         /*$regions = Region::join('region_translations', 'regions.id', '=', 'region_translations.region_id')
                 ->where('locale', 'en')

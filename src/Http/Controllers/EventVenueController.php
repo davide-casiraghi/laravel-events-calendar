@@ -297,7 +297,7 @@ class EventVenueController extends Controller
      * Return the Venue validator with all the defined constraint.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     public function eventsVenueValidator(Request $request)
     {
