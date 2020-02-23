@@ -30,7 +30,7 @@ class ContinentController extends Controller
         return view('laravel-events-calendar::continents.index', compact('continents'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -42,7 +42,7 @@ class ContinentController extends Controller
     {
         return view('laravel-events-calendar::continents.create');
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -72,7 +72,7 @@ class ContinentController extends Controller
         return redirect()->route('continents.index')
                         ->with('success', __('laravel-events-calendar::messages.continent_added_successfully'));
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -85,7 +85,7 @@ class ContinentController extends Controller
     {
         return view('laravel-events-calendar::continents.show', compact('continent'));
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -98,7 +98,7 @@ class ContinentController extends Controller
     {
         return view('laravel-events-calendar::continents.edit', compact('continent'));
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -120,7 +120,7 @@ class ContinentController extends Controller
         return redirect()->route('continents.index')
                         ->with('success', __('laravel-events-calendar::messages.continent_updated_successfully'));
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -136,7 +136,7 @@ class ContinentController extends Controller
         return redirect()->route('continents.index')
                         ->with('success', __('laravel-events-calendar::messages.continent_deleted_successfully'));
     }
-    
+
     /***************************************************************************/
 
     /**

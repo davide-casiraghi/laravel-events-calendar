@@ -51,7 +51,7 @@
         /* Continents  */
         Route::resource('continents', 'ContinentController');
         Route::get('/update_continents_dropdown/', 'ContinentController@updateContinentsDropdown')->name('continents.updateContinents');
-        
+
         /* Countries */
         Route::resource('countries', 'CountryController');
         Route::get('/update_countries_dropdown/', 'CountryController@updateCountriesDropdown')->name('countries.updateCountries');
