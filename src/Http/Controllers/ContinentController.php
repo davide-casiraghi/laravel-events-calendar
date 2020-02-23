@@ -11,7 +11,8 @@ class ContinentController extends Controller
     /* Restrict the access to this resource just to logged in users */
     public function __construct()
     {
-        $this->middleware('admin');
+        //$this->middleware('admin');
+        $this->middleware('admin', ['except' => ['updateContinentsDropdown']]);
     }
 
     /***************************************************************************/

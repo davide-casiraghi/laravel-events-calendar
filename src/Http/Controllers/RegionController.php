@@ -15,7 +15,7 @@ class RegionController extends Controller
     /* Restrict the access to this resource just to logged in users except show view */
     public function __construct()
     {
-        $this->middleware('admin', ['except' => ['show']]);
+        $this->middleware('admin', ['except' => ['show', 'updateRegionsDropdown']]);
     }
     
     /***************************************************************************/
@@ -245,7 +245,7 @@ class RegionController extends Controller
         }
         $ret .= '</select>';
 
-        return $ret;
+        return response($ret, 200)->header('Content-Type', 'text/html');
     }
     
     /***************************************************************************/

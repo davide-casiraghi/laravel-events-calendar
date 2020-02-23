@@ -171,15 +171,13 @@ class CountryController extends Controller
         $countries = Country::getActiveCountriesByContinent($request->get('continent_id'));
 
         // GENERATE the HTML to return
-        $html = "<select name='country_id' id='country_id' class='selectpicker' title='".__('homepage-serach.select_a_country')."'>";
+        $ret = "<select name='country_id' id='country_id' class='selectpicker' title='".__('homepage-serach.select_a_country')."'>";
         foreach ($countries as $key => $country) {
-            $html .= "<option value='".$country->id."'>".$country->name.'</option>';
+            $ret .= "<option value='".$country->id."'>".$country->name.'</option>';
         }
-        $html .= '</select>';
+        $ret .= '</select>';
 
-        return response($html, 200)->header('Content-Type', 'text/html');
-
-        //return $ret;
+        return response($ret, 200)->header('Content-Type', 'text/html');
     }
     
 }

@@ -2,9 +2,15 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+
 use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Artisan;
 
 class RegionControllerTest extends TestCase
 {
@@ -144,5 +150,27 @@ class RegionControllerTest extends TestCase
 
         $response = $this->delete('/regions/'.$region->id);
         $response->assertRedirect('/regions');
+    }
+    
+    /** @test */
+    public function it_updates_the_regions_dropdown()
+    {
+        $continent = factory(Continent::class)->create(['name' => 'Europe']);
+        $country = factory(Country::class)->create(['name' => 'Italy', 'continent_id' => $continent->id]);
+        $region = factory(Region::class)->create(['name' => 'Lombardy', 'country_id' => $country->id]);
+        
+        // we need a venue with an event, because the dropdown shows just the active countries
+        $eventVenue = factory(EventVenue::class)->create(['country_id' => $country->id, 'region_id' => $region->id]);
+        $this->authenticate();
+        $eventAttributes = factory(Event::class)->raw([
+            'title'=>'event test title',
+            'venue_id' => $eventVenue->id,
+        ]);
+        $response = $this->post('/events', $eventAttributes);
+        
+        // Get the list of the countries - The country should be present since has an event 
+        $response = $this->get("/update_regions_dropdown?country_id={$country->id}/");
+        $response->assertStatus(200);
+        $response->assertSee("<select name='region_id' id='region_id' class='selectpicker' title='homepage-serach.select_a_region'><option value='1'>Lombardy</option></select>");
     }
 }
