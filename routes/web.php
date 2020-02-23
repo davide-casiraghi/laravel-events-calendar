@@ -48,12 +48,17 @@
         Route::post('/create-organizer/modal/', 'OrganizerController@storeFromModal')->name('organizers.storeFromModal');
         Route::get('/organizer/{slug}', 'OrganizerController@organizerBySlug')->where('organizerBySlug', '[a-z]+');
 
-        /* Continents and Countries */
+        /* Continents  */
         Route::resource('continents', 'ContinentController');
+        Route::get('/update_continents_dropdown/', 'ContinentController@updateContinentsDropdown')->name('continents.updateContinents');
+        
+        /* Countries */
         Route::resource('countries', 'CountryController');
+        Route::get('/update_countries_dropdown/', 'CountryController@updateCountriesDropdown')->name('countries.updateCountries');
 
         /* Regions */
         Route::resource('regions', 'RegionController');
+        Route::get('/update_regions_dropdown/', 'RegionController@updateRegionsDropdown')->name('regions.updateRegions');
 
         /* Regions Translations */
         Route::get('/regionTranslations/{regionId}/{languageCode}/create', 'RegionTranslationController@create');

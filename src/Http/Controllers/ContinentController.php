@@ -28,6 +28,8 @@ class ContinentController extends Controller
         return view('laravel-events-calendar::continents.index', compact('continents'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
+    
+    /***************************************************************************/
 
     /**
      * Show the form for creating a new resource.
@@ -38,6 +40,8 @@ class ContinentController extends Controller
     {
         return view('laravel-events-calendar::continents.create');
     }
+    
+    /***************************************************************************/
 
     /**
      * Store a newly created resource in storage.
@@ -66,6 +70,8 @@ class ContinentController extends Controller
         return redirect()->route('continents.index')
                         ->with('success', __('laravel-events-calendar::messages.continent_added_successfully'));
     }
+    
+    /***************************************************************************/
 
     /**
      * Display the specified resource.
@@ -77,6 +83,8 @@ class ContinentController extends Controller
     {
         return view('laravel-events-calendar::continents.show', compact('continent'));
     }
+    
+    /***************************************************************************/
 
     /**
      * Show the form for editing the specified resource.
@@ -88,6 +96,8 @@ class ContinentController extends Controller
     {
         return view('laravel-events-calendar::continents.edit', compact('continent'));
     }
+    
+    /***************************************************************************/
 
     /**
      * Update the specified resource in storage.
@@ -108,6 +118,8 @@ class ContinentController extends Controller
         return redirect()->route('continents.index')
                         ->with('success', __('laravel-events-calendar::messages.continent_updated_successfully'));
     }
+    
+    /***************************************************************************/
 
     /**
      * Remove the specified resource from storage.
@@ -121,5 +133,22 @@ class ContinentController extends Controller
 
         return redirect()->route('continents.index')
                         ->with('success', __('laravel-events-calendar::messages.continent_deleted_successfully'));
+    }
+    
+    /***************************************************************************/
+
+    /**
+     * Return the contient id of the select country
+     * after a country get selected.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return int $ret
+     */
+    public function updateContinentsDropdown(Request $request)
+    {
+        $selectedCountry = Country::find($request->get('country_id'));
+        $ret = $selectedCountry->continent_id;
+
+        return $ret;
     }
 }

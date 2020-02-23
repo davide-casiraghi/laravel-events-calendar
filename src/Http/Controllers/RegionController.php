@@ -17,6 +17,8 @@ class RegionController extends Controller
     {
         $this->middleware('admin', ['except' => ['show']]);
     }
+    
+    /***************************************************************************/
 
     /**
      * Display a listing of the resource.
@@ -64,6 +66,8 @@ class RegionController extends Controller
             ->with('searchCountry', $searchCountry)
             ->with('countries', $countries);
     }
+    
+    /***************************************************************************/
 
     /**
      * Show the form for creating a new resource.
@@ -77,6 +81,8 @@ class RegionController extends Controller
         return view('laravel-events-calendar::regions.create')
                 ->with('countries', $countries);
     }
+    
+    /***************************************************************************/
 
     /**
      * Store a newly created resource in storage.
@@ -103,6 +109,8 @@ class RegionController extends Controller
         return redirect()->route('regions.index')
                         ->with('success', __('laravel-events-calendar::messages.region_added_successfully'));
     }
+    
+    /***************************************************************************/
 
     /**
      * Display the specified resource.
@@ -114,6 +122,8 @@ class RegionController extends Controller
     {
         return view('laravel-events-calendar::regions.show', compact('region'));
     }
+    
+    /***************************************************************************/
 
     /**
      * Show the form for editing the specified resource.
@@ -128,6 +138,8 @@ class RegionController extends Controller
         return view('laravel-events-calendar::regions.edit', compact('region'))
                     ->with('countries', $countries);
     }
+    
+    /***************************************************************************/
 
     /**
      * Update the specified resource in storage.
@@ -149,6 +161,8 @@ class RegionController extends Controller
         return redirect()->route('regions.index')
                         ->with('success', __('laravel-events-calendar::messages.region_updated_successfully'));
     }
+    
+    /***************************************************************************/
 
     /**
      * Remove the specified resource from storage.
@@ -164,7 +178,7 @@ class RegionController extends Controller
                         ->with('success', __('laravel-events-calendar::messages.region_deleted_successfully'));
     }
 
-    // **********************************************************************
+    /***************************************************************************/
 
     /**
      * Return the single event region datas by cat id.
@@ -180,7 +194,7 @@ class RegionController extends Controller
         return $ret;
     }*/
 
-    // **********************************************************************
+    /***************************************************************************/
 
     /**
      * Save/Update the record on DB.
@@ -198,4 +212,42 @@ class RegionController extends Controller
 
         $region->save();
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Return and HTML with the updated regions dropdown for the homepage
+     * after a country get selected.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return string $ret
+     */
+    public function updateRegionsDropdown(Request $request)
+    {
+        /*$regions = Region::join('region_translations', 'regions.id', '=', 'region_translations.region_id')
+                ->where('locale', 'en')
+                ->where('country_id', $request->input('country_id'))
+                ->orderBy('name')
+                ->pluck('name','region_translations.region_id AS id'); */
+
+        $regions = Region::
+                select('name', 'region_translations.region_id AS id')
+                ->join('region_translations', 'regions.id', '=', 'region_translations.region_id')
+                ->where('locale', 'en')
+                ->where('country_id', $request->input('country_id'))
+                ->orderBy('name')
+                ->get();
+
+        // GENERATE the HTML to return
+        $ret = "<select name='region_id' id='region_id' class='selectpicker' title='".__('homepage-serach.select_a_region')."'>";
+        foreach ($regions as $key => $region) {
+            $ret .= "<option value='".$region->id."'>".$region->name.'</option>';
+        }
+        $ret .= '</select>';
+
+        return $ret;
+    }
+    
+    /***************************************************************************/
+    
 }
