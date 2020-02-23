@@ -2,7 +2,11 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+
 use Illuminate\Foundation\Testing\WithFaker;
 
 class ContinentControllerTest extends TestCase
@@ -117,5 +121,26 @@ class ContinentControllerTest extends TestCase
         $response = $this->delete("/continents/{$continent->id}");
         $response->assertRedirect('/continents');
         $this->assertNull($continent->fresh());
+    }
+    
+    
+    /** @test */
+    public function it_updates_the_continents_dropdown()
+    {
+        $continent = factory(Continent::class)->create(['name' => 'Europe']);
+        $country = factory(Country::class)->create(['name' => 'Italy', 'continent_id' => $continent->id]);
+        
+        $continent2 = factory(Continent::class)->create(['name' => 'Africa']);
+        $country2 = factory(Country::class)->create(['name' => 'Morocco', 'continent_id' => $continent2->id]);
+
+        // Select the first country and assert that the ID of the first continent is returned
+        $response = $this->get("/update_continents_dropdown?country_id={$country->id}/");
+        $response->assertStatus(200);
+        $response->assertSee("1");
+        
+        // Select the second country and assert that the ID of the second continent is returned
+        $response = $this->get("/update_continents_dropdown?country_id={$country2->id}/");
+        $response->assertStatus(200);
+        $response->assertSee("2");
     }
 }

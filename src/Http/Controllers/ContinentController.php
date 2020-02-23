@@ -3,6 +3,7 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use Illuminate\Http\Request;
 use Validator;
 
