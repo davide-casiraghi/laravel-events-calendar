@@ -5,7 +5,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class EventCategoryTranslationControllerTest extends TestCase
+class EventCategoryTranslationControllerTest0 extends TestCase
 {
     use WithFaker;
 

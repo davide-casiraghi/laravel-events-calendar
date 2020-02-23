@@ -2,11 +2,10 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
-
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
 
@@ -124,14 +123,13 @@ class CountryControllerTest extends TestCase
         $response->assertRedirect('/countries');
         $this->assertNull($country->fresh());
     }
-    
+
     /** @test */
     public function it_updates_the_countries_dropdown()
     {
-        
         $continent = factory(Continent::class)->create(['name' => 'Europe']);
         $country = factory(Country::class)->create(['name' => 'Italy', 'continent_id' => $continent->id]);
-        
+
         // we need a venue with an event, because the dropdown shows just the active countries
         $eventVenue = factory(EventVenue::class)->create(['country_id' => $country->id]);
         $this->authenticate();
@@ -140,17 +138,17 @@ class CountryControllerTest extends TestCase
             'venue_id' => $eventVenue->id,
         ]);
         $response = $this->post('/events', $eventAttributes);
-        
-        // Get the list of the countries - The country should be present since has an event 
+
+        // Get the list of the countries - The country should be present since has an event
         $response = $this->get("/update_countries_dropdown?continent_id={$continent->id}/");
         $response->assertStatus(200);
         $response->assertSee("<select name='country_id' id='country_id' class='selectpicker' title='homepage-serach.select_a_country'><option value='1'>Italy</option></select>");
-        
+
         // Delete the event and clear the cache since is refreshed every 15 min
-        Event::where('id',1)->delete();
+        Event::where('id', 1)->delete();
         Artisan::call('cache:clear');
-        
-        // Get the list of the countries - The country should not be present since has no events 
+
+        // Get the list of the countries - The country should not be present since has no events
         $response = $this->get("/update_countries_dropdown?continent_id={$continent->id}/");
         $response->assertStatus(200);
         $response->assertSee("<select name='country_id' id='country_id' class='selectpicker' title='homepage-serach.select_a_country'></select>");

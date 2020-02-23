@@ -179,5 +179,4 @@ class CountryController extends Controller
 
         return response($ret, 200)->header('Content-Type', 'text/html');
     }
-    
 }

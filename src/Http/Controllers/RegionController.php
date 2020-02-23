@@ -17,7 +17,7 @@ class RegionController extends Controller
     {
         $this->middleware('admin', ['except' => ['show', 'updateRegionsDropdown']]);
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -66,7 +66,7 @@ class RegionController extends Controller
             ->with('searchCountry', $searchCountry)
             ->with('countries', $countries);
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -81,7 +81,7 @@ class RegionController extends Controller
         return view('laravel-events-calendar::regions.create')
                 ->with('countries', $countries);
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -109,7 +109,7 @@ class RegionController extends Controller
         return redirect()->route('regions.index')
                         ->with('success', __('laravel-events-calendar::messages.region_added_successfully'));
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -122,7 +122,7 @@ class RegionController extends Controller
     {
         return view('laravel-events-calendar::regions.show', compact('region'));
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -138,7 +138,7 @@ class RegionController extends Controller
         return view('laravel-events-calendar::regions.edit', compact('region'))
                     ->with('countries', $countries);
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -161,7 +161,7 @@ class RegionController extends Controller
         return redirect()->route('regions.index')
                         ->with('success', __('laravel-events-calendar::messages.region_updated_successfully'));
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -212,7 +212,7 @@ class RegionController extends Controller
 
         $region->save();
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -247,7 +247,6 @@ class RegionController extends Controller
 
         return response($ret, 200)->header('Content-Type', 'text/html');
     }
-    
+
     /***************************************************************************/
-    
 }
