@@ -1,8 +1,8 @@
 <?php
 
+use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use Faker\Generator as Faker;
-use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +15,12 @@ use Carbon\Carbon;
 */
 
 $factory->define(EventRepetition::class, function (Faker $faker) {
-    
     $date_start_timestamp = rand(1895589603, 1924447203);
     $date_start = Carbon::parse($date_start_timestamp);
     $date_end = $date_start->addDay()->toDateString();
-    
+
     return [
-        'event_id' => rand(10,100),
+        'event_id' => rand(10, 100),
         'start_repeat' => $date_start,
         'end_repeat' => $date_end,
     ];
