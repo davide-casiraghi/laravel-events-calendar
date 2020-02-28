@@ -37,9 +37,9 @@ class Event extends Model
     ];
 
     /***************************************************************************/
-    
+
     /**
-     * Get the user that owns the event. eg. $event->user
+     * Get the user that owns the event. eg. $event->user.
      */
     public function user()
     {
