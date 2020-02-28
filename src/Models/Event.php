@@ -37,6 +37,16 @@ class Event extends Model
     ];
 
     /***************************************************************************/
+    
+    /**
+     * Get the user that owns the event. eg. $event->user
+     */
+    public function user()
+    {
+        return $this->belongsTo('\Illuminate\Foundation\Auth\User', 'created_by');
+    }
+
+    /***************************************************************************/
 
     /**
      * Get the teachers for the event.

@@ -19,7 +19,19 @@ class Teacher extends Model
     protected $fillable = [
         'name', 'bio', 'country_id', 'year_starting_practice', 'year_starting_teach', 'significant_teachers', 'profile_picture', 'website', 'facebook', 'created_by', 'slug',
     ];
+    
+    /***************************************************************************/
+    
+    /**
+     * Get the user that owns the event. eg. $teacher->user
+     */
+    public function user()
+    {
+        return $this->belongsTo('\Illuminate\Foundation\Auth\User', 'created_by');
+    }
 
+    /***************************************************************************/
+    
     /**
      * Get the events for the teacher.
      */

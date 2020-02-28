@@ -21,6 +21,16 @@ class EventVenue extends Model
     ];
 
     /***************************************************************************/
+    
+    /**
+     * Get the user that owns the event. eg. $eventVenue->user
+     */
+    public function user()
+    {
+        return $this->belongsTo('\Illuminate\Foundation\Auth\User', 'created_by');
+    }
+
+    /***************************************************************************/
 
     /**
      * Return the venue name - used by - /http/resources/event.php.
