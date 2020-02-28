@@ -19,11 +19,11 @@ class Organizer extends Model
     protected $fillable = [
         'name', 'description', 'website', 'created_by', 'slug', 'email', 'phone',
     ];
-    
+
     /***************************************************************************/
-    
+
     /**
-     * Get the user that owns the event. eg. $organizer->user
+     * Get the user that owns the event. eg. $organizer->user.
      */
     public function user()
     {
