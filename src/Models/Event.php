@@ -79,9 +79,9 @@ class Event extends Model
     /***************************************************************************/
 
     /**
-     * Return the all the active events.
+     * Return an array with active events datas
      *
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Event
+     * @return array
      */
     public static function getActiveEvents()
     {
@@ -93,7 +93,7 @@ class Event extends Model
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
 
             return self::
-                        select('title', 'countries.name AS country_name', 'countries.id AS country_id', 'countries.continent_id AS continent_id', 'event_venues.city AS city', 'events.repeat_until', 'events.category_id')
+                        select('title', 'countries.name AS country_name', 'countries.id AS country_id', 'countries.continent_id AS continent_id', 'event_venues.city AS city', 'events.repeat_until', 'events.category_id', 'events.created_by')
                         ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
                         ->join('countries', 'countries.id', '=', 'event_venues.country_id')
                         ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
