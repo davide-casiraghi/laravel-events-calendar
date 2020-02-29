@@ -79,7 +79,7 @@ class Event extends Model
     /***************************************************************************/
 
     /**
-     * Return an array with active events datas
+     * Return an array with active events datas.
      *
      * @return array
      */
