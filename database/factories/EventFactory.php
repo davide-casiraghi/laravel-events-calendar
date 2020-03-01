@@ -59,7 +59,7 @@ $factory->define(Event::class, function (Faker $faker) {
         //'endDate' => '12/01/2022',
         //'time_start' => '6:00 PM',
         //'time_end' => '8:00 PM',
-        'repeat_type' => '1',
+        'repeat_type' => 1,
         'facebook_event_link' => 'https://www.facebook.com/'.$this->faker->word,
         'website_event_link' => $this->faker->url,
         'repeat_weekly_on' => null,
