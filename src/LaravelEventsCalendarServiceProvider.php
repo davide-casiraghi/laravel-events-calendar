@@ -96,6 +96,10 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../database/seeds/EventCategoriesTableSeeder.php' => database_path('seeds/EventCategoriesTableSeeder.php'),
             ], 'seed-event-categories');
+            
+            $this->commands([
+                RetrieveAllGpsCoordinates::class  //the console class
+            ])
         }
 
         /* Directives to manage the dates*/
