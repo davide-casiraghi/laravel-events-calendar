@@ -3,9 +3,9 @@
 namespace DavideCasiraghi\LaravelEventsCalendar;
 
 use Carbon\Carbon;
+use DavideCasiraghi\LaravelEventsCalendar\Console\RetrieveAllGpsCoordinates;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use \DavideCasiraghi\LaravelEventsCalendar\Console\RetrieveAllGpsCoordinates;
 
 class LaravelEventsCalendarServiceProvider extends ServiceProvider
 {
@@ -58,7 +58,7 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                 __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-events-calendar'),
             ], 'lang');
 
-            // Registering package commands.            
+            // Registering package commands.
             $this->commands([
                 RetrieveAllGpsCoordinates::class,
             ]);
