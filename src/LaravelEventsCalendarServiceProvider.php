@@ -58,7 +58,11 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
             ], 'lang');
 
             // Registering package commands.
-            // $this->commands([]);
+            //$this->commands([]);
+            
+            $this->commands([
+                \DavideCasiraghi\LaravelEventsCalendar\Console\RetrieveAllGpsCoordinates::class,
+            ]);
 
             /* - Migrations -
                create a migration instance for each .php.stub file eg.
@@ -96,10 +100,6 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../database/seeds/EventCategoriesTableSeeder.php' => database_path('seeds/EventCategoriesTableSeeder.php'),
             ], 'seed-event-categories');
-            
-            $this->commands([
-                RetrieveAllGpsCoordinates::class  //the console class
-            ])
         }
 
         /* Directives to manage the dates*/
