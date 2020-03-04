@@ -5,6 +5,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use \DavideCasiraghi\LaravelEventsCalendar\Console\RetrieveAllGpsCoordinates;
 
 class LaravelEventsCalendarServiceProvider extends ServiceProvider
 {
@@ -61,7 +62,7 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
             //$this->commands([]);
             
             $this->commands([
-                \DavideCasiraghi\LaravelEventsCalendar\Console\RetrieveAllGpsCoordinates::class,
+                RetrieveAllGpsCoordinates::class,
             ]);
 
             /* - Migrations -
