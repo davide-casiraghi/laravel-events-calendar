@@ -58,9 +58,7 @@ class LaravelEventsCalendarServiceProvider extends ServiceProvider
                 __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-events-calendar'),
             ], 'lang');
 
-            // Registering package commands.
-            //$this->commands([]);
-            
+            // Registering package commands.            
             $this->commands([
                 RetrieveAllGpsCoordinates::class,
             ]);
