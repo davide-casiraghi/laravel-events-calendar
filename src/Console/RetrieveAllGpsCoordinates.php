@@ -1,10 +1,11 @@
 <?php
+
 namespace DavideCasiraghi\LaravelEventsCalendar\Console;
 
-use Illuminate\Console\Command;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
+use Illuminate\Console\Command;
 
 class RetrieveAllGpsCoordinates extends Command
 {
@@ -13,32 +14,33 @@ class RetrieveAllGpsCoordinates extends Command
      *
      * @var string
      */
-    protected $signature =  'retrieve-all-gps-coordinates';
-    
+    protected $signature = 'retrieve-all-gps-coordinates';
+
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Assign to all the venues the corresponding GPS coordinates';
-    
+
     /**
-    * Create a new command instance.
-    *
-    * @return void
-    */
-   public function __construct()
-   {
-       parent::__construct();
-   }
-   
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     /**
-    * Execute the console command.
-    *
-    * @param  
-    * @return mixed
-    */
-    public function handle(){
+     * Execute the console command.
+     *
+     * @param
+     * @return mixed
+     */
+    public function handle()
+    {
         $eventVenues = EventVenue::all();
         foreach ($eventVenues as $key => $eventVenue) {
             // Get GPS coordinates
