@@ -28,6 +28,8 @@ $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue::class,
         'city' => $faker->city,
         'address' => $faker->streetAddress,
         'zip_code' => $faker->postcode,
+        'lat' => '51.212034',
+        'lng' => '4.432853',
         //'state_province' => $faker->state,
     ];
 });
