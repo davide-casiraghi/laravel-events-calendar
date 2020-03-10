@@ -195,7 +195,7 @@ class Event extends Model
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -203,7 +203,8 @@ class Event extends Model
      *
      * @return array
      */
-    public static function getActiveEventsMapMarkers(){
+    public static function getActiveEventsMapMarkers()
+    {
         $cacheExpireMinutes = 1440; // Set the duration time of the cache (1 day - 1440 minutes) - this cache tag get invalidates also on event save
 
         $ret = Cache::remember('active_events_map_markers', $cacheExpireMinutes, function () {
@@ -212,13 +213,13 @@ class Event extends Model
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
 
             return self::
-                        select( 'events.title AS title', 
-                                'event_venues.city AS city', 
-                                'event_venues.lat AS lat', 
-                                'event_venues.lng AS lng', 
-                                'events.repeat_until', 
-                                'events.category_id', 
-                                'events.created_by', 
+                        select('events.title AS title',
+                                'event_venues.city AS city',
+                                'event_venues.lat AS lat',
+                                'event_venues.lng AS lng',
+                                'events.repeat_until',
+                                'events.category_id',
+                                'events.created_by',
                                 'events.repeat_type'
                                 )
                         ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
@@ -228,8 +229,7 @@ class Event extends Model
                         })
                         ->get();
         });
-        
+
         return $ret;
     }
-    
 }

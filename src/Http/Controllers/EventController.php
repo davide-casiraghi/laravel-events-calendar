@@ -17,11 +17,11 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Cache;
 use Validator;
 
 class EventController extends Controller
@@ -672,7 +672,7 @@ class EventController extends Controller
         } else {
             $event->organizers()->sync([]);
         }
-        
+
         Cache::forget('active_events');
         Cache::forget('active_events_map_markers');
     }
