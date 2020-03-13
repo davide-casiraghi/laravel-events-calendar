@@ -197,7 +197,6 @@ class Event extends Model
     }
     
     /***************************************************************************/
-
     /**
      * Return an array with active events map markers.
      *
@@ -207,29 +206,62 @@ class Event extends Model
         $cacheExpireMinutes = 1440; // Set the duration time of the cache (1 day - 1440 minutes) - this cache tag get invalidates also on event save
 
         $ret = Cache::remember('active_events_map_markers', $cacheExpireMinutes, function () {
-            date_default_timezone_set('Europe/Rome');
-            $searchStartDate = Carbon::now()->format('Y-m-d');
-            $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
-
-            return self::
-                        select( 'events.title AS title', 
-                                'event_venues.city AS city', 
-                                'event_venues.lat AS lat', 
-                                'event_venues.lng AS lng', 
-                                'events.repeat_until', 
-                                'events.category_id', 
-                                'events.created_by', 
-                                'events.repeat_type'
-                                )
-                        ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
-                        ->join('countries', 'countries.id', '=', 'event_venues.country_id')
-                        ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
-                            $join->on('events.id', '=', 'event_repetitions.event_id');
-                        })
-                        ->get();
+            $eventsData = Event::getActiveEventsMapMarkersDataFromDb();
+            $eventsMapMarkers = [];
+                foreach ($eventsData as $key => $eventData) {
+                    $eventsMapMarkers[] = [
+                        "type" => "Feature",
+                        "id" => $eventData->id,
+                        "properties" => [
+                            "Title" => $eventData->title,
+                            "City" => $eventData->city,
+                            "Category" => $eventData->category_id, 
+                            "Location" => "169 Endicott St  Boston  MA  02113", 
+                            "OPEN_DT" => "05\/02\/2013 10:04:13 AM", 
+                        ],
+                        "geometry" => [
+                            "type" => "Point", 
+                            "coordinates" => [ $eventData->lat, $eventData->lng ],
+                        ],
+                    ];
+                }        
+            return $eventsMapMarkers;        
         });
         
         return $ret;
+    }
+    
+    
+    /***************************************************************************/
+    /**
+     * Return an array with active events map markers.
+     *
+     * @return array
+     */
+    public static function getActiveEventsMapMarkersDataFromDb(){
+        date_default_timezone_set('Europe/Rome');
+        $searchStartDate = Carbon::now()->format('Y-m-d');
+        $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
+        
+        $ret = self::
+                    select( 'events.id AS id',
+                            'events.title AS title', 
+                            'event_venues.city AS city', 
+                            'event_venues.lat AS lat', 
+                            'event_venues.lng AS lng', 
+                            'events.repeat_until', 
+                            'events.category_id', 
+                            'events.created_by', 
+                            'events.repeat_type'
+                            )
+                    ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
+                    ->join('countries', 'countries.id', '=', 'event_venues.country_id')
+                    ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
+                        $join->on('events.id', '=', 'event_repetitions.event_id');
+                    })
+                    ->get();
+    
+        return $ret;    
     }
     
 }

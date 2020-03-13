@@ -97,7 +97,7 @@ class EventModelTest extends TestCase
     /***************************************************************/
 
     /** @test */
-    public function it_gets_active_events_map_markers()
+    public function it_gets_active_events_map_markers_data_from_db()
     {
         $this->authenticate();
         
@@ -112,7 +112,7 @@ class EventModelTest extends TestCase
         ]);
         $this->post('/events', $attributes);
 
-        $activeEvents = Event::getActiveEventsMapMarkers();
+        $activeEvents = Event::getActiveEventsMapMarkersDataFromDb();
         
         $this->assertEquals($activeEvents[0]->title, 'test title');
         $this->assertEquals($activeEvents[0]->lat, '10,0000');
