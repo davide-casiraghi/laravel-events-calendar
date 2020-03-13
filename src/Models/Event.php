@@ -197,63 +197,68 @@ class Event extends Model
     }
 
     /***************************************************************************/
+
     /**
      * Return an array with active events map markers.
      *
      * @return array
      */
-    public static function getActiveEventsMapGeoJSON(){
+    public static function getActiveEventsMapGeoJSON()
+    {
         $cacheExpireMinutes = 1440; // Set the duration time of the cache (1 day - 1440 minutes) - this cache tag get invalidates also on event save
 
         $eventsMapGeoJSONArrayCached = Cache::remember('active_events_map_markers', $cacheExpireMinutes, function () {
-            $eventsData = Event::getActiveEventsMapMarkersDataFromDb();
+            $eventsData = self::getActiveEventsMapMarkersDataFromDb();
             $eventsMapGeoJSONArray = [];
-                foreach ($eventsData as $key => $eventData) {
-                    //dd($eventData);
-                    $eventsMapGeoJSONArray[] = [
-                        "type" => "Feature",
-                        "id" => $eventData->id,
-                        "properties" => [
-                            "Title" => $eventData->title,
-                            "City" => $eventData->city,
-                            "Category" => $eventData->category_id, 
-                            "Location" => $eventData->city.", ".$eventData->address,
-                        ],
-                        "geometry" => [
-                            "type" => "Point", 
-                            "coordinates" => [ $eventData->lat, $eventData->lng ],
-                        ],
-                    ];
-                }        
-            return $eventsMapGeoJSONArray;        
+            foreach ($eventsData as $key => $eventData) {
+                //dd($eventData);
+                $eventsMapGeoJSONArray[] = [
+                    'type' => 'Feature',
+                    'id' => $eventData->id,
+                    'properties' => [
+                        'Title' => $eventData->title,
+                        'City' => $eventData->city,
+                        'Category' => $eventData->category_id,
+                        'Location' => $eventData->city.', '.$eventData->address,
+                    ],
+                    'geometry' => [
+                        'type' => 'Point',
+                        'coordinates' => [$eventData->lat, $eventData->lng],
+                    ],
+                ];
+            }
+
+            return $eventsMapGeoJSONArray;
         });
-        
+
         $ret = json_encode($eventsMapGeoJSONArrayCached);
-        
+
         return $ret;
     }
 
     /***************************************************************************/
+
     /**
      * Return an array with active events map markers.
      *
      * @return array
      */
-    public static function getActiveEventsMapMarkersDataFromDb(){
+    public static function getActiveEventsMapMarkersDataFromDb()
+    {
         date_default_timezone_set('Europe/Rome');
         $searchStartDate = Carbon::now()->format('Y-m-d');
         $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
-        
+
         $ret = self::
-                    select( 'events.id AS id',
-                            'events.title AS title', 
-                            'event_venues.city AS city', 
+                    select('events.id AS id',
+                            'events.title AS title',
+                            'event_venues.city AS city',
                             'event_venues.address AS address',
-                            'event_venues.lat AS lat', 
-                            'event_venues.lng AS lng', 
-                            'events.repeat_until', 
-                            'events.category_id', 
-                            'events.created_by', 
+                            'event_venues.lat AS lat',
+                            'event_venues.lng AS lng',
+                            'events.repeat_until',
+                            'events.category_id',
+                            'events.created_by',
                             'events.repeat_type'
                             )
                     ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
@@ -262,7 +267,7 @@ class Event extends Model
                         $join->on('events.id', '=', 'event_repetitions.event_id');
                     })
                     ->get();
-    
-        return $ret;    
+
+        return $ret;
     }
 }
