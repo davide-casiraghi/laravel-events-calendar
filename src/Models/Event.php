@@ -202,7 +202,6 @@ class Event extends Model
      *
      * @return array
      */
-<<<<<<< HEAD
     public static function getActiveEventsMapGeoJSON(){
         $cacheExpireMinutes = 1440; // Set the duration time of the cache (1 day - 1440 minutes) - this cache tag get invalidates also on event save
 
@@ -266,36 +265,4 @@ class Event extends Model
     
         return $ret;    
     }
-    
-=======
-    public static function getActiveEventsMapMarkers()
-    {
-        $cacheExpireMinutes = 1440; // Set the duration time of the cache (1 day - 1440 minutes) - this cache tag get invalidates also on event save
-
-        $ret = Cache::remember('active_events_map_markers', $cacheExpireMinutes, function () {
-            date_default_timezone_set('Europe/Rome');
-            $searchStartDate = Carbon::now()->format('Y-m-d');
-            $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
-
-            return self::
-                        select('events.title AS title',
-                                'event_venues.city AS city',
-                                'event_venues.lat AS lat',
-                                'event_venues.lng AS lng',
-                                'events.repeat_until',
-                                'events.category_id',
-                                'events.created_by',
-                                'events.repeat_type'
-                                )
-                        ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
-                        ->join('countries', 'countries.id', '=', 'event_venues.country_id')
-                        ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
-                            $join->on('events.id', '=', 'event_repetitions.event_id');
-                        })
-                        ->get();
-        });
-
-        return $ret;
-    }
->>>>>>> 8b2289e48979aa5cbb383bf0340929afca028962
 }
