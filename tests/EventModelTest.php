@@ -125,8 +125,21 @@ class EventModelTest extends TestCase
     public function it_gets_active_events_map_geo_json()
     {
         $this->authenticate();
+        
+        $eventVenue = factory(EventVenue::class)->create([
+            'lat' => '10,0000',
+            'lng' => '20,33333',
+        ]);
+        
+        $attributes = factory(Event::class)->raw([
+            'title' => 'test title',
+            'venue_id' => $eventVenue->id,
+        ]);
+        $this->post('/events', $attributes);
     
         $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
+        
+        dd($activeEventsMapMarkersGeoJSON);
     }
     
     
