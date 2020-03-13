@@ -209,6 +209,7 @@ class Event extends Model
             $eventsData = Event::getActiveEventsMapMarkersDataFromDb();
             $eventsMapGeoJSONArray = [];
                 foreach ($eventsData as $key => $eventData) {
+                    //dd($eventData);
                     $eventsMapGeoJSONArray[] = [
                         "type" => "Feature",
                         "id" => $eventData->id,
@@ -216,8 +217,7 @@ class Event extends Model
                             "Title" => $eventData->title,
                             "City" => $eventData->city,
                             "Category" => $eventData->category_id, 
-                            "Location" => "169 Endicott St  Boston  MA  02113", 
-                            "OPEN_DT" => "05\/02\/2013 10:04:13 AM", 
+                            "Location" => $eventData->city.", ".$eventData->address,
                         ],
                         "geometry" => [
                             "type" => "Point", 
@@ -248,6 +248,7 @@ class Event extends Model
                     select( 'events.id AS id',
                             'events.title AS title', 
                             'event_venues.city AS city', 
+                            'event_venues.address AS address',
                             'event_venues.lat AS lat', 
                             'event_venues.lng AS lng', 
                             'events.repeat_until', 

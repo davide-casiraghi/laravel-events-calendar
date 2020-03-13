@@ -104,6 +104,8 @@ class EventModelTest extends TestCase
         $eventVenue = factory(EventVenue::class)->create([
             'lat' => '10,0000',
             'lng' => '20,33333',
+            'address' => '169 Endicott St',
+            'city' => 'Boston',
         ]);
         
         $attributes = factory(Event::class)->raw([
@@ -129,6 +131,8 @@ class EventModelTest extends TestCase
         $eventVenue = factory(EventVenue::class)->create([
             'lat' => '10,0000',
             'lng' => '20,33333',
+            'address' => '169 Endicott St',
+            'city' => 'Boston',
         ]);
         
         $attributes = factory(Event::class)->raw([
@@ -139,7 +143,9 @@ class EventModelTest extends TestCase
     
         $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
         
-        dd($activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('Boston, 169 Endicott St', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('"coordinates":["10,0000","20,33333"]', $activeEventsMapMarkersGeoJSON);
+    
     }
     
     
