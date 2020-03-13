@@ -202,14 +202,14 @@ class Event extends Model
      *
      * @return array
      */
-    public static function getActiveEventsMapMarkers(){
+    public static function getActiveEventsMapGeoJSON(){
         $cacheExpireMinutes = 1440; // Set the duration time of the cache (1 day - 1440 minutes) - this cache tag get invalidates also on event save
 
-        $ret = Cache::remember('active_events_map_markers', $cacheExpireMinutes, function () {
+        $eventsMapGeoJSONArrayCached = Cache::remember('active_events_map_markers', $cacheExpireMinutes, function () {
             $eventsData = Event::getActiveEventsMapMarkersDataFromDb();
-            $eventsMapMarkers = [];
+            $eventsMapGeoJSONArray = [];
                 foreach ($eventsData as $key => $eventData) {
-                    $eventsMapMarkers[] = [
+                    $eventsMapGeoJSONArray[] = [
                         "type" => "Feature",
                         "id" => $eventData->id,
                         "properties" => [
@@ -225,13 +225,14 @@ class Event extends Model
                         ],
                     ];
                 }        
-            return $eventsMapMarkers;        
+            return $eventsMapGeoJSONArray;        
         });
+        
+        $ret = json_encode($eventsMapGeoJSONArrayCached);
         
         return $ret;
     }
-    
-    
+
     /***************************************************************************/
     /**
      * Return an array with active events map markers.

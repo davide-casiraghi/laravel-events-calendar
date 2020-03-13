@@ -117,6 +117,18 @@ class EventModelTest extends TestCase
         $this->assertEquals($activeEvents[0]->title, 'test title');
         $this->assertEquals($activeEvents[0]->lat, '10,0000');
         $this->assertEquals($activeEvents[0]->lng, '20,33333');
-        
     }
+    
+    /***************************************************************/
+
+    /** @test */
+    public function it_gets_active_events_map_geo_json()
+    {
+        $this->authenticate();
+    
+        $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
+    }
+    
+    
+    
 }
