@@ -199,7 +199,7 @@ class Event extends Model
     /***************************************************************************/
 
     /**
-     * Return an array with active events map markers.
+     * Return a cached JSON with active events map markers.
      *
      * @return array
      */
@@ -223,7 +223,7 @@ class Event extends Model
                     ],
                     'geometry' => [
                         'type' => 'Point',
-                        'coordinates' => [$eventData->lat, $eventData->lng],
+                        'coordinates' => [$eventData->lng, $eventData->lat],
                     ],
                 ];
             }
