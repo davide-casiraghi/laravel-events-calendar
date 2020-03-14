@@ -224,7 +224,7 @@ class Event extends Model
 
                 // Get Next event occurrence date
                 $nextDateOccurence = EventRepetition::getFirstEventRpDatesByEventId($eventData->id);
-                if (!empty($nextDateOccurence)) {
+                if (! empty($nextDateOccurence)) {
                     $nextDate = Carbon::parse($nextDateOccurence->start_repeat)->isoFormat('D MMM YYYY');
                 } else {
                     $nextDate = '';
