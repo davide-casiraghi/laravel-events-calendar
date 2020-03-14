@@ -232,6 +232,7 @@ class Event extends Model
                 }
                 
                 $address = (!empty($eventData->address)) ? ", ".$eventData->address : "";
+                $city = (!empty($eventData->city)) ? ", ".$eventData->city : "";
                 
                 // Add one element to the Geo array
                 $eventsMapGeoJSONArray[] = [
@@ -241,7 +242,7 @@ class Event extends Model
                         'Title' => $eventData->title,
                         'Category' => EventCategory::getCategoryName($eventData->category_id),
                         'VenueName' => EventVenue::getVenueName($eventData->venue_id),
-                        'City' => $eventData->city,
+                        'City' => $city,
                         'Address' => $address,
                         'Link' => $eventLink,
                         'NextDate' => $nextDate,
