@@ -100,9 +100,9 @@ class Event extends Model
                         $join->on('events.id', '=', 'event_repetitions.event_id');
                     })
                     ->get();
-                        
-                    /* EVERY TIME THIS QUERY CHANGE REMEMBER TO FLUSH THE CACHE 
-                    (php artisan cache:clear) */
+
+            /* EVERY TIME THIS QUERY CHANGE REMEMBER TO FLUSH THE CACHE
+            (php artisan cache:clear) */
         });
 
         return $ret;
@@ -230,8 +230,8 @@ class Event extends Model
                     ],
                 ];
             }
-            
-            /* EVERY TIME THIS CHANGE REMEMBER TO FLUSH THE CACHE 
+
+            /* EVERY TIME THIS CHANGE REMEMBER TO FLUSH THE CACHE
             (php artisan cache:clear) */
 
             return $eventsMapGeoJSONArray;
@@ -273,9 +273,9 @@ class Event extends Model
                     $join->on('events.id', '=', 'event_repetitions.event_id');
                 })
                 ->get();
-                    
-                /* EVERY TIME THIS QUERY CHANGE REMEMBER TO FLUSH THE CACHE 
-                (php artisan cache:clear) */
+
+        /* EVERY TIME THIS QUERY CHANGE REMEMBER TO FLUSH THE CACHE
+        (php artisan cache:clear) */
 
         return $ret;
     }
