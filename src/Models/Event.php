@@ -4,6 +4,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
@@ -216,6 +217,9 @@ class Event extends Model
             $eventsMapGeoJSONArray = [];
             foreach ($eventsData as $key => $eventData) {
                 //dd($eventData);
+                
+                $nextEventRepetitionId = EventRepetition::getFirstEventRpIdByEventId($eventData->id);
+                
                 $eventsMapGeoJSONArray[] = [
                     'type' => 'Feature',
                     'id' => $eventData->id,
