@@ -263,6 +263,8 @@ class Event extends Model
         $ret = self::
                 select('events.id AS id',
                         'events.title AS title',
+                        'events.slug AS event_slug',
+                        'event_venues.id AS venue_id',
                         'event_venues.city AS city',
                         'event_venues.address AS address',
                         'event_venues.lat AS lat',
