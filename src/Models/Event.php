@@ -4,8 +4,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
