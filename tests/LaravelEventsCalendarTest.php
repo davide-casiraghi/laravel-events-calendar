@@ -247,6 +247,9 @@ class LaravelEventsCalendarTest extends TestCase
     {
         $cleanedString = LaravelEventsCalendar::cleanString("Köln");
         $this->assertSame($cleanedString, 'Koln');
+        
+        $cleanedString = LaravelEventsCalendar::cleanString("Højbjerg");
+        $this->assertSame($cleanedString, 'Hojbjerg');
     }
     
     
