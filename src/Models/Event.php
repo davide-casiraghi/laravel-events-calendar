@@ -4,8 +4,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
-use \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
-use \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
@@ -218,34 +216,34 @@ class Event extends Model
             $eventsMapGeoJSONArray = [];
             foreach ($eventsData as $key => $eventData) {
                 //dd($eventData);
-                
+
                 // Generates event link
-                    $nextEventRepetitionId = EventRepetition::getFirstEventRpIdByEventId($eventData->id);
-                    $eventLinkformat = "event/%s/%s";   //event/{{$event->slug}}/{{$event->rp_id}}
-                    $eventLink =  sprintf($eventLinkformat, $eventData->event_slug, $nextEventRepetitionId);
-                    
-                    $nextDate = EventRepetition::getFirstEventRpDatesByRepetitionId($eventData->id)->start_repeat;
-                    $nextDateFormatted = Carbon::parse($nextDate)->isoFormat('D MMM YYYY');
-                    
+                $nextEventRepetitionId = EventRepetition::getFirstEventRpIdByEventId($eventData->id);
+                $eventLinkformat = 'event/%s/%s';   //event/{{$event->slug}}/{{$event->rp_id}}
+                $eventLink = sprintf($eventLinkformat, $eventData->event_slug, $nextEventRepetitionId);
+
+                $nextDate = EventRepetition::getFirstEventRpDatesByRepetitionId($eventData->id)->start_repeat;
+                $nextDateFormatted = Carbon::parse($nextDate)->isoFormat('D MMM YYYY');
+
                 // Add one element to the Geo array
-                    $eventsMapGeoJSONArray[] = [
-                        'type' => 'Feature',
-                        'id' => $eventData->id,
-                        'properties' => [
-                            'Title' => $eventData->title,
-                            'Category' => EventCategory::getCategoryName($eventData->category_id),
-                            'VenueName' => EventVenue::getVenueName($eventData->venue_id),
-                            'City' => $eventData->city,
-                            'Address' => $eventData->address,
-                            'Link' => $eventLink,
-                            'NextDate' => $nextDateFormatted,
-                            'IconColor' => LaravelEventsCalendar::getMapMarkerIconColor($eventData->category_id),
-                        ],
-                        'geometry' => [
-                            'type' => 'Point',
-                            'coordinates' => [$eventData->lng, $eventData->lat],
-                        ],
-                    ];
+                $eventsMapGeoJSONArray[] = [
+                    'type' => 'Feature',
+                    'id' => $eventData->id,
+                    'properties' => [
+                        'Title' => $eventData->title,
+                        'Category' => EventCategory::getCategoryName($eventData->category_id),
+                        'VenueName' => EventVenue::getVenueName($eventData->venue_id),
+                        'City' => $eventData->city,
+                        'Address' => $eventData->address,
+                        'Link' => $eventLink,
+                        'NextDate' => $nextDateFormatted,
+                        'IconColor' => LaravelEventsCalendar::getMapMarkerIconColor($eventData->category_id),
+                    ],
+                    'geometry' => [
+                        'type' => 'Point',
+                        'coordinates' => [$eventData->lng, $eventData->lat],
+                    ],
+                ];
             }
 
             /* EVERY TIME THIS CHANGE REMEMBER TO FLUSH THE CACHE
