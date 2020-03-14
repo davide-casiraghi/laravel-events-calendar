@@ -242,7 +242,7 @@ class Event extends Model
                         'City' => $eventData->city,
                         'Address' => $eventData->address,
                         'Link' => $eventLink,
-                        'NextDate' => $nextDateFormatted,
+                        'NextDate' => $nextDate,
                         'IconColor' => LaravelEventsCalendar::getMapMarkerIconColor($eventData->category_id),
                     ],
                     'geometry' => [
