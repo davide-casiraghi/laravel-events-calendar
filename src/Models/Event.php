@@ -222,9 +222,15 @@ class Event extends Model
                 $eventLinkformat = 'event/%s/%s';   //event/{{$event->slug}}/{{$event->rp_id}}
                 $eventLink = sprintf($eventLinkformat, $eventData->event_slug, $nextEventRepetitionId);
 
-                $nextDate = EventRepetition::getFirstEventRpDatesByRepetitionId($eventData->id)->start_repeat;
-                $nextDateFormatted = Carbon::parse($nextDate)->isoFormat('D MMM YYYY');
-
+                // Get Next event occurrence date
+                $nextDateOccurence = EventRepetition::getFirstEventRpDatesByRepetitionId($eventData->id);
+                if (!empty($nextDateOccurence)) {
+                    $nextDate = Carbon::parse($nextDateOccurence->start_repeat)->isoFormat('D MMM YYYY');
+                }
+                else{
+                    $nextDate = "";
+                }
+                
                 // Add one element to the Geo array
                 $eventsMapGeoJSONArray[] = [
                     'type' => 'Feature',
