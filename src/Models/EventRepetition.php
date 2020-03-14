@@ -282,8 +282,8 @@ class EventRepetition extends Model
         $ret = self::
                 select('id')
                 ->where('event_id', $eventId)
-                ->first();
-
+                ->first()->id;
+                
         return $ret;
     }
 }

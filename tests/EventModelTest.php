@@ -144,10 +144,13 @@ class EventModelTest extends TestCase
 
         $attributes = factory(Event::class)->raw([
             'title' => 'test title',
+            'slug' => 'test-title',
             'venue_id' => $eventVenue->id,
             'category_id' => 6,
         ]);
         $this->post('/events', $attributes);
+        
+        
 
         $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
 
@@ -156,5 +159,6 @@ class EventModelTest extends TestCase
         $this->assertStringContainsString('"coordinates":["20,33333","10,0000"]', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('redIcon', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('Festival', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('event\/'.Event::find(1)->slug.'\/1', $activeEventsMapMarkersGeoJSON);
     }
 }
