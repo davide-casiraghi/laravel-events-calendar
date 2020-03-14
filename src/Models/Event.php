@@ -3,9 +3,9 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Carbon\Carbon;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 
 class Event extends Model
 {
