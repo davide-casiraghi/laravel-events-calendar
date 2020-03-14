@@ -93,13 +93,16 @@ class Event extends Model
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
 
             return self::
-                        select('title', 'countries.name AS country_name', 'countries.id AS country_id', 'countries.continent_id AS continent_id', 'event_venues.city AS city', 'events.repeat_until', 'events.category_id', 'events.created_by', 'events.repeat_type')
-                        ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
-                        ->join('countries', 'countries.id', '=', 'event_venues.country_id')
-                        ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
-                            $join->on('events.id', '=', 'event_repetitions.event_id');
-                        })
-                        ->get();
+                    select('title', 'countries.name AS country_name', 'countries.id AS country_id', 'countries.continent_id AS continent_id', 'event_venues.city AS city', 'events.repeat_until', 'events.category_id', 'events.created_by', 'events.repeat_type')
+                    ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
+                    ->join('countries', 'countries.id', '=', 'event_venues.country_id')
+                    ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
+                        $join->on('events.id', '=', 'event_repetitions.event_id');
+                    })
+                    ->get();
+                        
+                    /* EVERY TIME THIS QUERY CHANGE REMEMBER TO FLUSH THE CACHE 
+                    (php artisan cache:clear) */
         });
 
         return $ret;
@@ -227,6 +230,9 @@ class Event extends Model
                     ],
                 ];
             }
+            
+            /* EVERY TIME THIS CHANGE REMEMBER TO FLUSH THE CACHE 
+            (php artisan cache:clear) */
 
             return $eventsMapGeoJSONArray;
         });
@@ -250,23 +256,26 @@ class Event extends Model
         $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
 
         $ret = self::
-                    select('events.id AS id',
-                            'events.title AS title',
-                            'event_venues.city AS city',
-                            'event_venues.address AS address',
-                            'event_venues.lat AS lat',
-                            'event_venues.lng AS lng',
-                            'events.repeat_until',
-                            'events.category_id',
-                            'events.created_by',
-                            'events.repeat_type'
-                            )
-                    ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
-                    ->join('countries', 'countries.id', '=', 'event_venues.country_id')
-                    ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
-                        $join->on('events.id', '=', 'event_repetitions.event_id');
-                    })
-                    ->get();
+                select('events.id AS id',
+                        'events.title AS title',
+                        'event_venues.city AS city',
+                        'event_venues.address AS address',
+                        'event_venues.lat AS lat',
+                        'event_venues.lng AS lng',
+                        'events.repeat_until',
+                        'events.category_id',
+                        'events.created_by',
+                        'events.repeat_type'
+                        )
+                ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
+                ->join('countries', 'countries.id', '=', 'event_venues.country_id')
+                ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
+                    $join->on('events.id', '=', 'event_repetitions.event_id');
+                })
+                ->get();
+                    
+                /* EVERY TIME THIS QUERY CHANGE REMEMBER TO FLUSH THE CACHE 
+                (php artisan cache:clear) */
 
         return $ret;
     }
