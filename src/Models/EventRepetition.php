@@ -268,7 +268,7 @@ class EventRepetition extends Model
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -283,7 +283,7 @@ class EventRepetition extends Model
                 select('id')
                 ->where('event_id', $eventId)
                 ->first()->id;
-                
+
         return $ret;
     }
 }

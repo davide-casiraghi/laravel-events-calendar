@@ -150,8 +150,6 @@ class EventModelTest extends TestCase
             'category_id' => 6,
         ]);
         $this->post('/events', $attributes);
-        
-        
 
         $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
 
@@ -162,6 +160,6 @@ class EventModelTest extends TestCase
         $this->assertStringContainsString('Festival', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('event\/'.Event::find(1)->slug.'\/1', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('Venue Name Test', $activeEventsMapMarkersGeoJSON);
-        $this->assertStringContainsString('10 Jan 2022', $activeEventsMapMarkersGeoJSON);    
+        $this->assertStringContainsString('10 Jan 2022', $activeEventsMapMarkersGeoJSON);
     }
 }
