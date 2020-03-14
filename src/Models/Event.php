@@ -5,6 +5,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+use \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
@@ -230,7 +231,7 @@ class Event extends Model
                         'properties' => [
                             'Title' => $eventData->title,
                             'Category' => EventCategory::getCategoryName($eventData->category_id),
-                            //'VenueName' => EventVenue::getVenueName($eventData->venue_id),
+                            'VenueName' => EventVenue::getVenueName($eventData->venue_id),
                             'City' => $eventData->city,
                             'Address' => $eventData->address,
                             'Link' => $eventLink, 

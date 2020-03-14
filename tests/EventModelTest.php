@@ -136,6 +136,7 @@ class EventModelTest extends TestCase
         ]);
 
         $eventVenue = factory(EventVenue::class)->create([
+            'name' => 'Venue Name Test',
             'lat' => '10,0000',
             'lng' => '20,33333',
             'address' => '169 Endicott St',
@@ -160,5 +161,6 @@ class EventModelTest extends TestCase
         $this->assertStringContainsString('redIcon', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('Festival', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('event\/'.Event::find(1)->slug.'\/1', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('Venue Name Test', $activeEventsMapMarkersGeoJSON);
     }
 }
