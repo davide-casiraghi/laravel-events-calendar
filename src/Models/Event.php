@@ -217,7 +217,7 @@ class Event extends Model
             $eventsData = self::getActiveEventsMapMarkersDataFromDb();
             $eventsMapGeoJSONArray = [];
             foreach ($eventsData as $key => $eventData) {
-                dd($eventData);
+                //dd($eventData);
                 $eventsMapGeoJSONArray[] = [
                     'type' => 'Feature',
                     'id' => $eventData->id,
