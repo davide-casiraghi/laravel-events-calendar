@@ -388,4 +388,47 @@ class LaravelEventsCalendar
 
         return $ret;
     }
+    
+    
+    /***************************************************************************/
+
+    /**
+     * Return the map marker icon color
+     *
+     * @param  int  $eventCategoryId
+     * @return string $ret
+     */
+    public static function getMapMarkerIconColor(int $eventCategoryId){
+        switch ($eventCategoryId) {
+            case 1: //Regular Jam
+                $ret = 'greenIcon';
+                break;
+            case 2: // Class
+            case 3: // Workshop
+                $ret = 'goldIcon';
+                break;
+            case 6: // Festival
+            case 16: // Camp / Journey
+                $ret = 'redIcon';
+                break;
+            case 10: // Special Jam
+            case 11: // Underscore
+            case 17: // Other event
+                $ret = 'yellowIcon';
+                break;
+            case 12: // Teachers Meeting
+                $ret = 'orangeIcon';
+                break;
+            case 13: // Performance
+            case 14: // Lecture / Conference / Film
+                $ret = 'violetIcon';
+                break; 
+            case 15: // Lab
+                $ret = 'greyIcon';
+                break;   
+        }
+        return $ret;
+    }
+    
+    
 }
