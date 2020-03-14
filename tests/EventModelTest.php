@@ -138,6 +138,7 @@ class EventModelTest extends TestCase
         $attributes = factory(Event::class)->raw([
             'title' => 'test title',
             'venue_id' => $eventVenue->id,
+            'category_id' => 6,
         ]);
         $this->post('/events', $attributes);
 
@@ -145,5 +146,6 @@ class EventModelTest extends TestCase
 
         $this->assertStringContainsString('Boston, 169 Endicott St', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('"coordinates":["20,33333","10,0000"]', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('redIcon', $activeEventsMapMarkersGeoJSON);
     }
 }

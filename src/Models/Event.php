@@ -5,6 +5,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 
 class Event extends Model
 {
@@ -223,6 +224,7 @@ class Event extends Model
                         'City' => $eventData->city,
                         'Category' => $eventData->category_id,
                         'Location' => $eventData->city.', '.$eventData->address,
+                        'IconColor' => LaravelEventsCalendar::getMapMarkerIconColor($eventData->category_id),
                     ],
                     'geometry' => [
                         'type' => 'Point',
