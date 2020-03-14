@@ -217,15 +217,18 @@ class Event extends Model
             $eventsData = self::getActiveEventsMapMarkersDataFromDb();
             $eventsMapGeoJSONArray = [];
             foreach ($eventsData as $key => $eventData) {
-                //dd($eventData);
+                dd($eventData);
                 $eventsMapGeoJSONArray[] = [
                     'type' => 'Feature',
                     'id' => $eventData->id,
                     'properties' => [
                         'Title' => $eventData->title,
                         'Category' => EventCategory::getCategoryName($eventData->category_id),
+                        //'VenueName' => EventVenue::getVenueName($eventData->venue_id),
                         'City' => $eventData->city,
                         'Address' => $eventData->address,
+                        // 'Link' => '#', /event/{{$event->slug}}/{{$event->rp_id}}
+                        // 'NextDate' => 'xx/xx/xxxx',
                         'IconColor' => LaravelEventsCalendar::getMapMarkerIconColor($eventData->category_id),
                     ],
                     'geometry' => [
