@@ -241,13 +241,11 @@ class LaravelEventsCalendarTest extends TestCase
         $iconColor = LaravelEventsCalendar::getMapMarkerIconColor(3);
         $this->assertSame($iconColor, 'goldIcon');
     }
-    
+
     /** @test */
     public function it_cleans_string()
     {
-        $cleanedString = LaravelEventsCalendar::cleanString("Köln");
+        $cleanedString = LaravelEventsCalendar::cleanString('Köln');
         $this->assertSame($cleanedString, 'Koln');
     }
-    
-    
 }
