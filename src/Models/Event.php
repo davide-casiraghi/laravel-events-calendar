@@ -223,9 +223,9 @@ class Event extends Model
                     'id' => $eventData->id,
                     'properties' => [
                         'Title' => $eventData->title,
-                        'City' => $eventData->city,
                         'Category' => EventCategory::getCategoryName($eventData->category_id),
-                        'Location' => $eventData->city.', '.$eventData->address,
+                        'City' => $eventData->city,
+                        'Address' => $eventData->address,
                         'IconColor' => LaravelEventsCalendar::getMapMarkerIconColor($eventData->category_id),
                     ],
                     'geometry' => [

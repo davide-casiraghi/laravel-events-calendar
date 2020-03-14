@@ -151,7 +151,8 @@ class EventModelTest extends TestCase
 
         $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
 
-        $this->assertStringContainsString('Boston, 169 Endicott St', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('Boston', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('169 Endicott St', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('"coordinates":["20,33333","10,0000"]', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('redIcon', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('Festival', $activeEventsMapMarkersGeoJSON);
