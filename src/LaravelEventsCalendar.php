@@ -388,17 +388,17 @@ class LaravelEventsCalendar
 
         return $ret;
     }
-    
-    
+
     /***************************************************************************/
 
     /**
-     * Return the map marker icon color
+     * Return the map marker icon color.
      *
      * @param  int  $eventCategoryId
      * @return string $ret
      */
-    public static function getMapMarkerIconColor(int $eventCategoryId){
+    public static function getMapMarkerIconColor(int $eventCategoryId)
+    {
         switch ($eventCategoryId) {
             case 1: //Regular Jam
                 $ret = 'greenIcon';
@@ -422,13 +422,12 @@ class LaravelEventsCalendar
             case 13: // Performance
             case 14: // Lecture / Conference / Film
                 $ret = 'violetIcon';
-                break; 
+                break;
             case 15: // Lab
                 $ret = 'greyIcon';
-                break;   
+                break;
         }
+
         return $ret;
     }
-    
-    
 }

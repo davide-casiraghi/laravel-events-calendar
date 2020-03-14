@@ -234,14 +234,11 @@ class LaravelEventsCalendarTest extends TestCase
         $stringWithIds = LaravelEventsCalendar::getCollectionIdsSeparatedByComma($teachers);
         $this->assertSame($stringWithIds, '1,2');
     }
-    
+
     /** @test */
     public function it_gets_map_marker_color_icon()
     {
         $iconColor = LaravelEventsCalendar::getMapMarkerIconColor(3);
         $this->assertSame($iconColor, 'goldIcon');
     }
-    
-    
-    
 }
