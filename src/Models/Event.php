@@ -224,13 +224,12 @@ class Event extends Model
 
                 // Get Next event occurrence date
                 $nextDateOccurence = EventRepetition::getFirstEventRpDatesByRepetitionId($eventData->id);
-                if (!empty($nextDateOccurence)) {
+                if (! empty($nextDateOccurence)) {
                     $nextDate = Carbon::parse($nextDateOccurence->start_repeat)->isoFormat('D MMM YYYY');
+                } else {
+                    $nextDate = '';
                 }
-                else{
-                    $nextDate = "";
-                }
-                
+
                 // Add one element to the Geo array
                 $eventsMapGeoJSONArray[] = [
                     'type' => 'Feature',
