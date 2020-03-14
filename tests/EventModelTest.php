@@ -3,6 +3,7 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -128,6 +129,12 @@ class EventModelTest extends TestCase
     {
         $this->authenticate();
 
+        $eventCategory = factory(EventCategory::class)->create([
+            'id' => 6,
+            'name' => 'Festival',
+            'slug' => 'festival',
+        ]);
+
         $eventVenue = factory(EventVenue::class)->create([
             'lat' => '10,0000',
             'lng' => '20,33333',
@@ -147,5 +154,6 @@ class EventModelTest extends TestCase
         $this->assertStringContainsString('Boston, 169 Endicott St', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('"coordinates":["20,33333","10,0000"]', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('redIcon', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('Festival', $activeEventsMapMarkersGeoJSON);
     }
 }

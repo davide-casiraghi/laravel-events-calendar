@@ -4,6 +4,8 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
@@ -222,7 +224,7 @@ class Event extends Model
                     'properties' => [
                         'Title' => $eventData->title,
                         'City' => $eventData->city,
-                        'Category' => $eventData->category_id,
+                        'Category' => EventCategory::getCategoryName($eventData->category_id),
                         'Location' => $eventData->city.', '.$eventData->address,
                         'IconColor' => LaravelEventsCalendar::getMapMarkerIconColor($eventData->category_id),
                     ],
