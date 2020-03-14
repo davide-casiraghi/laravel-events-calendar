@@ -231,6 +231,8 @@ class Event extends Model
                     $nextDate = "";
                 }
                 
+                $address = (!empty($eventData->address)) ? ", ".$eventData->address : "";
+                
                 // Add one element to the Geo array
                 $eventsMapGeoJSONArray[] = [
                     'type' => 'Feature',
@@ -240,7 +242,7 @@ class Event extends Model
                         'Category' => EventCategory::getCategoryName($eventData->category_id),
                         'VenueName' => EventVenue::getVenueName($eventData->venue_id),
                         'City' => $eventData->city,
-                        'Address' => $eventData->address,
+                        'Address' => $address,
                         'Link' => $eventLink,
                         'NextDate' => $nextDate,
                         'IconColor' => LaravelEventsCalendar::getMapMarkerIconColor($eventData->category_id),
