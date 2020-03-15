@@ -221,6 +221,13 @@ class LaravelEventsCalendarTest extends TestCase
 
         $this->assertSame($venuesCoordinates['lat'], 49.48776);
         $this->assertSame($venuesCoordinates['lng'], -124.25396);
+        
+        // https://www.mapquestapi.com/geocoding/v1/address?key=Ad5KVnAISxX6aHyj6fAnHcKeh30n4W60&location=Germany,Stuttgart+Mercedesstra%C3%9Fe,%209
+        $address = 'Germany, Stuttgart, Mercedes Strasse, 9';
+        $venuesCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
+
+        $this->assertSame($venuesCoordinates['lat'], 48.80018);
+        $this->assertSame($venuesCoordinates['lng'], 9.21448);
     }
 
     /** @test */
