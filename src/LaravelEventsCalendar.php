@@ -269,9 +269,10 @@ class LaravelEventsCalendar
     public static function getVenueGpsCoordinates(string $address)
     {
         $address = LaravelEventsCalendar::cleanString($address);
-        
         $key = 'Ad5KVnAISxX6aHyj6fAnHcKeh30n4W60';
-        $response = @file_get_contents('http://open.mapquestapi.com/geocoding/v1/address?key='.$key.'&location='.$address);
+        $url = 'https://www.mapquestapi.com/geocoding/v1/address?key='.$key.'&location='.$address;
+        
+        $response = @file_get_contents($url);
         $response = json_decode($response, true);
 
         $ret = [];

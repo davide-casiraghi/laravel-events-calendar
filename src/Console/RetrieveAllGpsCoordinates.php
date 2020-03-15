@@ -47,7 +47,7 @@ class RetrieveAllGpsCoordinates extends Command
         foreach ($eventVenues as $key => $eventVenue) {
 
             // Get GPS coordinates
-            $address = Country::getCountryName($eventVenue->country_id).', '.$eventVenue->city.', '.$eventVenue->address;
+            $address = Country::getCountryName($eventVenue->country_id).', '.$eventVenue->city.', '.$eventVenue->address.', '.$eventVenue->zip_code;
             $gpsCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
 
             // Print info on screen
