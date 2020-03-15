@@ -30,8 +30,8 @@ class Country extends Model
      */
     public static function getCountries()
     {
-        $minutes = 15;
-        $ret = Cache::remember('countries_list', $minutes, function () {
+        $seconds = 86400; // One day
+        $ret = Cache::remember('countries_list', $seconds, function () {
             return self::orderBy('name')->pluck('name', 'id');
         });
 
