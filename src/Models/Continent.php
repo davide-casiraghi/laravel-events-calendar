@@ -30,8 +30,8 @@ class Continent extends Model
      */
     public static function getContinents()
     {
-        $minutes = 15;
-        $ret = Cache::remember('continents_list', $minutes, function () {
+        $seconds = 86400; // One day
+        $ret = Cache::remember('continents_list', $seconds, function () {
             return self::orderBy('name')->pluck('name', 'id');
         });
 
