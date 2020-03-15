@@ -28,6 +28,24 @@ class EventModelTest extends TestCase
     /***************************************************************/
 
     /** @test */
+    public function it_caches_active_events()
+    {
+        $this->authenticate();
+        $attributes = factory(Event::class)->raw(['title'=>'test title']);
+        $this->post('/events', $attributes);
+
+        $activeEvents = Event::getActiveEvents();
+        $this->assertEquals($activeEvents[0]->title, 'test title');
+        
+        $event = Event::find(1);
+        $event->delete();
+        
+        $activeEvents = Event::getActiveEvents();
+        $this->assertEquals($activeEvents[0]->title, 'test title');
+    }
+    /***************************************************************/
+
+    /** @test */
     public function it_gets_filtered_events()
     {
         $this->authenticate();
