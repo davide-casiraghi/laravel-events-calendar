@@ -22,8 +22,10 @@ class CountryModelTest extends TestCase
         $countries[] = factory(Country::class)->create(['name' => 'Italia']);
         
         $countries = Country::getCountries();
-        $this->assertContains( "Slovenia", $countries );
-        $this->assertContains( "Italia", $countries );
+        $countriesArray = $countries->toArray();
+        
+        $this->assertTrue(in_array("Slovenia", $countriesArray)); // Slovenia
+        $this->assertTrue(in_array("Italia", $countriesArray)); // Slovenia
     }
 
     /***************************************************************/
@@ -35,15 +37,16 @@ class CountryModelTest extends TestCase
         $countries[] = factory(Country::class)->create(['name' => 'Slovenia']);
         $countries[] = factory(Country::class)->create(['name' => 'Italia']);
         
-        $countries = Country::getCountries();
-        $this->assertContains( "Slovenia", $countries );
-        $this->assertContains( "Italia", $countries );
-        
+        $countries = Country::getCountries(); // Retrieve countries, so store the value in the cache
+
         $country = Country::find(1);
         $country->delete();
         
-        $this->assertContains( "Slovenia", $countries );
-        $this->assertContains( "Italia", $countries );
+        $countries = Country::getCountries();
+        $countriesArray = $countries->toArray();
+        
+        $this->assertTrue(in_array("Slovenia", $countriesArray)); 
+        $this->assertTrue(in_array("Italia", $countriesArray)); 
     }
     /***************************************************************/
     /** @test */
