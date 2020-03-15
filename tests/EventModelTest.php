@@ -36,12 +36,12 @@ class EventModelTest extends TestCase
 
         $activeEvents = Event::getActiveEvents();
         $this->assertEquals($activeEvents[0]->title, 'test title');
-        
-        $res = Event::where('id',1)->delete();
-        
+
+        $res = Event::where('id', 1)->delete();
+
         // If I clean the cache the test fail
         //Artisan::call('cache:clear');
-        
+
         $activeEvents = Event::getActiveEvents();
         $this->assertEquals($activeEvents[0]->title, 'test title');
     }
