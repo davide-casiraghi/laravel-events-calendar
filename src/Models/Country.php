@@ -47,10 +47,10 @@ class Country extends Model
      */
     public static function getActiveCountries()
     {
-        $cacheExpireMinutes = 15; // Set the duration time of the cache
+        $seconds = 900; // 15 minutes
 
         // All the countries
-        $ret = Cache::remember('active_countries', $cacheExpireMinutes, function () {
+        $ret = Cache::remember('active_countries', $seconds, function () {
             date_default_timezone_set('Europe/Rome');
             $searchStartDate = date('Y-m-d', time());
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
