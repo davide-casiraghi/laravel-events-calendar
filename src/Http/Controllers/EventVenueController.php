@@ -31,10 +31,7 @@ class EventVenueController extends Controller
      */
     public function index(Request $request)
     {
-        $cacheExpireTime = 900; // Set the duration time of the cache (15 min - 900sec)
-        $countries = Cache::remember('countries', $cacheExpireTime, function () {
-            return Country::orderBy('name')->pluck('name', 'id');
-        });
+        $countries = Country::getCountries();
         $regions = Region::listsTranslations('name')->pluck('name', 'id');
 
         $searchKeywords = $request->input('keywords');

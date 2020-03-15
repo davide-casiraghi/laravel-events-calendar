@@ -13,7 +13,20 @@ class CountryModelTest extends TestCase
     use WithFaker;
 
     /***************************************************************/
+    /** @test */
+    public function it_gets_all_the_countries(){
+        $this->authenticate();
 
+        $countries = [];
+        $countries[] = factory(Country::class)->create(['name' => 'Slovenia']);
+        $countries[] = factory(Country::class)->create(['name' => 'Italia']);
+        
+        $countries = Country::getCountries();
+        $this->assertContains( "Slovenia", $countries );
+        $this->assertContains( "Italia", $countries );
+    }
+
+    /***************************************************************/
     /** @test */
     public function it_gets_active_countries()
     {
