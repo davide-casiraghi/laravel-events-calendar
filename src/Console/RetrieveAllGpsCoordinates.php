@@ -50,13 +50,12 @@ class RetrieveAllGpsCoordinates extends Command
             $address = Country::getCountryName($eventVenue->country_id).', '.$eventVenue->city.', '.$eventVenue->address.', '.$eventVenue->zip_code;
             $gpsCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
 
-            // Print info in console 
+            // Print info in console
             // if there are problems the geocode system assign this coordinates 39.78373 -100.445882
-            if ($gpsCoordinates['lng'] != '-100.445882'){
+            if ($gpsCoordinates['lng'] != '-100.445882') {
                 $this->info($key.' of '.$eventVenuesNumber.' - '.$address);
                 $this->info($gpsCoordinates['lat'].' '.$gpsCoordinates['lng']);
-            }
-            else{
+            } else {
                 $this->error($key.' of '.$eventVenuesNumber.' - '.$address);
                 $this->error($gpsCoordinates['lat'].' '.$gpsCoordinates['lng']);
             }
