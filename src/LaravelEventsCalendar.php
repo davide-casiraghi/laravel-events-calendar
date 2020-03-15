@@ -443,6 +443,9 @@ class LaravelEventsCalendar
      */    
     
     public static function cleanString(string $text) {
+        // Transform whitespaces to %20 for the URL
+        $text = str_replace(' ', '%20', $text);
+        
         $utf8 = array(
             '/[áàâãªä]/u'   =>   'a',
             '/[ÁÀÂÃÄ]/u'    =>   'A',
@@ -456,6 +459,7 @@ class LaravelEventsCalendar
             '/[ÚÙÛÜ]/u'     =>   'U',
             '/ç/'           =>   'c',
             '/Ç/'           =>   'C',
+            '/ğ/'           =>   'g',
             '/ñ/'           =>   'n',
             '/Ñ/'           =>   'N',
             '/–/'           =>   '-', // UTF-8 hyphen to "normal" hyphen
