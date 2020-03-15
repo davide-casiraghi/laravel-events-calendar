@@ -406,28 +406,32 @@ class LaravelEventsCalendar
             case 1: //Regular Jam
                 $ret = 'greenIcon';
                 break;
+            case 10: // Special Jam
+                $ret = 'yellowIcon';
+                break;
             case 2: // Class
-            case 3: // Workshop
                 $ret = 'goldIcon';
+                break;
+            case 3: // Workshop
+                $ret = 'orangeIcon';
                 break;
             case 6: // Festival
             case 16: // Camp / Journey
                 $ret = 'redIcon';
                 break;
-            case 10: // Special Jam
             case 11: // Underscore
-            case 17: // Other event
-                $ret = 'yellowIcon';
-                break;
-            case 12: // Teachers Meeting
-                $ret = 'orangeIcon';
+                $ret = 'blueIcon';
                 break;
             case 13: // Performance
             case 14: // Lecture / Conference / Film
+            case 17: // Other event
                 $ret = 'violetIcon';
                 break;
             case 15: // Lab
                 $ret = 'greyIcon';
+                break;
+            case 12: // Teachers Meeting
+                $ret = 'blackIcon';
                 break;
         }
 
