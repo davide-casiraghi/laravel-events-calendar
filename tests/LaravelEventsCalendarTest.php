@@ -261,7 +261,7 @@ class LaravelEventsCalendarTest extends TestCase
     public function it_gets_map_marker_color_icon()
     {
         $iconColor = LaravelEventsCalendar::getMapMarkerIconColor(3);
-        $this->assertSame($iconColor, 'goldIcon');
+        $this->assertSame($iconColor, 'orangeIcon');
     }
 
     /** @test */

@@ -28,6 +28,25 @@ class CountryModelTest extends TestCase
 
     /***************************************************************/
     /** @test */
+    public function it_caches_the_countries(){
+        $this->authenticate();
+
+        $countries = [];
+        $countries[] = factory(Country::class)->create(['name' => 'Slovenia']);
+        $countries[] = factory(Country::class)->create(['name' => 'Italia']);
+        
+        $countries = Country::getCountries();
+        $this->assertContains( "Slovenia", $countries );
+        $this->assertContains( "Italia", $countries );
+        
+        $country = Country::find(1);
+        $country->delete();
+        
+        $this->assertContains( "Slovenia", $countries );
+        $this->assertContains( "Italia", $countries );
+    }
+    /***************************************************************/
+    /** @test */
     public function it_gets_active_countries()
     {
         $this->authenticate();
