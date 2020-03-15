@@ -86,9 +86,9 @@ class Event extends Model
      */
     public static function getActiveEvents()
     {
-        $cacheExpireMinutes = 1440; // Set the duration time of the cache (1 day - 1440 minutes) (this cache tag get invalidates also on event save)
+        $seconds = 86400; // One day (this cache tag get invalidates also on event save)
 
-        $ret = Cache::remember('active_events', $cacheExpireMinutes, function () {
+        $ret = Cache::remember('active_events', $seconds, function () {
             date_default_timezone_set('Europe/Rome');
             $searchStartDate = date('Y-m-d', time());
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
