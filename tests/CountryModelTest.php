@@ -13,42 +13,48 @@ class CountryModelTest extends TestCase
     use WithFaker;
 
     /***************************************************************/
+
     /** @test */
-    public function it_gets_all_the_countries(){
+    public function it_gets_all_the_countries()
+    {
         $this->authenticate();
 
         $countries = [];
         $countries[] = factory(Country::class)->create(['name' => 'Slovenia']);
         $countries[] = factory(Country::class)->create(['name' => 'Italia']);
-        
+
         $countries = Country::getCountries();
         $countriesArray = $countries->toArray();
-        
-        $this->assertTrue(in_array("Slovenia", $countriesArray)); // Slovenia
-        $this->assertTrue(in_array("Italia", $countriesArray)); // Slovenia
+
+        $this->assertTrue(in_array('Slovenia', $countriesArray)); // Slovenia
+        $this->assertTrue(in_array('Italia', $countriesArray)); // Slovenia
     }
 
     /***************************************************************/
+
     /** @test */
-    public function it_caches_the_countries(){
+    public function it_caches_the_countries()
+    {
         $this->authenticate();
 
         $countries = [];
         $countries[] = factory(Country::class)->create(['name' => 'Slovenia']);
         $countries[] = factory(Country::class)->create(['name' => 'Italia']);
-        
+
         $countries = Country::getCountries(); // Retrieve countries, so it stores the value in the cache
 
         $country = Country::find(1);
         $country->delete();
-        
+
         $countries = Country::getCountries();
         $countriesArray = $countries->toArray();
-        
-        $this->assertTrue(in_array("Slovenia", $countriesArray)); 
-        $this->assertTrue(in_array("Italia", $countriesArray)); 
+
+        $this->assertTrue(in_array('Slovenia', $countriesArray));
+        $this->assertTrue(in_array('Italia', $countriesArray));
     }
+
     /***************************************************************/
+
     /** @test */
     public function it_gets_active_countries()
     {
