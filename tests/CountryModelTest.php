@@ -42,8 +42,8 @@ class CountryModelTest extends TestCase
         $countries[] = factory(Country::class)->create(['name' => 'Italia']);
 
         $countries = Country::getCountries(); // Retrieve countries, so it stores the value in the cache
-        
-        $res = Country::where('id',1)->delete();
+
+        $res = Country::where('id', 1)->delete();
 
         $countries = Country::getCountries();
         $countriesArray = $countries->toArray();
