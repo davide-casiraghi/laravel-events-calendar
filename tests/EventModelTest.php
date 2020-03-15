@@ -36,13 +36,14 @@ class EventModelTest extends TestCase
 
         $activeEvents = Event::getActiveEvents();
         $this->assertEquals($activeEvents[0]->title, 'test title');
-        
+
         $event = Event::find(1);
         $event->delete();
-        
+
         $activeEvents = Event::getActiveEvents();
         $this->assertEquals($activeEvents[0]->title, 'test title');
     }
+
     /***************************************************************/
 
     /** @test */
