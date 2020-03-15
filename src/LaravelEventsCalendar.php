@@ -455,6 +455,7 @@ class LaravelEventsCalendar
     {
         // Transform whitespaces to %20 for the URL
         $text = str_replace(' ', '%20', $text);
+        $text = str_replace('ß', '%DF', $text);
 
         $utf8 = [
             '/[áàâãªä]/u'   =>   'a',
