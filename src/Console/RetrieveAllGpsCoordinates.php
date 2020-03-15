@@ -52,12 +52,11 @@ class RetrieveAllGpsCoordinates extends Command
 
             // Print info on screen
             $this->info($key.' of '.$eventVenuesNumber.' - '.$address);
-            
+
             // if there are problems the geocode system assign this coordinates 39.78373 -100.445882
-            if ($gpsCoordinates['lng'] != '-100.445882'){
+            if ($gpsCoordinates['lng'] != '-100.445882') {
                 $this->info($gpsCoordinates['lat'].' '.$gpsCoordinates['lng']);
-            }
-            else{
+            } else {
                 $this->error($gpsCoordinates['lat'].' '.$gpsCoordinates['lng']);
             }
 
