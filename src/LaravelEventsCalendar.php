@@ -268,8 +268,8 @@ class LaravelEventsCalendar
      */
     public static function getVenueGpsCoordinates(string $address)
     {
-        $address = LaravelEventsCalendar::cleanString($address);
-        
+        $address = self::cleanString($address);
+
         $key = 'Ad5KVnAISxX6aHyj6fAnHcKeh30n4W60';
         $response = @file_get_contents('http://open.mapquestapi.com/geocoding/v1/address?key='.$key.'&location='.$address);
         $response = json_decode($response, true);
@@ -432,21 +432,21 @@ class LaravelEventsCalendar
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
-     * Remove all special characters from a string - Remove all special characters from a string
+     * Remove all special characters from a string - Remove all special characters from a string.
      *
      * @param  string  $text
      * @return string $ret
-     */    
-    
-    public static function cleanString(string $text) {
+     */
+    public static function cleanString(string $text)
+    {
         // Transform whitespaces to %20 for the URL
         $text = str_replace(' ', '%20', $text);
-        
-        $utf8 = array(
+
+        $utf8 = [
             '/[áàâãªä]/u'   =>   'a',
             '/[ÁÀÂÃÄ]/u'    =>   'A',
             '/[ÍÌÎÏ]/u'     =>   'I',
@@ -466,10 +466,9 @@ class LaravelEventsCalendar
             '/[’‘‹›‚]/u'    =>   ' ', // Literally a single quote
             '/[“”«»„]/u'    =>   ' ', // Double quote
             '/ /'           =>   ' ', // nonbreaking space (equiv. to 0x160)
-        );
+        ];
         $ret = preg_replace(array_keys($utf8), array_values($utf8), $text);
-        
+
         return $ret;
     }
-    
 }

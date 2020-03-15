@@ -203,12 +203,12 @@ class LaravelEventsCalendarTest extends TestCase
     {
         // To test manually
         //https://developer.mapquest.com/documentation/tools/latitude-longitude-finder/
-        
+
         $address = 'Italy, Milano, via Dante, 15';
         $venuesCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
         $this->assertSame($venuesCoordinates['lat'], 45.467293);
         $this->assertSame($venuesCoordinates['lng'], 9.183276);
-        
+
         // https://www.mapquestapi.com/geocoding/v1/address?key=Ad5KVnAISxX6aHyj6fAnHcKeh30n4W60&location=Germany,%20Hasenheide,%2054+Berlin
         $address = 'Germany, Berlin, Hasenheide, 54';
         $venuesCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
@@ -249,16 +249,14 @@ class LaravelEventsCalendarTest extends TestCase
         $iconColor = LaravelEventsCalendar::getMapMarkerIconColor(3);
         $this->assertSame($iconColor, 'goldIcon');
     }
-    
+
     /** @test */
     public function it_cleans_string()
     {
-        $cleanedString = LaravelEventsCalendar::cleanString("Köln");
+        $cleanedString = LaravelEventsCalendar::cleanString('Köln');
         $this->assertSame($cleanedString, 'Koln');
-        
-        $cleanedString = LaravelEventsCalendar::cleanString("Højbjerg");
+
+        $cleanedString = LaravelEventsCalendar::cleanString('Højbjerg');
         $this->assertSame($cleanedString, 'Hojbjerg');
     }
-    
-    
 }
