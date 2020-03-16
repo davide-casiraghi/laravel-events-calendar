@@ -275,12 +275,12 @@ class Event extends Model
     public static function getActiveEventsMapMarkersDataFromDb()
     {
         $seconds = 86400; // One day (this cache tag get invalidates also on event save)
-        
+
         $ret = Cache::remember('active_events_map_markers_data', $seconds, function () {
             date_default_timezone_set('Europe/Rome');
             $searchStartDate = Carbon::now()->format('Y-m-d');
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
-            
+
             return self::
                     select('events.id AS id',
                     'events.title AS title',

@@ -142,7 +142,7 @@ class EventModelTest extends TestCase
         $this->assertEquals($activeEvents[0]->lat, '10,0000');
         $this->assertEquals($activeEvents[0]->lng, '20,33333');
     }
-    
+
     /***************************************************************/
 
     /** @test */
@@ -164,9 +164,9 @@ class EventModelTest extends TestCase
         $this->post('/events', $attributes);
 
         $activeEvents = Event::getActiveEventsMapMarkersDataFromDb();
-        
+
         $res = Event::where('id', 1)->delete();
-        
+
         $activeEvents = Event::getActiveEventsMapMarkersDataFromDb();
 
         $this->assertEquals($activeEvents[0]->title, 'test title');
