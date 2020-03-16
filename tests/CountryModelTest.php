@@ -84,8 +84,8 @@ class CountryModelTest extends TestCase
         $this->authenticate();
 
         $continents = [];
-        $continents[] = factory(Continent::class)->create(['name' => 'Europe']);
-        $continents[] = factory(Continent::class)->create(['name' => 'Africa']);
+        $continents[] = factory(Continent::class)->create(['name' => 'Europe', 'code'=> 'EU']);
+        $continents[] = factory(Continent::class)->create(['name' => 'Africa', 'code'=> 'AF']);
 
         $countries = [];
         $countries[] = factory(Country::class)->create(['name' => 'Slovenia', 'continent_id' => $continents[0]->id]);
