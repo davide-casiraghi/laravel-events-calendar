@@ -272,7 +272,7 @@ class EventRepetition extends Model
     /***************************************************************************/
 
     /**
-     * Return the repetition id of the first repetition of an event - By Event ID.
+     * Return the repetition id of the first occurrence of an event in the future - By Event ID.
      *
      * @param int $eventId
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition
@@ -282,6 +282,7 @@ class EventRepetition extends Model
         $ret = self::
                 select('id')
                 ->where('event_id', $eventId)
+                ->where('start_repeat', '>', date('Y-m-d'))
                 ->first()->id;
 
         return $ret;
