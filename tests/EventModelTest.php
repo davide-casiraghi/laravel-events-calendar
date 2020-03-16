@@ -214,7 +214,7 @@ class EventModelTest extends TestCase
         $this->assertStringContainsString('Venue Name Test', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('10 Jan 2022', $activeEventsMapMarkersGeoJSON);
     }
-    
+
     /***************************************************************/
 
     /** @test */
@@ -245,9 +245,9 @@ class EventModelTest extends TestCase
         $this->post('/events', $attributes);
 
         $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
-        
+
         $res = Event::where('id', 1)->delete();
-        
+
         // If I clean the cache the test should fail
         //Artisan::call('cache:clear');
         $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
@@ -260,5 +260,4 @@ class EventModelTest extends TestCase
         $this->assertStringContainsString('Venue Name Test', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('10 Jan 2022', $activeEventsMapMarkersGeoJSON);
     }
-    
 }
