@@ -274,33 +274,37 @@ class Event extends Model
      */
     public static function getActiveEventsMapMarkersDataFromDb()
     {
-        date_default_timezone_set('Europe/Rome');
-        $searchStartDate = Carbon::now()->format('Y-m-d');
-        $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
+        $seconds = 86400; // One day (this cache tag get invalidates also on event save)
+        
+        $ret = Cache::remember('active_events_map_markers_data', $seconds, function () {
+            date_default_timezone_set('Europe/Rome');
+            $searchStartDate = Carbon::now()->format('Y-m-d');
+            $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
+            
+            return self::
+                    select('events.id AS id',
+                    'events.title AS title',
+                    'events.slug AS event_slug',
+                    'event_venues.id AS venue_id',
+                    'event_venues.city AS city',
+                    'event_venues.address AS address',
+                    'event_venues.lat AS lat',
+                    'event_venues.lng AS lng',
+                    'events.repeat_until',
+                    'events.category_id',
+                    'events.created_by',
+                    'events.repeat_type'
+                    )
+            ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
+            ->join('countries', 'countries.id', '=', 'event_venues.country_id')
+            ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
+                $join->on('events.id', '=', 'event_repetitions.event_id');
+            })
+            ->get();
 
-        $ret = self::
-                select('events.id AS id',
-                        'events.title AS title',
-                        'events.slug AS event_slug',
-                        'event_venues.id AS venue_id',
-                        'event_venues.city AS city',
-                        'event_venues.address AS address',
-                        'event_venues.lat AS lat',
-                        'event_venues.lng AS lng',
-                        'events.repeat_until',
-                        'events.category_id',
-                        'events.created_by',
-                        'events.repeat_type'
-                        )
-                ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
-                ->join('countries', 'countries.id', '=', 'event_venues.country_id')
-                ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
-                    $join->on('events.id', '=', 'event_repetitions.event_id');
-                })
-                ->get();
-
-        /* EVERY TIME THIS QUERY CHANGE REMEMBER TO FLUSH THE CACHE
-        (php artisan cache:clear) */
+            /* EVERY TIME THIS QUERY CHANGE REMEMBER TO FLUSH THE CACHE
+            (php artisan cache:clear) */
+        });
 
         return $ret;
     }
