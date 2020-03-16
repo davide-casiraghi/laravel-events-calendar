@@ -142,6 +142,37 @@ class EventModelTest extends TestCase
         $this->assertEquals($activeEvents[0]->lat, '10,0000');
         $this->assertEquals($activeEvents[0]->lng, '20,33333');
     }
+    
+    /***************************************************************/
+
+    /** @test */
+    public function it_caches_active_events_map_markers_data_from_db()
+    {
+        $this->authenticate();
+
+        $eventVenue = factory(EventVenue::class)->create([
+            'lat' => '10,0000',
+            'lng' => '20,33333',
+            'address' => '169 Endicott St',
+            'city' => 'Boston',
+        ]);
+
+        $attributes = factory(Event::class)->raw([
+            'title' => 'test title',
+            'venue_id' => $eventVenue->id,
+        ]);
+        $this->post('/events', $attributes);
+
+        $activeEvents = Event::getActiveEventsMapMarkersDataFromDb();
+        
+        $res = Event::where('id', 1)->delete();
+        
+        $activeEvents = Event::getActiveEventsMapMarkersDataFromDb();
+
+        $this->assertEquals($activeEvents[0]->title, 'test title');
+        $this->assertEquals($activeEvents[0]->lat, '10,0000');
+        $this->assertEquals($activeEvents[0]->lng, '20,33333');
+    }
 
     /***************************************************************/
 
