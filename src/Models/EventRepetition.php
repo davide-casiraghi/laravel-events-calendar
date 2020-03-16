@@ -246,6 +246,7 @@ class EventRepetition extends Model
         $ret = self::
                 select('start_repeat', 'end_repeat')
                 ->where('event_id', $eventId)
+                ->where('start_repeat', '>', date('Y-m-d'))
                 ->first();
 
         return $ret;
