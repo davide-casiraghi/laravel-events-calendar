@@ -211,7 +211,7 @@ class Event extends Model
     {
         $cacheExpireMinutes = 1440; // Set the duration time of the cache (1 day - 1440 minutes) - this cache tag get invalidates also on event save
 
-        $eventsMapGeoJSONArrayCached = Cache::remember('active_events_map_markers', $cacheExpireMinutes, function () {
+        $eventsMapGeoJSONArrayCached = Cache::remember('active_events_map_markers_json', $cacheExpireMinutes, function () {
             $eventsData = self::getActiveEventsMapMarkersDataFromDb();
             $eventsMapGeoJSONArray = [];
             foreach ($eventsData as $key => $eventData) {
@@ -276,7 +276,7 @@ class Event extends Model
     {
         $seconds = 86400; // One day (this cache tag get invalidates also on event save)
 
-        $ret = Cache::remember('active_events_map_markers_data', $seconds, function () {
+        $ret = Cache::remember('active_events_map_markers_db_data', $seconds, function () {
             date_default_timezone_set('Europe/Rome');
             $searchStartDate = Carbon::now()->format('Y-m-d');
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);

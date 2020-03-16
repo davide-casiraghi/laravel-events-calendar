@@ -674,8 +674,8 @@ class EventController extends Controller
         }
 
         Cache::forget('active_events');
-        Cache::forget('active_events_map_markers');
-        Cache::forget('active_events_map_markers_data');
+        Cache::forget('active_events_map_markers_json');
+        Cache::forget('active_events_map_markers_db_data');
     }
 
     /***********************************************************************/

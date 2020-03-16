@@ -39,7 +39,7 @@ class EventModelTest extends TestCase
 
         $res = Event::where('id', 1)->delete();
 
-        // If I clean the cache the test fail
+        // If I clean the cache the test should fail
         //Artisan::call('cache:clear');
 
         $activeEvents = Event::getActiveEvents();
@@ -214,4 +214,51 @@ class EventModelTest extends TestCase
         $this->assertStringContainsString('Venue Name Test', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('10 Jan 2022', $activeEventsMapMarkersGeoJSON);
     }
+    
+    /***************************************************************/
+
+    /** @test */
+    public function it_caches_active_events_map_geo_json()
+    {
+        $this->authenticate();
+
+        $eventCategory = factory(EventCategory::class)->create([
+            'id' => 6,
+            'name' => 'Festival',
+            'slug' => 'festival',
+        ]);
+
+        $eventVenue = factory(EventVenue::class)->create([
+            'name' => 'Venue Name Test',
+            'lat' => '10,0000',
+            'lng' => '20,33333',
+            'address' => '169 Endicott St',
+            'city' => 'Boston',
+        ]);
+
+        $attributes = factory(Event::class)->raw([
+            'title' => 'test title',
+            'slug' => 'test-title',
+            'venue_id' => $eventVenue->id,
+            'category_id' => 6,
+        ]);
+        $this->post('/events', $attributes);
+
+        $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
+        
+        $res = Event::where('id', 1)->delete();
+        
+        // If I clean the cache the test should fail
+        //Artisan::call('cache:clear');
+        $activeEventsMapMarkersGeoJSON = Event::getActiveEventsMapGeoJSON();
+
+        $this->assertStringContainsString('Boston', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('169 Endicott St', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('"coordinates":["20,33333","10,0000"]', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('redIcon', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('Festival', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('Venue Name Test', $activeEventsMapMarkersGeoJSON);
+        $this->assertStringContainsString('10 Jan 2022', $activeEventsMapMarkersGeoJSON);
+    }
+    
 }
