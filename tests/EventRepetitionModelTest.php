@@ -187,6 +187,4 @@ class EventRepetitionModelTest extends TestCase
         $this->assertEquals($firstEventRpId, 2);
     }
     
-    
-    
 }
