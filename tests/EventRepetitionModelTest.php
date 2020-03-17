@@ -2,10 +2,9 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use Illuminate\Foundation\Testing\WithFaker;
-
-use Carbon\Carbon;
 
 class EventRepetitionModelTest extends TestCase
 {
@@ -136,31 +135,29 @@ class EventRepetitionModelTest extends TestCase
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-03-19 10:00:00', 'end_repeat' => '2020-03-19 11:00:00']);
         $this->assertDatabaseHas('event_repetitions', ['event_id' => $eventId, 'start_repeat' => '2020-05-20 10:00:00', 'end_repeat' => '2020-05-20 11:00:00']);
     }
-    
+
     /***************************************************************/
 
     /** @test */
     public function it_gets_first_event_repetition_dates_by_event_id()
-    {        
+    {
         $eventId = 1;
-        
+
         $dateStart = '2016-12-18';
         $dateEnd = '2016-12-18';
         $timeStart = '10:00';
         $timeEnd = '11:00';
 
         EventRepetition::saveEventRepetitionOnDB($eventId, $dateStart, $dateEnd, $timeStart, $timeEnd);
-        
+
         $dateStart = Carbon::now()->addDays(3)->format('Y-m-d');
         $dateEnd = Carbon::now()->addDays(3)->format('Y-m-d');
         $timeStart = '10:00';
         $timeEnd = '11:00';
 
         EventRepetition::saveEventRepetitionOnDB($eventId, $dateStart, $dateEnd, $timeStart, $timeEnd);
-        
+
         $firstEventRpDates = EventRepetition::getFirstEventRpDatesByEventId($eventId);
-        $this->assertEquals($firstEventRpDates->start_repeat, Carbon::now()->addDays(3)->format('Y-m-d')." 10:00:00");
+        $this->assertEquals($firstEventRpDates->start_repeat, Carbon::now()->addDays(3)->format('Y-m-d').' 10:00:00');
     }
-    
-    
 }
