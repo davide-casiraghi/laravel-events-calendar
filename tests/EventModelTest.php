@@ -265,38 +265,6 @@ class EventModelTest extends TestCase
     /***************************************************************/
 
     /** @test */
-    public function it_gets_if_event_is_active()
-    {
-        $this->authenticate();
-
-        // Event in the future
-        $attributes = factory(Event::class)->raw([
-            'title'=>'test title 1',
-            'startDate' => Carbon::now()->addDays(3)->format('d-m-Y'),
-            'endDate' => Carbon::now()->addDays(3)->format('d-m-Y'),
-        ]);
-        $this->post('/events', $attributes);
-
-        // Event in the past
-        $attributes = factory(Event::class)->raw([
-            'title'=>'test title 2',
-            'startDate' => Carbon::now()->subDays(3)->format('d-m-Y'),
-            'endDate' => Carbon::now()->subDays(3)->format('d-m-Y'),
-        ]);
-        $this->post('/events', $attributes);
-
-        $event1 = Event::find(1);
-        $event1ActiveState = Event::isActive(1);
-        $this->assertEquals($event1ActiveState, true);
-
-        $event2 = Event::find(2);
-        $event2ActiveState = Event::isActive(2);
-        $this->assertEquals($event2ActiveState, false);
-    }
-    
-    /***************************************************************/
-
-    /** @test */
     public function it_gets_if_event_is_active_new()
     {
         $this->authenticate();
@@ -318,11 +286,11 @@ class EventModelTest extends TestCase
         $this->post('/events', $attributes);
 
         $event1 = Event::find(1);
-        $event1ActiveState = $event1->isActiveNew();
+        $event1ActiveState = $event1->isActive();
         $this->assertEquals($event1ActiveState, true);
 
         $event2 = Event::find(2);
-        $event2ActiveState = $event2->isActiveNew();
+        $event2ActiveState = $event2->isActive();
         $this->assertEquals($event2ActiveState, false);
          
     }

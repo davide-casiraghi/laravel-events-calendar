@@ -308,24 +308,6 @@ class Event extends Model
 
         return $ret;
     }
-
-    /***************************************************************************/
-
-    /**
-     * Return true if an event is in the future.
-     *
-     * @return array
-     */
-    public static function isActive(int $eventId): bool
-    {
-        $firstEventRepetitionIdInFuture = EventRepetition::getFirstEventRpIdByEventId($eventId);
-
-        if (! empty($firstEventRepetitionIdInFuture)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
     
     /***************************************************************************/
 
@@ -334,7 +316,7 @@ class Event extends Model
      *
      * @return array
      */
-    public function isActiveNew(): bool{
+    public function isActive(): bool{
         $firstEventRepetitionIdInFuture = EventRepetition::getFirstEventRpIdByEventId($this->id);
 
         if (! empty($firstEventRepetitionIdInFuture)) {
