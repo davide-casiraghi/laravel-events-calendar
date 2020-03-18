@@ -265,7 +265,7 @@ class EventModelTest extends TestCase
     /***************************************************************/
 
     /** @test */
-    public function it_gets_if_event_is_active_new()
+    public function it_gets_if_event_is_active()
     {
         $this->authenticate();
 
