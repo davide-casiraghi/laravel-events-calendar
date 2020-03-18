@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 
 class Event extends Model
 {
@@ -94,7 +95,7 @@ class Event extends Model
             $lastestEventsRepetitionsQuery = EventRepetition::getLastestEventsRepetitionsQuery($searchStartDate, null);
 
             return self::
-                    select('title', 'countries.name AS country_name', 'countries.id AS country_id', 'countries.continent_id AS continent_id', 'event_venues.city AS city', 'events.repeat_until', 'events.category_id', 'events.created_by', 'events.repeat_type')
+                    select('events.id as id', 'title', 'countries.name AS country_name', 'countries.id AS country_id', 'countries.continent_id AS continent_id', 'event_venues.city AS city', 'events.repeat_until', 'events.category_id', 'events.created_by', 'events.repeat_type')
                     ->join('event_venues', 'event_venues.id', '=', 'events.venue_id')
                     ->join('countries', 'countries.id', '=', 'event_venues.country_id')
                     ->joinSub($lastestEventsRepetitionsQuery, 'event_repetitions', function ($join) {
@@ -308,4 +309,24 @@ class Event extends Model
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Return true if an event is in the future
+     *
+     * @return array
+     */
+    public static function isActive(int $eventId)
+    {
+        $firstEventRepetitionInFuture = EventRepetition::getFirstEventRpIdByEventId($eventId);
+        
+        if (!empty($firstEventRepetitionInFuture) ) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }
