@@ -296,7 +296,7 @@ class EventController extends Controller
      * @param  int  $eventId
      * @return void
      */
-    public function saveEventRepetitions(Request $request, int $eventId)
+    public function saveEventRepetitions(Request $request, int $eventId): void
     {
         EventRepetition::deletePreviousRepetitions($eventId);
 
@@ -592,7 +592,7 @@ class EventController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event $event
      * @return void
      */
-    public function saveOnDb(Request $request, Event $event)
+    public function saveOnDb(Request $request, Event $event): void
     {
         //$countries = Country::getCountries();
         $teachers = Teacher::pluck('name', 'id');

@@ -91,7 +91,7 @@ class Controller extends BaseController
      * @param  int $thumbWidth
      * @return void
      */
-    public static function uploadImageOnServer($imageFile, string $imageName, string $imageSubdir, int $imageWidth, int $thumbWidth)
+    public static function uploadImageOnServer($imageFile, string $imageName, string $imageSubdir, int $imageWidth, int $thumbWidth): void
     {
 
         // Create dir if not exist (in /storage/app/public/images/..)

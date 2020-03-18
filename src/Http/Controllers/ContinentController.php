@@ -146,7 +146,7 @@ class ContinentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return int $ret
      */
-    public static function updateContinentsDropdown(Request $request)
+    public static function updateContinentsDropdown(Request $request): int
     {
         $selectedCountry = Country::find($request->get('country_id'));
         $ret = $selectedCountry->continent_id;

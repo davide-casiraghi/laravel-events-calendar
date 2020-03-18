@@ -174,7 +174,7 @@ class OrganizerController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
      * @return int
      */
-    public function saveOnDb(Request $request, Organizer $organizer)
+    public function saveOnDb(Request $request, Organizer $organizer): int
     {
         $organizer->name = $request->get('name');
         $organizer->description = clean($request->get('description'));

@@ -149,7 +149,7 @@ class EventCategoryController extends Controller
      * @param \DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory $eventCategory
      * @return void
      */
-    public function saveOnDb(Request $request, EventCategory $eventCategory)
+    public function saveOnDb(Request $request, EventCategory $eventCategory): void
     {
         $eventCategory->name = $request->get('name');
         $eventCategory->slug = Str::slug($eventCategory->name, '-');
