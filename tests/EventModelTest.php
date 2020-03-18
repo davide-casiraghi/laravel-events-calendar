@@ -2,14 +2,12 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
+use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Testing\WithFaker;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
-
-use Carbon\Carbon;
 
 class EventModelTest extends TestCase
 {
@@ -263,14 +261,14 @@ class EventModelTest extends TestCase
         $this->assertStringContainsString('Venue Name Test', $activeEventsMapMarkersGeoJSON);
         $this->assertStringContainsString('10 Jan 2022', $activeEventsMapMarkersGeoJSON);
     }
-    
+
     /***************************************************************/
 
     /** @test */
     public function it_gets_if_event_is_active()
     {
         $this->authenticate();
-        
+
         // Event in the future
         $attributes = factory(Event::class)->raw([
             'title'=>'test title 1',
@@ -278,7 +276,7 @@ class EventModelTest extends TestCase
             'endDate' => Carbon::now()->addDays(3)->format('d-m-Y'),
         ]);
         $this->post('/events', $attributes);
-        
+
         // Event in the past
         $attributes = factory(Event::class)->raw([
             'title'=>'test title 2',
@@ -286,11 +284,11 @@ class EventModelTest extends TestCase
             'endDate' => Carbon::now()->subDays(3)->format('d-m-Y'),
         ]);
         $this->post('/events', $attributes);
-        
+
         $event1 = Event::find(1);
         $event1ActiveState = Event::isActive(1);
         $this->assertEquals($event1ActiveState, true);
-        
+
         $event2 = Event::find(2);
         $event2ActiveState = Event::isActive(2);
         $this->assertEquals($event2ActiveState, false);

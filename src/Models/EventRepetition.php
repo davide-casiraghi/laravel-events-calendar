@@ -303,11 +303,10 @@ class EventRepetition extends Model
                 ->where('event_id', $eventId)
                 ->where('start_repeat', '>', Carbon::now()->format('Y-m-d'))
                 ->first();
-                
-        if(!empty($firstFutureEventRpIdByEventId)){
+
+        if (! empty($firstFutureEventRpIdByEventId)) {
             $ret = $firstFutureEventRpIdByEventId->id;
-        }
-        else{
+        } else {
             $ret = null;
         }
 

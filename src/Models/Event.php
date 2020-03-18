@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 
 class Event extends Model
 {
@@ -309,24 +308,22 @@ class Event extends Model
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
-     * Return true if an event is in the future
+     * Return true if an event is in the future.
      *
      * @return array
      */
     public static function isActive(int $eventId): bool
     {
         $firstEventRepetitionIdInFuture = EventRepetition::getFirstEventRpIdByEventId($eventId);
-        
-        if (!empty($firstEventRepetitionIdInFuture) ) {
+
+        if (! empty($firstEventRepetitionIdInFuture)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-
 }
