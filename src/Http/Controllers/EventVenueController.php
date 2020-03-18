@@ -9,6 +9,7 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Validator;
@@ -149,6 +150,10 @@ class EventVenueController extends Controller
             $users = User::pluck('name', 'id');
             $countries = Country::getCountries();
             $regions = Region::getRegionsByCountry($eventVenue->country_id);
+
+            // Invalidate cache tags for events map - This is not needed in event create() because the marker is created when an event gets creted.
+            Cache::forget('active_events_map_markers_json');
+            Cache::forget('active_events_map_markers_db_data');
 
             return view('laravel-events-calendar::eventVenues.edit', compact('eventVenue'))
                 ->with('countries', $countries)
