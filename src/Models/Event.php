@@ -326,4 +326,21 @@ class Event extends Model
             return false;
         }
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Return true if an event is in the future.
+     *
+     * @return array
+     */
+    public function isActiveNew(): bool{
+        $firstEventRepetitionIdInFuture = EventRepetition::getFirstEventRpIdByEventId($this->id);
+
+        if (! empty($firstEventRepetitionIdInFuture)) {
+            return true;
+        } else {
+            return false;
+        }        
+    }
 }
