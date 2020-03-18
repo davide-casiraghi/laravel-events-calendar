@@ -308,7 +308,7 @@ class Event extends Model
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -316,13 +316,14 @@ class Event extends Model
      *
      * @return array
      */
-    public function isActive(): bool{
+    public function isActive(): bool
+    {
         $firstEventRepetitionIdInFuture = EventRepetition::getFirstEventRpIdByEventId($this->id);
 
         if (! empty($firstEventRepetitionIdInFuture)) {
             return true;
         } else {
             return false;
-        }        
+        }
     }
 }
