@@ -292,6 +292,5 @@ class EventModelTest extends TestCase
         $event2 = Event::find(2);
         $event2ActiveState = $event2->isActive();
         $this->assertEquals($event2ActiveState, false);
-         
     }
 }
