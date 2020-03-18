@@ -223,7 +223,7 @@ class Event extends Model
                 $eventLink = sprintf($eventLinkformat, $eventData->event_slug, $nextEventRepetitionId);
 
                 // Get Next event occurrence date
-                $nextDateOccurence = EventRepetition::getFirstEventRpDatesByEventId($eventData->id);
+                $nextDateOccurence = EventRepetition::getFirstFutureEventRpDatesByEventId($eventData->id);
                 if (! empty($nextDateOccurence)) {
                     $nextDate = Carbon::parse($nextDateOccurence->start_repeat)->isoFormat('D MMM YYYY');
                 } else {
