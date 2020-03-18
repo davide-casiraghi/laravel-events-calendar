@@ -319,9 +319,9 @@ class Event extends Model
      */
     public static function isActive(int $eventId): bool
     {
-        $firstEventRepetitionInFuture = EventRepetition::getFirstEventRpIdByEventId($eventId);
+        $firstEventRepetitionIdInFuture = EventRepetition::getFirstEventRpIdByEventId($eventId);
         
-        if (!empty($firstEventRepetitionInFuture) ) {
+        if (!empty($firstEventRepetitionIdInFuture) ) {
             return true;
         }
         else{

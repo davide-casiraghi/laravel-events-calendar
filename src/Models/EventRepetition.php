@@ -294,15 +294,22 @@ class EventRepetition extends Model
      * Return the repetition id of the first occurrence of an event in the future - By Event ID.
      *
      * @param int $eventId
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition
+     * @return int|null
      */
-    public static function getFirstEventRpIdByEventId($eventId)
+    public static function getFirstEventRpIdByEventId($eventId): ?int
     {
-        $ret = self::
+        $firstFutureEventRpIdByEventId = self::
                 select('id')
                 ->where('event_id', $eventId)
                 ->where('start_repeat', '>', Carbon::now()->format('Y-m-d'))
-                ->first()->id;
+                ->first();
+                
+        if(!empty($firstFutureEventRpIdByEventId)){
+            $ret = $firstFutureEventRpIdByEventId->id;
+        }
+        else{
+            $ret = null;
+        }
 
         return $ret;
     }
