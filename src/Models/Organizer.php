@@ -2,8 +2,8 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;  // to remove
 use Illuminate\Support\Str;
 
@@ -32,13 +32,14 @@ class Organizer extends Model
     {
         return $this->belongsTo('\Illuminate\Foundation\Auth\User', 'created_by');
     }
-    
+
     /**
-     * Prepare datas for save model on DB
+     * Prepare datas for save model on DB.
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function preSave(Request $request){
+    public function preSave(Request $request)
+    {
         $this->name = $request->get('name');
         $this->description = clean($request->get('description'));
         $this->website = $request->get('website');

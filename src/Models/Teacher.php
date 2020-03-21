@@ -2,9 +2,8 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
-
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request; // to remove
 use Illuminate\Support\Str;
 
@@ -66,7 +65,7 @@ class Teacher extends Model
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -111,5 +110,4 @@ class Teacher extends Model
     }
 
     /***************************************************************************/
-
 }
