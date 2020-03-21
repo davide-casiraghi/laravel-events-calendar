@@ -17,7 +17,7 @@ $factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Country::class, fu
 
     return [
         'name' => $country_name,
-        'code' => $faker->countryCode,
+        'code' => $faker->unique()->countryCode,
         'continent_id' => 1,
     ];
 });
