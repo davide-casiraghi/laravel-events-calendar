@@ -1,7 +1,7 @@
 <?php
 
-use Faker\Generator as Faker;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
