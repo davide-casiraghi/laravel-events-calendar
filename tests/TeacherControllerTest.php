@@ -173,8 +173,6 @@ class TeacherControllerTest extends TestCase
                  ->assertStatus(200);
     }
 
-    
-
     /** @test */
     public function it_displays_the_teacher_show_page_showing_the_events_of_that_teacher()
     {

@@ -274,8 +274,7 @@ class LaravelEventsCalendarTest extends TestCase
         $cleanedString = LaravelEventsCalendar::cleanString('Højbjerg');
         $this->assertSame($cleanedString, 'Hojbjerg');
     }
-    
-    
+
     /** @test */
     public function it_uploads_an_image_on_server()
     {
