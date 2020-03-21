@@ -7,7 +7,6 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Storage;
 
 class TeacherControllerTest extends TestCase
 {
@@ -174,44 +173,7 @@ class TeacherControllerTest extends TestCase
                  ->assertStatus(200);
     }
 
-    /** @test */
-    public function it_uploads_a_teacher_profile_image()
-    {
-        $this->authenticateAsAdmin();
-        // Delete directory
-        //dd(Storage::directories('public/images')); // List directories
-        $directory = 'public/images/teachers_profile/';
-        Storage::deleteDirectory($directory);
-
-        // Symulate the upload
-        $local_test_file = __DIR__.'/test-files/large-avatar.png';
-        $uploadedFile = new \Illuminate\Http\UploadedFile(
-                $local_test_file,
-                'large-avatar.png',
-                'image/png',
-                null,
-                null,
-                true
-            );
-
-        // Call the function uploadImageOnServer()
-        $imageFile = $uploadedFile;
-        $imageName = $imageFile->hashName();
-        $imageSubdir = 'teachers_profile';
-        $imageWidth = 968;
-        $thumbWidth = 300;
-
-        TeacherController::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
-
-        // Leave this lines here - they can be very useful for new tests
-        //$directory = "/";
-        //dump(Storage::allDirectories($directory));
-        //dd(Storage::allFiles($directory));
-
-        $filePath = 'public/images/'.$imageSubdir.'/'.$imageName;
-
-        Storage::assertExists($filePath);
-    }
+    
 
     /** @test */
     public function it_displays_the_teacher_show_page_showing_the_events_of_that_teacher()

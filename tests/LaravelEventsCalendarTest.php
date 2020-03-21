@@ -8,6 +8,7 @@ use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\LaravelEventsCalendarServiceProvider;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class LaravelEventsCalendarTest extends TestCase
 {
@@ -272,5 +273,45 @@ class LaravelEventsCalendarTest extends TestCase
 
         $cleanedString = LaravelEventsCalendar::cleanString('Højbjerg');
         $this->assertSame($cleanedString, 'Hojbjerg');
+    }
+    
+    
+    /** @test */
+    public function it_uploads_an_image_on_server()
+    {
+        $this->authenticateAsAdmin();
+        // Delete directory
+        //dd(Storage::directories('public/images')); // List directories
+        $directory = 'public/images/teachers_profile/';
+        Storage::deleteDirectory($directory);
+
+        // Symulate the upload
+        $local_test_file = __DIR__.'/test-files/large-avatar.png';
+        $uploadedFile = new \Illuminate\Http\UploadedFile(
+                $local_test_file,
+                'large-avatar.png',
+                'image/png',
+                null,
+                null,
+                true
+            );
+
+        // Call the function uploadImageOnServer()
+        $imageFile = $uploadedFile;
+        $imageName = $imageFile->hashName();
+        $imageSubdir = 'teachers_profile';
+        $imageWidth = 968;
+        $thumbWidth = 300;
+
+        LaravelEventsCalendar::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
+
+        // Leave this lines here - they can be very useful for new tests
+        //$directory = "/";
+        //dump(Storage::allDirectories($directory));
+        //dd(Storage::allFiles($directory));
+
+        $filePath = 'public/images/'.$imageSubdir.'/'.$imageName;
+
+        Storage::assertExists($filePath);
     }
 }

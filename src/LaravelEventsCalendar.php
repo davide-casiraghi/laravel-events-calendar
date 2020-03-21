@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use DateTime;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Event;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class LaravelEventsCalendar
 {
