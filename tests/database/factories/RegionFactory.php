@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Region::class, function (Faker $faker) {
+$factory->define(Region::class, function (Faker $faker) {
     $region_name = $faker->name;
     $slug = Str::slug($region_name, '-').rand(10000, 100000);
     $timezone = '+2:00';

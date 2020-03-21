@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\EventCategory::class, function (Faker $faker) {
+$factory->define(EventCategory::class, function (Faker $faker) {
     $event_category_name = $faker->name;
     $slug = Str::slug($event_category_name, '-').rand(10000, 100000);
 

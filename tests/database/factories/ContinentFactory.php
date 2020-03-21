@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(DavideCasiraghi\LaravelEventsCalendar\Models\Continent::class, function (Faker $faker) {
+$factory->define(Continent::class, function (Faker $faker) {
     $continent_name = $faker->name;
 
     return [

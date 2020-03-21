@@ -18,7 +18,7 @@ $factory->define(Country::class, function (Faker $faker) {
 
     return [
         'name' => $country_name,
-        'code' => $faker->countryCode,
+        'code' => $faker->unique()->countryCode,
         'continent_id' => 1,
     ];
 });

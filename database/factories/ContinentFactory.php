@@ -18,6 +18,6 @@ $factory->define(Continent::class, function (Faker $faker) {
 
     return [
         'name' => $continent_name,
-        'code' => $faker->stateAbbr,
+        'code' => $faker->unique()->stateAbbr,
     ];
 });
