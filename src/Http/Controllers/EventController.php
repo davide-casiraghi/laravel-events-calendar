@@ -153,54 +153,7 @@ class EventController extends Controller
         return redirect()->route('events.index')
                         ->with('success', __('laravel-events-calendar::messages.event_added_successfully'));
     }
-
-    /***************************************************************************/
-    /**
-     * Update multi relationships with teachers table.
-     *
-     * @param  string  $multipleTeachers
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @return void
-     */
-    public function updateTeachersMultiRelationships($multipleTeachers, $event){
-        if ($multipleTeachers) {
-            $multipleTeachersArray = explode(',', $multipleTeachers);
-            $event->teachers()->sync($multipleTeachersArray);
-        } else {
-            $event->teachers()->sync([]);
-        }
-    }
-
-    /***************************************************************************/
-    /**
-     * Update multi relationships with organizers table.
-     *
-     * @param  string  $multipleOrganizers
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @return void
-     */
-    public function updateOrganizersMultiRelationships($multipleOrganizers, $event){
-        if ($multipleOrganizers) {
-            $multipleOrganizersArray = explode(',', $multipleOrganizers);
-            $event->organizers()->sync($multipleOrganizersArray);
-        } else {
-            $event->organizers()->sync([]);
-        }
-    }
     
-    /***************************************************************************/
-
-    /**
-     * Clean caches related to active events
-     *
-     * @return void
-     */
-    public function cleanActiveEventsCaches(){
-        Cache::forget('active_events');
-        Cache::forget('active_events_map_markers_json');
-        Cache::forget('active_events_map_markers_db_data');
-    }
-
     /***************************************************************************/
 
     /**
@@ -443,23 +396,6 @@ class EventController extends Controller
         $report['event_slug'] = $request->slug;
 
         $report['reason'] = LaravelEventsCalendar::getReportMisuseReasonDescription($request->reason);
-
-        /*
-                switch ($request->reason) {
-                    case '1':
-                        $report['reason'] = 'Not about Contact Improvisation';
-                        break;
-                    case '2':
-                        $report['reason'] = 'Contains wrong informations';
-                        break;
-                    case '3':
-                        $report['reason'] = 'It is not translated in english';
-                        break;
-                    case '4':
-                        $report['reason'] = 'Other (specify in the message)';
-                        break;
-                }
-        */
 
         //Mail::to($request->user())->send(new ReportMisuse($report));
         Mail::to(env('ADMIN_MAIL'))->send(new ReportMisuse($report));
@@ -706,4 +642,54 @@ class EventController extends Controller
 
         return $validator;
     }
+    
+    /***************************************************************************/
+    /**
+     * Update multi relationships with teachers table.
+     *
+     * @param  string  $multipleTeachers
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @return void
+     */
+    public function updateTeachersMultiRelationships($multipleTeachers, $event){
+        if ($multipleTeachers) {
+            $multipleTeachersArray = explode(',', $multipleTeachers);
+            $event->teachers()->sync($multipleTeachersArray);
+        } else {
+            $event->teachers()->sync([]);
+        }
+    }
+
+    /***************************************************************************/
+    /**
+     * Update multi relationships with organizers table.
+     *
+     * @param  string  $multipleOrganizers
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @return void
+     */
+    public function updateOrganizersMultiRelationships($multipleOrganizers, $event){
+        if ($multipleOrganizers) {
+            $multipleOrganizersArray = explode(',', $multipleOrganizers);
+            $event->organizers()->sync($multipleOrganizersArray);
+        } else {
+            $event->organizers()->sync([]);
+        }
+    }
+    
+    /***************************************************************************/
+    
+    /**
+     * Clean caches related to active events
+     *
+     * @return void
+     */
+    public function cleanActiveEventsCaches(){
+        Cache::forget('active_events');
+        Cache::forget('active_events_map_markers_json');
+        Cache::forget('active_events_map_markers_db_data');
+    }
+
+    /***************************************************************************/
+
 }
