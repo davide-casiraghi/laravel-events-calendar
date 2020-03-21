@@ -5,7 +5,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache; // to remove
 use Illuminate\Support\Str;
 
@@ -357,10 +356,10 @@ class Event extends Model
         $this->contact_email = $requestArray['contact_email'];
         $this->website_event_link = $requestArray['website_event_link'];
         $this->facebook_event_link = $requestArray['facebook_event_link'];
-        $this->status = (array_key_exists("status",$requestArray)) ? $requestArray['status'] : null;
-        $this->on_monthly_kind = (array_key_exists("on_monthly_kind",$requestArray)) ? $requestArray['on_monthly_kind'] : null;
+        $this->status = (array_key_exists('status', $requestArray)) ? $requestArray['status'] : null;
+        $this->on_monthly_kind = (array_key_exists('on_monthly_kind', $requestArray)) ? $requestArray['on_monthly_kind'] : null;
         //$this->on_monthly_kind = $requestArray['on_monthly_kind'];
-        $this->multiple_dates = (array_key_exists("multiple_dates",$requestArray)) ? $requestArray['multiple_dates'] : null;
+        $this->multiple_dates = (array_key_exists('multiple_dates', $requestArray)) ? $requestArray['multiple_dates'] : null;
 
         // Event teaser image upload
         //if ($request->file('image')) {
@@ -379,17 +378,17 @@ class Event extends Model
                 $this->image = $requestArray['image'];
             }
         }
-        
-         // Multiple teachers - populate support column field
+
+        // Multiple teachers - populate support column field
         $this->sc_teachers_names = '';
-        if (array_key_exists("multiple_teachers",$requestArray)) {
+        if (array_key_exists('multiple_teachers', $requestArray)) {
             $multiple_teachers = explode(',', $requestArray['multiple_teachers']);
 
             $multiple_teachers_names = [];
             foreach ($multiple_teachers as $key => $teacher_id) {
                 $multiple_teachers_names[] = $teachers[$teacher_id];
             }
-            
+
             // Support columns for homepage search (we need this to show events in HP with less use of resources)
             $this->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers_names); //@todo find an alternative to this
             $this->sc_teachers_id = json_encode(explode(',', $requestArray['multiple_teachers'])); //@todo find an alternative to this
@@ -415,14 +414,14 @@ class Event extends Model
     {
         // Set Repeat Until
         $this->repeat_type = $requestArray['repeat_type'];
-        if (isset($requestArray['repeat_until']) && array_key_exists('repeat_until', $requestArray)) { 
+        if (isset($requestArray['repeat_until']) && array_key_exists('repeat_until', $requestArray)) {
             $dateRepeatUntil = implode('-', array_reverse(explode('/', $requestArray['repeat_until'])));
             $this->repeat_until = $dateRepeatUntil.' 00:00:00';
         }
 
         // Weekely - Set multiple week days
         //if (array_key_exists("repeat_weekly_on_day",$requestArray)) {
-        if (isset($requestArray['repeat_weekly_on_day']) && array_key_exists('repeat_weekly_on_day', $requestArray)) { 
+        if (isset($requestArray['repeat_weekly_on_day']) && array_key_exists('repeat_weekly_on_day', $requestArray)) {
             $repeat_weekly_on_day = $requestArray['repeat_weekly_on_day'];
             $i = 0;
             $len = count($repeat_weekly_on_day); // to put "," to all items except the last

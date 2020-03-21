@@ -4,7 +4,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Support\Str;
 
 class Teacher extends Model
