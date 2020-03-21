@@ -77,8 +77,6 @@ class Teacher extends Model
      */
     public function preSave(array $requestArray, $profilePicture): void
     {
-        $requestArray['website'];
-
         $this->name = $requestArray['name'];
         $this->bio = clean($requestArray['bio']);
         $this->country_id = $requestArray['country_id'];

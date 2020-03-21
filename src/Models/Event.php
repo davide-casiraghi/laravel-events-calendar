@@ -334,36 +334,38 @@ class Event extends Model
     /**
      * Prepare the record to be saved on DB.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  array  $requestArray
+     * @param  \Illuminate\Http\UploadedFile  $eventPicture
      * @return void
      */
-    public function preSave(Request $request): void
+    public function preSave(array $requestArray, $eventPicture): void
     {
         $teachers = Teacher::pluck('name', 'id');
 
-        $this->title = $request->get('title');
-        $this->description = clean($request->get('description'));
+        $this->title = $requestArray['title'];
+        $this->description = clean($requestArray['description']);
 
-        if ($request->get('created_by')) {
-            $this->created_by = $request->get('created_by');
+        if ($requestArray['created_by']) {
+            $this->created_by = $requestArray['created_by'];
         }
 
         if (! $this->slug) {
             $this->slug = Str::slug($this->title, '-').'-'.rand(100000, 1000000);
         }
-        $this->category_id = $request->get('category_id');
-        $this->venue_id = $request->get('venue_id');
-        $this->image = $request->get('image');
-        $this->contact_email = $request->get('contact_email');
-        $this->website_event_link = $request->get('website_event_link');
-        $this->facebook_event_link = $request->get('facebook_event_link');
-        $this->status = $request->get('status');
-        $this->on_monthly_kind = $request->get('on_monthly_kind');
-        $this->multiple_dates = $request->get('multiple_dates');
+        $this->category_id = $requestArray['category_id'];
+        $this->venue_id = $requestArray['venue_id'];
+        $this->contact_email = $requestArray['contact_email'];
+        $this->website_event_link = $requestArray['website_event_link'];
+        $this->facebook_event_link = $requestArray['facebook_event_link'];
+        $this->status = (array_key_exists("status",$requestArray)) ? $requestArray['status'] : null;
+        $this->on_monthly_kind = (array_key_exists("on_monthly_kind",$requestArray)) ? $requestArray['on_monthly_kind'] : null;
+        //$this->on_monthly_kind = $requestArray['on_monthly_kind'];
+        $this->multiple_dates = (array_key_exists("multiple_dates",$requestArray)) ? $requestArray['multiple_dates'] : null;
 
         // Event teaser image upload
-        if ($request->file('image')) {
-            $imageFile = $request->file('image');
+        //if ($request->file('image')) {
+        if (! empty($eventPicture)) {
+            $imageFile = $eventPicture;
             $imageName = time().'.'.'jpg';  //$imageName = $teaserImageFile->hashName();
             $imageSubdir = 'events_teaser';
             $imageWidth = 968;
@@ -372,27 +374,29 @@ class Event extends Model
             LaravelEventsCalendar::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
             $this->image = $imageName;
         } else {
-            $this->image = $request->get('image');
+            //$this->image = $request->get('image');
+            if (array_key_exists('image', $requestArray)) {
+                $this->image = $requestArray['image'];
+            }
         }
-
-        // Support columns for homepage search (we need this to show events in HP with less use of resources)
-         $this->sc_teachers_id = json_encode(explode(',', $request->get('multiple_teachers'))); // keep just this SC
-
+        
          // Multiple teachers - populate support column field
         $this->sc_teachers_names = '';
-        if ($request->get('multiple_teachers')) {
-            $multiple_teachers = explode(',', $request->get('multiple_teachers'));
+        if (array_key_exists("multiple_teachers",$requestArray)) {
+            $multiple_teachers = explode(',', $requestArray['multiple_teachers']);
 
             $multiple_teachers_names = [];
             foreach ($multiple_teachers as $key => $teacher_id) {
                 $multiple_teachers_names[] = $teachers[$teacher_id];
             }
-
-            $this->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers_names);
+            
+            // Support columns for homepage search (we need this to show events in HP with less use of resources)
+            $this->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers_names); //@todo find an alternative to this
+            $this->sc_teachers_id = json_encode(explode(',', $requestArray['multiple_teachers'])); //@todo find an alternative to this
         }
 
         // Set the Event attributes about repeating (repeat until field and multiple days)
-        $this->setEventRepeatFields($request);
+        $this->setEventRepeatFields($requestArray);
 
         // Save event and repetitions
          //$this->save();
@@ -404,22 +408,22 @@ class Event extends Model
     /**
      * Set the Event attributes about repeating before store or update (repeat until field and multiple days).
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $requestArray
      * @return void
      */
-    public function setEventRepeatFields(Request $request)
+    public function setEventRepeatFields(array $requestArray)
     {
         // Set Repeat Until
-        $this->repeat_type = $request->get('repeat_type');
-        if ($request->get('repeat_until')) {
-            $dateRepeatUntil = implode('-', array_reverse(explode('/', $request->get('repeat_until'))));
+        $this->repeat_type = $requestArray['repeat_type'];
+        if (isset($requestArray['repeat_until']) && array_key_exists('repeat_until', $requestArray)) { 
+            $dateRepeatUntil = implode('-', array_reverse(explode('/', $requestArray['repeat_until'])));
             $this->repeat_until = $dateRepeatUntil.' 00:00:00';
         }
 
         // Weekely - Set multiple week days
-        if ($request->get('repeat_weekly_on_day')) {
-            $repeat_weekly_on_day = $request->get('repeat_weekly_on_day');
-            //dd($repeat_weekly_on_day);
+        //if (array_key_exists("repeat_weekly_on_day",$requestArray)) {
+        if (isset($requestArray['repeat_weekly_on_day']) && array_key_exists('repeat_weekly_on_day', $requestArray)) { 
+            $repeat_weekly_on_day = $requestArray['repeat_weekly_on_day'];
             $i = 0;
             $len = count($repeat_weekly_on_day); // to put "," to all items except the last
             $this->repeat_weekly_on = '';

@@ -86,5 +86,6 @@ $factory->define(Event::class, function (Faker $faker) {
         'facebook_event_link' => 'https://www.facebook.com/'.$this->faker->word,
         'website_event_link' => $this->faker->url,
         'repeat_weekly_on_day' => null,
+        'contact_email' => null,
     ];
 });

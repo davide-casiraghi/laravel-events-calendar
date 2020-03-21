@@ -140,7 +140,7 @@ class EventController extends Controller
         }
 
         $event = new Event();
-        $event->preSave($request);
+        $event->preSave($request->all(), $request->file('image'));
         $event->save();
 
         $this->saveEventRepetitions($request, $event->id);
@@ -267,7 +267,7 @@ class EventController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $event->preSave($request);
+        $event->preSave($request->all(), $request->file('image'));
         $event->save();
 
         $this->saveEventRepetitions($request, $event->id);
