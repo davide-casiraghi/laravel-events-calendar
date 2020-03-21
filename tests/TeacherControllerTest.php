@@ -152,6 +152,7 @@ class TeacherControllerTest extends TestCase
             'website' => $this->faker->url,
             'facebook' => 'https://www.facebook.com/'.$this->faker->word,
             'country_id' => $this->faker->numberBetween($min = 1, $max = 253),
+            'created_by' => 1,
         ];
 
         $request->replace($data);

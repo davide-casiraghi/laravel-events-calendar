@@ -71,22 +71,24 @@ class Teacher extends Model
     /**
      * Prepare the record to be saved on DB.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $requestArray
+     * @param  \Illuminate\Http\UploadedFile  $profilePicture
      * @return void
      */
-    public function preSave(Request $request): void
+    public function preSave(array $requestArray, $profilePicture): void
     {
-        $this->name = $request->get('name');
-        //$this->bio = $request->get('bio');
-        $this->bio = clean($request->get('bio'));
-        $this->country_id = $request->get('country_id');
-        $this->year_starting_practice = $request->get('year_starting_practice');
-        $this->year_starting_teach = $request->get('year_starting_teach');
-        $this->significant_teachers = $request->get('significant_teachers');
+        $requestArray['website'];
+        
+        $this->name = $requestArray['name'];
+        $this->bio = clean($requestArray['bio']);
+        $this->country_id = $requestArray['country_id'];
+        $this->year_starting_practice = $requestArray['year_starting_practice'];;
+        $this->year_starting_teach = $requestArray['year_starting_teach'];;
+        $this->significant_teachers = $requestArray['significant_teachers'];;
 
         // Teacher profile picture upload
-        if ($request->file('profile_picture')) {
-            $imageFile = $request->file('profile_picture');
+        if (! empty($profilePicture)) {
+            $imageFile = $profilePicture;
             $imageName = $imageFile->hashName();
             $imageSubdir = 'teachers_profile';
             $imageWidth = 968;
@@ -95,14 +97,16 @@ class Teacher extends Model
             LaravelEventsCalendar::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
             $this->profile_picture = $imageName;
         } else {
-            $this->profile_picture = $request->profile_picture;
+            if (array_key_exists('profile_picture', $requestArray)) {
+                $this->profile_picture = $requestArray['profile_picture'];
+            }
         }
 
-        $this->website = $request->get('website');
-        $this->facebook = $request->get('facebook');
+        $this->website = $requestArray['website'];  
+        $this->facebook = $requestArray['facebook'];;
 
-        //$this->created_by = Auth::id();
-        $this->created_by = $request->get('created_by');
+        //$this->created_by = Auth::id();$requestArray['created_by'];
+        $this->created_by = $requestArray['created_by'];
 
         if (! $this->slug) {
             $this->slug = Str::slug($this->name, '-').'-'.rand(10000, 100000);

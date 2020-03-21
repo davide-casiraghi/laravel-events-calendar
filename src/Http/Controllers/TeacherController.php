@@ -125,7 +125,7 @@ class TeacherController extends Controller
         }
 
         $teacher = new Teacher();
-        $teacher->preSave($request);
+        $teacher->preSave($request->all(), $request->file('profile_picture'));
         $teacher->save();
 
         return redirect()->route('teachers.index')
@@ -206,7 +206,7 @@ class TeacherController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $teacher->preSave($request);
+        $teacher->preSave($request->all(), $request->file('profile_picture'));
         $teacher->save();
 
         return redirect()->route('teachers.index')
@@ -257,7 +257,7 @@ class TeacherController extends Controller
     public function storeFromModal(Request $request)
     {
         $teacher = new Teacher();
-        $teacher->preSave($request);
+        $teacher->preSave($request->all(), $request->file('profile_picture'));
         $teacher->save();
 
         return response()->json([
