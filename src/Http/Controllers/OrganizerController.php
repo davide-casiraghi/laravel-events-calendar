@@ -5,10 +5,8 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class OrganizerController extends Controller
 {
@@ -147,7 +145,7 @@ class OrganizerController extends Controller
 
         $organizer->preSave($request);
         $organizer->save();
-        
+
         return redirect()->route('organizers.index')
                         ->with('success', __('laravel-events-calendar::messages.organizer_updated_successfully'));
     }
@@ -196,7 +194,7 @@ class OrganizerController extends Controller
         $organizer = new Organizer();
         $organizer->preSave($request);
         $organizer->save();
-        
+
         return response()->json([
             'organizerId' => $organizer->id,
             'organizerName' => $organizer->name,

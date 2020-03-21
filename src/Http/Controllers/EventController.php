@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Validator;
 
@@ -143,17 +142,17 @@ class EventController extends Controller
         $event = new Event();
         $event->preSave($request);
         $event->save();
-        
+
         $this->saveEventRepetitions($request, $event->id);
         $this->updateTeachersMultiRelationships($request->get('multiple_teachers'), $event);
         $this->updateOrganizersMultiRelationships($request->get('multiple_organizers'), $event);
-        
+
         $this->cleanActiveEventsCaches();
-        
+
         return redirect()->route('events.index')
                         ->with('success', __('laravel-events-calendar::messages.event_added_successfully'));
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -267,10 +266,10 @@ class EventController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-        
+
         $event->preSave($request);
         $event->save();
-        
+
         $this->saveEventRepetitions($request, $event->id);
         $this->updateTeachersMultiRelationships($request->get('multiple_teachers'), $event);
         $this->updateOrganizersMultiRelationships($request->get('multiple_organizers'), $event);
@@ -642,8 +641,9 @@ class EventController extends Controller
 
         return $validator;
     }
-    
+
     /***************************************************************************/
+
     /**
      * Update multi relationships with teachers table.
      *
@@ -651,7 +651,8 @@ class EventController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return void
      */
-    public function updateTeachersMultiRelationships($multipleTeachers, $event){
+    public function updateTeachersMultiRelationships($multipleTeachers, $event)
+    {
         if ($multipleTeachers) {
             $multipleTeachersArray = explode(',', $multipleTeachers);
             $event->teachers()->sync($multipleTeachersArray);
@@ -661,6 +662,7 @@ class EventController extends Controller
     }
 
     /***************************************************************************/
+
     /**
      * Update multi relationships with organizers table.
      *
@@ -668,7 +670,8 @@ class EventController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
      * @return void
      */
-    public function updateOrganizersMultiRelationships($multipleOrganizers, $event){
+    public function updateOrganizersMultiRelationships($multipleOrganizers, $event)
+    {
         if ($multipleOrganizers) {
             $multipleOrganizersArray = explode(',', $multipleOrganizers);
             $event->organizers()->sync($multipleOrganizersArray);
@@ -676,20 +679,20 @@ class EventController extends Controller
             $event->organizers()->sync([]);
         }
     }
-    
+
     /***************************************************************************/
-    
+
     /**
-     * Clean caches related to active events
+     * Clean caches related to active events.
      *
      * @return void
      */
-    public function cleanActiveEventsCaches(){
+    public function cleanActiveEventsCaches()
+    {
         Cache::forget('active_events');
         Cache::forget('active_events_map_markers_json');
         Cache::forget('active_events_map_markers_db_data');
     }
 
     /***************************************************************************/
-
 }

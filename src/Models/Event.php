@@ -5,10 +5,8 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 use Carbon\Carbon;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
-
-use Illuminate\Http\Request; // to remove
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache; // to remove
 use Illuminate\Support\Str;
 
 class Event extends Model
@@ -330,7 +328,7 @@ class Event extends Model
             return false;
         }
     }
-    
+
     // **********************************************************************
 
     /**
@@ -339,103 +337,101 @@ class Event extends Model
      * @param  \Illuminate\Http\Request $request
      * @return void
      */
-     public function preSave(Request $request): void
-     {
-         $teachers = Teacher::pluck('name', 'id');
+    public function preSave(Request $request): void
+    {
+        $teachers = Teacher::pluck('name', 'id');
 
-         $this->title = $request->get('title');
-         $this->description = clean($request->get('description'));
+        $this->title = $request->get('title');
+        $this->description = clean($request->get('description'));
 
-         if ($request->get('created_by')) {
-             $this->created_by = $request->get('created_by');
-         }
+        if ($request->get('created_by')) {
+            $this->created_by = $request->get('created_by');
+        }
 
-         if (! $this->slug) {
-             $this->slug = Str::slug($this->title, '-').'-'.rand(100000, 1000000);
-         }
-         $this->category_id = $request->get('category_id');
-         $this->venue_id = $request->get('venue_id');
-         $this->image = $request->get('image');
-         $this->contact_email = $request->get('contact_email');
-         $this->website_event_link = $request->get('website_event_link');
-         $this->facebook_event_link = $request->get('facebook_event_link');
-         $this->status = $request->get('status');
-         $this->on_monthly_kind = $request->get('on_monthly_kind');
-         $this->multiple_dates = $request->get('multiple_dates');
+        if (! $this->slug) {
+            $this->slug = Str::slug($this->title, '-').'-'.rand(100000, 1000000);
+        }
+        $this->category_id = $request->get('category_id');
+        $this->venue_id = $request->get('venue_id');
+        $this->image = $request->get('image');
+        $this->contact_email = $request->get('contact_email');
+        $this->website_event_link = $request->get('website_event_link');
+        $this->facebook_event_link = $request->get('facebook_event_link');
+        $this->status = $request->get('status');
+        $this->on_monthly_kind = $request->get('on_monthly_kind');
+        $this->multiple_dates = $request->get('multiple_dates');
 
-         // Event teaser image upload
-         if ($request->file('image')) {
-             $imageFile = $request->file('image');
-             $imageName = time().'.'.'jpg';  //$imageName = $teaserImageFile->hashName();
-             $imageSubdir = 'events_teaser';
-             $imageWidth = 968;
-             $thumbWidth = 310;
+        // Event teaser image upload
+        if ($request->file('image')) {
+            $imageFile = $request->file('image');
+            $imageName = time().'.'.'jpg';  //$imageName = $teaserImageFile->hashName();
+            $imageSubdir = 'events_teaser';
+            $imageWidth = 968;
+            $thumbWidth = 310;
 
-             LaravelEventsCalendar::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
-             $this->image = $imageName;
-         } else {
-             $this->image = $request->get('image');
-         }
+            LaravelEventsCalendar::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
+            $this->image = $imageName;
+        } else {
+            $this->image = $request->get('image');
+        }
 
-         // Support columns for homepage search (we need this to show events in HP with less use of resources)
+        // Support columns for homepage search (we need this to show events in HP with less use of resources)
          $this->sc_teachers_id = json_encode(explode(',', $request->get('multiple_teachers'))); // keep just this SC
 
          // Multiple teachers - populate support column field
-         $this->sc_teachers_names = '';
-         if ($request->get('multiple_teachers')) {
-             $multiple_teachers = explode(',', $request->get('multiple_teachers'));
+        $this->sc_teachers_names = '';
+        if ($request->get('multiple_teachers')) {
+            $multiple_teachers = explode(',', $request->get('multiple_teachers'));
 
-             $multiple_teachers_names = [];
-             foreach ($multiple_teachers as $key => $teacher_id) {
-                 $multiple_teachers_names[] = $teachers[$teacher_id];
-             }
+            $multiple_teachers_names = [];
+            foreach ($multiple_teachers as $key => $teacher_id) {
+                $multiple_teachers_names[] = $teachers[$teacher_id];
+            }
 
-             $this->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers_names);
-         }
+            $this->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers_names);
+        }
 
-         // Set the Event attributes about repeating (repeat until field and multiple days)
-         $this->setEventRepeatFields($request);
+        // Set the Event attributes about repeating (repeat until field and multiple days)
+        $this->setEventRepeatFields($request);
 
-         // Save event and repetitions
+        // Save event and repetitions
          //$this->save();
          //$this->saveEventRepetitions($request, $this->id);
+    }
 
-     }
-     
-     /***************************************************************************/
-     
-     /**
-      * Set the Event attributes about repeating before store or update (repeat until field and multiple days).
-      *
-      * @param  \Illuminate\Http\Request  $request
-      * @return void
-      */
-     public function setEventRepeatFields(Request $request)
-     {
-         // Set Repeat Until
-         $this->repeat_type = $request->get('repeat_type');
-         if ($request->get('repeat_until')) {
-             $dateRepeatUntil = implode('-', array_reverse(explode('/', $request->get('repeat_until'))));
-             $this->repeat_until = $dateRepeatUntil.' 00:00:00';
-         }
+    /***************************************************************************/
 
-         // Weekely - Set multiple week days
-         if ($request->get('repeat_weekly_on_day')) {
-             $repeat_weekly_on_day = $request->get('repeat_weekly_on_day');
-             //dd($repeat_weekly_on_day);
-             $i = 0;
-             $len = count($repeat_weekly_on_day); // to put "," to all items except the last
-             $this->repeat_weekly_on = '';
-             foreach ($repeat_weekly_on_day as $key => $weeek_day) {
-                 $this->repeat_weekly_on .= $weeek_day;
-                 if ($i != $len - 1) {  // not last
-                     $this->repeat_weekly_on .= ',';
-                 }
-                 $i++;
-             }
-         }
-     }
+    /**
+     * Set the Event attributes about repeating before store or update (repeat until field and multiple days).
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    public function setEventRepeatFields(Request $request)
+    {
+        // Set Repeat Until
+        $this->repeat_type = $request->get('repeat_type');
+        if ($request->get('repeat_until')) {
+            $dateRepeatUntil = implode('-', array_reverse(explode('/', $request->get('repeat_until'))));
+            $this->repeat_until = $dateRepeatUntil.' 00:00:00';
+        }
 
-     /***************************************************************************/
+        // Weekely - Set multiple week days
+        if ($request->get('repeat_weekly_on_day')) {
+            $repeat_weekly_on_day = $request->get('repeat_weekly_on_day');
+            //dd($repeat_weekly_on_day);
+            $i = 0;
+            $len = count($repeat_weekly_on_day); // to put "," to all items except the last
+            $this->repeat_weekly_on = '';
+            foreach ($repeat_weekly_on_day as $key => $weeek_day) {
+                $this->repeat_weekly_on .= $weeek_day;
+                if ($i != $len - 1) {  // not last
+                    $this->repeat_weekly_on .= ',';
+                }
+                $i++;
+            }
+        }
+    }
 
+    /***************************************************************************/
 }

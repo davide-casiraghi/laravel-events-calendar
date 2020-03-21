@@ -10,11 +10,9 @@ use DavideCasiraghi\LaravelEventsCalendar\Models\EventRepetition;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 use Validator;
 
 class TeacherController extends Controller
@@ -258,10 +256,10 @@ class TeacherController extends Controller
      */
     public function storeFromModal(Request $request)
     {
-        $teacher = new Teacher();        
+        $teacher = new Teacher();
         $teacher->preSave($request);
         $teacher->save();
-        
+
         return response()->json([
             'teacherId' => $teacher->id,
             'teacherName' => $teacher->name,
