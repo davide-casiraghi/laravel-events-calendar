@@ -109,7 +109,9 @@ class EventVenueController extends Controller
         }
 
         $eventVenue = new EventVenue();
-        $this->saveOnDb($request, $eventVenue);
+        //$this->saveOnDb($request, $eventVenue);
+        $eventVenue->preSave($request);
+        $eventVenue->save();
 
         return redirect()->route('eventVenues.index')
                         ->with('success', __('laravel-events-calendar::messages.venue_added_successfully'));

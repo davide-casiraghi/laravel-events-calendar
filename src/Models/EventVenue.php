@@ -4,6 +4,11 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Http\Request; // to remove
+use Illuminate\Support\Str;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+
 class EventVenue extends Model
 {
     /***************************************************************************/
@@ -64,4 +69,40 @@ class EventVenue extends Model
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Save the record on DB.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    public function preSave(Request $request)
+    {
+        $this->name = $request->get('name');
+        $this->description = clean($request->get('description'));
+        $this->continent_id = Country::where('id', $request->get('country_id'))->pluck('continent_id')->first();
+        $this->country_id = $request->get('country_id');
+        $this->region_id = $request->get('region_id');
+        $this->city = $request->get('city');
+        $this->address = $request->get('address');
+        $this->zip_code = $request->get('zip_code');
+        $this->extra_info = $request->get('extra_info');
+        $this->website = $request->get('website');
+
+        // Get GPS coordinates
+        $address = Country::getCountryName($this->country_id).', '.$this->city.', '.$this->address;
+        $gpsCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
+        $this->lat = $gpsCoordinates['lat'];
+        $this->lng = $gpsCoordinates['lng'];
+
+        if (!$this->slug) {
+            $this->slug = Str::slug($this->name, '-').rand(10000, 100000);
+        }
+
+        //$eventVenue->created_by = Auth::id();
+        $this->created_by = $request->get('created_by');
+    }
+    
 }
