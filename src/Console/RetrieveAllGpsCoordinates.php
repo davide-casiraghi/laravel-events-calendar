@@ -36,8 +36,7 @@ class RetrieveAllGpsCoordinates extends Command
     /**
      * Execute the console command.
      *
-     * @param
-     * @return mixed
+     * @return void
      */
     public function handle()
     {

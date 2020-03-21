@@ -316,7 +316,7 @@ class Event extends Model
     /**
      * Return true if an event is in the future.
      *
-     * @return array
+     * @return bool
      */
     public function isActive(): bool
     {

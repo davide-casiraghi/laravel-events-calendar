@@ -88,7 +88,7 @@ class OrganizerController extends Controller
         }
 
         $organizer = new Organizer();
-        $organizer->preSave($request);
+        $organizer->preSave($request->all(), $request->file('profile_picture'));
         $organizer->save();
 
         return redirect()->route('organizers.index')
@@ -143,7 +143,7 @@ class OrganizerController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $organizer->preSave($request);
+        $organizer->preSave($request->all(), $request->file('profile_picture'));
         $organizer->save();
 
         return redirect()->route('organizers.index')
@@ -192,7 +192,7 @@ class OrganizerController extends Controller
     public function storeFromModal(Request $request)
     {
         $organizer = new Organizer();
-        $organizer->preSave($request);
+        $organizer->preSave($request->all(), $request->file('profile_picture'));
         $organizer->save();
 
         return response()->json([

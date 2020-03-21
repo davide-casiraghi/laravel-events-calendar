@@ -143,6 +143,7 @@ class OrganizerControllerTest extends TestCase
             'description' => $description,
             'email' => $this->faker->email,
             'phone' => $this->faker->e164PhoneNumber,
+            'created_by' => 1,
         ];
         $request->replace($data);
 

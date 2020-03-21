@@ -4,7 +4,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;  // to remove
 use Illuminate\Support\Str;
 
 class Organizer extends Model
@@ -37,20 +36,21 @@ class Organizer extends Model
 
     /**
      * Prepare the record to be saved on DB.
-     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $requestArray
+     * @param  \Illuminate\Http\UploadedFile  $profilePicture
      * @return void
      */
-    public function preSave(Request $request): void
+    public function preSave(array $requestArray, $profilePicture): void
     {
-        $this->name = $request->get('name');
-        $this->description = clean($request->get('description'));
-        $this->website = $request->get('website');
-        $this->email = $request->get('email');
-        $this->phone = $request->get('phone');
+        $this->name = $requestArray['name'];
+        $this->description = clean($requestArray['description']);
+        $this->website = $requestArray['website'];
+        $this->email = $requestArray['email'];
+        $this->phone = $requestArray['phone'];
 
         // Organizer profile picture upload
-        if ($request->file('profile_picture')) {
-            $imageFile = $request->file('profile_picture');
+        if (!empty($profilePicture)) {
+            $imageFile = $profilePicture;
             $imageName = $imageFile->hashName();
             $imageSubdir = 'organizers_profile';
             $imageWidth = 968;
@@ -59,11 +59,13 @@ class Organizer extends Model
             LaravelEventsCalendar::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
             $this->profile_picture = $imageName;
         } else {
-            $this->profile_picture = $request->profile_picture;
+            if (array_key_exists("profile_picture",$requestArray)){
+                $this->profile_picture = $requestArray['profile_picture'];
+            }
         }
 
         //$this->created_by = Auth::id();
-        $this->created_by = $request->get('created_by');
+        $this->created_by = $requestArray['created_by'];
         if (! $this->slug) {
             $this->slug = Str::slug($this->name, '-').'-'.rand(10000, 100000);
         }
