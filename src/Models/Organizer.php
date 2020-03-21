@@ -49,7 +49,7 @@ class Organizer extends Model
         $this->phone = $requestArray['phone'];
 
         // Organizer profile picture upload
-        if (!empty($profilePicture)) {
+        if (! empty($profilePicture)) {
             $imageFile = $profilePicture;
             $imageName = $imageFile->hashName();
             $imageSubdir = 'organizers_profile';
@@ -59,7 +59,7 @@ class Organizer extends Model
             LaravelEventsCalendar::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
             $this->profile_picture = $imageName;
         } else {
-            if (array_key_exists("profile_picture",$requestArray)){
+            if (array_key_exists('profile_picture', $requestArray)) {
                 $this->profile_picture = $requestArray['profile_picture'];
             }
         }
