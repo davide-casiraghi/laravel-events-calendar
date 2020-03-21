@@ -31,7 +31,7 @@ class EventCategory extends Model
      * @param  int  $categoryId
      * @return string
      */
-    public static function getCategoryName($categoryId)
+    public static function getCategoryName($categoryId): string
     {
         $ret = self::find($categoryId)->name;
 

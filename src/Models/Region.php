@@ -31,7 +31,7 @@ class Region extends Model
      * @param  int  $regionId
      * @return string
      */
-    public static function getRegionName($regionId)
+    public static function getRegionName($regionId): string
     {
         $ret = self::find($regionId)->name;
 

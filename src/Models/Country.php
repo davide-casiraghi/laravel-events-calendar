@@ -28,7 +28,7 @@ class Country extends Model
      *
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
      */
-    public static function getCountries()
+    public static function getCountries(): iterable
     {
         $seconds = 86400; // One day
         $ret = Cache::remember('countries_list', $seconds, function () {
@@ -45,7 +45,7 @@ class Country extends Model
      *
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
      */
-    public static function getActiveCountries()
+    public static function getActiveCountries(): ?iterable
     {
         $seconds = 900; // 15 minutes
 
@@ -76,7 +76,7 @@ class Country extends Model
      *
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
      */
-    public static function getActiveCountriesByContinent($continent_id)
+    public static function getActiveCountriesByContinent($continent_id): ?iterable
     {
         $activeCountries = self::getActiveCountries()->unique('name')->sortBy('name');
         $ret = $activeCountries->where('continent_id', $continent_id);
@@ -91,7 +91,7 @@ class Country extends Model
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function getCountriesWithTeachers()
+    public static function getCountriesWithTeachers(): ?iterable
     {
         $ret = self::join('teachers', 'countries.id', '=', 'teachers.country_id')
                       ->orderBy('countries.name')->pluck('countries.name', 'countries.id');
@@ -123,7 +123,7 @@ class Country extends Model
      * @param int $countryId
      * @return string
      */
-    public static function getCountryName($countryId)
+    public static function getCountryName($countryId): string
     {
         $country = self::select('name')->where('id', $countryId)->get();
         $ret = $country[0]['name'];

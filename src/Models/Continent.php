@@ -28,7 +28,7 @@ class Continent extends Model
      *
      * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Continent
      */
-    public static function getContinents()
+    public static function getContinents(): iterable
     {
         $seconds = 86400; // One day
         $ret = Cache::remember('continents_list', $seconds, function () {

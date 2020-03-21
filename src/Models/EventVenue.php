@@ -41,7 +41,7 @@ class EventVenue extends Model
      * @param int $venueId
      * @return string
      */
-    public static function getVenueName($venueId)
+    public static function getVenueName($venueId): string
     {
         $ret = self::find($venueId)->name;
 
@@ -56,7 +56,7 @@ class EventVenue extends Model
      * @param int $venueId
      * @return bool
      */
-    public static function venueContainsEvents($venueId)
+    public static function venueContainsEvents($venueId): bool
     {
         $events = Event::where('venue_id', '=', $venueId)->first();
         if ($events === null) {
