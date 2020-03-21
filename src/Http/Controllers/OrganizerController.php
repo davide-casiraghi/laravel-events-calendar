@@ -147,8 +147,10 @@ class OrganizerController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $this->saveOnDb($request, $organizer);
-
+        //$this->saveOnDb($request, $organizer);
+        $organizer->preSave($request);
+        $organizer->save();
+        
         return redirect()->route('organizers.index')
                         ->with('success', __('laravel-events-calendar::messages.organizer_updated_successfully'));
     }
@@ -177,7 +179,7 @@ class OrganizerController extends Controller
      * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
      * @return int
      */
-    public function saveOnDb(Request $request, Organizer $organizer): int
+    /*public function saveOnDb(Request $request, Organizer $organizer): int
     {
         $organizer->name = $request->get('name');
         $organizer->description = clean($request->get('description'));
@@ -208,7 +210,7 @@ class OrganizerController extends Controller
         $organizer->save();
 
         return $organizer->id;
-    }
+    }*/
 
     /***************************************************************************/
 
@@ -237,11 +239,18 @@ class OrganizerController extends Controller
     {
         $organizer = new Organizer();
 
-        $organizerId = $this->saveOnDb($request, $organizer);
-        $organizer = Organizer::find($organizerId);
+        //$organizerId = $this->saveOnDb($request, $organizer);
+        $organizer->preSave($request);
+        $organizer->save();
+        
+        //$organizer = Organizer::find($organizer->id);
 
-        return response()->json([
+        /*return response()->json([
             'organizerId' => $organizerId,
+            'organizerName' => $organizer->name,
+        ]);*/
+        return response()->json([
+            'organizerId' => $organizer->id,
             'organizerName' => $organizer->name,
         ]);
     }
