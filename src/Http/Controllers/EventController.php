@@ -141,39 +141,20 @@ class EventController extends Controller
         }
 
         $event = new Event();
-        //$this->saveOnDb($request, $event);
         $event->preSave($request);
         $event->save();
-        $this->saveEventRepetitions($request, $event->id);
         
-        // Update multi relationships with teachers and organizers tables.
+        $this->saveEventRepetitions($request, $event->id);
         $this->updateTeachersMultiRelationships($request->get('multiple_teachers'), $event);
         $this->updateOrganizersMultiRelationships($request->get('multiple_organizers'), $event);
         
-        /*if ($request->get('multiple_teachers')) {
-            $multiple_teachers = explode(',', $request->get('multiple_teachers'));
-            $event->teachers()->sync($multiple_teachers);
-        } else {
-            $event->teachers()->sync([]);
-        }*/
-        
-        /*if ($request->get('multiple_organizers')) {
-            $multiple_organizers = explode(',', $request->get('multiple_organizers'));
-            $event->organizers()->sync($multiple_organizers);
-        } else {
-            $event->organizers()->sync([]);
-        }*/
-
-        Cache::forget('active_events');
-        Cache::forget('active_events_map_markers_json');
-        Cache::forget('active_events_map_markers_db_data');
+        $this->cleanActiveEventsCaches();
         
         return redirect()->route('events.index')
                         ->with('success', __('laravel-events-calendar::messages.event_added_successfully'));
     }
 
     /***************************************************************************/
-
     /**
      * Update multi relationships with teachers table.
      *
@@ -205,6 +186,19 @@ class EventController extends Controller
         } else {
             $event->organizers()->sync([]);
         }
+    }
+    
+    /***************************************************************************/
+
+    /**
+     * Clean caches related to active events
+     *
+     * @return void
+     */
+    public function cleanActiveEventsCaches(){
+        Cache::forget('active_events');
+        Cache::forget('active_events_map_markers_json');
+        Cache::forget('active_events_map_markers_db_data');
     }
 
     /***************************************************************************/
@@ -320,20 +314,15 @@ class EventController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-
-        //$this->saveOnDb($request, $event);
         
         $event->preSave($request);
         $event->save();
-        $this->saveEventRepetitions($request, $event->id);
         
-        // Update multi relationships with teachers and organizers tables.
+        $this->saveEventRepetitions($request, $event->id);
         $this->updateTeachersMultiRelationships($request->get('multiple_teachers'), $event);
         $this->updateOrganizersMultiRelationships($request->get('multiple_organizers'), $event);
 
-        Cache::forget('active_events');
-        Cache::forget('active_events_map_markers_json');
-        Cache::forget('active_events_map_markers_db_data');
+        $this->cleanActiveEventsCaches();
 
         return redirect()->route('events.index')
                         ->with('success', __('laravel-events-calendar::messages.event_updated_successfully'));
@@ -612,101 +601,6 @@ class EventController extends Controller
         $onMonthlyKindSelect .= '</select>';
 
         return $onMonthlyKindSelect;
-    }
-
-    // **********************************************************************
-
-    /**
-     * Save/Update the record on DB.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event $event
-     * @return void
-     */
-    public function saveOnDb(Request $request, Event $event): void
-    {
-        //$countries = Country::getCountries();
-        $teachers = Teacher::pluck('name', 'id');
-
-        /*$venue = DB::table('event_venues')
-                ->select('event_venues.id AS venue_id', 'event_venues.name AS venue_name', 'event_venues.country_id AS country_id', 'event_venues.continent_id', 'event_venues.city')
-                ->where('event_venues.id', '=', $request->get('venue_id'))
-                ->first();*/
-
-        $event->title = $request->get('title');
-        $event->description = clean($request->get('description'));
-
-        if ($request->get('created_by')) {
-            $event->created_by = $request->get('created_by');
-        }
-
-        if (! $event->slug) {
-            $event->slug = Str::slug($event->title, '-').'-'.rand(100000, 1000000);
-        }
-        $event->category_id = $request->get('category_id');
-        $event->venue_id = $request->get('venue_id');
-        $event->image = $request->get('image');
-        $event->contact_email = $request->get('contact_email');
-        $event->website_event_link = $request->get('website_event_link');
-        $event->facebook_event_link = $request->get('facebook_event_link');
-        $event->status = $request->get('status');
-        $event->on_monthly_kind = $request->get('on_monthly_kind');
-        $event->multiple_dates = $request->get('multiple_dates');
-
-        // Event teaser image upload
-        if ($request->file('image')) {
-            $imageFile = $request->file('image');
-            $imageName = time().'.'.'jpg';  //$imageName = $teaserImageFile->hashName();
-            $imageSubdir = 'events_teaser';
-            $imageWidth = 968;
-            $thumbWidth = 310;
-
-            $this->uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
-            $event->image = $imageName;
-        } else {
-            $event->image = $request->get('image');
-        }
-
-        // Support columns for homepage search (we need this to show events in HP with less use of resources)
-        $event->sc_teachers_id = json_encode(explode(',', $request->get('multiple_teachers'))); // keep just this SC
-
-        // Multiple teachers - populate support column field
-        $event->sc_teachers_names = '';
-        if ($request->get('multiple_teachers')) {
-            $multiple_teachers = explode(',', $request->get('multiple_teachers'));
-
-            $multiple_teachers_names = [];
-            foreach ($multiple_teachers as $key => $teacher_id) {
-                $multiple_teachers_names[] = $teachers[$teacher_id];
-            }
-
-            $event->sc_teachers_names .= LaravelEventsCalendar::getStringFromArraySeparatedByComma($multiple_teachers_names);
-        }
-
-        // Set the Event attributes about repeating (repeat until field and multiple days)
-        $event = $this->setEventRepeatFields($request, $event);
-
-        // Save event and repetitions
-        $event->save();
-        $this->saveEventRepetitions($request, $event->id);
-
-        // Update multi relationships with teachers and organizers tables.
-        if ($request->get('multiple_teachers')) {
-            $multiple_teachers = explode(',', $request->get('multiple_teachers'));
-            $event->teachers()->sync($multiple_teachers);
-        } else {
-            $event->teachers()->sync([]);
-        }
-        if ($request->get('multiple_organizers')) {
-            $multiple_organizers = explode(',', $request->get('multiple_organizers'));
-            $event->organizers()->sync($multiple_organizers);
-        } else {
-            $event->organizers()->sync([]);
-        }
-
-        Cache::forget('active_events');
-        Cache::forget('active_events_map_markers_json');
-        Cache::forget('active_events_map_markers_db_data');
     }
 
     /***********************************************************************/
