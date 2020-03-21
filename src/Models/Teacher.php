@@ -4,7 +4,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request; // to remove
+// to remove
 use Illuminate\Support\Str;
 
 class Teacher extends Model
@@ -78,13 +78,13 @@ class Teacher extends Model
     public function preSave(array $requestArray, $profilePicture): void
     {
         $requestArray['website'];
-        
+
         $this->name = $requestArray['name'];
         $this->bio = clean($requestArray['bio']);
         $this->country_id = $requestArray['country_id'];
-        $this->year_starting_practice = $requestArray['year_starting_practice'];;
-        $this->year_starting_teach = $requestArray['year_starting_teach'];;
-        $this->significant_teachers = $requestArray['significant_teachers'];;
+        $this->year_starting_practice = $requestArray['year_starting_practice'];
+        $this->year_starting_teach = $requestArray['year_starting_teach'];
+        $this->significant_teachers = $requestArray['significant_teachers'];
 
         // Teacher profile picture upload
         if (! empty($profilePicture)) {
@@ -102,8 +102,8 @@ class Teacher extends Model
             }
         }
 
-        $this->website = $requestArray['website'];  
-        $this->facebook = $requestArray['facebook'];;
+        $this->website = $requestArray['website'];
+        $this->facebook = $requestArray['facebook'];
 
         //$this->created_by = Auth::id();$requestArray['created_by'];
         $this->created_by = $requestArray['created_by'];
