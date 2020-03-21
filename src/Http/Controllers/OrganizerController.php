@@ -90,7 +90,10 @@ class OrganizerController extends Controller
         }
 
         $organizer = new Organizer();
-        $this->saveOnDb($request, $organizer);
+        $organizer->preSave($request);
+        $organizer->save();
+        
+        //$this->saveOnDb($request, $organizer);
 
         return redirect()->route('organizers.index')
                         ->with('success', __('laravel-events-calendar::messages.organizer_added_successfully'));

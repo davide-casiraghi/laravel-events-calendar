@@ -484,4 +484,46 @@ class LaravelEventsCalendar
 
         return $ret;
     }
+    
+    // **********************************************************************
+
+    /**
+     * Upload image on server.
+     * $imageFile - the file to upload
+     * $imageSubdir is the subdir in /storage/app/public/images/..
+     *
+     * @param  mixed $imageFile
+     * @param  string $imageName
+     * @param  string $imageSubdir
+     * @param  int $imageWidth
+     * @param  int $thumbWidth
+     * @return void
+     */
+    public static function uploadImageOnServer($imageFile, string $imageName, string $imageSubdir, int $imageWidth, int $thumbWidth): void
+    {
+
+        // Create dir if not exist (in /storage/app/public/images/..)
+        if (! Storage::disk('public')->has('images/'.$imageSubdir.'/')) {
+            Storage::disk('public')->makeDirectory('images/'.$imageSubdir.'/');
+        }
+
+        $destinationPath = 'app/public/images/'.$imageSubdir.'/';
+
+        // Resize the image with Intervention - http://image.intervention.io/api/resize
+        // -  resize and store the image to a width of 300 and constrain aspect ratio (auto height)
+        // - save file as jpg with medium quality
+        $image = Image::make($imageFile->getRealPath())
+                                ->resize($imageWidth, null,
+                                    function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    })
+                                ->save(storage_path($destinationPath.$imageName), 75);
+
+        // Create the thumb
+        $image->resize($thumbWidth, null,
+                    function ($constraint) {
+                        $constraint->aspectRatio();
+                    })
+                ->save(storage_path($destinationPath.'thumb_'.$imageName), 75);
+    }
 }
