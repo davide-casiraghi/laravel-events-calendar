@@ -33,12 +33,14 @@ class Organizer extends Model
         return $this->belongsTo('\Illuminate\Foundation\Auth\User', 'created_by');
     }
 
+    /***************************************************************************/
+
     /**
-     * Prepare datas for save model on DB.
+     * Prepare the record to be saved on DB.
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function preSave(Request $request)
+    public function preSave(Request $request): void
     {
         $this->name = $request->get('name');
         $this->description = clean($request->get('description'));

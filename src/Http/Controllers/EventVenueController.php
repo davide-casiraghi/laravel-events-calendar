@@ -109,7 +109,6 @@ class EventVenueController extends Controller
         }
 
         $eventVenue = new EventVenue();
-        //$this->saveOnDb($request, $eventVenue);
         $eventVenue->preSave($request);
         $eventVenue->save();
 
@@ -184,8 +183,9 @@ class EventVenueController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        //$eventVenue->update($request->all());
-        $this->saveOnDb($request, $eventVenue);
+        //$eventVenue->update($request->all());        
+        $eventVenue->preSave($request);
+        $eventVenue->save();
 
         return redirect()->route('eventVenues.index')
                         ->with('success', __('laravel-events-calendar::messages.venue_updated_successfully'));
@@ -210,48 +210,6 @@ class EventVenueController extends Controller
             return redirect()->route('eventVenues.index')
                             ->with('success', __('laravel-events-calendar::messages.venue_deleted_successfully'));
         }
-    }
-
-    /***************************************************************************/
-
-    /**
-     * Save the record on DB.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue  $eventVenue
-     * @return \Illuminate\Http\Response
-     */
-    public function saveOnDb(Request $request, EventVenue $eventVenue)
-    {
-        $eventVenue->name = $request->get('name');
-        //$eventVenue->description = $request->get('description');
-        $eventVenue->description = clean($request->get('description'));
-        $eventVenue->continent_id = Country::where('id', $request->get('country_id'))->pluck('continent_id')->first();
-        $eventVenue->country_id = $request->get('country_id');
-        $eventVenue->region_id = $request->get('region_id');
-        $eventVenue->city = $request->get('city');
-        //$eventVenue->state_province = $request->get('state_province');
-        $eventVenue->address = $request->get('address');
-        $eventVenue->zip_code = $request->get('zip_code');
-        $eventVenue->extra_info = $request->get('extra_info');
-        $eventVenue->website = $request->get('website');
-
-        // Get GPS coordinates
-        $address = Country::getCountryName($eventVenue->country_id).', '.$eventVenue->city.', '.$eventVenue->address;
-        $gpsCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
-        $eventVenue->lat = $gpsCoordinates['lat'];
-        $eventVenue->lng = $gpsCoordinates['lng'];
-
-        if (! $eventVenue->slug) {
-            $eventVenue->slug = Str::slug($eventVenue->name, '-').rand(10000, 100000);
-        }
-
-        //$eventVenue->created_by = Auth::id();
-        $eventVenue->created_by = $request->get('created_by');
-
-        $eventVenue->save();
-
-        return $eventVenue->id;
     }
 
     /***************************************************************************/
@@ -284,12 +242,11 @@ class EventVenueController extends Controller
     public function storeFromModal(Request $request)
     {
         $eventVenue = new EventVenue();
-
-        $eventVenueId = $this->saveOnDb($request, $eventVenue);
-        $eventVenue = EventVenue::find($eventVenueId);
-
+        $eventVenue->preSave($request);
+        $eventVenue->save();
+        
         return response()->json([
-            'eventVenueId' => $eventVenueId,
+            'eventVenueId' => $eventVenue->id,
             'eventVenueName' => $eventVenue->name,
         ]);
     }

@@ -69,12 +69,12 @@ class Teacher extends Model
     /***************************************************************************/
 
     /**
-     * Save the record on DB.
+     * Prepare the record to be saved on DB.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    public function preSave(Request $request)
+    public function preSave(Request $request): void
     {
         $this->name = $request->get('name');
         //$this->bio = $request->get('bio');

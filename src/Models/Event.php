@@ -332,7 +332,7 @@ class Event extends Model
     // **********************************************************************
 
     /**
-     * Save/Update the record on DB.
+     * Prepare the record to be saved on DB.
      *
      * @param  \Illuminate\Http\Request $request
      * @return void
