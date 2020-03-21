@@ -2,12 +2,10 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-use Illuminate\Http\Request; // to remove
-use Illuminate\Support\Str;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+use Illuminate\Database\Eloquent\Model; // to remove
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class EventVenue extends Model
 {
@@ -69,7 +67,7 @@ class EventVenue extends Model
 
         return $ret;
     }
-    
+
     /***************************************************************************/
 
     /**
@@ -97,12 +95,11 @@ class EventVenue extends Model
         $this->lat = $gpsCoordinates['lat'];
         $this->lng = $gpsCoordinates['lng'];
 
-        if (!$this->slug) {
+        if (! $this->slug) {
             $this->slug = Str::slug($this->name, '-').rand(10000, 100000);
         }
 
         //$eventVenue->created_by = Auth::id();
         $this->created_by = $request->get('created_by');
     }
-    
 }

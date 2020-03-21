@@ -2,7 +2,6 @@
 
 namespace DavideCasiraghi\LaravelEventsCalendar\Http\Controllers;
 
-use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Region;
@@ -11,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Validator;
 
 class EventVenueController extends Controller
@@ -183,7 +181,7 @@ class EventVenueController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        //$eventVenue->update($request->all());        
+        //$eventVenue->update($request->all());
         $eventVenue->preSave($request);
         $eventVenue->save();
 
@@ -244,7 +242,7 @@ class EventVenueController extends Controller
         $eventVenue = new EventVenue();
         $eventVenue->preSave($request);
         $eventVenue->save();
-        
+
         return response()->json([
             'eventVenueId' => $eventVenue->id,
             'eventVenueName' => $eventVenue->name,
