@@ -4,7 +4,7 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request;  // to remove
 use Illuminate\Support\Str;
 
 class Organizer extends Model

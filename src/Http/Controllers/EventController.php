@@ -141,10 +141,70 @@ class EventController extends Controller
         }
 
         $event = new Event();
-        $this->saveOnDb($request, $event);
+        //$this->saveOnDb($request, $event);
+        $event->preSave($request);
+        $event->save();
+        $this->saveEventRepetitions($request, $event->id);
+        
+        // Update multi relationships with teachers and organizers tables.
+        $this->updateTeachersMultiRelationships($request->get('multiple_teachers'), $event);
+        $this->updateOrganizersMultiRelationships($request->get('multiple_organizers'), $event);
+        
+        /*if ($request->get('multiple_teachers')) {
+            $multiple_teachers = explode(',', $request->get('multiple_teachers'));
+            $event->teachers()->sync($multiple_teachers);
+        } else {
+            $event->teachers()->sync([]);
+        }*/
+        
+        /*if ($request->get('multiple_organizers')) {
+            $multiple_organizers = explode(',', $request->get('multiple_organizers'));
+            $event->organizers()->sync($multiple_organizers);
+        } else {
+            $event->organizers()->sync([]);
+        }*/
 
+        Cache::forget('active_events');
+        Cache::forget('active_events_map_markers_json');
+        Cache::forget('active_events_map_markers_db_data');
+        
         return redirect()->route('events.index')
                         ->with('success', __('laravel-events-calendar::messages.event_added_successfully'));
+    }
+
+    /***************************************************************************/
+
+    /**
+     * Update multi relationships with teachers table.
+     *
+     * @param  string  $multipleTeachers
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @return void
+     */
+    public function updateTeachersMultiRelationships($multipleTeachers, $event){
+        if ($multipleTeachers) {
+            $multipleTeachersArray = explode(',', $multipleTeachers);
+            $event->teachers()->sync($multipleTeachersArray);
+        } else {
+            $event->teachers()->sync([]);
+        }
+    }
+
+    /***************************************************************************/
+    /**
+     * Update multi relationships with organizers table.
+     *
+     * @param  string  $multipleOrganizers
+     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
+     * @return void
+     */
+    public function updateOrganizersMultiRelationships($multipleOrganizers, $event){
+        if ($multipleOrganizers) {
+            $multipleOrganizersArray = explode(',', $multipleOrganizers);
+            $event->organizers()->sync($multipleOrganizersArray);
+        } else {
+            $event->organizers()->sync([]);
+        }
     }
 
     /***************************************************************************/
@@ -261,7 +321,19 @@ class EventController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $this->saveOnDb($request, $event);
+        //$this->saveOnDb($request, $event);
+        
+        $event->preSave($request);
+        $event->save();
+        $this->saveEventRepetitions($request, $event->id);
+        
+        // Update multi relationships with teachers and organizers tables.
+        $this->updateTeachersMultiRelationships($request->get('multiple_teachers'), $event);
+        $this->updateOrganizersMultiRelationships($request->get('multiple_organizers'), $event);
+
+        Cache::forget('active_events');
+        Cache::forget('active_events_map_markers_json');
+        Cache::forget('active_events_map_markers_db_data');
 
         return redirect()->route('events.index')
                         ->with('success', __('laravel-events-calendar::messages.event_updated_successfully'));
@@ -460,47 +532,6 @@ class EventController extends Controller
     public function reportMisuseThankyou()
     {
         return view('laravel-events-calendar::emails.report-thankyou');
-    }
-
-    /***************************************************************************/
-
-    /**
-     * Set the Event attributes about repeating before store or update (repeat until field and multiple days).
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Event  $event
-     */
-    public function setEventRepeatFields(Request $request, Event $event)
-    {
-        // Set Repeat Until
-        $event->repeat_type = $request->get('repeat_type');
-        if ($request->get('repeat_until')) {
-            $dateRepeatUntil = implode('-', array_reverse(explode('/', $request->get('repeat_until'))));
-            $event->repeat_until = $dateRepeatUntil.' 00:00:00';
-        }
-
-        // Weekely - Set multiple week days
-        if ($request->get('repeat_weekly_on_day')) {
-            $repeat_weekly_on_day = $request->get('repeat_weekly_on_day');
-            //dd($repeat_weekly_on_day);
-            $i = 0;
-            $len = count($repeat_weekly_on_day); // to put "," to all items except the last
-            $event->repeat_weekly_on = '';
-            foreach ($repeat_weekly_on_day as $key => $weeek_day) {
-                $event->repeat_weekly_on .= $weeek_day;
-                if ($i != $len - 1) {  // not last
-                    $event->repeat_weekly_on .= ',';
-                }
-                $i++;
-            }
-        }
-
-        // Monthly
-
-        /* $event->repeat_type = $request->get('repeat_monthly_on');*/
-
-        return $event;
     }
 
     /***************************************************************************/

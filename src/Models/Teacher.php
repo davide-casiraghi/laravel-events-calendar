@@ -3,6 +3,10 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DavideCasiraghi\LaravelEventsCalendar\Facades\LaravelEventsCalendar;
+
+use Illuminate\Http\Request; // to remove
+use Illuminate\Support\Str;
 
 class Teacher extends Model
 {
@@ -62,4 +66,50 @@ class Teacher extends Model
 
         return $ret;
     }
+    
+    /***************************************************************************/
+
+    /**
+     * Save the record on DB.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    public function preSave(Request $request)
+    {
+        $this->name = $request->get('name');
+        //$this->bio = $request->get('bio');
+        $this->bio = clean($request->get('bio'));
+        $this->country_id = $request->get('country_id');
+        $this->year_starting_practice = $request->get('year_starting_practice');
+        $this->year_starting_teach = $request->get('year_starting_teach');
+        $this->significant_teachers = $request->get('significant_teachers');
+
+        // Teacher profile picture upload
+        if ($request->file('profile_picture')) {
+            $imageFile = $request->file('profile_picture');
+            $imageName = $imageFile->hashName();
+            $imageSubdir = 'teachers_profile';
+            $imageWidth = 968;
+            $thumbWidth = 300;
+
+            LaravelEventsCalendar::uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
+            $this->profile_picture = $imageName;
+        } else {
+            $this->profile_picture = $request->profile_picture;
+        }
+
+        $this->website = $request->get('website');
+        $this->facebook = $request->get('facebook');
+
+        //$this->created_by = Auth::id();
+        $this->created_by = $request->get('created_by');
+
+        if (! $this->slug) {
+            $this->slug = Str::slug($this->name, '-').'-'.rand(10000, 100000);
+        }
+    }
+
+    /***************************************************************************/
+
 }

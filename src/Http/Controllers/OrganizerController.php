@@ -92,8 +92,6 @@ class OrganizerController extends Controller
         $organizer = new Organizer();
         $organizer->preSave($request);
         $organizer->save();
-        
-        //$this->saveOnDb($request, $organizer);
 
         return redirect()->route('organizers.index')
                         ->with('success', __('laravel-events-calendar::messages.organizer_added_successfully'));
@@ -147,7 +145,6 @@ class OrganizerController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        //$this->saveOnDb($request, $organizer);
         $organizer->preSave($request);
         $organizer->save();
         
@@ -170,47 +167,6 @@ class OrganizerController extends Controller
         return redirect()->route('organizers.index')
                         ->with('success', __('laravel-events-calendar::messages.organizer_deleted_successfully'));
     }
-
-    /***************************************************************************/
-
-    /**
-     * Save the record on DB.
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Organizer  $organizer
-     * @return int
-     */
-    /*public function saveOnDb(Request $request, Organizer $organizer): int
-    {
-        $organizer->name = $request->get('name');
-        $organizer->description = clean($request->get('description'));
-        $organizer->website = $request->get('website');
-        $organizer->email = $request->get('email');
-        $organizer->phone = $request->get('phone');
-
-        // Organizer profile picture upload
-        if ($request->file('profile_picture')) {
-            $imageFile = $request->file('profile_picture');
-            $imageName = $imageFile->hashName();
-            $imageSubdir = 'organizers_profile';
-            $imageWidth = 968;
-            $thumbWidth = 300;
-
-            $this->uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
-            $organizer->profile_picture = $imageName;
-        } else {
-            $organizer->profile_picture = $request->profile_picture;
-        }
-
-        //$organizer->created_by = Auth::id();
-        $organizer->created_by = $request->get('created_by');
-        if (! $organizer->slug) {
-            $organizer->slug = Str::slug($organizer->name, '-').'-'.rand(10000, 100000);
-        }
-
-        $organizer->save();
-
-        return $organizer->id;
-    }*/
 
     /***************************************************************************/
 
@@ -238,17 +194,9 @@ class OrganizerController extends Controller
     public function storeFromModal(Request $request)
     {
         $organizer = new Organizer();
-
-        //$organizerId = $this->saveOnDb($request, $organizer);
         $organizer->preSave($request);
         $organizer->save();
         
-        //$organizer = Organizer::find($organizer->id);
-
-        /*return response()->json([
-            'organizerId' => $organizerId,
-            'organizerName' => $organizer->name,
-        ]);*/
         return response()->json([
             'organizerId' => $organizer->id,
             'organizerName' => $organizer->name,

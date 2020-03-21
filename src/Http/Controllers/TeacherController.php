@@ -127,7 +127,8 @@ class TeacherController extends Controller
         }
 
         $teacher = new Teacher();
-        $this->saveOnDb($request, $teacher);
+        $teacher->preSave($request);
+        $teacher->save();
 
         return redirect()->route('teachers.index')
                         ->with('success', __('laravel-events-calendar::messages.teacher_added_successfully'));
@@ -207,7 +208,8 @@ class TeacherController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
-        $this->saveOnDb($request, $teacher);
+        $teacher->preSave($request);
+        $teacher->save();
 
         return redirect()->route('teachers.index')
                         ->with('success', __('laravel-events-calendar::messages.teacher_updated_successfully'));
@@ -227,54 +229,6 @@ class TeacherController extends Controller
 
         return redirect()->route('teachers.index')
                         ->with('success', __('laravel-events-calendar::messages.teacher_deleted_successfully'));
-    }
-
-    /***************************************************************************/
-
-    /**
-     * Save the record on DB.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \DavideCasiraghi\LaravelEventsCalendar\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function saveOnDb(Request $request, Teacher $teacher)
-    {
-        $teacher->name = $request->get('name');
-        //$teacher->bio = $request->get('bio');
-        $teacher->bio = clean($request->get('bio'));
-        $teacher->country_id = $request->get('country_id');
-        $teacher->year_starting_practice = $request->get('year_starting_practice');
-        $teacher->year_starting_teach = $request->get('year_starting_teach');
-        $teacher->significant_teachers = $request->get('significant_teachers');
-
-        // Teacher profile picture upload
-        if ($request->file('profile_picture')) {
-            $imageFile = $request->file('profile_picture');
-            $imageName = $imageFile->hashName();
-            $imageSubdir = 'teachers_profile';
-            $imageWidth = 968;
-            $thumbWidth = 300;
-
-            $this->uploadImageOnServer($imageFile, $imageName, $imageSubdir, $imageWidth, $thumbWidth);
-            $teacher->profile_picture = $imageName;
-        } else {
-            $teacher->profile_picture = $request->profile_picture;
-        }
-
-        $teacher->website = $request->get('website');
-        $teacher->facebook = $request->get('facebook');
-
-        //$teacher->created_by = Auth::id();
-        $teacher->created_by = $request->get('created_by');
-
-        if (! $teacher->slug) {
-            $teacher->slug = Str::slug($teacher->name, '-').'-'.rand(10000, 100000);
-        }
-
-        $teacher->save();
-
-        return $teacher->id;
     }
 
     /***************************************************************************/
@@ -304,13 +258,12 @@ class TeacherController extends Controller
      */
     public function storeFromModal(Request $request)
     {
-        $teacher = new Teacher();
-
-        $teacherId = $this->saveOnDb($request, $teacher);
-        $teacher = Teacher::find($teacherId);
-
+        $teacher = new Teacher();        
+        $teacher->preSave($request);
+        $teacher->save();
+        
         return response()->json([
-            'teacherId' => $teacherId,
+            'teacherId' => $teacher->id,
             'teacherName' => $teacher->name,
         ]);
     }
