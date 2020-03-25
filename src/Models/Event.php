@@ -381,7 +381,7 @@ class Event extends Model
 
         // Multiple teachers - populate support column field
         $this->sc_teachers_names = '';
-        if (array_key_exists('multiple_teachers', $requestArray)) {
+        if (isset($requestArray['multiple_teachers']) && array_key_exists('multiple_teachers', $requestArray)) {
             $multiple_teachers = explode(',', $requestArray['multiple_teachers']);
 
             $multiple_teachers_names = [];
