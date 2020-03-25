@@ -89,17 +89,17 @@ class LaravelEventsCalendarTest extends TestCase
     public function it_format_datepicker_date_for_mysql()
     {
         $todaysMysqlDateFormat = Carbon::now()->format('Y-m-d');
-        $dateDatepickerFormat = "14/10/2019";
-        $dateMysqlFormat = "2019-10-14";
-        
+        $dateDatepickerFormat = '14/10/2019';
+        $dateMysqlFormat = '2019-10-14';
+
         $outputFormatDatePickerDateForMysql = LaravelEventsCalendar::formatDatePickerDateForMysql($dateDatepickerFormat, 1);
         $this->assertEquals($outputFormatDatePickerDateForMysql, $dateMysqlFormat);
 
-        $outputFormatDatePickerDateForMysql = LaravelEventsCalendar::formatDatePickerDateForMysql("", 1);
+        $outputFormatDatePickerDateForMysql = LaravelEventsCalendar::formatDatePickerDateForMysql('', 1);
         $this->assertEquals($outputFormatDatePickerDateForMysql, $todaysMysqlDateFormat);
-        
-        $outputFormatDatePickerDateForMysql = LaravelEventsCalendar::formatDatePickerDateForMysql("", 0);
-        $this->assertEquals($outputFormatDatePickerDateForMysql, "");
+
+        $outputFormatDatePickerDateForMysql = LaravelEventsCalendar::formatDatePickerDateForMysql('', 0);
+        $this->assertEquals($outputFormatDatePickerDateForMysql, '');
     }
 
     /** @test */
