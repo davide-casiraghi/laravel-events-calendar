@@ -264,7 +264,7 @@ class EventRepetition extends Model
         $ret = self::
                 select('start_repeat', 'end_repeat')
                 ->where('event_id', $eventId)
-                ->where('start_repeat', '>', Carbon::now()->format('Y-m-d'))
+                ->where('start_repeat', '>', Carbon::now())
                 ->first();
 
         return $ret;
@@ -301,7 +301,7 @@ class EventRepetition extends Model
         $firstFutureEventRpIdByEventId = self::
                 select('id')
                 ->where('event_id', $eventId)
-                ->where('start_repeat', '>', Carbon::now()->format('Y-m-d'))
+                ->where('start_repeat', '>', Carbon::now())
                 ->first();
 
         if (! empty($firstFutureEventRpIdByEventId)) {

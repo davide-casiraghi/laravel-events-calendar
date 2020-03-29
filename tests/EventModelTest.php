@@ -272,16 +272,16 @@ class EventModelTest extends TestCase
         // Event in the future
         $attributes = factory(Event::class)->raw([
             'title'=>'test title 1',
-            'startDate' => Carbon::now()->addDays(3)->format('d-m-Y'),
-            'endDate' => Carbon::now()->addDays(3)->format('d-m-Y'),
+            'startDate' => Carbon::now()->addDays(3)->format('Y-m-d'),
+            'endDate' => Carbon::now()->addDays(3)->format('Y-m-d'),
         ]);
         $this->post('/events', $attributes);
 
         // Event in the past
         $attributes = factory(Event::class)->raw([
             'title'=>'test title 2',
-            'startDate' => Carbon::now()->subDays(3)->format('d-m-Y'),
-            'endDate' => Carbon::now()->subDays(3)->format('d-m-Y'),
+            'startDate' => Carbon::now()->subDays(3)->format('Y-m-d'),
+            'endDate' => Carbon::now()->subDays(3)->format('Y-m-d'),
         ]);
         $this->post('/events', $attributes);
 
