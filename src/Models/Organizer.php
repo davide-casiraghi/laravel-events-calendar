@@ -44,9 +44,9 @@ class Organizer extends Model
     {
         $this->name = $requestArray['name'];
         $this->description = clean($requestArray['description']);
-        $this->website = $requestArray['website'];
-        $this->email = $requestArray['email'];
-        $this->phone = $requestArray['phone'];
+        $this->website = $requestArray['website'] ?? null;
+        $this->email = $requestArray['email'] ?? null;
+        $this->phone = $requestArray['phone'] ?? null;
 
         // Organizer profile picture upload
         if (! empty($profilePicture)) {
@@ -65,7 +65,7 @@ class Organizer extends Model
         }
 
         //$this->created_by = Auth::id();
-        $this->created_by = $requestArray['created_by'];
+        $this->created_by = $requestArray['created_by'] ?? null;
         if (! $this->slug) {
             $this->slug = Str::slug($this->name, '-').'-'.rand(10000, 100000);
         }

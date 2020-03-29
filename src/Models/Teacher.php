@@ -78,10 +78,10 @@ class Teacher extends Model
     {
         $this->name = $requestArray['name'];
         $this->bio = clean($requestArray['bio']);
-        $this->country_id = $requestArray['country_id'];
-        $this->year_starting_practice = $requestArray['year_starting_practice'];
-        $this->year_starting_teach = $requestArray['year_starting_teach'];
-        $this->significant_teachers = $requestArray['significant_teachers'];
+        $this->country_id = $requestArray['country_id'] ?? null;
+        $this->year_starting_practice = $requestArray['year_starting_practice'] ?? null;
+        $this->year_starting_teach = $requestArray['year_starting_teach'] ?? null;
+        $this->significant_teachers = $requestArray['significant_teachers'] ?? null;
 
         // Teacher profile picture upload
         if (! empty($profilePicture)) {
@@ -99,11 +99,11 @@ class Teacher extends Model
             }
         }
 
-        $this->website = $requestArray['website'];
-        $this->facebook = $requestArray['facebook'];
+        $this->website = $requestArray['website'] ?? null;
+        $this->facebook = $requestArray['facebook'] ?? null;
 
         //$this->created_by = Auth::id();$requestArray['created_by'];
-        $this->created_by = $requestArray['created_by'];
+        $this->created_by = $requestArray['created_by'] ?? null;
 
         if (! $this->slug) {
             $this->slug = Str::slug($this->name, '-').'-'.rand(10000, 100000);

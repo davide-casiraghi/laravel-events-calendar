@@ -36,6 +36,7 @@ class Event extends Model
         'repeat_monthly_on',
         'on_monthly_kind',
         'multiple_dates',
+        'contact_email'
     ];
 
     /***************************************************************************/
@@ -344,22 +345,19 @@ class Event extends Model
         $this->title = $requestArray['title'];
         $this->description = clean($requestArray['description']);
 
-        if ($requestArray['created_by']) {
-            $this->created_by = $requestArray['created_by'];
-        }
-
+        $this->created_by = $requestArray['created_by'] ?? null;
+    
         if (! $this->slug) {
             $this->slug = Str::slug($this->title, '-').'-'.rand(100000, 1000000);
         }
-        $this->category_id = $requestArray['category_id'];
-        $this->venue_id = $requestArray['venue_id'];
-        $this->contact_email = $requestArray['contact_email'];
-        $this->website_event_link = $requestArray['website_event_link'];
-        $this->facebook_event_link = $requestArray['facebook_event_link'];
-        $this->status = (array_key_exists('status', $requestArray)) ? $requestArray['status'] : null;
-        $this->on_monthly_kind = (array_key_exists('on_monthly_kind', $requestArray)) ? $requestArray['on_monthly_kind'] : null;
-        //$this->on_monthly_kind = $requestArray['on_monthly_kind'];
-        $this->multiple_dates = (array_key_exists('multiple_dates', $requestArray)) ? $requestArray['multiple_dates'] : null;
+        $this->category_id = $requestArray['category_id'] ?? null;
+        $this->venue_id = $requestArray['venue_id'] ?? null;
+        $this->contact_email = $requestArray['contact_email'] ?? null;
+        $this->website_event_link = $requestArray['website_event_link'] ?? null;
+        $this->facebook_event_link = $requestArray['facebook_event_link'] ?? null;
+        $this->status = $requestArray['status'] ?? null;
+        $this->on_monthly_kind = $requestArray['on_monthly_kind'] ?? null;
+        $this->multiple_dates = $requestArray['multiple_dates'] ?? null;
 
         // Event teaser image upload
         //if ($request->file('image')) {
@@ -375,7 +373,7 @@ class Event extends Model
         } else {
             //$this->image = $request->get('image');
             if (array_key_exists('image', $requestArray)) {
-                $this->image = $requestArray['image'];
+                $this->image = $requestArray['image'] ?? null;
             }
         }
 
