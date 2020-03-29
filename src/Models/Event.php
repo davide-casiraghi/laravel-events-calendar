@@ -36,7 +36,7 @@ class Event extends Model
         'repeat_monthly_on',
         'on_monthly_kind',
         'multiple_dates',
-        'contact_email'
+        'contact_email',
     ];
 
     /***************************************************************************/
@@ -346,7 +346,7 @@ class Event extends Model
         $this->description = clean($requestArray['description']);
 
         $this->created_by = $requestArray['created_by'] ?? null;
-    
+
         if (! $this->slug) {
             $this->slug = Str::slug($this->title, '-').'-'.rand(100000, 1000000);
         }
