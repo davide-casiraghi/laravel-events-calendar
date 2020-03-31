@@ -3,30 +3,30 @@
 namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 
 use Carbon\Carbon;
-use DavideCasiraghi\LaravelEventsCalendar\Models\Teacher;
+use DavideCasiraghi\LaravelEventsCalendar\Models\Organizer;
 use Illuminate\Foundation\Testing\WithFaker;
 
-class TeacherModelTest extends TestCase
+class OrganizerModelTest extends TestCase
 {
     use WithFaker;
 
     /***************************************************************/
     
     /** @test */
-    public function it_gets_the_teacher_creator()
+    public function it_gets_the_organizer_creator()
     {
         $this->authenticateAsAdmin();
         
         // Create a teacher by the administrator, that has id 1
-        $attributes = factory(Teacher::class)->raw([
+        $attributes = factory(Organizer::class)->raw([
             'Name'=>'test teacher',
         ]);
-        $this->post('/teachers', $attributes);
+        $this->post('/organizers', $attributes);
         
-        $teacher = Teacher::find(1);
+        $organizer = Organizer::find(1);
         
         // Get the user id of the user that create the teacher
-        $creatorId = $teacher->user->id;
+        $creatorId = $organizer->user->id;
         
         $this->assertEquals($creatorId, 1);
     }
