@@ -18,7 +18,7 @@ class TeacherModelTest extends TestCase
 
         // Create a teacher by the administrator, that has id 1
         $attributes = factory(Teacher::class)->raw([
-            'Name'=>'test teacher',
+            'name'=>'test teacher',
         ]);
         $this->post('/teachers', $attributes);
 

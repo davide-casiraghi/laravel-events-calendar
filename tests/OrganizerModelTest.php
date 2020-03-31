@@ -19,7 +19,7 @@ class OrganizerModelTest extends TestCase
         
         // Create a teacher by the administrator, that has id 1
         $attributes = factory(Organizer::class)->raw([
-            'Name'=>'test teacher',
+            'name'=>'test organizer',
         ]);
         $this->post('/organizers', $attributes);
         
