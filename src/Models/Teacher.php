@@ -25,7 +25,7 @@ class Teacher extends Model
     /***************************************************************************/
 
     /**
-     * Get the user that owns the event. eg. $teacher->user.
+     * Get the user that owns the teacher. eg. $teacher->user.
      */
     public function user()
     {
