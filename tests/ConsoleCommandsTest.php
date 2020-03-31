@@ -5,7 +5,6 @@ namespace DavideCasiraghi\LaravelEventsCalendar\Tests;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Continent;
 use DavideCasiraghi\LaravelEventsCalendar\Models\Country;
 use DavideCasiraghi\LaravelEventsCalendar\Models\EventVenue;
-
 use Illuminate\Foundation\Testing\WithFaker;
 
 class ConsoleCommandsTest extends TestCase
@@ -13,12 +12,12 @@ class ConsoleCommandsTest extends TestCase
     use WithFaker;
 
     /***************************************************************/
-    
+
     /** @test */
     public function it_execute_retrieve_gps_coordinates_command()
     {
         $this->authenticateAsAdmin();
-        
+
         // Create a teacher by the administrator, that has id 1
         $attributes = factory(EventVenue::class)->raw([
             'continent_id' => 1,
@@ -38,14 +37,13 @@ class ConsoleCommandsTest extends TestCase
             'continent_id' => 1,
         ]);
         $response = $this->post('/eventVenues', $attributes);
-        
+
         $this->artisan('retrieve-all-gps-coordinates')
          //->expectsQuestion('What is your name?', 'Taylor Otwell')
          //->expectsQuestion('Which language do you program in?', 'PHP')
          //->expectsOutput('52.48789')
          ->assertExitCode(0);
     }
-    
+
     /***************************************************************/
-    
 }
