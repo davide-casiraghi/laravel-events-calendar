@@ -39,10 +39,16 @@ class ConsoleCommandsTest extends TestCase
         ]);
         $response = $this->post('/eventVenues', $attributes);
         
-        $this->artisan('retrieve-all-gps-coordinates')
+        $aa = $this->artisan('retrieve-all-gps-coordinates')
+         
+         
+         // @ TODO: still to figure out how to check the command output 
          //->expectsQuestion('What is your name?', 'Taylor Otwell')
          //->expectsQuestion('Which language do you program in?', 'PHP')
          //->expectsOutput('52.48789')
+         //dd($this->output());
+         
+         //check if the command run succesfully
          ->assertExitCode(0);
     }
     
