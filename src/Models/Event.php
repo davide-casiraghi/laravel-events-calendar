@@ -207,7 +207,7 @@ class Event extends Model
     /**
      * Return a cached JSON with active events map markers.
      *
-     * @return array
+     * @return string
      */
     public static function getActiveEventsMapGeoJSON()
     {

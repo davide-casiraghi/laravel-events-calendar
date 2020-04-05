@@ -86,7 +86,7 @@ class EventRepetition extends Model
      * $timeStart and $timeEnd are in the format H:i:s.
      * $weekDays - $request->get('repeat_weekly_on_day').
      * @param  int $eventId
-     * @param  array|null  $weekDays
+     * @param  array  $weekDays
      * @param  string  $startDate
      * @param  string  $repeatUntilDate
      * @param  string  $timeStart
