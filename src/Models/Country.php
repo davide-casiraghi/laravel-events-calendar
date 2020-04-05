@@ -26,7 +26,7 @@ class Country extends Model
     /**
      * Return all the countries ordered by name.
      *
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
+     * @return iterable
      */
     public static function getCountries(): iterable
     {
@@ -43,7 +43,7 @@ class Country extends Model
     /**
      * Return the all countries with active events.
      *
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
+     * @return iterable
      */
     public static function getActiveCountries(): ?iterable
     {
@@ -73,8 +73,8 @@ class Country extends Model
 
     /**
      * Return the all active countries by continent.
-     *
-     * @return \DavideCasiraghi\LaravelEventsCalendar\Models\Country
+     * @param int $continent_id
+     * @return iterable
      */
     public static function getActiveCountriesByContinent($continent_id): ?iterable
     {

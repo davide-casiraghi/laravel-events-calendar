@@ -409,6 +409,7 @@ class LaravelEventsCalendar
      */
     public static function getMapMarkerIconColor(int $eventCategoryId)
     {
+        $ret = '';
         switch ($eventCategoryId) {
             case 1: //Regular Jam
                 $ret = 'greenIcon';
