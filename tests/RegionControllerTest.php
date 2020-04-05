@@ -169,6 +169,6 @@ class RegionControllerTest extends TestCase
         // Get the list of the countries - The country should be present since has an event
         $response = $this->get("/update_regions_dropdown?country_id={$country->id}/");
         $response->assertStatus(200);
-        $response->assertSee("<select name='region_id' id='region_id' class='selectpicker' title='homepage-serach.select_a_region'><option value='1'>Lombardy</option></select>");
+        $response->assertSee("<select name='region_id' id='region_id' class='selectpicker' title='homepage-serach.select_a_region'><option value='1'>Lombardy</option></select>", $escaped = false);
     }
 }

@@ -142,7 +142,7 @@ class CountryControllerTest extends TestCase
         // Get the list of the countries - The country should be present since has an event
         $response = $this->get("/update_countries_dropdown?continent_id={$continent->id}/");
         $response->assertStatus(200);
-        $response->assertSee("<select name='country_id' id='country_id' class='selectpicker' title='homepage-serach.select_a_country'><option value='1'>Italy</option></select>");
+        $response->assertSee("<select name='country_id' id='country_id' class='selectpicker' title='homepage-serach.select_a_country'><option value='1'>Italy</option></select>", $escaped = false);
 
         // Delete the event and clear the cache since is refreshed every 15 min
         Event::where('id', 1)->delete();
@@ -151,6 +151,6 @@ class CountryControllerTest extends TestCase
         // Get the list of the countries - The country should not be present since has no events
         $response = $this->get("/update_countries_dropdown?continent_id={$continent->id}/");
         $response->assertStatus(200);
-        $response->assertSee("<select name='country_id' id='country_id' class='selectpicker' title='homepage-serach.select_a_country'></select>");
+        $response->assertSee("<select name='country_id' id='country_id' class='selectpicker' title='homepage-serach.select_a_country'></select>", $escaped = false);
     }
 }
