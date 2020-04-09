@@ -590,6 +590,11 @@ class EventController extends Controller
     public function eventBySlugAndRepetition(string $slug, int $repetitionId)
     {
         $event = Event::where('slug', $slug)->first();
+        
+        if (is_null($event)) {
+            abort(404);
+        }
+        
         $firstRpDates = EventRepetition::getFirstEventRpDatesByRepetitionId($repetitionId);
 
         // If not found get the first repetion of the event in the future.
