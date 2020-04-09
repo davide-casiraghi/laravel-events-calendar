@@ -212,8 +212,8 @@ class OrganizerController extends Controller
     public function organizerBySlug($slug)
     {
         $organizer = Organizer::where('slug', $slug)->first();
-        
-        if(is_null($organizer)){
+
+        if (is_null($organizer)) {
             abort(404);
         }
 
