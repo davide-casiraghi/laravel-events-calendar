@@ -276,9 +276,11 @@ class TeacherController extends Controller
      */
     public function teacherBySlug($slug)
     {
-        $teacher = Teacher::
-                where('slug', $slug)
-                ->first();
+        $teacher = Teacher::where('slug', $slug)->first();
+        
+        if(is_null($teacher)){
+            abort(404);
+        }
 
         return $this->show($teacher);
     }

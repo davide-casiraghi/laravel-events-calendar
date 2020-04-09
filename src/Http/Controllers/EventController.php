@@ -569,6 +569,11 @@ class EventController extends Controller
     public function eventBySlug(string $slug)
     {
         $event = Event::where('slug', $slug)->first();
+        
+        if(is_null($event)){
+            abort(404);
+        }
+        
         $firstRpDates = EventRepetition::getFirstEventRpDatesByEventId($event->id);
 
         return $this->show($event, $firstRpDates);
