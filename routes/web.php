@@ -1,4 +1,5 @@
 <?php
+    use Spatie\Honeypot\ProtectAgainstSpam;
 
     Route::group([
         'namespace' => 'DavideCasiraghi\LaravelEventsCalendar\Http\Controllers',
@@ -23,11 +24,11 @@
         Route::get('/event/{slug}/{repeatition}', 'EventController@eventBySlugAndRepetition')->where('eventBySlugAndRepetition', '[a-z]+', '[0-9]+');
 
         /* Report Misuse */
-        Route::post('/misuse', 'EventController@reportMisuse')->name('events.misuse');
+        Route::post('/misuse', 'EventController@reportMisuse')->middleware(ProtectAgainstSpam::class)->name('events.misuse');
         Route::get('/misuse/thankyou', 'EventController@reportMisuseThankyou')->name('events.misuse-thankyou');
 
         /* Mail to the event organizer */
-        Route::post('/mailToOrganizer', 'EventController@mailToOrganizer')->name('events.organizer-message');
+        Route::post('/mailToOrganizer', 'EventController@mailToOrganizer')->middleware(ProtectAgainstSpam::class)->name('events.organizer-message');
         Route::get('/mailToOrganizer/sent', 'EventController@mailToOrganizerSent')->name('events.organizer-sent');
 
         /* Event Venues */
