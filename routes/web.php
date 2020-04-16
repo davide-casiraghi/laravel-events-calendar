@@ -1,4 +1,5 @@
 <?php
+
     use Spatie\Honeypot\ProtectAgainstSpam;
 
     Route::group([
