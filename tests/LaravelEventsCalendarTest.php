@@ -204,7 +204,7 @@ class LaravelEventsCalendarTest extends TestCase
     {
         // To test manually
         //https://developer.mapquest.com/documentation/tools/latitude-longitude-finder/
-        
+
         $address = 'Italy, Milano, via Dante, 15';
         $venuesCoordinates = LaravelEventsCalendar::getVenueGpsCoordinates($address);
         $this->assertSame(intval($venuesCoordinates['lat']), 45);
